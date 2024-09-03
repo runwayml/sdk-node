@@ -6,8 +6,8 @@ Types:
 
 Methods:
 
-- <code title="get /v1/tasks/{id}">client.tasks.<a href="./src/resources/tasks.ts">retrieve</a>(id, { ...params }) -> TaskRetrieveResponse</code>
-- <code title="delete /v1/tasks/{id}">client.tasks.<a href="./src/resources/tasks.ts">delete</a>(id, { ...params }) -> void</code>
+- <code title="get /v1/tasks/{id}">client.tasks.<a href="./src/resources/tasks.ts">retrieve</a>(id) -> TaskRetrieveResponse</code>
+- <code title="delete /v1/tasks/{id}">client.tasks.<a href="./src/resources/tasks.ts">delete</a>(id) -> void</code>
 
 # ImageToVideo
 

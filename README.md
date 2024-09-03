@@ -25,14 +25,14 @@ The full API of this library can be found in [api.md](api.md).
 ```js
 import Runwayml from 'runwayml';
 
-const client = new Runwayml();
+const client = new Runwayml({
+  apiKey: process.env['RUNWAYML_API_SECRET'], // This is the default and can be omitted
+});
 
 async function main() {
   const imageToVideoCreateResponse = await client.imageToVideo.create({
     model: 'REPLACE_ME',
     promptImage: 'REPLACE_ME',
-    'X-Runway-On-Behalf-Of': 'mfsBGp24IE',
-    'X-Runway-Version': '2023-09-06',
   });
 
   console.log(imageToVideoCreateResponse.id);
@@ -49,15 +49,12 @@ This library includes TypeScript definitions for all request params and response
 ```ts
 import Runwayml from 'runwayml';
 
-const client = new Runwayml();
+const client = new Runwayml({
+  apiKey: process.env['RUNWAYML_API_SECRET'], // This is the default and can be omitted
+});
 
 async function main() {
-  const params: Runwayml.ImageToVideoCreateParams = {
-    model: 'REPLACE_ME',
-    promptImage: 'REPLACE_ME',
-    'X-Runway-On-Behalf-Of': 'mfsBGp24IE',
-    'X-Runway-Version': '2023-09-06',
-  };
+  const params: Runwayml.ImageToVideoCreateParams = { model: 'REPLACE_ME', promptImage: 'REPLACE_ME' };
   const imageToVideoCreateResponse: Runwayml.ImageToVideoCreateResponse = await client.imageToVideo.create(
     params,
   );
@@ -78,12 +75,7 @@ a subclass of `APIError` will be thrown:
 ```ts
 async function main() {
   const imageToVideoCreateResponse = await client.imageToVideo
-    .create({
-      model: 'REPLACE_ME',
-      promptImage: 'REPLACE_ME',
-      'X-Runway-On-Behalf-Of': 'mfsBGp24IE',
-      'X-Runway-Version': '2023-09-06',
-    })
+    .create({ model: 'REPLACE_ME', promptImage: 'REPLACE_ME' })
     .catch(async (err) => {
       if (err instanceof Runwayml.APIError) {
         console.log(err.status); // 400
@@ -127,7 +119,7 @@ const client = new Runwayml({
 });
 
 // Or, configure per-request:
-await client.imageToVideo.create({ model: 'REPLACE_ME', promptImage: 'REPLACE_ME', 'X-Runway-On-Behalf-Of': 'mfsBGp24IE', 'X-Runway-Version': '2023-09-06' }, {
+await client.imageToVideo.create({ model: 'REPLACE_ME', promptImage: 'REPLACE_ME' }, {
   maxRetries: 5,
 });
 ```
@@ -144,7 +136,7 @@ const client = new Runwayml({
 });
 
 // Override per-request:
-await client.imageToVideo.create({ model: 'REPLACE_ME', promptImage: 'REPLACE_ME', 'X-Runway-On-Behalf-Of': 'mfsBGp24IE', 'X-Runway-Version': '2023-09-06' }, {
+await client.imageToVideo.create({ model: 'REPLACE_ME', promptImage: 'REPLACE_ME' }, {
   timeout: 5 * 1000,
 });
 ```
@@ -166,23 +158,13 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 const client = new Runwayml();
 
 const response = await client.imageToVideo
-  .create({
-    model: 'REPLACE_ME',
-    promptImage: 'REPLACE_ME',
-    'X-Runway-On-Behalf-Of': 'mfsBGp24IE',
-    'X-Runway-Version': '2023-09-06',
-  })
+  .create({ model: 'REPLACE_ME', promptImage: 'REPLACE_ME' })
   .asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
 const { data: imageToVideoCreateResponse, response: raw } = await client.imageToVideo
-  .create({
-    model: 'REPLACE_ME',
-    promptImage: 'REPLACE_ME',
-    'X-Runway-On-Behalf-Of': 'mfsBGp24IE',
-    'X-Runway-Version': '2023-09-06',
-  })
+  .create({ model: 'REPLACE_ME', promptImage: 'REPLACE_ME' })
   .withResponse();
 console.log(raw.headers.get('X-My-Header'));
 console.log(imageToVideoCreateResponse.id);
@@ -290,12 +272,7 @@ const client = new Runwayml({
 
 // Override per-request:
 await client.imageToVideo.create(
-  {
-    model: 'REPLACE_ME',
-    promptImage: 'REPLACE_ME',
-    'X-Runway-On-Behalf-Of': 'mfsBGp24IE',
-    'X-Runway-Version': '2023-09-06',
-  },
+  { model: 'REPLACE_ME', promptImage: 'REPLACE_ME' },
   {
     httpAgent: new http.Agent({ keepAlive: false }),
   },

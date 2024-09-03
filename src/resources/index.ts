@@ -1,4 +1,4 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 export { ImageToVideoCreateResponse, ImageToVideoCreateParams, ImageToVideo } from './image-to-video';
-export { TaskRetrieveResponse, TaskRetrieveParams, TaskDeleteParams, Tasks } from './tasks';
+export { TaskRetrieveResponse, Tasks } from './tasks';
