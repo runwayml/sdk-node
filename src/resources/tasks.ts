@@ -9,16 +9,8 @@ export class Tasks extends APIResource {
    * Return details about a task. Consumers of this API should not expect updates
    * more frequent than once every five seconds for a given task.
    */
-  retrieve(
-    id: string,
-    params: TaskRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<TaskRetrieveResponse> {
-    const { 'X-Runway-Version': xRunwayVersion } = params;
-    return this._client.get(`/v1/tasks/${id}`, {
-      ...options,
-      headers: { 'X-Runway-Version': xRunwayVersion.toString(), ...options?.headers },
-    });
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<TaskRetrieveResponse> {
+    return this._client.get(`/v1/tasks/${id}`, options);
   }
 
   /**
@@ -29,11 +21,10 @@ export class Tasks extends APIResource {
    * storage in accordance with our data retention policy. Aborted and deleted tasks
    * will not be able to be fetched again in the future.
    */
-  delete(id: string, params: TaskDeleteParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { 'X-Runway-Version': xRunwayVersion } = params;
+  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/v1/tasks/${id}`, {
       ...options,
-      headers: { Accept: '*/*', 'X-Runway-Version': xRunwayVersion.toString(), ...options?.headers },
+      headers: { Accept: '*/*', ...options?.headers },
     });
   }
 }
@@ -86,16 +77,6 @@ export interface TaskRetrieveResponse {
   progress?: number;
 }
 
-export interface TaskRetrieveParams {
-  'X-Runway-Version': '2023-09-06';
-}
-
-export interface TaskDeleteParams {
-  'X-Runway-Version': '2023-09-06';
-}
-
 export namespace Tasks {
   export import TaskRetrieveResponse = TasksAPI.TaskRetrieveResponse;
-  export import TaskRetrieveParams = TasksAPI.TaskRetrieveParams;
-  export import TaskDeleteParams = TasksAPI.TaskDeleteParams;
 }

@@ -8,6 +8,13 @@ import * as API from './resources/index';
 
 export interface ClientOptions {
   /**
+   * Defaults to process.env['RUNWAYML_API_SECRET'].
+   */
+  apiKey?: string | undefined;
+
+  runwayVersion?: string | undefined;
+
+  /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
    *
    * Defaults to process.env['RUNWAYML_BASE_URL'].
@@ -68,11 +75,16 @@ export interface ClientOptions {
  * API Client for interfacing with the Runwayml API.
  */
 export class Runwayml extends Core.APIClient {
+  apiKey: string;
+  runwayVersion: string;
+
   private _options: ClientOptions;
 
   /**
    * API Client for interfacing with the Runwayml API.
    *
+   * @param {string | undefined} [opts.apiKey=process.env['RUNWAYML_API_SECRET'] ?? undefined]
+   * @param {string | undefined} [opts.runwayVersion=2023-09-06]
    * @param {string} [opts.baseURL=process.env['RUNWAYML_BASE_URL'] ?? https://playdoh.runwayml.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {number} [opts.httpAgent] - An HTTP agent used to manage HTTP(s) connections.
@@ -81,8 +93,21 @@ export class Runwayml extends Core.APIClient {
    * @param {Core.Headers} opts.defaultHeaders - Default headers to include with every request to the API.
    * @param {Core.DefaultQuery} opts.defaultQuery - Default query parameters to include with every request to the API.
    */
-  constructor({ baseURL = Core.readEnv('RUNWAYML_BASE_URL'), ...opts }: ClientOptions = {}) {
+  constructor({
+    baseURL = Core.readEnv('RUNWAYML_BASE_URL'),
+    apiKey = Core.readEnv('RUNWAYML_API_SECRET'),
+    runwayVersion = '2023-09-06',
+    ...opts
+  }: ClientOptions = {}) {
+    if (apiKey === undefined) {
+      throw new Errors.RunwaymlError(
+        "The RUNWAYML_API_SECRET environment variable is missing or empty; either provide it, or instantiate the Runwayml client with an apiKey option, like new Runwayml({ apiKey: 'My API Key' }).",
+      );
+    }
+
     const options: ClientOptions = {
+      apiKey,
+      runwayVersion,
       ...opts,
       baseURL: baseURL || `https://playdoh.runwayml.com`,
     };
@@ -96,6 +121,9 @@ export class Runwayml extends Core.APIClient {
     });
 
     this._options = options;
+
+    this.apiKey = apiKey;
+    this.runwayVersion = runwayVersion;
   }
 
   tasks: API.Tasks = new API.Tasks(this);
@@ -108,8 +136,13 @@ export class Runwayml extends Core.APIClient {
   protected override defaultHeaders(opts: Core.FinalRequestOptions): Core.Headers {
     return {
       ...super.defaultHeaders(opts),
+      'X-Runway-Version': this.runwayVersion,
       ...this._options.defaultHeaders,
     };
+  }
+
+  protected override authHeaders(opts: Core.FinalRequestOptions): Core.Headers {
+    return { Authorization: `Bearer ${this.apiKey}` };
   }
 
   static Runwayml = this;
@@ -157,8 +190,6 @@ export namespace Runwayml {
 
   export import Tasks = API.Tasks;
   export import TaskRetrieveResponse = API.TaskRetrieveResponse;
-  export import TaskRetrieveParams = API.TaskRetrieveParams;
-  export import TaskDeleteParams = API.TaskDeleteParams;
 
   export import ImageToVideo = API.ImageToVideo;
   export import ImageToVideoCreateResponse = API.ImageToVideoCreateResponse;
