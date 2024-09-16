@@ -9,9 +9,9 @@
     "esModuleInterop": true,
     "baseUrl": "./",
     "paths": {
-      "runwayml/_shims/auto/*": ["src/_shims/auto/*-node"],
-      "runwayml/*": ["src/*"],
-      "runwayml": ["src/index.ts"],
+      "@runwayml/sdk/_shims/auto/*": ["src/_shims/auto/*-node"],
+      "@runwayml/sdk/*": ["src/*"],
+      "@runwayml/sdk": ["src/index.ts"],
     },
     "noEmit": true,
 

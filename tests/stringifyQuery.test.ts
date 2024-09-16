@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { RunwayML } from 'runwayml';
+import { RunwayML } from '@runwayml/sdk';
 
 const { stringifyQuery } = RunwayML.prototype as any;
 

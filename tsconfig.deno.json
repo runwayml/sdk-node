@@ -6,9 +6,9 @@
     "rootDir": "./deno",
     "lib": ["es2020", "DOM"],
     "paths": {
-      "runwayml/_shims/auto/*": ["deno/_shims/auto/*-deno"],
-      "runwayml/*": ["deno/*"],
-      "runwayml": ["deno/index.ts"],
+      "@runwayml/sdk/_shims/auto/*": ["deno/_shims/auto/*-deno"],
+      "@runwayml/sdk/*": ["deno/*"],
+      "@runwayml/sdk": ["deno/index.ts"],
     },
     "noEmit": true,
     "declaration": true,
