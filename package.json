@@ -1,5 +1,5 @@
 {
-  "name": "runwayml",
+  "name": "@runwayml/sdk",
   "version": "0.1.0-alpha.2",
   "description": "The official TypeScript library for the RunwayML API",
   "author": "RunwayML <dev-feedback@runwayml.com>",
@@ -59,8 +59,8 @@
     "./shims/web.mjs"
   ],
   "imports": {
-    "runwayml": ".",
-    "runwayml/*": "./src/*"
+    "@runwayml/sdk": ".",
+    "@runwayml/sdk/*": "./src/*"
   },
   "exports": {
     "./_shims/auto/*": {

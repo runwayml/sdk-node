@@ -23,6 +23,7 @@ Full Changelog: [v0.0.1-alpha.0...v0.1.0-alpha.1](https://github.com/runwayml/sd
 * go live ([#1](https://github.com/runwayml/sdk-node/issues/1)) ([449f5b6](https://github.com/runwayml/sdk-node/commit/449f5b62ef152a10cdf801b8d5c9c1210dcade6f))
 * **internal:** codegen related update ([d7fc06e](https://github.com/runwayml/sdk-node/commit/d7fc06e345811d4ad04ea9113974f849b874004a))
 * **internal:** codegen related update ([af1190c](https://github.com/runwayml/sdk-node/commit/af1190c7fabd201fce1cc448407d161b7a982280))
+* update SDK settings ([#3](https://github.com/runwayml/sdk-node/issues/3)) ([8f505a6](https://github.com/runwayml/sdk-node/commit/8f505a6a454c83c1681285c43a6796d3c351ae3c))
 
 
 ### Documentation

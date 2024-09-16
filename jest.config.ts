@@ -7,9 +7,9 @@ const config: JestConfigWithTsJest = {
     '^.+\\.(t|j)sx?$': ['@swc/jest', { sourceMaps: 'inline' }],
   },
   moduleNameMapper: {
-    '^runwayml$': '<rootDir>/src/index.ts',
-    '^runwayml/_shims/auto/(.*)$': '<rootDir>/src/_shims/auto/$1-node',
-    '^runwayml/(.*)$': '<rootDir>/src/$1',
+    '^@runwayml/sdk$': '<rootDir>/src/index.ts',
+    '^@runwayml/sdk/_shims/auto/(.*)$': '<rootDir>/src/_shims/auto/$1-node',
+    '^@runwayml/sdk/(.*)$': '<rootDir>/src/$1',
   },
   modulePathIgnorePatterns: [
     '<rootDir>/ecosystem-tests/',

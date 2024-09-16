@@ -55,12 +55,12 @@ cd sdk-node
 # With yarn
 yarn link
 cd ../my-package
-yarn link runwayml
+yarn link @runwayml/sdk
 
 # With pnpm
 pnpm link --global
 cd ../my-package
-pnpm link -—global runwayml
+pnpm link -—global @runwayml/sdk
 ```
 
 ## Running tests
