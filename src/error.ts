@@ -2,9 +2,9 @@
 
 import { castToError, Headers } from './core';
 
-export class RunwaymlError extends Error {}
+export class RunwayMLError extends Error {}
 
-export class APIError extends RunwaymlError {
+export class APIError extends RunwayMLError {
   readonly status: number | undefined;
   readonly headers: Headers | undefined;
   readonly error: Object | undefined;

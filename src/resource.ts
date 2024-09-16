@@ -1,11 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import type { Runwayml } from './index';
+import type { RunwayML } from './index';
 
 export class APIResource {
-  protected _client: Runwayml;
+  protected _client: RunwayML;
 
-  constructor(client: Runwayml) {
+  constructor(client: RunwayML) {
     this._client = client;
   }
 }
