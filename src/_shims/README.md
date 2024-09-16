@@ -1,9 +1,9 @@
 # 👋 Wondering what everything in here does?
 
-`runwayml` supports a wide variety of runtime environments like Node.js, Deno, Bun, browsers, and various
+`@runwayml/sdk` supports a wide variety of runtime environments like Node.js, Deno, Bun, browsers, and various
 edge runtimes, as well as both CommonJS (CJS) and EcmaScript Modules (ESM).
 
-To do this, `runwayml` provides shims for either using `node-fetch` when in Node (because `fetch` is still experimental there) or the global `fetch` API built into the environment when not in Node.
+To do this, `@runwayml/sdk` provides shims for either using `node-fetch` when in Node (because `fetch` is still experimental there) or the global `fetch` API built into the environment when not in Node.
 
 It uses [conditional exports](https://nodejs.org/api/packages.html#conditional-exports) to
 automatically select the correct shims for each environment. However, conditional exports are a fairly new
@@ -15,32 +15,32 @@ getting the wrong raw `Response` type from `.asResponse()`, for example.
 
 The user can work around these issues by manually importing one of:
 
-- `import 'runwayml/shims/node'`
-- `import 'runwayml/shims/web'`
+- `import '@runwayml/sdk/shims/node'`
+- `import '@runwayml/sdk/shims/web'`
 
 All of the code here in `_shims` handles selecting the automatic default shims or manual overrides.
 
 ### How it works - Runtime
 
-Runtime shims get installed by calling `setShims` exported by `runwayml/_shims/registry`.
+Runtime shims get installed by calling `setShims` exported by `@runwayml/sdk/_shims/registry`.
 
-Manually importing `runwayml/shims/node` or `runwayml/shims/web`, calls `setShims` with the respective runtime shims.
+Manually importing `@runwayml/sdk/shims/node` or `@runwayml/sdk/shims/web`, calls `setShims` with the respective runtime shims.
 
-All client code imports shims from `runwayml/_shims/index`, which:
+All client code imports shims from `@runwayml/sdk/_shims/index`, which:
 
 - checks if shims have been set manually
-- if not, calls `setShims` with the shims from `runwayml/_shims/auto/runtime`
-- re-exports the installed shims from `runwayml/_shims/registry`.
+- if not, calls `setShims` with the shims from `@runwayml/sdk/_shims/auto/runtime`
+- re-exports the installed shims from `@runwayml/sdk/_shims/registry`.
 
-`runwayml/_shims/auto/runtime` exports web runtime shims.
-If the `node` export condition is set, the export map replaces it with `runwayml/_shims/auto/runtime-node`.
+`@runwayml/sdk/_shims/auto/runtime` exports web runtime shims.
+If the `node` export condition is set, the export map replaces it with `@runwayml/sdk/_shims/auto/runtime-node`.
 
 ### How it works - Type time
 
-All client code imports shim types from `runwayml/_shims/index`, which selects the manual types from `runwayml/_shims/manual-types` if they have been declared, otherwise it exports the auto types from `runwayml/_shims/auto/types`.
+All client code imports shim types from `@runwayml/sdk/_shims/index`, which selects the manual types from `@runwayml/sdk/_shims/manual-types` if they have been declared, otherwise it exports the auto types from `@runwayml/sdk/_shims/auto/types`.
 
-`runwayml/_shims/manual-types` exports an empty namespace.
-Manually importing `runwayml/shims/node` or `runwayml/shims/web` merges declarations into this empty namespace, so they get picked up by `runwayml/_shims/index`.
+`@runwayml/sdk/_shims/manual-types` exports an empty namespace.
+Manually importing `@runwayml/sdk/shims/node` or `@runwayml/sdk/shims/web` merges declarations into this empty namespace, so they get picked up by `@runwayml/sdk/_shims/index`.
 
-`runwayml/_shims/auto/types` exports web type definitions.
-If the `node` export condition is set, the export map replaces it with `runwayml/_shims/auto/types-node`, though TS only picks this up if `"moduleResolution": "nodenext"` or `"moduleResolution": "bundler"`.
+`@runwayml/sdk/_shims/auto/types` exports web type definitions.
+If the `node` export condition is set, the export map replaces it with `@runwayml/sdk/_shims/auto/types-node`, though TS only picks this up if `"moduleResolution": "nodenext"` or `"moduleResolution": "bundler"`.

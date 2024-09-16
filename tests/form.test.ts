@@ -1,6 +1,6 @@
-import { multipartFormRequestOptions, createForm } from 'runwayml/core';
-import { Blob } from 'runwayml/_shims/index';
-import { toFile } from 'runwayml';
+import { multipartFormRequestOptions, createForm } from '@runwayml/sdk/core';
+import { Blob } from '@runwayml/sdk/_shims/index';
+import { toFile } from '@runwayml/sdk';
 
 describe('form data validation', () => {
   test('valid values do not error', async () => {

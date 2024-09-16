@@ -42,12 +42,12 @@ export let isFsReadStream: Shims['isFsReadStream'] | undefined = undefined;
 export function setShims(shims: Shims, options: { auto: boolean } = { auto: false }) {
   if (auto) {
     throw new Error(
-      `you must \`import 'runwayml/shims/${shims.kind}'\` before importing anything else from runwayml`,
+      `you must \`import '@runwayml/sdk/shims/${shims.kind}'\` before importing anything else from @runwayml/sdk`,
     );
   }
   if (kind) {
     throw new Error(
-      `can't \`import 'runwayml/shims/${shims.kind}'\` after \`import 'runwayml/shims/${kind}'\``,
+      `can't \`import '@runwayml/sdk/shims/${shims.kind}'\` after \`import '@runwayml/sdk/shims/${kind}'\``,
     );
   }
   auto = options.auto;
