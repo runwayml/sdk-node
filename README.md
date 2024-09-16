@@ -30,12 +30,9 @@ const client = new RunwayML({
 });
 
 async function main() {
-  const imageToVideoCreateResponse = await client.imageToVideo.create({
-    model: 'REPLACE_ME',
-    promptImage: 'REPLACE_ME',
-  });
+  const imageToVideo = await client.imageToVideo.create({ model: 'REPLACE_ME', promptImage: 'REPLACE_ME' });
 
-  console.log(imageToVideoCreateResponse.id);
+  console.log(imageToVideo.id);
 }
 
 main();
@@ -55,9 +52,7 @@ const client = new RunwayML({
 
 async function main() {
   const params: RunwayML.ImageToVideoCreateParams = { model: 'REPLACE_ME', promptImage: 'REPLACE_ME' };
-  const imageToVideoCreateResponse: RunwayML.ImageToVideoCreateResponse = await client.imageToVideo.create(
-    params,
-  );
+  const imageToVideo: RunwayML.ImageToVideoCreateResponse = await client.imageToVideo.create(params);
 }
 
 main();
@@ -74,7 +69,7 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const imageToVideoCreateResponse = await client.imageToVideo
+  const imageToVideo = await client.imageToVideo
     .create({ model: 'REPLACE_ME', promptImage: 'REPLACE_ME' })
     .catch(async (err) => {
       if (err instanceof RunwayML.APIError) {
@@ -163,11 +158,11 @@ const response = await client.imageToVideo
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: imageToVideoCreateResponse, response: raw } = await client.imageToVideo
+const { data: imageToVideo, response: raw } = await client.imageToVideo
   .create({ model: 'REPLACE_ME', promptImage: 'REPLACE_ME' })
   .withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(imageToVideoCreateResponse.id);
+console.log(imageToVideo.id);
 ```
 
 ### Making custom/undocumented requests
