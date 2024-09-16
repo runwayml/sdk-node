@@ -4,14 +4,14 @@
 
 This library provides convenient access to the RunwayML REST API from server-side TypeScript or JavaScript.
 
-The REST API documentation can be found on [docs.runwayml.com](https://docs.runwayml.com). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [dev.runwayml.com](https://dev.runwayml.com). The full API of this library can be found in [api.md](api.md).
 
 It is generated with [Stainless](https://www.stainlessapi.com/).
 
 ## Installation
 
 ```sh
-npm install git+ssh://git@github.com:stainless-sdks/runwayml-node.git
+npm install git+ssh://git@github.com:runwayml/sdk-node.git
 ```
 
 > [!NOTE]
@@ -30,7 +30,11 @@ const client = new RunwayML({
 });
 
 async function main() {
-  const imageToVideo = await client.imageToVideo.create({ model: 'REPLACE_ME', promptImage: 'REPLACE_ME' });
+  const imageToVideo = await client.imageToVideo.create({
+    model: 'gen3a_turbo',
+    promptImage: 'https://example.com/assets/bunny.jpg',
+    promptText: 'The bunny is eating a carrot',
+  });
 
   console.log(imageToVideo.id);
 }
@@ -51,7 +55,11 @@ const client = new RunwayML({
 });
 
 async function main() {
-  const params: RunwayML.ImageToVideoCreateParams = { model: 'REPLACE_ME', promptImage: 'REPLACE_ME' };
+  const params: RunwayML.ImageToVideoCreateParams = {
+    model: 'gen3a_turbo',
+    promptImage: 'https://example.com/assets/bunny.jpg',
+    promptText: 'The bunny is eating a carrot',
+  };
   const imageToVideo: RunwayML.ImageToVideoCreateResponse = await client.imageToVideo.create(params);
 }
 
@@ -70,7 +78,11 @@ a subclass of `APIError` will be thrown:
 ```ts
 async function main() {
   const imageToVideo = await client.imageToVideo
-    .create({ model: 'REPLACE_ME', promptImage: 'REPLACE_ME' })
+    .create({
+      model: 'gen3a_turbo',
+      promptImage: 'https://example.com/assets/bunny.jpg',
+      promptText: 'The bunny is eating a carrot',
+    })
     .catch(async (err) => {
       if (err instanceof RunwayML.APIError) {
         console.log(err.status); // 400
@@ -114,7 +126,7 @@ const client = new RunwayML({
 });
 
 // Or, configure per-request:
-await client.imageToVideo.create({ model: 'REPLACE_ME', promptImage: 'REPLACE_ME' }, {
+await client.imageToVideo.create({ model: 'gen3a_turbo', promptImage: 'https://example.com/assets/bunny.jpg', promptText: 'The bunny is eating a carrot' }, {
   maxRetries: 5,
 });
 ```
@@ -131,7 +143,7 @@ const client = new RunwayML({
 });
 
 // Override per-request:
-await client.imageToVideo.create({ model: 'REPLACE_ME', promptImage: 'REPLACE_ME' }, {
+await client.imageToVideo.create({ model: 'gen3a_turbo', promptImage: 'https://example.com/assets/bunny.jpg', promptText: 'The bunny is eating a carrot' }, {
   timeout: 5 * 1000,
 });
 ```
@@ -153,13 +165,21 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 const client = new RunwayML();
 
 const response = await client.imageToVideo
-  .create({ model: 'REPLACE_ME', promptImage: 'REPLACE_ME' })
+  .create({
+    model: 'gen3a_turbo',
+    promptImage: 'https://example.com/assets/bunny.jpg',
+    promptText: 'The bunny is eating a carrot',
+  })
   .asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
 const { data: imageToVideo, response: raw } = await client.imageToVideo
-  .create({ model: 'REPLACE_ME', promptImage: 'REPLACE_ME' })
+  .create({
+    model: 'gen3a_turbo',
+    promptImage: 'https://example.com/assets/bunny.jpg',
+    promptText: 'The bunny is eating a carrot',
+  })
   .withResponse();
 console.log(raw.headers.get('X-My-Header'));
 console.log(imageToVideo.id);
@@ -225,7 +245,7 @@ import RunwayML from 'runwayml';
 ```
 
 To do the inverse, add `import "runwayml/shims/node"` (which does import polyfills).
-This can also be useful if you are getting the wrong TypeScript types for `Response` ([more details](https://github.com/stainless-sdks/runwayml-node/tree/main/src/_shims#readme)).
+This can also be useful if you are getting the wrong TypeScript types for `Response` ([more details](https://github.com/runwayml/sdk-node/tree/main/src/_shims#readme)).
 
 ### Logging and middleware
 
@@ -267,7 +287,11 @@ const client = new RunwayML({
 
 // Override per-request:
 await client.imageToVideo.create(
-  { model: 'REPLACE_ME', promptImage: 'REPLACE_ME' },
+  {
+    model: 'gen3a_turbo',
+    promptImage: 'https://example.com/assets/bunny.jpg',
+    promptText: 'The bunny is eating a carrot',
+  },
   {
     httpAgent: new http.Agent({ keepAlive: false }),
   },
@@ -284,7 +308,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/runwayml-node/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/runwayml/sdk-node/issues) with questions, bugs, or suggestions.
 
 ## Requirements
 

@@ -151,13 +151,13 @@ describe('instantiate client', () => {
     test('empty env variable', () => {
       process.env['RUNWAYML_BASE_URL'] = ''; // empty
       const client = new RunwayML({ apiKey: 'My API Key' });
-      expect(client.baseURL).toEqual('https://playdoh.runwayml.com');
+      expect(client.baseURL).toEqual('https://api.dev.runwayml.com');
     });
 
     test('blank env variable', () => {
       process.env['RUNWAYML_BASE_URL'] = '  '; // blank
       const client = new RunwayML({ apiKey: 'My API Key' });
-      expect(client.baseURL).toEqual('https://playdoh.runwayml.com');
+      expect(client.baseURL).toEqual('https://api.dev.runwayml.com');
     });
   });
 
