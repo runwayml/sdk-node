@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.2 (2024-09-16)
+
+Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/runwayml/sdk-node/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)
+
+### Features
+
+* **api:** update via SDK Studio ([#6](https://github.com/runwayml/sdk-node/issues/6)) ([3af37b9](https://github.com/runwayml/sdk-node/commit/3af37b946a4c3510ba540e63283d45599a42d7ad))
+
 ## 0.1.0-alpha.1 (2024-09-16)
 
 Full Changelog: [v0.0.1-alpha.0...v0.1.0-alpha.1](https://github.com/runwayml/sdk-node/compare/v0.0.1-alpha.0...v0.1.0-alpha.1)
