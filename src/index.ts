@@ -84,8 +84,8 @@ export class RunwayML extends Core.APIClient {
    * API Client for interfacing with the RunwayML API.
    *
    * @param {string | undefined} [opts.apiKey=process.env['RUNWAYML_API_SECRET'] ?? undefined]
-   * @param {string | undefined} [opts.runwayVersion=2023-09-06]
-   * @param {string} [opts.baseURL=process.env['RUNWAYML_BASE_URL'] ?? https://playdoh.runwayml.com] - Override the default base URL for the API.
+   * @param {string | undefined} [opts.runwayVersion=2024-09-13]
+   * @param {string} [opts.baseURL=process.env['RUNWAYML_BASE_URL'] ?? https://api.dev.runwayml.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {number} [opts.httpAgent] - An HTTP agent used to manage HTTP(s) connections.
    * @param {Core.Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
@@ -96,7 +96,7 @@ export class RunwayML extends Core.APIClient {
   constructor({
     baseURL = Core.readEnv('RUNWAYML_BASE_URL'),
     apiKey = Core.readEnv('RUNWAYML_API_SECRET'),
-    runwayVersion = '2023-09-06',
+    runwayVersion = '2024-09-13',
     ...opts
   }: ClientOptions = {}) {
     if (apiKey === undefined) {
@@ -109,7 +109,7 @@ export class RunwayML extends Core.APIClient {
       apiKey,
       runwayVersion,
       ...opts,
-      baseURL: baseURL || `https://playdoh.runwayml.com`,
+      baseURL: baseURL || `https://api.dev.runwayml.com`,
     };
 
     super({

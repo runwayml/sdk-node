@@ -66,7 +66,8 @@ export interface TaskRetrieveResponse {
   /**
    * If the status is `SUCCEEDED`, this will contain an array of strings. Each string
    * will be a URL that returns an output from the task. URLs expire within 24-48
-   * hours.
+   * hours; fetch the task again to get fresh URLs. It is expected that you download
+   * the assets at these URLs and store them in your own storage system.
    */
   output?: Array<string>;
 
