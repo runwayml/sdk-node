@@ -72,16 +72,16 @@ export interface ClientOptions {
 }
 
 /**
- * API Client for interfacing with the Runwayml API.
+ * API Client for interfacing with the RunwayML API.
  */
-export class Runwayml extends Core.APIClient {
+export class RunwayML extends Core.APIClient {
   apiKey: string;
   runwayVersion: string;
 
   private _options: ClientOptions;
 
   /**
-   * API Client for interfacing with the Runwayml API.
+   * API Client for interfacing with the RunwayML API.
    *
    * @param {string | undefined} [opts.apiKey=process.env['RUNWAYML_API_SECRET'] ?? undefined]
    * @param {string | undefined} [opts.runwayVersion=2023-09-06]
@@ -100,8 +100,8 @@ export class Runwayml extends Core.APIClient {
     ...opts
   }: ClientOptions = {}) {
     if (apiKey === undefined) {
-      throw new Errors.RunwaymlError(
-        "The RUNWAYML_API_SECRET environment variable is missing or empty; either provide it, or instantiate the Runwayml client with an apiKey option, like new Runwayml({ apiKey: 'My API Key' }).",
+      throw new Errors.RunwayMLError(
+        "The RUNWAYML_API_SECRET environment variable is missing or empty; either provide it, or instantiate the RunwayML client with an apiKey option, like new RunwayML({ apiKey: 'My API Key' }).",
       );
     }
 
@@ -145,10 +145,10 @@ export class Runwayml extends Core.APIClient {
     return { Authorization: `Bearer ${this.apiKey}` };
   }
 
-  static Runwayml = this;
+  static RunwayML = this;
   static DEFAULT_TIMEOUT = 60000; // 1 minute
 
-  static RunwaymlError = Errors.RunwaymlError;
+  static RunwayMLError = Errors.RunwayMLError;
   static APIError = Errors.APIError;
   static APIConnectionError = Errors.APIConnectionError;
   static APIConnectionTimeoutError = Errors.APIConnectionTimeoutError;
@@ -167,7 +167,7 @@ export class Runwayml extends Core.APIClient {
 }
 
 export const {
-  RunwaymlError,
+  RunwayMLError,
   APIError,
   APIConnectionError,
   APIConnectionTimeoutError,
@@ -185,7 +185,7 @@ export const {
 export import toFile = Uploads.toFile;
 export import fileFromPath = Uploads.fileFromPath;
 
-export namespace Runwayml {
+export namespace RunwayML {
   export import RequestOptions = Core.RequestOptions;
 
   export import Tasks = API.Tasks;
@@ -196,4 +196,4 @@ export namespace Runwayml {
   export import ImageToVideoCreateParams = API.ImageToVideoCreateParams;
 }
 
-export default Runwayml;
+export default RunwayML;
