@@ -4,8 +4,8 @@
 /**
  * Types will get added to this namespace when you import one of the following:
  *
- *   import 'runwayml/shims/node'
- *   import 'runwayml/shims/web'
+ *   import '@runwayml/sdk/shims/node'
+ *   import '@runwayml/sdk/shims/web'
  *
  * Importing more than one will cause type and runtime errors.
  */

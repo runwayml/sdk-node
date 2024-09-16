@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import RunwayML from 'runwayml';
-import { APIUserAbortError } from 'runwayml';
-import { Headers } from 'runwayml/core';
+import RunwayML from '@runwayml/sdk';
+import { APIUserAbortError } from '@runwayml/sdk';
+import { Headers } from '@runwayml/sdk/core';
 import defaultFetch, { Response, type RequestInit, type RequestInfo } from 'node-fetch';
 
 describe('instantiate client', () => {

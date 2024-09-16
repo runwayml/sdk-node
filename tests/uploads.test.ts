@@ -1,6 +1,6 @@
 import fs from 'fs';
-import { toFile, type ResponseLike } from 'runwayml/uploads';
-import { File } from 'runwayml/_shims/index';
+import { toFile, type ResponseLike } from '@runwayml/sdk/uploads';
+import { File } from '@runwayml/sdk/_shims/index';
 
 class MyClass {
   name: string = 'foo';
