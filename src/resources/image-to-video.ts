@@ -35,7 +35,17 @@ export interface ImageToVideoCreateParams {
    */
   promptImage: string;
 
+  /**
+   * The number of seconds of duration for the output video.
+   */
+  duration?: 5 | 10;
+
   promptText?: string;
+
+  /**
+   * The aspect ratio of the output video.
+   */
+  ratio?: '16:9' | '9:16';
 
   /**
    * If unspecified, a random number is chosen. Varying the seed integer is a way to
