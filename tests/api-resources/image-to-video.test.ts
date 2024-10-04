@@ -27,7 +27,9 @@ describe('resource imageToVideo', () => {
     const response = await client.imageToVideo.create({
       model: 'gen3a_turbo',
       promptImage: 'https://example.com',
+      duration: 5,
       promptText: 'promptText',
+      ratio: '16:9',
       seed: 0,
       watermark: true,
     });
