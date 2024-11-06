@@ -29,7 +29,7 @@ describe('resource imageToVideo', () => {
       promptImage: 'https://example.com',
       duration: 5,
       promptText: 'promptText',
-      ratio: '16:9',
+      ratio: '1280:768',
       seed: 0,
       watermark: true,
     });

@@ -1,10 +1,16 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Errors from './error';
-import * as Uploads from './uploads';
 import { type Agent } from './_shims/index';
 import * as Core from './core';
+import * as Errors from './error';
+import * as Uploads from './uploads';
 import * as API from './resources/index';
+import {
+  ImageToVideo,
+  ImageToVideoCreateParams,
+  ImageToVideoCreateResponse,
+} from './resources/image-to-video';
+import { TaskRetrieveResponse, Tasks } from './resources/tasks';
 
 export interface ClientOptions {
   /**
@@ -172,7 +178,7 @@ export class RunwayML extends Core.APIClient {
   static fileFromPath = Uploads.fileFromPath;
 }
 
-export const {
+export {
   RunwayMLError,
   APIError,
   APIConnectionError,
@@ -186,20 +192,24 @@ export const {
   InternalServerError,
   PermissionDeniedError,
   UnprocessableEntityError,
-} = Errors;
+} from './error';
 
 export import toFile = Uploads.toFile;
 export import fileFromPath = Uploads.fileFromPath;
 
-export namespace RunwayML {
-  export import RequestOptions = Core.RequestOptions;
+RunwayML.Tasks = Tasks;
+RunwayML.ImageToVideo = ImageToVideo;
 
-  export import Tasks = API.Tasks;
-  export import TaskRetrieveResponse = API.TaskRetrieveResponse;
+export declare namespace RunwayML {
+  export type RequestOptions = Core.RequestOptions;
 
-  export import ImageToVideo = API.ImageToVideo;
-  export import ImageToVideoCreateResponse = API.ImageToVideoCreateResponse;
-  export import ImageToVideoCreateParams = API.ImageToVideoCreateParams;
+  export { Tasks as Tasks, type TaskRetrieveResponse as TaskRetrieveResponse };
+
+  export {
+    ImageToVideo as ImageToVideo,
+    type ImageToVideoCreateResponse as ImageToVideoCreateResponse,
+    type ImageToVideoCreateParams as ImageToVideoCreateParams,
+  };
 }
 
 export default RunwayML;
