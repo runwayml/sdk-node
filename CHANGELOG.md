@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.3.0 (2024-11-06)
+
+Full Changelog: [v1.2.0...v1.3.0](https://github.com/runwayml/sdk-node/compare/v1.2.0...v1.3.0)
+
+### Features
+
+* **api:** API version 2024-11-06 ([#29](https://github.com/runwayml/sdk-node/issues/29)) ([2f91b22](https://github.com/runwayml/sdk-node/commit/2f91b221833ef12e3c8d2f2e4fc3a0acd73a26d4))
+* **api:** Set latest default API version ([#31](https://github.com/runwayml/sdk-node/issues/31)) ([1438a26](https://github.com/runwayml/sdk-node/commit/1438a2674207c3ee008c054dadb039b7ba90ef79))
+
 ## 1.2.0 (2024-10-04)
 
 Full Changelog: [v1.1.0...v1.2.0](https://github.com/runwayml/sdk-node/compare/v1.1.0...v1.2.0)
