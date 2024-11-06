@@ -2,7 +2,6 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
-import * as TasksAPI from './tasks';
 
 export class Tasks extends APIResource {
   /**
@@ -30,6 +29,9 @@ export class Tasks extends APIResource {
 }
 
 export interface TaskRetrieveResponse {
+  /**
+   * The ID of the task being returned.
+   */
   id: string;
 
   /**
@@ -78,6 +80,6 @@ export interface TaskRetrieveResponse {
   progress?: number;
 }
 
-export namespace Tasks {
-  export import TaskRetrieveResponse = TasksAPI.TaskRetrieveResponse;
+export declare namespace Tasks {
+  export { type TaskRetrieveResponse as TaskRetrieveResponse };
 }

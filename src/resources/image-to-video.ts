@@ -2,7 +2,6 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
-import * as ImageToVideoAPI from './image-to-video';
 
 export class ImageToVideo extends APIResource {
   /**
@@ -18,7 +17,8 @@ export class ImageToVideo extends APIResource {
 
 export interface ImageToVideoCreateResponse {
   /**
-   * The ID of the newly created task.
+   * The ID of the newly created task. Use this ID to query the task status and
+   * retrieve the generated video.
    */
   id: string;
 }
@@ -30,10 +30,11 @@ export interface ImageToVideoCreateParams {
   model: 'gen3a_turbo';
 
   /**
-   * A HTTPS URL pointing to an image. Images must be JPEG, PNG, or WebP and are
-   * limited to 16MB. Responses must include a valid `Content-Length` header.
+   * A HTTPS URL or data URI containing an encoded image to be used as the first
+   * frame of the generated video. See [our docs](/assets/inputs#images) on image
+   * inputs for more information.
    */
-  promptImage: string;
+  promptImage: string | Array<ImageToVideoCreateParams.PromptImage>;
 
   /**
    * The number of seconds of duration for the output video.
@@ -42,10 +43,7 @@ export interface ImageToVideoCreateParams {
 
   promptText?: string;
 
-  /**
-   * The aspect ratio of the output video.
-   */
-  ratio?: '16:9' | '9:16';
+  ratio?: '1280:768' | '768:1280';
 
   /**
    * If unspecified, a random number is chosen. Varying the seed integer is a way to
@@ -61,7 +59,26 @@ export interface ImageToVideoCreateParams {
   watermark?: boolean;
 }
 
-export namespace ImageToVideo {
-  export import ImageToVideoCreateResponse = ImageToVideoAPI.ImageToVideoCreateResponse;
-  export import ImageToVideoCreateParams = ImageToVideoAPI.ImageToVideoCreateParams;
+export namespace ImageToVideoCreateParams {
+  export interface PromptImage {
+    /**
+     * The position of the image in the output video. "first" will use the image as the
+     * first frame of the video, "last" will use the image as the last frame of the
+     * video.
+     */
+    position: 'first' | 'last';
+
+    /**
+     * A HTTPS URL or data URI containing an encoded image. See
+     * [our docs](/assets/inputs#images) on image inputs for more information.
+     */
+    uri: string;
+  }
+}
+
+export declare namespace ImageToVideo {
+  export {
+    type ImageToVideoCreateResponse as ImageToVideoCreateResponse,
+    type ImageToVideoCreateParams as ImageToVideoCreateParams,
+  };
 }
