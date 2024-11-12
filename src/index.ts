@@ -178,6 +178,21 @@ export class RunwayML extends Core.APIClient {
   static fileFromPath = Uploads.fileFromPath;
 }
 
+RunwayML.Tasks = Tasks;
+RunwayML.ImageToVideo = ImageToVideo;
+export declare namespace RunwayML {
+  export type RequestOptions = Core.RequestOptions;
+
+  export { Tasks as Tasks, type TaskRetrieveResponse as TaskRetrieveResponse };
+
+  export {
+    ImageToVideo as ImageToVideo,
+    type ImageToVideoCreateResponse as ImageToVideoCreateResponse,
+    type ImageToVideoCreateParams as ImageToVideoCreateParams,
+  };
+}
+
+export { toFile, fileFromPath } from '@runwayml/sdk/uploads';
 export {
   RunwayMLError,
   APIError,
@@ -192,24 +207,6 @@ export {
   InternalServerError,
   PermissionDeniedError,
   UnprocessableEntityError,
-} from './error';
-
-export import toFile = Uploads.toFile;
-export import fileFromPath = Uploads.fileFromPath;
-
-RunwayML.Tasks = Tasks;
-RunwayML.ImageToVideo = ImageToVideo;
-
-export declare namespace RunwayML {
-  export type RequestOptions = Core.RequestOptions;
-
-  export { Tasks as Tasks, type TaskRetrieveResponse as TaskRetrieveResponse };
-
-  export {
-    ImageToVideo as ImageToVideo,
-    type ImageToVideoCreateResponse as ImageToVideoCreateResponse,
-    type ImageToVideoCreateParams as ImageToVideoCreateParams,
-  };
-}
+} from '@runwayml/sdk/error';
 
 export default RunwayML;
