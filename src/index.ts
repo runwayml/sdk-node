@@ -192,7 +192,7 @@ export declare namespace RunwayML {
   };
 }
 
-export { toFile, fileFromPath } from '@runwayml/sdk/uploads';
+export { toFile, fileFromPath } from './uploads';
 export {
   RunwayMLError,
   APIError,
@@ -207,6 +207,6 @@ export {
   InternalServerError,
   PermissionDeniedError,
   UnprocessableEntityError,
-} from '@runwayml/sdk/error';
+} from './error';
 
 export default RunwayML;
