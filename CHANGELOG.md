@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.4.0 (2024-11-28)
+
+Full Changelog: [v1.3.0...v1.4.0](https://github.com/runwayml/sdk-node/compare/v1.3.0...v1.4.0)
+
+### Features
+
+* **internal:** make git install file structure match npm ([#38](https://github.com/runwayml/sdk-node/issues/38)) ([d784a50](https://github.com/runwayml/sdk-node/commit/d784a500723af1278295edcdcfcc1396f1ff4d56))
+
+
+### Chores
+
+* rebuild project due to codegen change ([#33](https://github.com/runwayml/sdk-node/issues/33)) ([f72b350](https://github.com/runwayml/sdk-node/commit/f72b350bd214fa3e2dc50a35882279497b0c1540))
+* rebuild project due to codegen change ([#35](https://github.com/runwayml/sdk-node/issues/35)) ([dba4d69](https://github.com/runwayml/sdk-node/commit/dba4d69941e7a075b91fb3f860b3e44710683025))
+* remove redundant word in comment ([#37](https://github.com/runwayml/sdk-node/issues/37)) ([b84a2b2](https://github.com/runwayml/sdk-node/commit/b84a2b22fd6a6ee966d909e6038cbc689b131314))
+
+
+### Documentation
+
+* remove suggestion to use `npm` call out ([#36](https://github.com/runwayml/sdk-node/issues/36)) ([316e011](https://github.com/runwayml/sdk-node/commit/316e0116da78bef877be5ba6525d29b645fe252d))
+
 ## 1.3.0 (2024-11-06)
 
 Full Changelog: [v1.2.0...v1.3.0](https://github.com/runwayml/sdk-node/compare/v1.2.0...v1.3.0)
