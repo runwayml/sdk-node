@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.4.1 (2024-12-05)
+
+Full Changelog: [v1.4.0...v1.4.1](https://github.com/runwayml/sdk-node/compare/v1.4.0...v1.4.1)
+
+### Build System
+
+* **deps:** bump cross-spawn from 7.0.3 to 7.0.6 ([65802b5](https://github.com/runwayml/sdk-node/commit/65802b54041b6cd351c4b28785c22bb542c0f4ae))
+
 ## 1.4.0 (2024-11-28)
 
 Full Changelog: [v1.3.0...v1.4.0](https://github.com/runwayml/sdk-node/compare/v1.3.0...v1.4.0)
