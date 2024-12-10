@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.4.2 (2024-12-10)
+
+Full Changelog: [v1.4.1...v1.4.2](https://github.com/runwayml/sdk-node/compare/v1.4.1...v1.4.2)
+
+### Chores
+
+* **internal:** remove unnecessary getRequestClient function ([#44](https://github.com/runwayml/sdk-node/issues/44)) ([40981f1](https://github.com/runwayml/sdk-node/commit/40981f1fc6afde6f3d9de094540e42f6222d2fdc))
+
 ## 1.4.1 (2024-12-05)
 
 Full Changelog: [v1.4.0...v1.4.1](https://github.com/runwayml/sdk-node/compare/v1.4.0...v1.4.1)
