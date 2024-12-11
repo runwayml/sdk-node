@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.4.3 (2024-12-11)
+
+Full Changelog: [v1.4.2...v1.4.3](https://github.com/runwayml/sdk-node/compare/v1.4.2...v1.4.3)
+
+### Chores
+
+* **internal:** codegen related update ([#48](https://github.com/runwayml/sdk-node/issues/48)) ([8db7791](https://github.com/runwayml/sdk-node/commit/8db77912a142373320b0ba16f14442b04da89ee4))
+
 ## 1.4.2 (2024-12-10)
 
 Full Changelog: [v1.4.1...v1.4.2](https://github.com/runwayml/sdk-node/compare/v1.4.1...v1.4.2)
