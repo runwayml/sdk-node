@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.4.4 (2024-12-12)
+
+Full Changelog: [v1.4.3...v1.4.4](https://github.com/runwayml/sdk-node/compare/v1.4.3...v1.4.4)
+
+### Chores
+
+* **internal:** update isAbsoluteURL ([#51](https://github.com/runwayml/sdk-node/issues/51)) ([4aa8cb7](https://github.com/runwayml/sdk-node/commit/4aa8cb7f486114e147da258cc65fc951660244a9))
+
 ## 1.4.3 (2024-12-11)
 
 Full Changelog: [v1.4.2...v1.4.3](https://github.com/runwayml/sdk-node/compare/v1.4.2...v1.4.3)
