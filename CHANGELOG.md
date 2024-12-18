@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.4.5 (2024-12-18)
+
+Full Changelog: [v1.4.4...v1.4.5](https://github.com/runwayml/sdk-node/compare/v1.4.4...v1.4.5)
+
+### Chores
+
+* **internal:** fix some typos ([#54](https://github.com/runwayml/sdk-node/issues/54)) ([5689a88](https://github.com/runwayml/sdk-node/commit/5689a88463814bfc31905510b7dd209224273e18))
+
 ## 1.4.4 (2024-12-12)
 
 Full Changelog: [v1.4.3...v1.4.4](https://github.com/runwayml/sdk-node/compare/v1.4.3...v1.4.4)
