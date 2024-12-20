@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.4.6 (2024-12-20)
+
+Full Changelog: [v1.4.5...v1.4.6](https://github.com/runwayml/sdk-node/compare/v1.4.5...v1.4.6)
+
+### Bug Fixes
+
+* **client:** normalize method ([#57](https://github.com/runwayml/sdk-node/issues/57)) ([b34ecbb](https://github.com/runwayml/sdk-node/commit/b34ecbb8490f73b869d87ba732ac9d40f7efd303))
+
 ## 1.4.5 (2024-12-18)
 
 Full Changelog: [v1.4.4...v1.4.5](https://github.com/runwayml/sdk-node/compare/v1.4.4...v1.4.5)
