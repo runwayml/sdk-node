@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.4.8 (2025-03-04)
+
+Full Changelog: [v1.4.7...v1.4.8](https://github.com/runwayml/sdk-node/compare/v1.4.7...v1.4.8)
+
+### Chores
+
+* **internal:** codegen related update ([#67](https://github.com/runwayml/sdk-node/issues/67)) ([e247b5b](https://github.com/runwayml/sdk-node/commit/e247b5b4369b051353505d939fd3fccd8b93a98f))
+
 ## 1.4.7 (2025-01-02)
 
 Full Changelog: [v1.4.6...v1.4.7](https://github.com/runwayml/sdk-node/compare/v1.4.6...v1.4.7)
