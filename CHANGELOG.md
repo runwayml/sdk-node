@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.5.0 (2025-03-11)
+
+Full Changelog: [v1.4.8...v1.5.0](https://github.com/runwayml/sdk-node/compare/v1.4.8...v1.5.0)
+
+### Features
+
+* add SKIP_BREW env var to ./scripts/bootstrap ([#70](https://github.com/runwayml/sdk-node/issues/70)) ([1b62702](https://github.com/runwayml/sdk-node/commit/1b62702bb1f0c2ae2254b50084a76cb99995b633))
+* **client:** accept RFC6838 JSON content types ([#72](https://github.com/runwayml/sdk-node/issues/72)) ([9ffc33f](https://github.com/runwayml/sdk-node/commit/9ffc33f66de7b3f8d4cef97b2d38626b0f949c5d))
+
 ## 1.4.8 (2025-03-04)
 
 Full Changelog: [v1.4.7...v1.4.8](https://github.com/runwayml/sdk-node/compare/v1.4.7...v1.4.8)
