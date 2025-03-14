@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.5.1 (2025-03-14)
+
+Full Changelog: [v1.5.0...v1.5.1](https://github.com/runwayml/sdk-node/compare/v1.5.0...v1.5.1)
+
+### Chores
+
+* **internal:** remove extra empty newlines ([#74](https://github.com/runwayml/sdk-node/issues/74)) ([aacde98](https://github.com/runwayml/sdk-node/commit/aacde98617e57d8c22d3ddaba21e27435eab0e33))
+
 ## 1.5.0 (2025-03-11)
 
 Full Changelog: [v1.4.8...v1.5.0](https://github.com/runwayml/sdk-node/compare/v1.4.8...v1.5.0)
