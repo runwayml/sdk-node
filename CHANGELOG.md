@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.5.1 (2025-03-20)
+
+Full Changelog: [v1.5.0...v1.5.1](https://github.com/runwayml/sdk-node/compare/v1.5.0...v1.5.1)
+
+### Chores
+
+* **exports:** cleaner resource index imports ([#76](https://github.com/runwayml/sdk-node/issues/76)) ([2f90f68](https://github.com/runwayml/sdk-node/commit/2f90f686b2e47e3be26f5f86998a4666c06480af))
+* **exports:** stop using path fallbacks ([#77](https://github.com/runwayml/sdk-node/issues/77)) ([9518cca](https://github.com/runwayml/sdk-node/commit/9518cca7335f4ef03a0046fe571242ccc13dd8b2))
+* **internal:** remove extra empty newlines ([#74](https://github.com/runwayml/sdk-node/issues/74)) ([aacde98](https://github.com/runwayml/sdk-node/commit/aacde98617e57d8c22d3ddaba21e27435eab0e33))
+
 ## 1.5.0 (2025-03-11)
 
 Full Changelog: [v1.4.8...v1.5.0](https://github.com/runwayml/sdk-node/compare/v1.4.8...v1.5.0)
