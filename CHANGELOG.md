@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.5.2 (2025-03-22)
+
+Full Changelog: [v1.5.1...v1.5.2](https://github.com/runwayml/sdk-node/compare/v1.5.1...v1.5.2)
+
+### Bug Fixes
+
+* avoid type error in certain environments ([#79](https://github.com/runwayml/sdk-node/issues/79)) ([9e23fb8](https://github.com/runwayml/sdk-node/commit/9e23fb8b271f2629a9651a9acd0271415a9f5908))
+
 ## 1.5.1 (2025-03-20)
 
 Full Changelog: [v1.5.0...v1.5.1](https://github.com/runwayml/sdk-node/compare/v1.5.0...v1.5.1)
