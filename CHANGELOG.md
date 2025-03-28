@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.5.3 (2025-03-28)
+
+Full Changelog: [v1.5.2...v1.5.3](https://github.com/runwayml/sdk-node/compare/v1.5.2...v1.5.3)
+
+### Bug Fixes
+
+* **internal:** work around https://github.com/vercel/next.js/issues/76881 ([#82](https://github.com/runwayml/sdk-node/issues/82)) ([38f39c7](https://github.com/runwayml/sdk-node/commit/38f39c7633e8b6f30c20bcee0df71877d11866b8))
+
 ## 1.5.2 (2025-03-22)
 
 Full Changelog: [v1.5.1...v1.5.2](https://github.com/runwayml/sdk-node/compare/v1.5.1...v1.5.2)
