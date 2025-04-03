@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.5.4 (2025-04-03)
+
+Full Changelog: [v1.5.3...v1.5.4](https://github.com/runwayml/sdk-node/compare/v1.5.3...v1.5.4)
+
+### Bug Fixes
+
+* **client:** send `X-Stainless-Timeout` in seconds ([#85](https://github.com/runwayml/sdk-node/issues/85)) ([42484aa](https://github.com/runwayml/sdk-node/commit/42484aa3a48a382a13cf51ccd24a9a2ca63e88fb))
+
+
+### Chores
+
+* **internal:** add aliases for Record and Array ([#87](https://github.com/runwayml/sdk-node/issues/87)) ([14c8595](https://github.com/runwayml/sdk-node/commit/14c859547b22eeb606dadede532e87d450a2ca21))
+
 ## 1.5.3 (2025-03-28)
 
 Full Changelog: [v1.5.2...v1.5.3](https://github.com/runwayml/sdk-node/compare/v1.5.2...v1.5.3)
