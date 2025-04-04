@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.5.5 (2025-04-04)
+
+Full Changelog: [v1.5.4...v1.5.5](https://github.com/runwayml/sdk-node/compare/v1.5.4...v1.5.5)
+
+### Bug Fixes
+
+* **api:** improve type resolution when importing as a package ([#89](https://github.com/runwayml/sdk-node/issues/89)) ([c69252b](https://github.com/runwayml/sdk-node/commit/c69252bc473f18aa4bda2ebb0eea5747d31bd18d))
+
 ## 1.5.4 (2025-04-03)
 
 Full Changelog: [v1.5.3...v1.5.4](https://github.com/runwayml/sdk-node/compare/v1.5.3...v1.5.4)
