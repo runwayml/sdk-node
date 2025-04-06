@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.5.6 (2025-04-06)
+
+Full Changelog: [v1.5.5...v1.5.6](https://github.com/runwayml/sdk-node/compare/v1.5.5...v1.5.6)
+
+### Bug Fixes
+
+* **mcp:** remove unused tools.ts ([#92](https://github.com/runwayml/sdk-node/issues/92)) ([05646a7](https://github.com/runwayml/sdk-node/commit/05646a787db7506d68d4162c1d650ecc77446b1d))
+
 ## 1.5.5 (2025-04-04)
 
 Full Changelog: [v1.5.4...v1.5.5](https://github.com/runwayml/sdk-node/compare/v1.5.4...v1.5.5)
