@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.0.0 (2025-04-09)
+
+Full Changelog: [v1.5.6...v2.0.0](https://github.com/runwayml/sdk-node/compare/v1.5.6...v2.0.0)
+
+### Features
+
+* **api:** Update with gen4_turbo, org endpoint ([#96](https://github.com/runwayml/sdk-node/issues/96)) ([c184086](https://github.com/runwayml/sdk-node/commit/c1840866c3f0ccd2283e61a1747fadc5ad001ba7))
+
 ## 1.5.6 (2025-04-06)
 
 Full Changelog: [v1.5.5...v1.5.6](https://github.com/runwayml/sdk-node/compare/v1.5.5...v1.5.6)
