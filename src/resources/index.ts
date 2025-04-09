@@ -5,4 +5,5 @@ export {
   type ImageToVideoCreateResponse,
   type ImageToVideoCreateParams,
 } from './image-to-video';
+export { Organization, type OrganizationRetrieveResponse } from './organization';
 export { Tasks, type TaskRetrieveResponse } from './tasks';
