@@ -27,7 +27,7 @@ export interface ImageToVideoCreateParams {
   /**
    * The model variant to use.
    */
-  model: 'gen3a_turbo';
+  model: 'gen4_turbo' | 'gen3a_turbo';
 
   /**
    * A HTTPS URL or data URI containing an encoded image to be used as the first
@@ -43,7 +43,15 @@ export interface ImageToVideoCreateParams {
 
   promptText?: string;
 
-  ratio?: '1280:768' | '768:1280';
+  ratio?:
+    | '1280:720'
+    | '720:1280'
+    | '1104:832'
+    | '832:1104'
+    | '960:960'
+    | '1584:672'
+    | '1280:768'
+    | '768:1280';
 
   /**
    * If unspecified, a random number is chosen. Varying the seed integer is a way to
@@ -51,12 +59,6 @@ export interface ImageToVideoCreateParams {
    * integer for an identical request will produce similar results.
    */
   seed?: number;
-
-  /**
-   * A boolean indicating whether or not the output video will contain a Runway
-   * watermark.
-   */
-  watermark?: boolean;
 }
 
 export namespace ImageToVideoCreateParams {
@@ -65,6 +67,8 @@ export namespace ImageToVideoCreateParams {
      * The position of the image in the output video. "first" will use the image as the
      * first frame of the video, "last" will use the image as the last frame of the
      * video.
+     *
+     * "last" is currently supported for `gen3a_turbo` only.
      */
     position: 'first' | 'last';
 
