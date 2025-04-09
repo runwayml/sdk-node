@@ -8,12 +8,9 @@ const client = new RunwayML({
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource imageToVideo', () => {
-  test('create: only required params', async () => {
-    const responsePromise = client.imageToVideo.create({
-      model: 'gen4_turbo',
-      promptImage: 'https://example.com',
-    });
+describe('resource organization', () => {
+  test('retrieve', async () => {
+    const responsePromise = client.organization.retrieve();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -23,14 +20,10 @@ describe('resource imageToVideo', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('create: required and optional params', async () => {
-    const response = await client.imageToVideo.create({
-      model: 'gen4_turbo',
-      promptImage: 'https://example.com',
-      duration: 5,
-      promptText: 'promptText',
-      ratio: '1280:720',
-      seed: 0,
-    });
+  test('retrieve: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.organization.retrieve({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      RunwayML.NotFoundError,
+    );
   });
 });

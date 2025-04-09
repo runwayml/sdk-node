@@ -10,6 +10,7 @@ import {
   ImageToVideoCreateParams,
   ImageToVideoCreateResponse,
 } from './resources/image-to-video';
+import { Organization, OrganizationRetrieveResponse } from './resources/organization';
 import { TaskRetrieveResponse, Tasks } from './resources/tasks';
 
 export interface ClientOptions {
@@ -140,6 +141,7 @@ export class RunwayML extends Core.APIClient {
 
   tasks: API.Tasks = new API.Tasks(this);
   imageToVideo: API.ImageToVideo = new API.ImageToVideo(this);
+  organization: API.Organization = new API.Organization(this);
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
     return this._options.defaultQuery;
@@ -180,6 +182,7 @@ export class RunwayML extends Core.APIClient {
 
 RunwayML.Tasks = Tasks;
 RunwayML.ImageToVideo = ImageToVideo;
+RunwayML.Organization = Organization;
 export declare namespace RunwayML {
   export type RequestOptions = Core.RequestOptions;
 
@@ -190,6 +193,8 @@ export declare namespace RunwayML {
     type ImageToVideoCreateResponse as ImageToVideoCreateResponse,
     type ImageToVideoCreateParams as ImageToVideoCreateParams,
   };
+
+  export { Organization as Organization, type OrganizationRetrieveResponse as OrganizationRetrieveResponse };
 }
 
 export { toFile, fileFromPath } from './uploads';

@@ -28,7 +28,7 @@ const client = new RunwayML({
 
 async function main() {
   const imageToVideo = await client.imageToVideo.create({
-    model: 'gen3a_turbo',
+    model: 'gen4_turbo',
     promptImage: 'https://example.com/assets/bunny.jpg',
     promptText: 'The bunny is eating a carrot',
   });
@@ -53,7 +53,7 @@ const client = new RunwayML({
 
 async function main() {
   const params: RunwayML.ImageToVideoCreateParams = {
-    model: 'gen3a_turbo',
+    model: 'gen4_turbo',
     promptImage: 'https://example.com/assets/bunny.jpg',
     promptText: 'The bunny is eating a carrot',
   };
@@ -76,7 +76,7 @@ a subclass of `APIError` will be thrown:
 async function main() {
   const imageToVideo = await client.imageToVideo
     .create({
-      model: 'gen3a_turbo',
+      model: 'gen4_turbo',
       promptImage: 'https://example.com/assets/bunny.jpg',
       promptText: 'The bunny is eating a carrot',
     })
@@ -123,7 +123,7 @@ const client = new RunwayML({
 });
 
 // Or, configure per-request:
-await client.imageToVideo.create({ model: 'gen3a_turbo', promptImage: 'https://example.com/assets/bunny.jpg', promptText: 'The bunny is eating a carrot' }, {
+await client.imageToVideo.create({ model: 'gen4_turbo', promptImage: 'https://example.com/assets/bunny.jpg', promptText: 'The bunny is eating a carrot' }, {
   maxRetries: 5,
 });
 ```
@@ -140,7 +140,7 @@ const client = new RunwayML({
 });
 
 // Override per-request:
-await client.imageToVideo.create({ model: 'gen3a_turbo', promptImage: 'https://example.com/assets/bunny.jpg', promptText: 'The bunny is eating a carrot' }, {
+await client.imageToVideo.create({ model: 'gen4_turbo', promptImage: 'https://example.com/assets/bunny.jpg', promptText: 'The bunny is eating a carrot' }, {
   timeout: 5 * 1000,
 });
 ```
@@ -163,7 +163,7 @@ const client = new RunwayML();
 
 const response = await client.imageToVideo
   .create({
-    model: 'gen3a_turbo',
+    model: 'gen4_turbo',
     promptImage: 'https://example.com/assets/bunny.jpg',
     promptText: 'The bunny is eating a carrot',
   })
@@ -173,7 +173,7 @@ console.log(response.statusText); // access the underlying Response object
 
 const { data: imageToVideo, response: raw } = await client.imageToVideo
   .create({
-    model: 'gen3a_turbo',
+    model: 'gen4_turbo',
     promptImage: 'https://example.com/assets/bunny.jpg',
     promptText: 'The bunny is eating a carrot',
   })
@@ -285,7 +285,7 @@ const client = new RunwayML({
 // Override per-request:
 await client.imageToVideo.create(
   {
-    model: 'gen3a_turbo',
+    model: 'gen4_turbo',
     promptImage: 'https://example.com/assets/bunny.jpg',
     promptText: 'The bunny is eating a carrot',
   },

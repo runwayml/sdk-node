@@ -18,3 +18,13 @@ Types:
 Methods:
 
 - <code title="post /v1/image_to_video">client.imageToVideo.<a href="./src/resources/image-to-video.ts">create</a>({ ...params }) -> ImageToVideoCreateResponse</code>
+
+# Organization
+
+Types:
+
+- <code><a href="./src/resources/organization.ts">OrganizationRetrieveResponse</a></code>
+
+Methods:
+
+- <code title="get /v1/organization">client.organization.<a href="./src/resources/organization.ts">retrieve</a>() -> OrganizationRetrieveResponse</code>
