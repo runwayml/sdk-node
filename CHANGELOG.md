@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.0.1 (2025-04-15)
+
+Full Changelog: [v2.0.0...v2.0.1](https://github.com/runwayml/sdk-node/compare/v2.0.0...v2.0.1)
+
+### Chores
+
+* **client:** minor internal fixes ([cc5ac03](https://github.com/runwayml/sdk-node/commit/cc5ac0364a3df8c6a3c802c2376d783325706c82))
+* **internal:** reduce CI branch coverage ([68e1ec0](https://github.com/runwayml/sdk-node/commit/68e1ec0887803b27e1d8d0877e6b704a2ec808d7))
+* **internal:** upload builds and expand CI branch coverage ([d9c6c72](https://github.com/runwayml/sdk-node/commit/d9c6c723a6c33502fbf8b7ed7d08530bcd674a46))
+
 ## 2.0.0 (2025-04-09)
 
 Full Changelog: [v1.5.6...v2.0.0](https://github.com/runwayml/sdk-node/compare/v1.5.6...v2.0.0)
