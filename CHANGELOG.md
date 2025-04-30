@@ -1,5 +1,21 @@
 # Changelog
 
+## 2.0.2 (2025-04-30)
+
+Full Changelog: [v2.0.1...v2.0.2](https://github.com/runwayml/sdk-node/compare/v2.0.1...v2.0.2)
+
+### Bug Fixes
+
+* **api:** Fix for parameters with missing descriptions ([8f627e5](https://github.com/runwayml/sdk-node/commit/8f627e50988b5476f225214edd490cf63517a004))
+* **api:** Make `ratio` a required parameter for i2v ([fd6196e](https://github.com/runwayml/sdk-node/commit/fd6196e407231faeaec3a2bcaefe3d493ca1800b))
+
+
+### Chores
+
+* **ci:** add timeout thresholds for CI jobs ([c0f4e1f](https://github.com/runwayml/sdk-node/commit/c0f4e1f591bd5fbdb82f6d08ff7963e84864b9b6))
+* **ci:** only use depot for staging repos ([028ff22](https://github.com/runwayml/sdk-node/commit/028ff22bc0fe9f323edac6cbc4a3c3a9f5ca1817))
+* **internal:** codegen related update ([6bf11ee](https://github.com/runwayml/sdk-node/commit/6bf11ee3f3131c45b1c064cced0e65884f699f52))
+
 ## 2.0.1 (2025-04-15)
 
 Full Changelog: [v2.0.0...v2.0.1](https://github.com/runwayml/sdk-node/compare/v2.0.0...v2.0.1)
