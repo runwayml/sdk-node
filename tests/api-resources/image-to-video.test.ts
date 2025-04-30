@@ -13,6 +13,7 @@ describe('resource imageToVideo', () => {
     const responsePromise = client.imageToVideo.create({
       model: 'gen4_turbo',
       promptImage: 'https://example.com',
+      ratio: '1280:720',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -27,9 +28,9 @@ describe('resource imageToVideo', () => {
     const response = await client.imageToVideo.create({
       model: 'gen4_turbo',
       promptImage: 'https://example.com',
+      ratio: '1280:720',
       duration: 5,
       promptText: 'promptText',
-      ratio: '1280:720',
       seed: 0,
     });
   });
