@@ -36,22 +36,14 @@ export interface ImageToVideoCreateParams {
    */
   promptImage: string | Array<ImageToVideoCreateParams.PromptImage>;
 
+  ratio: '1280:720' | '720:1280' | '1104:832' | '832:1104' | '960:960' | '1584:672' | '1280:768' | '768:1280';
+
   /**
    * The number of seconds of duration for the output video.
    */
   duration?: 5 | 10;
 
   promptText?: string;
-
-  ratio?:
-    | '1280:720'
-    | '720:1280'
-    | '1104:832'
-    | '832:1104'
-    | '960:960'
-    | '1584:672'
-    | '1280:768'
-    | '768:1280';
 
   /**
    * If unspecified, a random number is chosen. Varying the seed integer is a way to
