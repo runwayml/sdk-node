@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.0.3 (2025-05-07)
+
+Full Changelog: [v2.0.2...v2.0.3](https://github.com/runwayml/sdk-node/compare/v2.0.2...v2.0.3)
+
+### Chores
+
+* **ci:** bump node version for release workflows ([f024169](https://github.com/runwayml/sdk-node/commit/f024169eca8faaddf3d0f39f8a99a6faeff2792f))
+
+
+### Documentation
+
+* **readme:** fix typo ([84ba1ba](https://github.com/runwayml/sdk-node/commit/84ba1ba3611532d5b9f6a1f40f49855094566745))
+
 ## 2.0.2 (2025-04-30)
 
 Full Changelog: [v2.0.1...v2.0.2](https://github.com/runwayml/sdk-node/compare/v2.0.1...v2.0.2)
