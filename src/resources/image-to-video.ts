@@ -61,9 +61,8 @@ export interface ImageToVideoCreateParams {
   duration?: 5 | 10;
 
   /**
-   * A non-empty string up to 1000 UTF-16 code points in length (that is,
-   * `promptText.length === 1000` in JavaScript). This should describe in detail what
-   * should appear in the output.
+   * A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+   * should describe in detail what should appear in the output.
    */
   promptText?: string;
 
