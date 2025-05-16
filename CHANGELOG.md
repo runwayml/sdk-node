@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.1.0 (2025-05-16)
+
+Full Changelog: [v2.0.3...v2.1.0](https://github.com/runwayml/sdk-node/compare/v2.0.3...v2.1.0)
+
+### Features
+
+* **api:** Gen-4 Image (text-to-image) support ([348a4c9](https://github.com/runwayml/sdk-node/commit/348a4c902980531f4cf45a744f0567a0cd0aefb1))
+
 ## 2.0.3 (2025-05-07)
 
 Full Changelog: [v2.0.2...v2.0.3](https://github.com/runwayml/sdk-node/compare/v2.0.2...v2.0.3)
