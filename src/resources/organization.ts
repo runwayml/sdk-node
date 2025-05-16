@@ -57,6 +57,11 @@ export namespace OrganizationRetrieveResponse {
       gen3a_turbo?: Models.Gen3aTurbo;
 
       /**
+       * Limits associated with the gen4_image model.
+       */
+      gen4_image?: Models.Gen4Image;
+
+      /**
        * Limits associated with the gen4_turbo model.
        */
       gen4_turbo?: Models.Gen4Turbo;
@@ -67,6 +72,21 @@ export namespace OrganizationRetrieveResponse {
        * Limits associated with the gen3a_turbo model.
        */
       export interface Gen3aTurbo {
+        /**
+         * The maximum number of generations that can be run concurrently for this model.
+         */
+        maxConcurrentGenerations: number;
+
+        /**
+         * The maximum number of generations that can be created each day for this model.
+         */
+        maxDailyGenerations: number;
+      }
+
+      /**
+       * Limits associated with the gen4_image model.
+       */
+      export interface Gen4Image {
         /**
          * The maximum number of generations that can be run concurrently for this model.
          */
@@ -116,6 +136,11 @@ export namespace OrganizationRetrieveResponse {
       gen3a_turbo?: Models.Gen3aTurbo;
 
       /**
+       * Usage data for the gen4_image model.
+       */
+      gen4_image?: Models.Gen4Image;
+
+      /**
        * Usage data for the gen4_turbo model.
        */
       gen4_turbo?: Models.Gen4Turbo;
@@ -126,6 +151,16 @@ export namespace OrganizationRetrieveResponse {
        * Usage data for the gen3a_turbo model.
        */
       export interface Gen3aTurbo {
+        /**
+         * The number of generations that have been run for this model in the past day.
+         */
+        dailyGenerations: number;
+      }
+
+      /**
+       * Usage data for the gen4_image model.
+       */
+      export interface Gen4Image {
         /**
          * The number of generations that have been run for this model in the past day.
          */
