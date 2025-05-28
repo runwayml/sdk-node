@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.1.1 (2025-05-28)
+
+Full Changelog: [v2.1.0...v2.1.1](https://github.com/runwayml/sdk-node/compare/v2.1.0...v2.1.1)
+
+### Chores
+
+* **docs:** grammar improvements ([a51fc21](https://github.com/runwayml/sdk-node/commit/a51fc219b205a70bb88ca39a819336e353dbc896))
+* improve publish-npm script --latest tag logic ([fdb4d2f](https://github.com/runwayml/sdk-node/commit/fdb4d2fdc9d79fbd3c5a7a831635a16a7ed5d111))
+
 ## 2.1.0 (2025-05-16)
 
 Full Changelog: [v2.0.3...v2.1.0](https://github.com/runwayml/sdk-node/compare/v2.0.3...v2.1.0)
