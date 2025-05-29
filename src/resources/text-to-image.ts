@@ -47,7 +47,13 @@ export interface TextToImageCreateParams {
     | '1440:1080'
     | '1080:1440'
     | '1808:768'
-    | '2112:912';
+    | '2112:912'
+    | '1280:720'
+    | '720:1280'
+    | '720:720'
+    | '960:720'
+    | '720:960'
+    | '1680:720';
 
   /**
    * Settings that affect the behavior of the content moderation system.
