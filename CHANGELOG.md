@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.2.0 (2025-05-29)
+
+Full Changelog: [v2.1.1...v2.2.0](https://github.com/runwayml/sdk-node/compare/v2.1.1...v2.2.0)
+
+### Features
+
+* **api:** Add 720p t2i ratios ([3db19cc](https://github.com/runwayml/sdk-node/commit/3db19ccd769b6b56150dad4f0239e2e2edb22066))
+
 ## 2.1.1 (2025-05-28)
 
 Full Changelog: [v2.1.0...v2.1.1](https://github.com/runwayml/sdk-node/compare/v2.1.0...v2.1.1)
