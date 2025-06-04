@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.2.1 (2025-06-04)
+
+Full Changelog: [v2.2.0...v2.2.1](https://github.com/runwayml/sdk-node/compare/v2.2.0...v2.2.1)
+
+### Chores
+
+* **docs:** use top-level-await in example snippets ([263a894](https://github.com/runwayml/sdk-node/commit/263a894e998da45a6b92d3104c24720729dc3111))
+
 ## 2.2.0 (2025-05-29)
 
 Full Changelog: [v2.1.1...v2.2.0](https://github.com/runwayml/sdk-node/compare/v2.1.1...v2.2.0)
