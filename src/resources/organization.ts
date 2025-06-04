@@ -65,6 +65,11 @@ export namespace OrganizationRetrieveResponse {
        * Limits associated with the gen4_turbo model.
        */
       gen4_turbo?: Models.Gen4Turbo;
+
+      /**
+       * Limits associated with the upscale_v1 model.
+       */
+      upscale_v1?: Models.UpscaleV1;
     }
 
     export namespace Models {
@@ -112,6 +117,21 @@ export namespace OrganizationRetrieveResponse {
          */
         maxDailyGenerations: number;
       }
+
+      /**
+       * Limits associated with the upscale_v1 model.
+       */
+      export interface UpscaleV1 {
+        /**
+         * The maximum number of generations that can be run concurrently for this model.
+         */
+        maxConcurrentGenerations: number;
+
+        /**
+         * The maximum number of generations that can be created each day for this model.
+         */
+        maxDailyGenerations: number;
+      }
     }
   }
 
@@ -144,6 +164,11 @@ export namespace OrganizationRetrieveResponse {
        * Usage data for the gen4_turbo model.
        */
       gen4_turbo?: Models.Gen4Turbo;
+
+      /**
+       * Usage data for the upscale_v1 model.
+       */
+      upscale_v1?: Models.UpscaleV1;
     }
 
     export namespace Models {
@@ -171,6 +196,16 @@ export namespace OrganizationRetrieveResponse {
        * Usage data for the gen4_turbo model.
        */
       export interface Gen4Turbo {
+        /**
+         * The number of generations that have been run for this model in the past day.
+         */
+        dailyGenerations: number;
+      }
+
+      /**
+       * Usage data for the upscale_v1 model.
+       */
+      export interface UpscaleV1 {
         /**
          * The number of generations that have been run for this model in the past day.
          */
