@@ -26,18 +26,14 @@ const client = new RunwayML({
   apiKey: process.env['RUNWAYML_API_SECRET'], // This is the default and can be omitted
 });
 
-async function main() {
-  const imageToVideo = await client.imageToVideo.create({
-    model: 'gen4_turbo',
-    promptImage: 'https://example.com/assets/bunny.jpg',
-    ratio: '1280:720',
-    promptText: 'The bunny is eating a carrot',
-  });
+const imageToVideo = await client.imageToVideo.create({
+  model: 'gen4_turbo',
+  promptImage: 'https://example.com/assets/bunny.jpg',
+  ratio: '1280:720',
+  promptText: 'The bunny is eating a carrot',
+});
 
-  console.log(imageToVideo.id);
-}
-
-main();
+console.log(imageToVideo.id);
 ```
 
 ### Request & Response types
@@ -52,17 +48,13 @@ const client = new RunwayML({
   apiKey: process.env['RUNWAYML_API_SECRET'], // This is the default and can be omitted
 });
 
-async function main() {
-  const params: RunwayML.ImageToVideoCreateParams = {
-    model: 'gen4_turbo',
-    promptImage: 'https://example.com/assets/bunny.jpg',
-    ratio: '1280:720',
-    promptText: 'The bunny is eating a carrot',
-  };
-  const imageToVideo: RunwayML.ImageToVideoCreateResponse = await client.imageToVideo.create(params);
-}
-
-main();
+const params: RunwayML.ImageToVideoCreateParams = {
+  model: 'gen4_turbo',
+  promptImage: 'https://example.com/assets/bunny.jpg',
+  ratio: '1280:720',
+  promptText: 'The bunny is eating a carrot',
+};
+const imageToVideo: RunwayML.ImageToVideoCreateResponse = await client.imageToVideo.create(params);
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -75,26 +67,22 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-async function main() {
-  const imageToVideo = await client.imageToVideo
-    .create({
-      model: 'gen4_turbo',
-      promptImage: 'https://example.com/assets/bunny.jpg',
-      ratio: '1280:720',
-      promptText: 'The bunny is eating a carrot',
-    })
-    .catch(async (err) => {
-      if (err instanceof RunwayML.APIError) {
-        console.log(err.status); // 400
-        console.log(err.name); // BadRequestError
-        console.log(err.headers); // {server: 'nginx', ...}
-      } else {
-        throw err;
-      }
-    });
-}
-
-main();
+const imageToVideo = await client.imageToVideo
+  .create({
+    model: 'gen4_turbo',
+    promptImage: 'https://example.com/assets/bunny.jpg',
+    ratio: '1280:720',
+    promptText: 'The bunny is eating a carrot',
+  })
+  .catch(async (err) => {
+    if (err instanceof RunwayML.APIError) {
+      console.log(err.status); // 400
+      console.log(err.name); // BadRequestError
+      console.log(err.headers); // {server: 'nginx', ...}
+    } else {
+      throw err;
+    }
+  });
 ```
 
 Error codes are as follows:
