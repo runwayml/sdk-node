@@ -8,3 +8,8 @@ export {
 export { Organization, type OrganizationRetrieveResponse } from './organization';
 export { Tasks, type TaskRetrieveResponse } from './tasks';
 export { TextToImage, type TextToImageCreateResponse, type TextToImageCreateParams } from './text-to-image';
+export {
+  VideoUpscale,
+  type VideoUpscaleCreateResponse,
+  type VideoUpscaleCreateParams,
+} from './video-upscale';
