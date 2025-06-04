@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.3.0 (2025-06-04)
+
+Full Changelog: [v2.2.1...v2.3.0](https://github.com/runwayml/sdk-node/compare/v2.2.1...v2.3.0)
+
+### Features
+
+* **api:** Add video upscale endpoint ([b37f06d](https://github.com/runwayml/sdk-node/commit/b37f06d3f6df4254ccfa4c13e629992434737d3e))
+
 ## 2.2.1 (2025-06-04)
 
 Full Changelog: [v2.2.0...v2.2.1](https://github.com/runwayml/sdk-node/compare/v2.2.0...v2.2.1)
