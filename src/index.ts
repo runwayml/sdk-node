@@ -13,6 +13,11 @@ import {
 import { Organization, OrganizationRetrieveResponse } from './resources/organization';
 import { TaskRetrieveResponse, Tasks } from './resources/tasks';
 import { TextToImage, TextToImageCreateParams, TextToImageCreateResponse } from './resources/text-to-image';
+import {
+  VideoUpscale,
+  VideoUpscaleCreateParams,
+  VideoUpscaleCreateResponse,
+} from './resources/video-upscale';
 
 export interface ClientOptions {
   /**
@@ -143,6 +148,7 @@ export class RunwayML extends Core.APIClient {
   tasks: API.Tasks = new API.Tasks(this);
   imageToVideo: API.ImageToVideo = new API.ImageToVideo(this);
   textToImage: API.TextToImage = new API.TextToImage(this);
+  videoUpscale: API.VideoUpscale = new API.VideoUpscale(this);
   organization: API.Organization = new API.Organization(this);
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
@@ -185,6 +191,7 @@ export class RunwayML extends Core.APIClient {
 RunwayML.Tasks = Tasks;
 RunwayML.ImageToVideo = ImageToVideo;
 RunwayML.TextToImage = TextToImage;
+RunwayML.VideoUpscale = VideoUpscale;
 RunwayML.Organization = Organization;
 export declare namespace RunwayML {
   export type RequestOptions = Core.RequestOptions;
@@ -201,6 +208,12 @@ export declare namespace RunwayML {
     TextToImage as TextToImage,
     type TextToImageCreateResponse as TextToImageCreateResponse,
     type TextToImageCreateParams as TextToImageCreateParams,
+  };
+
+  export {
+    VideoUpscale as VideoUpscale,
+    type VideoUpscaleCreateResponse as VideoUpscaleCreateResponse,
+    type VideoUpscaleCreateParams as VideoUpscaleCreateParams,
   };
 
   export { Organization as Organization, type OrganizationRetrieveResponse as OrganizationRetrieveResponse };
