@@ -2,7 +2,7 @@
 
 import type { RunwayML } from './index';
 
-export class APIResource {
+export abstract class APIResource {
   protected _client: RunwayML;
 
   constructor(client: RunwayML) {
