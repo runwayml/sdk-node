@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.3.1 (2025-06-14)
+
+Full Changelog: [v2.3.0...v2.3.1](https://github.com/runwayml/sdk-node/compare/v2.3.0...v2.3.1)
+
+### Bug Fixes
+
+* publish script — handle NPM errors correctly ([e900012](https://github.com/runwayml/sdk-node/commit/e900012bd796a5a9d6ad736fe2ceef241534e516))
+
+
+### Chores
+
+* **internal:** make base APIResource abstract ([16c461e](https://github.com/runwayml/sdk-node/commit/16c461e72c656441fd487aad9ab31946c40dab1a))
+
 ## 2.3.0 (2025-06-04)
 
 Full Changelog: [v2.2.1...v2.3.0](https://github.com/runwayml/sdk-node/compare/v2.2.1...v2.3.0)
