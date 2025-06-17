@@ -1,5 +1,25 @@
 # Changelog
 
+## 2.4.0 (2025-06-17)
+
+Full Changelog: [v2.3.0...v2.4.0](https://github.com/runwayml/sdk-node/compare/v2.3.0...v2.4.0)
+
+### Features
+
+* **api:** SDK updates, contentModeration for i2v ([2efa44f](https://github.com/runwayml/sdk-node/commit/2efa44f179a0efb48c24189938f8e2a5c192e96d))
+* **client:** add support for endpoint-specific base URLs ([86c7ff6](https://github.com/runwayml/sdk-node/commit/86c7ff6b8d5a4ca1d8563e379422a6ff1854a72e))
+
+
+### Bug Fixes
+
+* publish script — handle NPM errors correctly ([e900012](https://github.com/runwayml/sdk-node/commit/e900012bd796a5a9d6ad736fe2ceef241534e516))
+
+
+### Chores
+
+* **ci:** enable for pull requests ([95d28a5](https://github.com/runwayml/sdk-node/commit/95d28a5a05c78f32f84f613266c1eff42c3ff730))
+* **internal:** make base APIResource abstract ([16c461e](https://github.com/runwayml/sdk-node/commit/16c461e72c656441fd487aad9ab31946c40dab1a))
+
 ## 2.3.0 (2025-06-04)
 
 Full Changelog: [v2.2.1...v2.3.0](https://github.com/runwayml/sdk-node/compare/v2.2.1...v2.3.0)
