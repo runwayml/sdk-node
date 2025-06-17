@@ -133,6 +133,7 @@ export class RunwayML extends Core.APIClient {
 
     super({
       baseURL: options.baseURL!,
+      baseURLOverridden: baseURL ? baseURL !== 'https://api.dev.runwayml.com' : false,
       timeout: options.timeout ?? 60000 /* 1 minute */,
       httpAgent: options.httpAgent,
       maxRetries: options.maxRetries,
@@ -150,6 +151,13 @@ export class RunwayML extends Core.APIClient {
   textToImage: API.TextToImage = new API.TextToImage(this);
   videoUpscale: API.VideoUpscale = new API.VideoUpscale(this);
   organization: API.Organization = new API.Organization(this);
+
+  /**
+   * Check whether the base URL is set to its default.
+   */
+  #baseURLOverridden(): boolean {
+    return this.baseURL !== 'https://api.dev.runwayml.com';
+  }
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
     return this._options.defaultQuery;
