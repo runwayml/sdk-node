@@ -27,7 +27,7 @@ export interface ImageToVideoCreateParams {
   /**
    * The model variant to use.
    */
-  model: 'gen4_turbo' | 'gen3a_turbo';
+  model: 'gen3a_turbo' | 'gen4_turbo';
 
   /**
    * A HTTPS URL or data URI containing an encoded image to be used as the first
@@ -54,6 +54,11 @@ export interface ImageToVideoCreateParams {
    * - `768:1280`
    */
   ratio: '1280:720' | '720:1280' | '1104:832' | '832:1104' | '960:960' | '1584:672' | '1280:768' | '768:1280';
+
+  /**
+   * Settings that affect the behavior of the content moderation system.
+   */
+  contentModeration?: ImageToVideoCreateParams.ContentModeration;
 
   /**
    * The number of seconds of duration for the output video.
@@ -90,6 +95,17 @@ export namespace ImageToVideoCreateParams {
      * [our docs](/assets/inputs#images) on image inputs for more information.
      */
     uri: string;
+  }
+
+  /**
+   * Settings that affect the behavior of the content moderation system.
+   */
+  export interface ContentModeration {
+    /**
+     * When set to `low`, the content moderation system will be less strict about
+     * preventing generations that include recognizable public figures.
+     */
+    publicFigureThreshold?: 'auto' | 'low';
   }
 }
 
