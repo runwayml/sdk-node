@@ -11,7 +11,7 @@ const client = new RunwayML({
 describe('resource imageToVideo', () => {
   test('create: only required params', async () => {
     const responsePromise = client.imageToVideo.create({
-      model: 'gen4_turbo',
+      model: 'gen3a_turbo',
       promptImage: 'https://example.com',
       ratio: '1280:720',
     });
@@ -26,9 +26,10 @@ describe('resource imageToVideo', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.imageToVideo.create({
-      model: 'gen4_turbo',
+      model: 'gen3a_turbo',
       promptImage: 'https://example.com',
       ratio: '1280:720',
+      contentModeration: { publicFigureThreshold: 'auto' },
       duration: 5,
       promptText: 'promptText',
       seed: 0,

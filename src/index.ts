@@ -244,4 +244,6 @@ export {
   UnprocessableEntityError,
 } from './error';
 
+export { TaskFailedError, TaskTimedOutError, WaitForTaskOutputOptions, AbortError } from './lib/polling';
+
 export default RunwayML;

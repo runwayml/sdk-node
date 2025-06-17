@@ -2,6 +2,7 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
+import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/polling';
 
 export class TextToImage extends APIResource {
   /**
@@ -10,8 +11,10 @@ export class TextToImage extends APIResource {
   create(
     body: TextToImageCreateParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<TextToImageCreateResponse> {
-    return this._client.post('/v1/text_to_image', { body, ...options });
+  ): APIPromiseWithAwaitableTask<TextToImageCreateResponse> {
+    return wrapAsWaitableResource<TextToImageCreateResponse>(this._client)(
+      this._client.post('/v1/text_to_image', { body, ...options }),
+    );
   }
 }
 
