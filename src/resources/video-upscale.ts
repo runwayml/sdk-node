@@ -2,6 +2,7 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
+import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/polling';
 
 export class VideoUpscale extends APIResource {
   /**
@@ -11,8 +12,10 @@ export class VideoUpscale extends APIResource {
   create(
     body: VideoUpscaleCreateParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<VideoUpscaleCreateResponse> {
-    return this._client.post('/v1/video_upscale', { body, ...options });
+  ): APIPromiseWithAwaitableTask<VideoUpscaleCreateResponse> {
+    return wrapAsWaitableResource<VideoUpscaleCreateResponse>(this._client)(
+      this._client.post('/v1/video_upscale', { body, ...options }),
+    );
   }
 }
 

@@ -2,14 +2,18 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
+import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/polling';
 
 export class Tasks extends APIResource {
   /**
    * Return details about a task. Consumers of this API should not expect updates
    * more frequent than once every five seconds for a given task.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<TaskRetrieveResponse> {
-    return this._client.get(`/v1/tasks/${id}`, options);
+  retrieve(id: string, options?: Core.RequestOptions): APIPromiseWithAwaitableTask<TaskRetrieveResponse> {
+    return wrapAsWaitableResource<TaskRetrieveResponse>(this._client)(
+      this._client.get(`/v1/tasks/${id}`, options),
+      true,
+    );
   }
 
   /**
