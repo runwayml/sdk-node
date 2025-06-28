@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.4.1 (2025-06-28)
+
+Full Changelog: [v2.4.0...v2.4.1](https://github.com/runwayml/sdk-node/compare/v2.4.0...v2.4.1)
+
+### Bug Fixes
+
+* **ci:** release-doctor — report correct token name ([de3bfe6](https://github.com/runwayml/sdk-node/commit/de3bfe64d95c3debdd5945b1bb12a52fa9fbfe3a))
+
+
+### Chores
+
+* **ci:** only run for pushes and fork pull requests ([f50556b](https://github.com/runwayml/sdk-node/commit/f50556b82dc0bbc57d8a16724a6400e23e4aafb7))
+
 ## 2.4.0 (2025-06-17)
 
 Full Changelog: [v2.3.0...v2.4.0](https://github.com/runwayml/sdk-node/compare/v2.3.0...v2.4.0)
