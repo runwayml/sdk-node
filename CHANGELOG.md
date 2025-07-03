@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.4.2 (2025-07-03)
+
+Full Changelog: [v2.4.1...v2.4.2](https://github.com/runwayml/sdk-node/compare/v2.4.1...v2.4.2)
+
+### Bug Fixes
+
+* **client:** don't send `Content-Type` for bodyless methods ([3c7864f](https://github.com/runwayml/sdk-node/commit/3c7864f60ef70ee2905d22234e0c26e85ab5dc29))
+
+
+### Chores
+
+* mention unit type in timeout docs ([cb3bbfe](https://github.com/runwayml/sdk-node/commit/cb3bbfee497e6deaa3b35d3fe6d4612decb15837))
+
 ## 2.4.1 (2025-06-28)
 
 Full Changelog: [v2.4.0...v2.4.1](https://github.com/runwayml/sdk-node/compare/v2.4.0...v2.4.1)
