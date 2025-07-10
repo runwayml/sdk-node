@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.4.3 (2025-07-10)
+
+Full Changelog: [v2.4.2...v2.4.3](https://github.com/runwayml/sdk-node/compare/v2.4.2...v2.4.3)
+
+### Chores
+
+* make some internal functions async ([b9e99f7](https://github.com/runwayml/sdk-node/commit/b9e99f75ee2b6d2df7ea419e39010a048ff276c9))
+
 ## 2.4.2 (2025-07-03)
 
 Full Changelog: [v2.4.1...v2.4.2](https://github.com/runwayml/sdk-node/compare/v2.4.1...v2.4.2)
