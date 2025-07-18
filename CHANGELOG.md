@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.5.0 (2025-07-18)
+
+Full Changelog: [v2.4.2...v2.5.0](https://github.com/runwayml/sdk-node/compare/v2.4.2...v2.5.0)
+
+### Features
+
+* **api:** Act Two, credit usage endpoints ([18ee143](https://github.com/runwayml/sdk-node/commit/18ee143abd8927e3d7013177ab572bcd51761d4c))
+* **api:** Awaitability on new resources ([a2a23d6](https://github.com/runwayml/sdk-node/commit/a2a23d66dd07181003af58ec0857bef0b123e8d3))
+
+
+### Chores
+
+* make some internal functions async ([b9e99f7](https://github.com/runwayml/sdk-node/commit/b9e99f75ee2b6d2df7ea419e39010a048ff276c9))
+
 ## 2.4.2 (2025-07-03)
 
 Full Changelog: [v2.4.1...v2.4.2](https://github.com/runwayml/sdk-node/compare/v2.4.1...v2.4.2)
