@@ -2,6 +2,7 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
+import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/polling';
 
 export class CharacterPerformance extends APIResource {
   /**
@@ -11,8 +12,10 @@ export class CharacterPerformance extends APIResource {
   create(
     body: CharacterPerformanceCreateParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<CharacterPerformanceCreateResponse> {
-    return this._client.post('/v1/character_performance', { body, ...options });
+  ): APIPromiseWithAwaitableTask<CharacterPerformanceCreateResponse> {
+    return wrapAsWaitableResource<CharacterPerformanceCreateResponse>(this._client)(
+      this._client.post('/v1/character_performance', { body, ...options }),
+    );
   }
 }
 
