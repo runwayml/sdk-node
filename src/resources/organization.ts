@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../resource';
+import { isRequestOptions } from '../core';
 import * as Core from '../core';
 
 export class Organization extends APIResource {
@@ -10,6 +11,26 @@ export class Organization extends APIResource {
    */
   retrieve(options?: Core.RequestOptions): Core.APIPromise<OrganizationRetrieveResponse> {
     return this._client.get('/v1/organization', options);
+  }
+
+  /**
+   * Fetch credit usage data broken down by model and day for the organization
+   * associated with the API key used to make the request. Up to 90 days of data can
+   * be queried at a time.
+   */
+  retrieveUsage(
+    body?: OrganizationRetrieveUsageParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<OrganizationRetrieveUsageResponse>;
+  retrieveUsage(options?: Core.RequestOptions): Core.APIPromise<OrganizationRetrieveUsageResponse>;
+  retrieveUsage(
+    body: OrganizationRetrieveUsageParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<OrganizationRetrieveUsageResponse> {
+    if (isRequestOptions(body)) {
+      return this.retrieveUsage({}, body);
+    }
+    return this._client.post('/v1/organization/usage', { body, ...options });
   }
 }
 
@@ -52,6 +73,11 @@ export namespace OrganizationRetrieveResponse {
      */
     export interface Models {
       /**
+       * Limits associated with the act_two model.
+       */
+      act_two?: Models.ActTwo;
+
+      /**
        * Limits associated with the gen3a_turbo model.
        */
       gen3a_turbo?: Models.Gen3aTurbo;
@@ -73,6 +99,21 @@ export namespace OrganizationRetrieveResponse {
     }
 
     export namespace Models {
+      /**
+       * Limits associated with the act_two model.
+       */
+      export interface ActTwo {
+        /**
+         * The maximum number of generations that can be run concurrently for this model.
+         */
+        maxConcurrentGenerations: number;
+
+        /**
+         * The maximum number of generations that can be created each day for this model.
+         */
+        maxDailyGenerations: number;
+      }
+
       /**
        * Limits associated with the gen3a_turbo model.
        */
@@ -151,6 +192,11 @@ export namespace OrganizationRetrieveResponse {
      */
     export interface Models {
       /**
+       * Usage data for the act_two model.
+       */
+      act_two?: Models.ActTwo;
+
+      /**
        * Usage data for the gen3a_turbo model.
        */
       gen3a_turbo?: Models.Gen3aTurbo;
@@ -172,6 +218,16 @@ export namespace OrganizationRetrieveResponse {
     }
 
     export namespace Models {
+      /**
+       * Usage data for the act_two model.
+       */
+      export interface ActTwo {
+        /**
+         * The number of generations that have been run for this model in the past day.
+         */
+        dailyGenerations: number;
+      }
+
       /**
        * Usage data for the gen3a_turbo model.
        */
@@ -215,6 +271,64 @@ export namespace OrganizationRetrieveResponse {
   }
 }
 
+export interface OrganizationRetrieveUsageResponse {
+  /**
+   * The list of models with usage during the queried time range.
+   */
+  models: Array<'upscale_v1' | 'act_two' | 'gen4_image' | 'gen3a_turbo' | 'gen4_turbo'>;
+
+  results: Array<OrganizationRetrieveUsageResponse.Result>;
+}
+
+export namespace OrganizationRetrieveUsageResponse {
+  export interface Result {
+    /**
+     * The date of the usage data in ISO-8601 format (YYYY-MM-DD). All dates are in
+     * UTC.
+     */
+    date: string;
+
+    /**
+     * The credits used per model for the given date.
+     */
+    usedCredits: Array<Result.UsedCredit>;
+  }
+
+  export namespace Result {
+    export interface UsedCredit {
+      /**
+       * The number of credits used for the model.
+       */
+      amount: number;
+
+      /**
+       * The model whose usage resulted in the credit usage.
+       */
+      model: 'upscale_v1' | 'act_two' | 'gen4_image' | 'gen3a_turbo' | 'gen4_turbo';
+    }
+  }
+}
+
+export interface OrganizationRetrieveUsageParams {
+  /**
+   * The end date of the usage data in ISO-8601 format (YYYY-MM-DD), not inclusive.
+   * If unspecified, it will default to thirty days after the start date. Must be
+   * less than or equal to 90 days after the start date. All dates are in UTC.
+   */
+  beforeDate?: string;
+
+  /**
+   * The start date of the usage data in ISO-8601 format (YYYY-MM-DD). If
+   * unspecified, it will default to 30 days before the current date. All dates are
+   * in UTC.
+   */
+  startDate?: string;
+}
+
 export declare namespace Organization {
-  export { type OrganizationRetrieveResponse as OrganizationRetrieveResponse };
+  export {
+    type OrganizationRetrieveResponse as OrganizationRetrieveResponse,
+    type OrganizationRetrieveUsageResponse as OrganizationRetrieveUsageResponse,
+    type OrganizationRetrieveUsageParams as OrganizationRetrieveUsageParams,
+  };
 }

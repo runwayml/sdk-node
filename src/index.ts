@@ -6,11 +6,21 @@ import * as Errors from './error';
 import * as Uploads from './uploads';
 import * as API from './resources/index';
 import {
+  CharacterPerformance,
+  CharacterPerformanceCreateParams,
+  CharacterPerformanceCreateResponse,
+} from './resources/character-performance';
+import {
   ImageToVideo,
   ImageToVideoCreateParams,
   ImageToVideoCreateResponse,
 } from './resources/image-to-video';
-import { Organization, OrganizationRetrieveResponse } from './resources/organization';
+import {
+  Organization,
+  OrganizationRetrieveResponse,
+  OrganizationRetrieveUsageParams,
+  OrganizationRetrieveUsageResponse,
+} from './resources/organization';
 import { TaskRetrieveResponse, Tasks } from './resources/tasks';
 import { TextToImage, TextToImageCreateParams, TextToImageCreateResponse } from './resources/text-to-image';
 import {
@@ -152,6 +162,7 @@ export class RunwayML extends Core.APIClient {
   imageToVideo: API.ImageToVideo = new API.ImageToVideo(this);
   textToImage: API.TextToImage = new API.TextToImage(this);
   videoUpscale: API.VideoUpscale = new API.VideoUpscale(this);
+  characterPerformance: API.CharacterPerformance = new API.CharacterPerformance(this);
   organization: API.Organization = new API.Organization(this);
 
   /**
@@ -202,6 +213,7 @@ RunwayML.Tasks = Tasks;
 RunwayML.ImageToVideo = ImageToVideo;
 RunwayML.TextToImage = TextToImage;
 RunwayML.VideoUpscale = VideoUpscale;
+RunwayML.CharacterPerformance = CharacterPerformance;
 RunwayML.Organization = Organization;
 export declare namespace RunwayML {
   export type RequestOptions = Core.RequestOptions;
@@ -226,7 +238,18 @@ export declare namespace RunwayML {
     type VideoUpscaleCreateParams as VideoUpscaleCreateParams,
   };
 
-  export { Organization as Organization, type OrganizationRetrieveResponse as OrganizationRetrieveResponse };
+  export {
+    CharacterPerformance as CharacterPerformance,
+    type CharacterPerformanceCreateResponse as CharacterPerformanceCreateResponse,
+    type CharacterPerformanceCreateParams as CharacterPerformanceCreateParams,
+  };
+
+  export {
+    Organization as Organization,
+    type OrganizationRetrieveResponse as OrganizationRetrieveResponse,
+    type OrganizationRetrieveUsageResponse as OrganizationRetrieveUsageResponse,
+    type OrganizationRetrieveUsageParams as OrganizationRetrieveUsageParams,
+  };
 }
 
 export { toFile, fileFromPath } from './uploads';

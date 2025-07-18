@@ -39,12 +39,24 @@ Methods:
 
 - <code title="post /v1/video_upscale">client.videoUpscale.<a href="./src/resources/video-upscale.ts">create</a>({ ...params }) -> VideoUpscaleCreateResponse</code>
 
+# CharacterPerformance
+
+Types:
+
+- <code><a href="./src/resources/character-performance.ts">CharacterPerformanceCreateResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/character_performance">client.characterPerformance.<a href="./src/resources/character-performance.ts">create</a>({ ...params }) -> CharacterPerformanceCreateResponse</code>
+
 # Organization
 
 Types:
 
 - <code><a href="./src/resources/organization.ts">OrganizationRetrieveResponse</a></code>
+- <code><a href="./src/resources/organization.ts">OrganizationRetrieveUsageResponse</a></code>
 
 Methods:
 
 - <code title="get /v1/organization">client.organization.<a href="./src/resources/organization.ts">retrieve</a>() -> OrganizationRetrieveResponse</code>
+- <code title="post /v1/organization/usage">client.organization.<a href="./src/resources/organization.ts">retrieveUsage</a>({ ...params }) -> OrganizationRetrieveUsageResponse</code>
