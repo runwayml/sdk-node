@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.5.1 (2025-07-30)
+
+Full Changelog: [v2.5.0...v2.5.1](https://github.com/runwayml/sdk-node/compare/v2.5.0...v2.5.1)
+
+### Chores
+
+* **internal:** remove redundant imports config ([8220762](https://github.com/runwayml/sdk-node/commit/82207621f6d1302bb27c6d28239032d1e0b4486b))
+
 ## 2.5.0 (2025-07-18)
 
 Full Changelog: [v2.4.2...v2.5.0](https://github.com/runwayml/sdk-node/compare/v2.4.2...v2.5.0)
