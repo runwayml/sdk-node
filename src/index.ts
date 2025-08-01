@@ -24,6 +24,11 @@ import {
 import { TaskRetrieveResponse, Tasks } from './resources/tasks';
 import { TextToImage, TextToImageCreateParams, TextToImageCreateResponse } from './resources/text-to-image';
 import {
+  VideoToVideo,
+  VideoToVideoCreateParams,
+  VideoToVideoCreateResponse,
+} from './resources/video-to-video';
+import {
   VideoUpscale,
   VideoUpscaleCreateParams,
   VideoUpscaleCreateResponse,
@@ -160,6 +165,7 @@ export class RunwayML extends Core.APIClient {
 
   tasks: API.Tasks = new API.Tasks(this);
   imageToVideo: API.ImageToVideo = new API.ImageToVideo(this);
+  videoToVideo: API.VideoToVideo = new API.VideoToVideo(this);
   textToImage: API.TextToImage = new API.TextToImage(this);
   videoUpscale: API.VideoUpscale = new API.VideoUpscale(this);
   characterPerformance: API.CharacterPerformance = new API.CharacterPerformance(this);
@@ -211,6 +217,7 @@ export class RunwayML extends Core.APIClient {
 
 RunwayML.Tasks = Tasks;
 RunwayML.ImageToVideo = ImageToVideo;
+RunwayML.VideoToVideo = VideoToVideo;
 RunwayML.TextToImage = TextToImage;
 RunwayML.VideoUpscale = VideoUpscale;
 RunwayML.CharacterPerformance = CharacterPerformance;
@@ -224,6 +231,12 @@ export declare namespace RunwayML {
     ImageToVideo as ImageToVideo,
     type ImageToVideoCreateResponse as ImageToVideoCreateResponse,
     type ImageToVideoCreateParams as ImageToVideoCreateParams,
+  };
+
+  export {
+    VideoToVideo as VideoToVideo,
+    type VideoToVideoCreateResponse as VideoToVideoCreateResponse,
+    type VideoToVideoCreateParams as VideoToVideoCreateParams,
   };
 
   export {

@@ -62,7 +62,7 @@ export interface TextToImageCreateParams {
 
   /**
    * An array of images to be used as references for the generated image output. Up
-   * to three reference images can be provided.
+   * to three reference images can be provided for `gen4_image`.
    */
   referenceImages?: Array<TextToImageCreateParams.ReferenceImage>;
 
