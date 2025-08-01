@@ -19,6 +19,16 @@ Methods:
 
 - <code title="post /v1/image_to_video">client.imageToVideo.<a href="./src/resources/image-to-video.ts">create</a>({ ...params }) -> ImageToVideoCreateResponse</code>
 
+# VideoToVideo
+
+Types:
+
+- <code><a href="./src/resources/video-to-video.ts">VideoToVideoCreateResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/video_to_video">client.videoToVideo.<a href="./src/resources/video-to-video.ts">create</a>({ ...params }) -> VideoToVideoCreateResponse</code>
+
 # TextToImage
 
 Types:
