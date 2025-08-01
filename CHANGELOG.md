@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.6.0 (2025-08-01)
+
+Full Changelog: [v2.5.1...v2.6.0](https://github.com/runwayml/sdk-node/compare/v2.5.1...v2.6.0)
+
+### Features
+
+* **api:** Gen-4 Aleph ([94908de](https://github.com/runwayml/sdk-node/commit/94908de32934cd72cac3d7c3f0eea2f0ab8be14c))
+
 ## 2.5.1 (2025-07-30)
 
 Full Changelog: [v2.5.0...v2.5.1](https://github.com/runwayml/sdk-node/compare/v2.5.0...v2.5.1)
