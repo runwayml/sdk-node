@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.7.0 (2025-08-05)
+
+Full Changelog: [v2.6.0...v2.7.0](https://github.com/runwayml/sdk-node/compare/v2.6.0...v2.7.0)
+
+### Features
+
+* **api:** Add gen4_image_turbo model ([b5b89d0](https://github.com/runwayml/sdk-node/commit/b5b89d060a7a537ebe4ad0c8437ef1077d358197))
+
 ## 2.6.0 (2025-08-01)
 
 Full Changelog: [v2.5.1...v2.6.0](https://github.com/runwayml/sdk-node/compare/v2.5.1...v2.6.0)
