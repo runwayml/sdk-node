@@ -29,7 +29,7 @@ export interface TextToImageCreateParams {
   /**
    * The model variant to use.
    */
-  model: 'gen4_image';
+  model: 'gen4_image' | 'gen4_image_turbo';
 
   /**
    * A non-empty string up to 1000 characters (measured in UTF-16 code units). This
@@ -64,8 +64,10 @@ export interface TextToImageCreateParams {
   contentModeration?: TextToImageCreateParams.ContentModeration;
 
   /**
-   * An array of images to be used as references for the generated image output. Up
-   * to three reference images can be provided for `gen4_image`.
+   * An array of up to three images to be used as references for the generated image
+   * output.
+   *
+   * For `gen4_image_turbo`, _at least one_ reference image is required.
    */
   referenceImages?: Array<TextToImageCreateParams.ReferenceImage>;
 
