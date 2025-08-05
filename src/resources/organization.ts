@@ -93,6 +93,11 @@ export namespace OrganizationRetrieveResponse {
       gen4_image?: Models.Gen4Image;
 
       /**
+       * Limits associated with the gen4_image_turbo model.
+       */
+      gen4_image_turbo?: Models.Gen4ImageTurbo;
+
+      /**
        * Limits associated with the gen4_turbo model.
        */
       gen4_turbo?: Models.Gen4Turbo;
@@ -153,6 +158,21 @@ export namespace OrganizationRetrieveResponse {
        * Limits associated with the gen4_image model.
        */
       export interface Gen4Image {
+        /**
+         * The maximum number of generations that can be run concurrently for this model.
+         */
+        maxConcurrentGenerations: number;
+
+        /**
+         * The maximum number of generations that can be created each day for this model.
+         */
+        maxDailyGenerations: number;
+      }
+
+      /**
+       * Limits associated with the gen4_image_turbo model.
+       */
+      export interface Gen4ImageTurbo {
         /**
          * The maximum number of generations that can be run concurrently for this model.
          */
@@ -232,6 +252,11 @@ export namespace OrganizationRetrieveResponse {
       gen4_image?: Models.Gen4Image;
 
       /**
+       * Usage data for the gen4_image_turbo model.
+       */
+      gen4_image_turbo?: Models.Gen4ImageTurbo;
+
+      /**
        * Usage data for the gen4_turbo model.
        */
       gen4_turbo?: Models.Gen4Turbo;
@@ -284,6 +309,16 @@ export namespace OrganizationRetrieveResponse {
       }
 
       /**
+       * Usage data for the gen4_image_turbo model.
+       */
+      export interface Gen4ImageTurbo {
+        /**
+         * The number of generations that have been run for this model in the past day.
+         */
+        dailyGenerations: number;
+      }
+
+      /**
        * Usage data for the gen4_turbo model.
        */
       export interface Gen4Turbo {
@@ -310,7 +345,9 @@ export interface OrganizationRetrieveUsageResponse {
   /**
    * The list of models with usage during the queried time range.
    */
-  models: Array<'upscale_v1' | 'act_two' | 'gen4_image' | 'gen3a_turbo' | 'gen4_turbo' | 'gen4_aleph'>;
+  models: Array<
+    'upscale_v1' | 'act_two' | 'gen4_image' | 'gen3a_turbo' | 'gen4_turbo' | 'gen4_aleph' | 'gen4_image_turbo'
+  >;
 
   results: Array<OrganizationRetrieveUsageResponse.Result>;
 }
@@ -339,7 +376,14 @@ export namespace OrganizationRetrieveUsageResponse {
       /**
        * The model whose usage resulted in the credit usage.
        */
-      model: 'upscale_v1' | 'act_two' | 'gen4_image' | 'gen3a_turbo' | 'gen4_turbo' | 'gen4_aleph';
+      model:
+        | 'upscale_v1'
+        | 'act_two'
+        | 'gen4_image'
+        | 'gen3a_turbo'
+        | 'gen4_turbo'
+        | 'gen4_aleph'
+        | 'gen4_image_turbo';
     }
   }
 }
