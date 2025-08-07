@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.8.0 (2025-08-07)
+
+Full Changelog: [v2.7.0...v2.8.0](https://github.com/runwayml/sdk-node/compare/v2.7.0...v2.8.0)
+
+### Features
+
+* **readme:** Fix for readme example ([821c2ac](https://github.com/runwayml/sdk-node/commit/821c2ac913308db660d2ccae9f331d42f9de8f91))
+* **readme:** gen4_turbo ratio ([f637cd6](https://github.com/runwayml/sdk-node/commit/f637cd6839aaf054aa23ea84dcb125144fc79065))
+
+
+### Chores
+
+* **internal:** move publish config ([be0428c](https://github.com/runwayml/sdk-node/commit/be0428cb967312f488b0012897196b67fe9a49c2))
+
 ## 2.7.0 (2025-08-05)
 
 Full Changelog: [v2.6.0...v2.7.0](https://github.com/runwayml/sdk-node/compare/v2.6.0...v2.7.0)
