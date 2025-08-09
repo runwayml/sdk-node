@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.8.1 (2025-08-09)
+
+Full Changelog: [v2.8.0...v2.8.1](https://github.com/runwayml/sdk-node/compare/v2.8.0...v2.8.1)
+
+### Chores
+
+* update @stainless-api/prism-cli to v5.15.0 ([d04ab4d](https://github.com/runwayml/sdk-node/commit/d04ab4da2c72c08cc1561b26acdcc887609a7f55))
+
 ## 2.8.0 (2025-08-07)
 
 Full Changelog: [v2.7.0...v2.8.0](https://github.com/runwayml/sdk-node/compare/v2.7.0...v2.8.0)
