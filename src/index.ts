@@ -222,6 +222,7 @@ RunwayML.TextToImage = TextToImage;
 RunwayML.VideoUpscale = VideoUpscale;
 RunwayML.CharacterPerformance = CharacterPerformance;
 RunwayML.Organization = Organization;
+
 export declare namespace RunwayML {
   export type RequestOptions = Core.RequestOptions;
 
