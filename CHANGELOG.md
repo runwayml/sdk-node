@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.8.2 (2025-08-23)
+
+Full Changelog: [v2.8.1...v2.8.2](https://github.com/runwayml/sdk-node/compare/v2.8.1...v2.8.2)
+
+### Chores
+
+* **deps:** update dependency node-fetch to v2.6.13 ([2dc267e](https://github.com/runwayml/sdk-node/commit/2dc267e1392bd149f625b40e5b1b159dea9cf872))
+* **internal:** formatting change ([ab19a7b](https://github.com/runwayml/sdk-node/commit/ab19a7b51d1e58215d211ac826ef13cb6329ce54))
+* **internal:** update comment in script ([92a9a82](https://github.com/runwayml/sdk-node/commit/92a9a821073b59ea3d24ba0c03d396d7a57c9b3a))
+* update CI script ([2d29401](https://github.com/runwayml/sdk-node/commit/2d29401a59495288bcf1cc0c09124ca82d5d33e6))
+
 ## 2.8.1 (2025-08-09)
 
 Full Changelog: [v2.8.0...v2.8.1](https://github.com/runwayml/sdk-node/compare/v2.8.0...v2.8.1)
