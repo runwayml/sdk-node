@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.8.3 (2025-09-09)
+
+Full Changelog: [v2.8.2...v2.8.3](https://github.com/runwayml/sdk-node/compare/v2.8.2...v2.8.3)
+
+### Bug Fixes
+
+* coerce nullable values to undefined ([009871a](https://github.com/runwayml/sdk-node/commit/009871a4cb8b9afc0420e3d83a56eb5c4dc52f6f))
+
+
+### Chores
+
+* ci build action ([86786bd](https://github.com/runwayml/sdk-node/commit/86786bd820737f4baed65927fffafef3c78d8f72))
+
 ## 2.8.2 (2025-08-23)
 
 Full Changelog: [v2.8.1...v2.8.2](https://github.com/runwayml/sdk-node/compare/v2.8.1...v2.8.2)
