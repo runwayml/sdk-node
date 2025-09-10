@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.9.0 (2025-09-10)
+
+Full Changelog: [v2.8.3...v2.9.0](https://github.com/runwayml/sdk-node/compare/v2.8.3...v2.9.0)
+
+### Features
+
+* **api:** Update t2v parameters ([b306edc](https://github.com/runwayml/sdk-node/commit/b306edc37de4cca599e302838e2cdb6d366c650b))
+* **api:** Veo3 integration ([f882fe6](https://github.com/runwayml/sdk-node/commit/f882fe69dc5332772d757c9854597aa555b8f108))
+* **client:** Make t2v waitable ([be48f62](https://github.com/runwayml/sdk-node/commit/be48f6283e4bf15a8932cb807287d7da80ae2721))
+
 ## 2.8.3 (2025-09-09)
 
 Full Changelog: [v2.8.2...v2.8.3](https://github.com/runwayml/sdk-node/compare/v2.8.2...v2.8.3)
