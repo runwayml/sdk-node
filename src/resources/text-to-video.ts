@@ -2,6 +2,7 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
+import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/polling';
 
 export class TextToVideo extends APIResource {
   /**
@@ -10,8 +11,10 @@ export class TextToVideo extends APIResource {
   create(
     body: TextToVideoCreateParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<TextToVideoCreateResponse> {
-    return this._client.post('/v1/text_to_video', { body, ...options });
+  ): APIPromiseWithAwaitableTask<TextToVideoCreateResponse> {
+    return wrapAsWaitableResource<TextToVideoCreateResponse>(this._client)(
+      this._client.post('/v1/text_to_video', { body, ...options }),
+    );
   }
 }
 
