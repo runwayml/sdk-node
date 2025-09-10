@@ -26,7 +26,7 @@ export interface TextToImageCreateParams {
   /**
    * The model variant to use.
    */
-  model: 'gen4_image' | 'gen4_image_turbo';
+  model: 'gen4_image_turbo' | 'gen4_image';
 
   /**
    * A non-empty string up to 1000 characters (measured in UTF-16 code units). This
