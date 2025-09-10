@@ -10,7 +10,12 @@ const client = new RunwayML({
 
 describe('resource textToVideo', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.textToVideo.create({ model: 'veo3', promptText: 'promptText' });
+    const responsePromise = client.textToVideo.create({
+      duration: 8,
+      model: 'veo3',
+      promptText: 'promptText',
+      ratio: '1280:720',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -22,6 +27,7 @@ describe('resource textToVideo', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.textToVideo.create({
+      duration: 8,
       model: 'veo3',
       promptText: 'promptText',
       ratio: '1280:720',
