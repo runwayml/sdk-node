@@ -106,6 +106,11 @@ export namespace OrganizationRetrieveResponse {
        * Limits associated with the upscale_v1 model.
        */
       upscale_v1?: Models.UpscaleV1;
+
+      /**
+       * Limits associated with the veo3 model.
+       */
+      veo3?: Models.Veo3;
     }
 
     export namespace Models {
@@ -213,6 +218,21 @@ export namespace OrganizationRetrieveResponse {
          */
         maxDailyGenerations: number;
       }
+
+      /**
+       * Limits associated with the veo3 model.
+       */
+      export interface Veo3 {
+        /**
+         * The maximum number of generations that can be run concurrently for this model.
+         */
+        maxConcurrentGenerations: number;
+
+        /**
+         * The maximum number of generations that can be created each day for this model.
+         */
+        maxDailyGenerations: number;
+      }
     }
   }
 
@@ -265,6 +285,11 @@ export namespace OrganizationRetrieveResponse {
        * Usage data for the upscale_v1 model.
        */
       upscale_v1?: Models.UpscaleV1;
+
+      /**
+       * Usage data for the veo3 model.
+       */
+      veo3?: Models.Veo3;
     }
 
     export namespace Models {
@@ -337,6 +362,16 @@ export namespace OrganizationRetrieveResponse {
          */
         dailyGenerations: number;
       }
+
+      /**
+       * Usage data for the veo3 model.
+       */
+      export interface Veo3 {
+        /**
+         * The number of generations that have been run for this model in the past day.
+         */
+        dailyGenerations: number;
+      }
     }
   }
 }
@@ -346,7 +381,14 @@ export interface OrganizationRetrieveUsageResponse {
    * The list of models with usage during the queried time range.
    */
   models: Array<
-    'upscale_v1' | 'act_two' | 'gen4_image' | 'gen3a_turbo' | 'gen4_turbo' | 'gen4_aleph' | 'gen4_image_turbo'
+    | 'act_two'
+    | 'gen3a_turbo'
+    | 'gen4_aleph'
+    | 'gen4_image'
+    | 'gen4_image_turbo'
+    | 'gen4_turbo'
+    | 'upscale_v1'
+    | 'veo3'
   >;
 
   results: Array<OrganizationRetrieveUsageResponse.Result>;
@@ -377,13 +419,14 @@ export namespace OrganizationRetrieveUsageResponse {
        * The model whose usage resulted in the credit usage.
        */
       model:
-        | 'upscale_v1'
         | 'act_two'
-        | 'gen4_image'
         | 'gen3a_turbo'
-        | 'gen4_turbo'
         | 'gen4_aleph'
-        | 'gen4_image_turbo';
+        | 'gen4_image'
+        | 'gen4_image_turbo'
+        | 'gen4_turbo'
+        | 'upscale_v1'
+        | 'veo3';
     }
   }
 }
