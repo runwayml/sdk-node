@@ -24,6 +24,11 @@ export interface TextToVideoCreateResponse {
 
 export interface TextToVideoCreateParams {
   /**
+   * Veo 3 videos must be 8 seconds long.
+   */
+  duration: 8;
+
+  /**
    * The model variant to use.
    */
   model: 'veo3';
@@ -37,7 +42,7 @@ export interface TextToVideoCreateParams {
   /**
    * A string representing the aspect ratio of the output video.
    */
-  ratio?: '1280:720' | '720:1280';
+  ratio: '1280:720' | '720:1280';
 
   /**
    * If unspecified, a random number is chosen. Varying the seed integer is a way to
