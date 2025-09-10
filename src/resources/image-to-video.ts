@@ -30,7 +30,7 @@ export interface ImageToVideoCreateParams {
   /**
    * The model variant to use.
    */
-  model: 'gen3a_turbo' | 'gen4_turbo';
+  model: 'gen4_turbo' | 'gen3a_turbo' | 'veo3';
 
   /**
    * A HTTPS URL or data URI containing an encoded image to be used as the first
@@ -55,18 +55,29 @@ export interface ImageToVideoCreateParams {
    *
    * - `1280:768`
    * - `768:1280`
+   *
+   * `veo3` supports the following values:
+   *
+   * - `1280:720`
+   * - `720:1280`
    */
   ratio: '1280:720' | '720:1280' | '1104:832' | '832:1104' | '960:960' | '1584:672' | '1280:768' | '768:1280';
 
   /**
    * Settings that affect the behavior of the content moderation system.
+   *
+   * `veo3` does not support this parameter.
+   *
+   * This field is allowed for the following model variants: `gen4_turbo`,
+   * `gen3a_turbo`
    */
   contentModeration?: ImageToVideoCreateParams.ContentModeration;
 
   /**
-   * The number of seconds of duration for the output video.
+   * The number of seconds of duration for the output video. `veo3` requires a
+   * duration of 8. gen4_turbo, gen3a_turbo must specify a duration of 5 or 10.
    */
-  duration?: 5 | 10;
+  duration?: 5 | 8 | 10;
 
   /**
    * A non-empty string up to 1000 characters (measured in UTF-16 code units). This
@@ -102,6 +113,11 @@ export namespace ImageToVideoCreateParams {
 
   /**
    * Settings that affect the behavior of the content moderation system.
+   *
+   * `veo3` does not support this parameter.
+   *
+   * This field is allowed for the following model variants: `gen4_turbo`,
+   * `gen3a_turbo`
    */
   export interface ContentModeration {
     /**

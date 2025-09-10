@@ -11,7 +11,7 @@ const client = new RunwayML({
 describe('resource textToImage', () => {
   test('create: only required params', async () => {
     const responsePromise = client.textToImage.create({
-      model: 'gen4_image',
+      model: 'gen4_image_turbo',
       promptText: 'promptText',
       ratio: '1920:1080',
     });
@@ -26,7 +26,7 @@ describe('resource textToImage', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.textToImage.create({
-      model: 'gen4_image',
+      model: 'gen4_image_turbo',
       promptText: 'promptText',
       ratio: '1920:1080',
       contentModeration: { publicFigureThreshold: 'auto' },
