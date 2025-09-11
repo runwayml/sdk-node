@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.10.0 (2025-09-11)
+
+Full Changelog: [v2.9.0...v2.10.0](https://github.com/runwayml/sdk-node/compare/v2.9.0...v2.10.0)
+
+### Features
+
+* **api:** Add Gemini 2.5 Flash Image to t2i ([d4a6bab](https://github.com/runwayml/sdk-node/commit/d4a6bab65c4a49c5497691d7a2095c6f1f57a4d7))
+
 ## 2.9.0 (2025-09-10)
 
 Full Changelog: [v2.8.3...v2.9.0](https://github.com/runwayml/sdk-node/compare/v2.8.3...v2.9.0)
