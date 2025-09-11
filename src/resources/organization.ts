@@ -78,6 +78,11 @@ export namespace OrganizationRetrieveResponse {
       act_two?: Models.ActTwo;
 
       /**
+       * Limits associated with the gemini_2.5_flash model.
+       */
+      'gemini_2.5_flash'?: Models.Gemini2_5Flash;
+
+      /**
        * Limits associated with the gen3a_turbo model.
        */
       gen3a_turbo?: Models.Gen3aTurbo;
@@ -118,6 +123,21 @@ export namespace OrganizationRetrieveResponse {
        * Limits associated with the act_two model.
        */
       export interface ActTwo {
+        /**
+         * The maximum number of generations that can be run concurrently for this model.
+         */
+        maxConcurrentGenerations: number;
+
+        /**
+         * The maximum number of generations that can be created each day for this model.
+         */
+        maxDailyGenerations: number;
+      }
+
+      /**
+       * Limits associated with the gemini_2.5_flash model.
+       */
+      export interface Gemini2_5Flash {
         /**
          * The maximum number of generations that can be run concurrently for this model.
          */
@@ -257,6 +277,11 @@ export namespace OrganizationRetrieveResponse {
       act_two?: Models.ActTwo;
 
       /**
+       * Usage data for the gemini_2.5_flash model.
+       */
+      'gemini_2.5_flash'?: Models.Gemini2_5Flash;
+
+      /**
        * Usage data for the gen3a_turbo model.
        */
       gen3a_turbo?: Models.Gen3aTurbo;
@@ -297,6 +322,16 @@ export namespace OrganizationRetrieveResponse {
        * Usage data for the act_two model.
        */
       export interface ActTwo {
+        /**
+         * The number of generations that have been run for this model in the past day.
+         */
+        dailyGenerations: number;
+      }
+
+      /**
+       * Usage data for the gemini_2.5_flash model.
+       */
+      export interface Gemini2_5Flash {
         /**
          * The number of generations that have been run for this model in the past day.
          */
@@ -382,6 +417,7 @@ export interface OrganizationRetrieveUsageResponse {
    */
   models: Array<
     | 'act_two'
+    | 'gemini_2.5_flash'
     | 'gen3a_turbo'
     | 'gen4_aleph'
     | 'gen4_image'
@@ -420,6 +456,7 @@ export namespace OrganizationRetrieveUsageResponse {
        */
       model:
         | 'act_two'
+        | 'gemini_2.5_flash'
         | 'gen3a_turbo'
         | 'gen4_aleph'
         | 'gen4_image'
