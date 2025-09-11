@@ -66,9 +66,7 @@ export interface ImageToVideoCreateParams {
   /**
    * Settings that affect the behavior of the content moderation system.
    *
-   * `veo3` does not support this parameter.
-   *
-   * This field is allowed for the following model variants: `gen4_turbo`,
+   * This field is allowed only for the following model variants: `gen4_turbo`,
    * `gen3a_turbo`
    */
   contentModeration?: ImageToVideoCreateParams.ContentModeration;
@@ -114,9 +112,7 @@ export namespace ImageToVideoCreateParams {
   /**
    * Settings that affect the behavior of the content moderation system.
    *
-   * `veo3` does not support this parameter.
-   *
-   * This field is allowed for the following model variants: `gen4_turbo`,
+   * This field is allowed only for the following model variants: `gen4_turbo`,
    * `gen3a_turbo`
    */
   export interface ContentModeration {
