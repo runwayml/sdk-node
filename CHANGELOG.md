@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.10.1 (2025-09-20)
+
+Full Changelog: [v2.10.0...v2.10.1](https://github.com/runwayml/sdk-node/compare/v2.10.0...v2.10.1)
+
+### Chores
+
+* do not install brew dependencies in ./scripts/bootstrap by default ([7ba15a3](https://github.com/runwayml/sdk-node/commit/7ba15a38193aee310223080720d2a3b9cd245a7c))
+
 ## 2.10.0 (2025-09-11)
 
 Full Changelog: [v2.9.0...v2.10.0](https://github.com/runwayml/sdk-node/compare/v2.9.0...v2.10.0)
