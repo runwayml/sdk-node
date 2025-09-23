@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.11.0 (2025-09-23)
+
+Full Changelog: [v2.10.1...v2.11.0](https://github.com/runwayml/sdk-node/compare/v2.10.1...v2.11.0)
+
+### Features
+
+* **api:** Text to Speech update ([ea48b24](https://github.com/runwayml/sdk-node/commit/ea48b240012443e7f60842e7a2b1dc53de236da7))
+* **client:** Make t2s awaitable ([8918e88](https://github.com/runwayml/sdk-node/commit/8918e88a3cb7db46db145e29eac10252f3835ebd))
+
 ## 2.10.1 (2025-09-20)
 
 Full Changelog: [v2.10.0...v2.10.1](https://github.com/runwayml/sdk-node/compare/v2.10.0...v2.10.1)
