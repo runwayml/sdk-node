@@ -2,6 +2,7 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
+import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/polling';
 
 export class TextToSpeech extends APIResource {
   /**
@@ -10,8 +11,10 @@ export class TextToSpeech extends APIResource {
   create(
     body: TextToSpeechCreateParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<TextToSpeechCreateResponse> {
-    return this._client.post('/v1/text_to_speech', { body, ...options });
+  ): APIPromiseWithAwaitableTask<TextToSpeechCreateResponse> {
+    return wrapAsWaitableResource<TextToSpeechCreateResponse>(this._client)(
+      this._client.post('/v1/text_to_speech', { body, ...options }),
+    );
   }
 }
 
