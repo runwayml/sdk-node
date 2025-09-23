@@ -18,6 +18,11 @@ export {
 } from './organization';
 export { Tasks, type TaskRetrieveResponse } from './tasks';
 export { TextToImage, type TextToImageCreateResponse, type TextToImageCreateParams } from './text-to-image';
+export {
+  TextToSpeech,
+  type TextToSpeechCreateResponse,
+  type TextToSpeechCreateParams,
+} from './text-to-speech';
 export { TextToVideo, type TextToVideoCreateResponse, type TextToVideoCreateParams } from './text-to-video';
 export {
   VideoToVideo,

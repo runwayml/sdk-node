@@ -23,6 +23,11 @@ import {
 } from './resources/organization';
 import { TaskRetrieveResponse, Tasks } from './resources/tasks';
 import { TextToImage, TextToImageCreateParams, TextToImageCreateResponse } from './resources/text-to-image';
+import {
+  TextToSpeech,
+  TextToSpeechCreateParams,
+  TextToSpeechCreateResponse,
+} from './resources/text-to-speech';
 import { TextToVideo, TextToVideoCreateParams, TextToVideoCreateResponse } from './resources/text-to-video';
 import {
   VideoToVideo,
@@ -171,6 +176,7 @@ export class RunwayML extends Core.APIClient {
   textToImage: API.TextToImage = new API.TextToImage(this);
   videoUpscale: API.VideoUpscale = new API.VideoUpscale(this);
   characterPerformance: API.CharacterPerformance = new API.CharacterPerformance(this);
+  textToSpeech: API.TextToSpeech = new API.TextToSpeech(this);
   organization: API.Organization = new API.Organization(this);
 
   /**
@@ -224,6 +230,7 @@ RunwayML.TextToVideo = TextToVideo;
 RunwayML.TextToImage = TextToImage;
 RunwayML.VideoUpscale = VideoUpscale;
 RunwayML.CharacterPerformance = CharacterPerformance;
+RunwayML.TextToSpeech = TextToSpeech;
 RunwayML.Organization = Organization;
 
 export declare namespace RunwayML {
@@ -265,6 +272,12 @@ export declare namespace RunwayML {
     CharacterPerformance as CharacterPerformance,
     type CharacterPerformanceCreateResponse as CharacterPerformanceCreateResponse,
     type CharacterPerformanceCreateParams as CharacterPerformanceCreateParams,
+  };
+
+  export {
+    TextToSpeech as TextToSpeech,
+    type TextToSpeechCreateResponse as TextToSpeechCreateResponse,
+    type TextToSpeechCreateParams as TextToSpeechCreateParams,
   };
 
   export {
