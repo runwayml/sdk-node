@@ -69,6 +69,16 @@ Methods:
 
 - <code title="post /v1/character_performance">client.characterPerformance.<a href="./src/resources/character-performance.ts">create</a>({ ...params }) -> CharacterPerformanceCreateResponse</code>
 
+# TextToSpeech
+
+Types:
+
+- <code><a href="./src/resources/text-to-speech.ts">TextToSpeechCreateResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/text_to_speech">client.textToSpeech.<a href="./src/resources/text-to-speech.ts">create</a>({ ...params }) -> TextToSpeechCreateResponse</code>
+
 # Organization
 
 Types:

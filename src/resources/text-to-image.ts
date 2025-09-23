@@ -6,7 +6,7 @@ import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/poll
 
 export class TextToImage extends APIResource {
   /**
-   * This endpoint will start a new task to generate images from text.
+   * This endpoint will start a new task to generate images from text and/or image(s)
    */
   create(
     body: TextToImageCreateParams,
