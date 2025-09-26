@@ -5,8 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "@runwayml/sdk/*": ["dist/src/*"],
-      "@runwayml/sdk": ["dist/src/index.ts"],
+      "@runwayml/sdk/*": ["./dist/src/*"],
+      "@runwayml/sdk": ["./dist/src/index.ts"]
     },
     "noEmit": false,
     "declaration": true,
