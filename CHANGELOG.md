@@ -1,5 +1,27 @@
 # Changelog
 
+## 2.12.0 (2025-10-01)
+
+Full Changelog: [v2.11.0...v2.12.0](https://github.com/runwayml/sdk-node/compare/v2.11.0...v2.12.0)
+
+### Features
+
+* **docs:** Update docs URL ([7567419](https://github.com/runwayml/sdk-node/commit/7567419a49735c3e5d113af40abc0b30ba219b14))
+
+
+### Performance Improvements
+
+* faster formatting ([a477bba](https://github.com/runwayml/sdk-node/commit/a477bba28debf6fa9551bfe7f9691bff45d9fed3))
+
+
+### Chores
+
+* **internal:** codegen related update ([cdb4b77](https://github.com/runwayml/sdk-node/commit/cdb4b77ca766f1788c8d726e7454a36479101777))
+* **internal:** fix incremental formatting in some cases ([7e9407f](https://github.com/runwayml/sdk-node/commit/7e9407fa2c29f69abfbd0c15c6c5420bd132020a))
+* **internal:** ignore .eslintcache ([6b139ec](https://github.com/runwayml/sdk-node/commit/6b139ec1ad523c34f756c3e2d028f97e1e3a46e2))
+* **internal:** remove .eslintcache ([f8f947f](https://github.com/runwayml/sdk-node/commit/f8f947f62fb7b03299dc7066e556065fa4b612d2))
+* **internal:** remove deprecated `compilerOptions.baseUrl` from tsconfig.json ([c6e93d7](https://github.com/runwayml/sdk-node/commit/c6e93d7923d213fc50f889321f685bc1698c2669))
+
 ## 2.11.0 (2025-09-23)
 
 Full Changelog: [v2.10.1...v2.11.0](https://github.com/runwayml/sdk-node/compare/v2.10.1...v2.11.0)
