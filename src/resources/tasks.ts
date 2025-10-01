@@ -1,7 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/polling';
 
 export class Tasks extends APIResource {
@@ -9,9 +12,9 @@ export class Tasks extends APIResource {
    * Return details about a task. Consumers of this API should not expect updates
    * more frequent than once every five seconds for a given task.
    */
-  retrieve(id: string, options?: Core.RequestOptions): APIPromiseWithAwaitableTask<TaskRetrieveResponse> {
+  retrieve(id: string, options?: RequestOptions): APIPromiseWithAwaitableTask<TaskRetrieveResponse> {
     return wrapAsWaitableResource<TaskRetrieveResponse>(this._client)(
-      this._client.get(`/v1/tasks/${id}`, options),
+      this._client.get(path`/v1/tasks/${id}`, options),
       true,
     );
   }
@@ -24,10 +27,10 @@ export class Tasks extends APIResource {
    * storage in accordance with our data retention policy. Aborted and deleted tasks
    * will not be able to be fetched again in the future.
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/v1/tasks/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/v1/tasks/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }

@@ -1,5 +1,5 @@
-import type { RunwayML } from '../index';
-import * as Core from '../core';
+import type { RunwayML } from '../client';
+import { APIPromise } from '../api-promise';
 import { TaskRetrieveResponse } from '../resources/tasks';
 
 const POLL_TIME = 6000; // 6 seconds
@@ -52,7 +52,7 @@ export class AbortError extends Error {
   }
 }
 
-export type APIPromiseWithAwaitableTask<T extends { id: string }> = Core.APIPromise<T> & {
+export type APIPromiseWithAwaitableTask<T extends { id: string }> = APIPromise<T> & {
   /**
    * When called, this will wait until the task is complete.
    *
@@ -63,7 +63,7 @@ export type APIPromiseWithAwaitableTask<T extends { id: string }> = Core.APIProm
 
 export function wrapAsWaitableResource<T extends { id: string }>(client: RunwayML) {
   return (
-    responsePromise: Core.APIPromise<T>,
+    responsePromise: APIPromise<T>,
     skipInitialWait: boolean = false,
   ): APIPromiseWithAwaitableTask<T> => {
     return Object.defineProperty(responsePromise, 'waitForTaskOutput', {
@@ -102,7 +102,7 @@ export function wrapAsWaitableResource<T extends { id: string }>(client: RunwayM
       writable: false,
       enumerable: false,
       configurable: false,
-    }) as Core.APIPromise<T> & {
+    }) as APIPromise<T> & {
       waitForTaskOutput: () => Promise<TaskRetrieveResponse>;
     };
   };
