@@ -1,7 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { RequestOptions } from '../internal/request-options';
 
 export class CharacterPerformance extends APIResource {
   /**
@@ -10,8 +11,8 @@ export class CharacterPerformance extends APIResource {
    */
   create(
     body: CharacterPerformanceCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<CharacterPerformanceCreateResponse> {
+    options?: RequestOptions,
+  ): APIPromise<CharacterPerformanceCreateResponse> {
     return this._client.post('/v1/character_performance', { body, ...options });
   }
 }

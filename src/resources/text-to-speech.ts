@@ -1,16 +1,14 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { RequestOptions } from '../internal/request-options';
 
 export class TextToSpeech extends APIResource {
   /**
    * This endpoint will start a new task to generate speech from text.
    */
-  create(
-    body: TextToSpeechCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<TextToSpeechCreateResponse> {
+  create(body: TextToSpeechCreateParams, options?: RequestOptions): APIPromise<TextToSpeechCreateResponse> {
     return this._client.post('/v1/text_to_speech', { body, ...options });
   }
 }

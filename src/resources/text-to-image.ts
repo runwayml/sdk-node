@@ -1,16 +1,14 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { RequestOptions } from '../internal/request-options';
 
 export class TextToImage extends APIResource {
   /**
    * This endpoint will start a new task to generate images from text and/or image(s)
    */
-  create(
-    body: TextToImageCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<TextToImageCreateResponse> {
+  create(body: TextToImageCreateParams, options?: RequestOptions): APIPromise<TextToImageCreateResponse> {
     return this._client.post('/v1/text_to_image', { body, ...options });
   }
 }

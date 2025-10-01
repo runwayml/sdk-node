@@ -1,16 +1,14 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { RequestOptions } from '../internal/request-options';
 
 export class TextToVideo extends APIResource {
   /**
    * This endpoint will start a new task to generate a video from a text prompt.
    */
-  create(
-    body: TextToVideoCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<TextToVideoCreateResponse> {
+  create(body: TextToVideoCreateParams, options?: RequestOptions): APIPromise<TextToVideoCreateResponse> {
     return this._client.post('/v1/text_to_video', { body, ...options });
   }
 }

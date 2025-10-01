@@ -1,16 +1,14 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { RequestOptions } from '../internal/request-options';
 
 export class ImageToVideo extends APIResource {
   /**
    * This endpoint will start a new task to generate a video from an image prompt.
    */
-  create(
-    body: ImageToVideoCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ImageToVideoCreateResponse> {
+  create(body: ImageToVideoCreateParams, options?: RequestOptions): APIPromise<ImageToVideoCreateResponse> {
     return this._client.post('/v1/image_to_video', { body, ...options });
   }
 }
