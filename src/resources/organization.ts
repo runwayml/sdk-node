@@ -1,15 +1,15 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { RequestOptions } from '../internal/request-options';
 
 export class Organization extends APIResource {
   /**
    * Get usage tier and credit balance information about the organization associated
    * with the API key used to make the request.
    */
-  retrieve(options?: Core.RequestOptions): Core.APIPromise<OrganizationRetrieveResponse> {
+  retrieve(options?: RequestOptions): APIPromise<OrganizationRetrieveResponse> {
     return this._client.get('/v1/organization', options);
   }
 
@@ -19,17 +19,9 @@ export class Organization extends APIResource {
    * be queried at a time.
    */
   retrieveUsage(
-    body?: OrganizationRetrieveUsageParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<OrganizationRetrieveUsageResponse>;
-  retrieveUsage(options?: Core.RequestOptions): Core.APIPromise<OrganizationRetrieveUsageResponse>;
-  retrieveUsage(
-    body: OrganizationRetrieveUsageParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<OrganizationRetrieveUsageResponse> {
-    if (isRequestOptions(body)) {
-      return this.retrieveUsage({}, body);
-    }
+    body: OrganizationRetrieveUsageParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OrganizationRetrieveUsageResponse> {
     return this._client.post('/v1/organization/usage', { body, ...options });
   }
 }

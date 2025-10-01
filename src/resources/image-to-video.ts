@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { RequestOptions } from '../internal/request-options';
 import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/polling';
 
 export class ImageToVideo extends APIResource {
@@ -10,7 +10,7 @@ export class ImageToVideo extends APIResource {
    */
   create(
     body: ImageToVideoCreateParams,
-    options?: Core.RequestOptions,
+    options?: RequestOptions,
   ): APIPromiseWithAwaitableTask<ImageToVideoCreateResponse> {
     return wrapAsWaitableResource<ImageToVideoCreateResponse>(this._client)(
       this._client.post('/v1/image_to_video', { body, ...options }),

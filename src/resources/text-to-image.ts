@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { RequestOptions } from '../internal/request-options';
 import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/polling';
 
 export class TextToImage extends APIResource {
@@ -10,7 +10,7 @@ export class TextToImage extends APIResource {
    */
   create(
     body: TextToImageCreateParams,
-    options?: Core.RequestOptions,
+    options?: RequestOptions,
   ): APIPromiseWithAwaitableTask<TextToImageCreateResponse> {
     return wrapAsWaitableResource<TextToImageCreateResponse>(this._client)(
       this._client.post('/v1/text_to_image', { body, ...options }),

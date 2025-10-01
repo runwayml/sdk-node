@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { RequestOptions } from '../internal/request-options';
 import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/polling';
 
 export class VideoUpscale extends APIResource {
@@ -11,7 +11,7 @@ export class VideoUpscale extends APIResource {
    */
   create(
     body: VideoUpscaleCreateParams,
-    options?: Core.RequestOptions,
+    options?: RequestOptions,
   ): APIPromiseWithAwaitableTask<VideoUpscaleCreateResponse> {
     return wrapAsWaitableResource<VideoUpscaleCreateResponse>(this._client)(
       this._client.post('/v1/video_upscale', { body, ...options }),
