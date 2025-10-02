@@ -1,6 +1,6 @@
 {
   "pkg": "@runwayml/sdk",
-  "githubRepo": "https://github.com/stainless-sdks/runwayml-typescript",
+  "githubRepo": "https://github.com/runwayml/sdk-node",
   "clientClass": "RunwayML",
   "methods": []
 }
