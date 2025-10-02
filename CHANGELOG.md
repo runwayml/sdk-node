@@ -1,5 +1,31 @@
 # Changelog
 
+## 3.0.0 (2025-10-02)
+
+Full Changelog: [v2.11.0...v3.0.0](https://github.com/runwayml/sdk-node/compare/v2.11.0...v3.0.0)
+
+### Features
+
+* **api:** Finish migrating to typescript sdk ([b976d4f](https://github.com/runwayml/sdk-node/commit/b976d4fbdac3ec909ed5b4bfe9e42a23193fc6e0))
+* **api:** Typescript migration ([6370065](https://github.com/runwayml/sdk-node/commit/6370065c3a742826659dc3992a905dd03aa4c12e))
+* **docs:** Update docs URL ([7567419](https://github.com/runwayml/sdk-node/commit/7567419a49735c3e5d113af40abc0b30ba219b14))
+* **internal:** Cleanup, migration docs ([07ce643](https://github.com/runwayml/sdk-node/commit/07ce6439e318a00f6908bd850f9892e58a4643ef))
+
+
+### Performance Improvements
+
+* faster formatting ([a477bba](https://github.com/runwayml/sdk-node/commit/a477bba28debf6fa9551bfe7f9691bff45d9fed3))
+
+
+### Chores
+
+* **internal:** codegen related update ([cdb4b77](https://github.com/runwayml/sdk-node/commit/cdb4b77ca766f1788c8d726e7454a36479101777))
+* **internal:** deps ([0681485](https://github.com/runwayml/sdk-node/commit/0681485b9f38c225a5259a93d2a3ce52488186cf))
+* **internal:** fix incremental formatting in some cases ([7e9407f](https://github.com/runwayml/sdk-node/commit/7e9407fa2c29f69abfbd0c15c6c5420bd132020a))
+* **internal:** ignore .eslintcache ([6b139ec](https://github.com/runwayml/sdk-node/commit/6b139ec1ad523c34f756c3e2d028f97e1e3a46e2))
+* **internal:** remove .eslintcache ([102dc0e](https://github.com/runwayml/sdk-node/commit/102dc0e33784456e861c7beb27b1fe5d134ff3aa))
+* **internal:** remove deprecated `compilerOptions.baseUrl` from tsconfig.json ([c6e93d7](https://github.com/runwayml/sdk-node/commit/c6e93d7923d213fc50f889321f685bc1698c2669))
+
 ## 2.11.0 (2025-09-23)
 
 Full Changelog: [v2.10.1...v2.11.0](https://github.com/runwayml/sdk-node/compare/v2.10.1...v2.11.0)
