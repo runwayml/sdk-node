@@ -29,7 +29,7 @@ describe('resource imageToVideo', () => {
       promptImage: 'https://example.com',
       ratio: '1280:720',
       contentModeration: { publicFigureThreshold: 'auto' },
-      duration: 5,
+      duration: 2,
       promptText: 'promptText',
       seed: 0,
     });
