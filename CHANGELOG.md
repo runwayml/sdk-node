@@ -1,5 +1,19 @@
 # Changelog
 
+## 3.1.0 (2025-10-08)
+
+Full Changelog: [v3.0.0...v3.1.0](https://github.com/runwayml/sdk-node/compare/v3.0.0...v3.1.0)
+
+### Features
+
+* **api:** Additional i2v durations ([af836ea](https://github.com/runwayml/sdk-node/commit/af836ea43411550336a7e70fd99f3174a44acf5e))
+
+
+### Chores
+
+* **internal:** use npm pack for build uploads ([4c6267b](https://github.com/runwayml/sdk-node/commit/4c6267b836a822dd7951f71253769485a93a9289))
+* **jsdoc:** fix [@link](https://github.com/link) annotations to refer only to parts of the package‘s public interface ([62fea83](https://github.com/runwayml/sdk-node/commit/62fea835ed07e4883d38b892445053a232460dd6))
+
 ## 3.0.0 (2025-10-02)
 
 Full Changelog: [v2.11.0...v3.0.0](https://github.com/runwayml/sdk-node/compare/v2.11.0...v3.0.0)
