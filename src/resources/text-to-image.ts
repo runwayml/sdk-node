@@ -62,6 +62,10 @@ export interface TextToImageCreateParams {
    * - `1184:864`
    * - `864:1184`
    * - `1536:672`
+   * - `832x1248`
+   * - `1248x832`
+   * - `896x1152`
+   * - `1152x896`
    */
   ratio:
     | '1920:1080'
@@ -84,7 +88,11 @@ export interface TextToImageCreateParams {
     | '768:1344'
     | '1184:864'
     | '864:1184'
-    | '1536:672';
+    | '1536:672'
+    | '832x1248'
+    | '1248x832'
+    | '896x1152'
+    | '1152x896';
 
   /**
    * Settings that affect the behavior of the content moderation system.
