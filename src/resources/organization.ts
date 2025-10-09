@@ -75,6 +75,11 @@ export namespace OrganizationRetrieveResponse {
       eleven_multilingual_v2?: Models.ElevenMultilingualV2;
 
       /**
+       * Limits associated with the eleven_text_to_sound_v2 model.
+       */
+      eleven_text_to_sound_v2?: Models.ElevenTextToSoundV2;
+
+      /**
        * Limits associated with the gemini_2.5_flash model.
        */
       'gemini_2.5_flash'?: Models.Gemini2_5Flash;
@@ -135,6 +140,21 @@ export namespace OrganizationRetrieveResponse {
        * Limits associated with the eleven_multilingual_v2 model.
        */
       export interface ElevenMultilingualV2 {
+        /**
+         * The maximum number of generations that can be run concurrently for this model.
+         */
+        maxConcurrentGenerations: number;
+
+        /**
+         * The maximum number of generations that can be created each day for this model.
+         */
+        maxDailyGenerations: number;
+      }
+
+      /**
+       * Limits associated with the eleven_text_to_sound_v2 model.
+       */
+      export interface ElevenTextToSoundV2 {
         /**
          * The maximum number of generations that can be run concurrently for this model.
          */
@@ -294,6 +314,11 @@ export namespace OrganizationRetrieveResponse {
       eleven_multilingual_v2?: Models.ElevenMultilingualV2;
 
       /**
+       * Usage data for the eleven_text_to_sound_v2 model.
+       */
+      eleven_text_to_sound_v2?: Models.ElevenTextToSoundV2;
+
+      /**
        * Usage data for the gemini_2.5_flash model.
        */
       'gemini_2.5_flash'?: Models.Gemini2_5Flash;
@@ -349,6 +374,16 @@ export namespace OrganizationRetrieveResponse {
        * Usage data for the eleven_multilingual_v2 model.
        */
       export interface ElevenMultilingualV2 {
+        /**
+         * The number of generations that have been run for this model in the past day.
+         */
+        dailyGenerations: number;
+      }
+
+      /**
+       * Usage data for the eleven_text_to_sound_v2 model.
+       */
+      export interface ElevenTextToSoundV2 {
         /**
          * The number of generations that have been run for this model in the past day.
          */
@@ -445,6 +480,7 @@ export interface OrganizationRetrieveUsageResponse {
   models: Array<
     | 'act_two'
     | 'eleven_multilingual_v2'
+    | 'eleven_text_to_sound_v2'
     | 'gemini_2.5_flash'
     | 'gen3a_turbo'
     | 'gen4_aleph'
@@ -485,6 +521,7 @@ export namespace OrganizationRetrieveUsageResponse {
       model:
         | 'act_two'
         | 'eleven_multilingual_v2'
+        | 'eleven_text_to_sound_v2'
         | 'gemini_2.5_flash'
         | 'gen3a_turbo'
         | 'gen4_aleph'

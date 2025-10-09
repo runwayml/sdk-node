@@ -73,7 +73,7 @@ export interface ImageToVideoCreateParams {
 
   /**
    * The number of seconds of duration for the output video. `veo3` requires a
-   * duration of 8. `gen3a_turbo` requires a duration of 5 or 10. gen4_turbo must
+   * duration of 8. `gen3a_turbo` requires a duration of 5 or 10. `gen4_turbo` must
    * specify a duration of 2-10 seconds.
    */
   duration?: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;

@@ -16,6 +16,7 @@ export {
   type OrganizationRetrieveUsageResponse,
   type OrganizationRetrieveUsageParams,
 } from './organization';
+export { SoundEffect, type SoundEffectCreateResponse, type SoundEffectCreateParams } from './sound-effect';
 export { Tasks, type TaskRetrieveResponse } from './tasks';
 export { TextToImage, type TextToImageCreateResponse, type TextToImageCreateParams } from './text-to-image';
 export {

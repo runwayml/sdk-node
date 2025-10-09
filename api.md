@@ -79,6 +79,16 @@ Methods:
 
 - <code title="post /v1/text_to_speech">client.textToSpeech.<a href="./src/resources/text-to-speech.ts">create</a>({ ...params }) -> TextToSpeechCreateResponse</code>
 
+# SoundEffect
+
+Types:
+
+- <code><a href="./src/resources/sound-effect.ts">SoundEffectCreateResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/sound_effect">client.soundEffect.<a href="./src/resources/sound-effect.ts">create</a>({ ...params }) -> SoundEffectCreateResponse</code>
+
 # Organization
 
 Types:
