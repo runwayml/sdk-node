@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.2.0 (2025-10-09)
+
+Full Changelog: [v3.1.0...v3.2.0](https://github.com/runwayml/sdk-node/compare/v3.1.0...v3.2.0)
+
+### Features
+
+* **api:** Sound effects endpoint ([fbe6046](https://github.com/runwayml/sdk-node/commit/fbe6046fe7ca8b3edbe3724c5408388e834f8fbd))
+
 ## 3.1.0 (2025-10-08)
 
 Full Changelog: [v3.0.0...v3.1.0](https://github.com/runwayml/sdk-node/compare/v3.0.0...v3.1.0)
