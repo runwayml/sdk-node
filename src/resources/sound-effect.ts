@@ -1,16 +1,21 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
+import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/polling';
 
 export class SoundEffect extends APIResource {
   /**
    * This endpoint will start a new task to generate sound effects from a text
    * description.
    */
-  create(body: SoundEffectCreateParams, options?: RequestOptions): APIPromise<SoundEffectCreateResponse> {
-    return this._client.post('/v1/sound_effect', { body, ...options });
+  create(
+    body: SoundEffectCreateParams,
+    options?: RequestOptions,
+  ): APIPromiseWithAwaitableTask<SoundEffectCreateResponse> {
+    return wrapAsWaitableResource<SoundEffectCreateResponse>(this._client)(
+      this._client.post('/v1/sound_effect', { body, ...options }),
+    );
   }
 }
 

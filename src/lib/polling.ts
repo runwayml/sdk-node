@@ -1,5 +1,5 @@
 import type { RunwayML } from '../client';
-import { APIPromise } from '../api-promise';
+import { APIPromise } from '../core/api-promise';
 import { TaskRetrieveResponse } from '../resources/tasks';
 
 const POLL_TIME = 6000; // 6 seconds
