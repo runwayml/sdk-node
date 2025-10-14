@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.3.0 (2025-10-14)
+
+Full Changelog: [v3.2.0...v3.3.0](https://github.com/runwayml/sdk-node/compare/v3.2.0...v3.3.0)
+
+### Features
+
+* **api:** Voice dubbing and isolation ([bf7fc6b](https://github.com/runwayml/sdk-node/commit/bf7fc6b16aa67fb24a1a25027bac07fb628becdf))
+
 ## 3.2.0 (2025-10-09)
 
 Full Changelog: [v3.1.0...v3.2.0](https://github.com/runwayml/sdk-node/compare/v3.1.0...v3.2.0)
