@@ -51,6 +51,16 @@ import {
   VideoUpscaleCreateParams,
   VideoUpscaleCreateResponse,
 } from './resources/video-upscale';
+import {
+  VoiceDubbing,
+  VoiceDubbingCreateParams,
+  VoiceDubbingCreateResponse,
+} from './resources/voice-dubbing';
+import {
+  VoiceIsolation,
+  VoiceIsolationCreateParams,
+  VoiceIsolationCreateResponse,
+} from './resources/voice-isolation';
 import { type Fetch } from './internal/builtin-types';
 import { isRunningInBrowser } from './internal/detect-platform';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
@@ -773,6 +783,8 @@ export class RunwayML {
   characterPerformance: API.CharacterPerformance = new API.CharacterPerformance(this);
   textToSpeech: API.TextToSpeech = new API.TextToSpeech(this);
   soundEffect: API.SoundEffect = new API.SoundEffect(this);
+  voiceIsolation: API.VoiceIsolation = new API.VoiceIsolation(this);
+  voiceDubbing: API.VoiceDubbing = new API.VoiceDubbing(this);
   organization: API.Organization = new API.Organization(this);
 }
 
@@ -785,6 +797,8 @@ RunwayML.VideoUpscale = VideoUpscale;
 RunwayML.CharacterPerformance = CharacterPerformance;
 RunwayML.TextToSpeech = TextToSpeech;
 RunwayML.SoundEffect = SoundEffect;
+RunwayML.VoiceIsolation = VoiceIsolation;
+RunwayML.VoiceDubbing = VoiceDubbing;
 RunwayML.Organization = Organization;
 
 export declare namespace RunwayML {
@@ -838,6 +852,18 @@ export declare namespace RunwayML {
     SoundEffect as SoundEffect,
     type SoundEffectCreateResponse as SoundEffectCreateResponse,
     type SoundEffectCreateParams as SoundEffectCreateParams,
+  };
+
+  export {
+    VoiceIsolation as VoiceIsolation,
+    type VoiceIsolationCreateResponse as VoiceIsolationCreateResponse,
+    type VoiceIsolationCreateParams as VoiceIsolationCreateParams,
+  };
+
+  export {
+    VoiceDubbing as VoiceDubbing,
+    type VoiceDubbingCreateResponse as VoiceDubbingCreateResponse,
+    type VoiceDubbingCreateParams as VoiceDubbingCreateParams,
   };
 
   export {

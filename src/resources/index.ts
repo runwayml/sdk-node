@@ -35,3 +35,13 @@ export {
   type VideoUpscaleCreateResponse,
   type VideoUpscaleCreateParams,
 } from './video-upscale';
+export {
+  VoiceDubbing,
+  type VoiceDubbingCreateResponse,
+  type VoiceDubbingCreateParams,
+} from './voice-dubbing';
+export {
+  VoiceIsolation,
+  type VoiceIsolationCreateResponse,
+  type VoiceIsolationCreateParams,
+} from './voice-isolation';
