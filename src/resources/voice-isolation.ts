@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
+import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/polling';
 
 export class VoiceIsolation extends APIResource {
   /**
@@ -11,8 +11,10 @@ export class VoiceIsolation extends APIResource {
   create(
     body: VoiceIsolationCreateParams,
     options?: RequestOptions,
-  ): APIPromise<VoiceIsolationCreateResponse> {
-    return this._client.post('/v1/voice_isolation', { body, ...options });
+  ): APIPromiseWithAwaitableTask<VoiceIsolationCreateResponse> {
+    return wrapAsWaitableResource<VoiceIsolationCreateResponse>(this._client)(
+      this._client.post('/v1/voice_isolation', { body, ...options }),
+    );
   }
 }
 
