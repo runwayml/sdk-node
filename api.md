@@ -89,6 +89,26 @@ Methods:
 
 - <code title="post /v1/sound_effect">client.soundEffect.<a href="./src/resources/sound-effect.ts">create</a>({ ...params }) -> SoundEffectCreateResponse</code>
 
+# VoiceIsolation
+
+Types:
+
+- <code><a href="./src/resources/voice-isolation.ts">VoiceIsolationCreateResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/voice_isolation">client.voiceIsolation.<a href="./src/resources/voice-isolation.ts">create</a>({ ...params }) -> VoiceIsolationCreateResponse</code>
+
+# VoiceDubbing
+
+Types:
+
+- <code><a href="./src/resources/voice-dubbing.ts">VoiceDubbingCreateResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/voice_dubbing">client.voiceDubbing.<a href="./src/resources/voice-dubbing.ts">create</a>({ ...params }) -> VoiceDubbingCreateResponse</code>
+
 # Organization
 
 Types:
