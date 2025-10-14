@@ -1,15 +1,20 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
+import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/polling';
 
 export class VoiceDubbing extends APIResource {
   /**
    * This endpoint will start a new task to dub audio content to a target language.
    */
-  create(body: VoiceDubbingCreateParams, options?: RequestOptions): APIPromise<VoiceDubbingCreateResponse> {
-    return this._client.post('/v1/voice_dubbing', { body, ...options });
+  create(
+    body: VoiceDubbingCreateParams,
+    options?: RequestOptions,
+  ): APIPromiseWithAwaitableTask<VoiceDubbingCreateResponse> {
+    return wrapAsWaitableResource<VoiceDubbingCreateResponse>(this._client)(
+      this._client.post('/v1/voice_dubbing', { body, ...options }),
+    );
   }
 }
 
