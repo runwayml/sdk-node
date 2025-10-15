@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.4.0 (2025-10-15)
+
+Full Changelog: [v3.3.0...v3.4.0](https://github.com/runwayml/sdk-node/compare/v3.3.0...v3.4.0)
+
+### Features
+
+* **api:** Veo 3.1 and Veo 3.1 Fast ([08cbe3f](https://github.com/runwayml/sdk-node/commit/08cbe3f3224e194143981fb5a659202eb164ebce))
+
+
+### Bug Fixes
+
+* **api:** Add missing 1080p sizes ([fec9e11](https://github.com/runwayml/sdk-node/commit/fec9e11944cde2feda5bca7dc041821bff6b8ccd))
+
 ## 3.3.0 (2025-10-14)
 
 Full Changelog: [v3.2.0...v3.3.0](https://github.com/runwayml/sdk-node/compare/v3.2.0...v3.3.0)
