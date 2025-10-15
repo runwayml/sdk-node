@@ -128,6 +128,16 @@ export namespace OrganizationRetrieveResponse {
        * Limits associated with the veo3 model.
        */
       veo3?: Models.Veo3;
+
+      /**
+       * Limits associated with the veo3.1 model.
+       */
+      'veo3.1'?: Models.Veo3_1;
+
+      /**
+       * Limits associated with the veo3.1_fast model.
+       */
+      'veo3.1_fast'?: Models.Veo3_1Fast;
     }
 
     export namespace Models {
@@ -325,6 +335,36 @@ export namespace OrganizationRetrieveResponse {
          */
         maxDailyGenerations: number;
       }
+
+      /**
+       * Limits associated with the veo3.1 model.
+       */
+      export interface Veo3_1 {
+        /**
+         * The maximum number of generations that can be run concurrently for this model.
+         */
+        maxConcurrentGenerations: number;
+
+        /**
+         * The maximum number of generations that can be created each day for this model.
+         */
+        maxDailyGenerations: number;
+      }
+
+      /**
+       * Limits associated with the veo3.1_fast model.
+       */
+      export interface Veo3_1Fast {
+        /**
+         * The maximum number of generations that can be run concurrently for this model.
+         */
+        maxConcurrentGenerations: number;
+
+        /**
+         * The maximum number of generations that can be created each day for this model.
+         */
+        maxDailyGenerations: number;
+      }
     }
   }
 
@@ -407,6 +447,16 @@ export namespace OrganizationRetrieveResponse {
        * Usage data for the veo3 model.
        */
       veo3?: Models.Veo3;
+
+      /**
+       * Usage data for the veo3.1 model.
+       */
+      'veo3.1'?: Models.Veo3_1;
+
+      /**
+       * Usage data for the veo3.1_fast model.
+       */
+      'veo3.1_fast'?: Models.Veo3_1Fast;
     }
 
     export namespace Models {
@@ -539,6 +589,26 @@ export namespace OrganizationRetrieveResponse {
          */
         dailyGenerations: number;
       }
+
+      /**
+       * Usage data for the veo3.1 model.
+       */
+      export interface Veo3_1 {
+        /**
+         * The number of generations that have been run for this model in the past day.
+         */
+        dailyGenerations: number;
+      }
+
+      /**
+       * Usage data for the veo3.1_fast model.
+       */
+      export interface Veo3_1Fast {
+        /**
+         * The number of generations that have been run for this model in the past day.
+         */
+        dailyGenerations: number;
+      }
     }
   }
 }
@@ -561,6 +631,8 @@ export interface OrganizationRetrieveUsageResponse {
     | 'gen4_turbo'
     | 'upscale_v1'
     | 'veo3'
+    | 'veo3.1'
+    | 'veo3.1_fast'
   >;
 
   results: Array<OrganizationRetrieveUsageResponse.Result>;
@@ -603,7 +675,9 @@ export namespace OrganizationRetrieveUsageResponse {
         | 'gen4_image_turbo'
         | 'gen4_turbo'
         | 'upscale_v1'
-        | 'veo3';
+        | 'veo3'
+        | 'veo3.1'
+        | 'veo3.1_fast';
     }
   }
 }

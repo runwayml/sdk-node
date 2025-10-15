@@ -22,14 +22,15 @@ export interface TextToVideoCreateResponse {
 
 export interface TextToVideoCreateParams {
   /**
-   * Veo 3 videos must be 8 seconds long.
+   * `veo3` videos must be 8 seconds long. `veo3.1` and `veo3.1_fast` videos must be
+   * 4, 6, or 8 seconds long.
    */
-  duration: 8;
+  duration: 4 | 6 | 8;
 
   /**
    * The model variant to use.
    */
-  model: 'veo3';
+  model: 'veo3.1' | 'veo3.1_fast' | 'veo3';
 
   /**
    * A non-empty string up to 1000 characters (measured in UTF-16 code units). This
@@ -40,7 +41,7 @@ export interface TextToVideoCreateParams {
   /**
    * A string representing the aspect ratio of the output video.
    */
-  ratio: '1280:720' | '720:1280';
+  ratio: '1280:720' | '720:1280' | '1080:1920' | '1920:1080';
 
   /**
    * If unspecified, a random number is chosen. Varying the seed integer is a way to
