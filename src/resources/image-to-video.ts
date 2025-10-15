@@ -30,7 +30,7 @@ export interface ImageToVideoCreateParams {
   /**
    * The model variant to use.
    */
-  model: 'gen4_turbo' | 'gen3a_turbo' | 'veo3';
+  model: 'gen4_turbo' | 'gen3a_turbo' | 'veo3.1' | 'veo3.1_fast' | 'veo3';
 
   /**
    * A HTTPS URL or data URI containing an encoded image to be used as the first
@@ -56,10 +56,12 @@ export interface ImageToVideoCreateParams {
    * - `1280:768`
    * - `768:1280`
    *
-   * `veo3` supports the following values:
+   * `veo3`, `veo3.1`, `veo3.1_fast` support the following values:
    *
    * - `1280:720`
    * - `720:1280`
+   * - `1080:1920`
+   * - `1920:1080`
    */
   ratio: '1280:720' | '720:1280' | '1104:832' | '832:1104' | '960:960' | '1584:672' | '1280:768' | '768:1280';
 
@@ -73,8 +75,9 @@ export interface ImageToVideoCreateParams {
 
   /**
    * The number of seconds of duration for the output video. `veo3` requires a
-   * duration of 8. `gen3a_turbo` requires a duration of 5 or 10. `gen4_turbo` must
-   * specify a duration of 2-10 seconds.
+   * duration of 8. `veo3.1` and `veo3.1_fast` require a duration of 4, 6, or 8.
+   * `gen3a_turbo` requires a duration of 5 or 10. `gen4_turbo` must specify a
+   * duration of 2-10 seconds.
    */
   duration?: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
@@ -99,7 +102,8 @@ export namespace ImageToVideoCreateParams {
      * first frame of the video, "last" will use the image as the last frame of the
      * video.
      *
-     * "last" is currently supported for `gen3a_turbo` only.
+     * "last" is currently supported for `gen3a_turbo`, `veo3.1`, and `veo3.1_fast`
+     * only. `veo3.1` and `veo3.1_fast` require a `first` frame to be provided.
      */
     position: 'first' | 'last';
 
