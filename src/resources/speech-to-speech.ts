@@ -1,5 +1,5 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
-
+import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/polling';
 import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
@@ -12,8 +12,10 @@ export class SpeechToSpeech extends APIResource {
   create(
     body: SpeechToSpeechCreateParams,
     options?: RequestOptions,
-  ): APIPromise<SpeechToSpeechCreateResponse> {
-    return this._client.post('/v1/speech_to_speech', { body, ...options });
+  ): APIPromiseWithAwaitableTask<SpeechToSpeechCreateResponse> {
+    return wrapAsWaitableResource<SpeechToSpeechCreateResponse>(this._client)(
+      this._client.post('/v1/speech_to_speech', { body, ...options }),
+    );
   }
 }
 
