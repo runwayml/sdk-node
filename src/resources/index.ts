@@ -17,7 +17,11 @@ export {
   type OrganizationRetrieveUsageParams,
 } from './organization';
 export { SoundEffect, type SoundEffectCreateResponse, type SoundEffectCreateParams } from './sound-effect';
-export { SpeechToSpeech } from './speech-to-speech';
+export {
+  SpeechToSpeech,
+  type SpeechToSpeechCreateResponse,
+  type SpeechToSpeechCreateParams,
+} from './speech-to-speech';
 export { Tasks, type TaskRetrieveResponse } from './tasks';
 export { TextToImage, type TextToImageCreateResponse, type TextToImageCreateParams } from './text-to-image';
 export {
