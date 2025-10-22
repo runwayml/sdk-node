@@ -10,7 +10,7 @@ const client = new RunwayML({
 describe('resource voiceDubbing', () => {
   test('create: only required params', async () => {
     const responsePromise = client.voiceDubbing.create({
-      audioUri: 'https://example.com',
+      audioUri: 'data:audio/J!',
       model: 'eleven_voice_dubbing',
       targetLang: 'en',
     });
@@ -25,12 +25,12 @@ describe('resource voiceDubbing', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.voiceDubbing.create({
-      audioUri: 'https://example.com',
+      audioUri: 'data:audio/J!',
       model: 'eleven_voice_dubbing',
       targetLang: 'en',
       disableVoiceCloning: true,
       dropBackgroundAudio: true,
-      numSpeakers: 1,
+      numSpeakers: 9007199254740991,
     });
   });
 });

@@ -20,9 +20,6 @@ export class CharacterPerformance extends APIResource {
 }
 
 export interface CharacterPerformanceCreateResponse {
-  /**
-   * The ID of the newly created task.
-   */
   id: string;
 }
 
@@ -31,18 +28,13 @@ export interface CharacterPerformanceCreateParams {
    * The character to control. You can either provide a video or an image. A visually
    * recognizable face must be visible and stay within the frame.
    */
-  character: CharacterPerformanceCreateParams.Video | CharacterPerformanceCreateParams.Image;
+  character: CharacterPerformanceCreateParams.Image | CharacterPerformanceCreateParams.Video;
 
-  /**
-   * The model variant to use.
-   */
   model: 'act_two';
 
   /**
-   * The resolution of the output video.
+   * The reference video containing the performance to apply to the character.
    */
-  ratio: '1280:720' | '720:1280' | '960:960' | '1104:832' | '832:1104' | '1584:672';
-
   reference: CharacterPerformanceCreateParams.Reference;
 
   /**
@@ -64,14 +56,27 @@ export interface CharacterPerformanceCreateParams {
   expressionIntensity?: number;
 
   /**
-   * If unspecified, a random number is chosen. Varying the seed integer is a way to
-   * get different results for the same other request parameters. Using the same seed
-   * integer for an identical request will produce similar results.
+   * The resolution of the output video.
    */
+  ratio?: '1280:720' | '720:1280' | '960:960' | '1104:832' | '832:1104' | '1584:672';
+
   seed?: number;
 }
 
 export namespace CharacterPerformanceCreateParams {
+  /**
+   * An image of your character. In the output, the character will use the reference
+   * video performance in its original static environment.
+   */
+  export interface Image {
+    type: 'image';
+
+    /**
+     * A data URI containing an encoded image.
+     */
+    uri: string;
+  }
+
   /**
    * A video of your character. In the output, the character will use the reference
    * video performance in its original animated environment and some of the
@@ -81,36 +86,19 @@ export namespace CharacterPerformanceCreateParams {
     type: 'video';
 
     /**
-     * A HTTPS URL pointing to a video or a data URI containing a video of your
-     * character. See [our docs](/assets/inputs#videos) on video inputs for more
-     * information.
+     * A data URI containing an encoded video.
      */
     uri: string;
   }
 
   /**
-   * An image of your character. In the output, the character will use the reference
-   * video performance in its original static environment.
+   * The reference video containing the performance to apply to the character.
    */
-  export interface Image {
-    type: 'image';
-
-    /**
-     * A HTTPS URL pointing to an image or a data URI containing an image of your
-     * character. See [our docs](/assets/inputs#images) on image inputs for more
-     * information.
-     */
-    uri: string;
-  }
-
   export interface Reference {
     type: 'video';
 
     /**
-     * A HTTPS URL pointing to a video or a data URI containing a video of a person
-     * performing in the manner that you would like your character to perform. The
-     * video must be between 3 and 30 seconds in duration. See
-     * [our docs](/assets/inputs#videos) on video inputs for more information.
+     * A data URI containing an encoded video.
      */
     uri: string;
   }
@@ -119,10 +107,6 @@ export namespace CharacterPerformanceCreateParams {
    * Settings that affect the behavior of the content moderation system.
    */
   export interface ContentModeration {
-    /**
-     * When set to `low`, the content moderation system will be less strict about
-     * preventing generations that include recognizable public figures.
-     */
     publicFigureThreshold?: 'auto' | 'low';
   }
 }

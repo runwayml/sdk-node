@@ -109,6 +109,8 @@ Methods:
 
 - <code title="post /v1/voice_dubbing">client.voiceDubbing.<a href="./src/resources/voice-dubbing.ts">create</a>({ ...params }) -> VoiceDubbingCreateResponse</code>
 
+# SpeechToSpeech
+
 # Organization
 
 Types:

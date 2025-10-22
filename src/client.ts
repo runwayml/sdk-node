@@ -33,6 +33,7 @@ import {
   OrganizationRetrieveUsageResponse,
 } from './resources/organization';
 import { SoundEffect, SoundEffectCreateParams, SoundEffectCreateResponse } from './resources/sound-effect';
+import { SpeechToSpeech } from './resources/speech-to-speech';
 import { TaskRetrieveResponse, Tasks } from './resources/tasks';
 import { TextToImage, TextToImageCreateParams, TextToImageCreateResponse } from './resources/text-to-image';
 import {
@@ -785,6 +786,7 @@ export class RunwayML {
   soundEffect: API.SoundEffect = new API.SoundEffect(this);
   voiceIsolation: API.VoiceIsolation = new API.VoiceIsolation(this);
   voiceDubbing: API.VoiceDubbing = new API.VoiceDubbing(this);
+  speechToSpeech: API.SpeechToSpeech = new API.SpeechToSpeech(this);
   organization: API.Organization = new API.Organization(this);
 }
 
@@ -799,6 +801,7 @@ RunwayML.TextToSpeech = TextToSpeech;
 RunwayML.SoundEffect = SoundEffect;
 RunwayML.VoiceIsolation = VoiceIsolation;
 RunwayML.VoiceDubbing = VoiceDubbing;
+RunwayML.SpeechToSpeech = SpeechToSpeech;
 RunwayML.Organization = Organization;
 
 export declare namespace RunwayML {
@@ -865,6 +868,8 @@ export declare namespace RunwayML {
     type VoiceDubbingCreateResponse as VoiceDubbingCreateResponse,
     type VoiceDubbingCreateParams as VoiceDubbingCreateParams,
   };
+
+  export { SpeechToSpeech as SpeechToSpeech };
 
   export {
     Organization as Organization,

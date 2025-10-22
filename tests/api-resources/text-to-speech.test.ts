@@ -11,7 +11,7 @@ describe('resource textToSpeech', () => {
   test('create: only required params', async () => {
     const responsePromise = client.textToSpeech.create({
       model: 'eleven_multilingual_v2',
-      promptText: 'promptText',
+      promptText: 'x',
       voice: { presetId: 'Maya', type: 'runway-preset' },
     });
     const rawResponse = await responsePromise.asResponse();
@@ -26,7 +26,7 @@ describe('resource textToSpeech', () => {
   test('create: required and optional params', async () => {
     const response = await client.textToSpeech.create({
       model: 'eleven_multilingual_v2',
-      promptText: 'promptText',
+      promptText: 'x',
       voice: { presetId: 'Maya', type: 'runway-preset' },
     });
   });
