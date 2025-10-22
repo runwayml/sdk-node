@@ -14,22 +14,15 @@ export class VoiceDubbing extends APIResource {
 }
 
 export interface VoiceDubbingCreateResponse {
-  /**
-   * The ID of the newly created task.
-   */
   id: string;
 }
 
 export interface VoiceDubbingCreateParams {
   /**
-   * A HTTPS URL or data URI containing the audio file to dub. See
-   * [our docs](/assets/inputs#audio) on audio inputs for more information.
+   * A data URI containing encoded audio.
    */
   audioUri: string;
 
-  /**
-   * The model variant to use.
-   */
   model: 'eleven_voice_dubbing';
 
   /**

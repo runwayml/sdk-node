@@ -14,16 +14,10 @@ export class TextToSpeech extends APIResource {
 }
 
 export interface TextToSpeechCreateResponse {
-  /**
-   * The ID of the newly created task.
-   */
   id: string;
 }
 
 export interface TextToSpeechCreateParams {
-  /**
-   * The model variant to use.
-   */
   model: 'eleven_multilingual_v2';
 
   /**
@@ -44,7 +38,7 @@ export namespace TextToSpeechCreateParams {
    */
   export interface Voice {
     /**
-     * The name of the voice to use for the generated speech.
+     * The preset voice ID to use for the generated speech.
      */
     presetId:
       | 'Maya'

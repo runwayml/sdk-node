@@ -15,16 +15,10 @@ export class SoundEffect extends APIResource {
 }
 
 export interface SoundEffectCreateResponse {
-  /**
-   * The ID of the newly created task.
-   */
   id: string;
 }
 
 export interface SoundEffectCreateParams {
-  /**
-   * The model variant to use.
-   */
   model: 'eleven_text_to_sound_v2';
 
   /**
@@ -40,7 +34,7 @@ export interface SoundEffectCreateParams {
   duration?: number;
 
   /**
-   * Whether the sound effect should be designed to loop seamlessly.
+   * Whether the output sound effect should be designed to loop seamlessly.
    */
   loop?: boolean;
 }

@@ -10,7 +10,7 @@ const client = new RunwayML({
 describe('resource voiceIsolation', () => {
   test('create: only required params', async () => {
     const responsePromise = client.voiceIsolation.create({
-      audioUrl: 'https://example.com',
+      audioUri: 'data:audio/J!',
       model: 'eleven_voice_isolation',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -24,7 +24,7 @@ describe('resource voiceIsolation', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.voiceIsolation.create({
-      audioUrl: 'https://example.com',
+      audioUri: 'data:audio/J!',
       model: 'eleven_voice_isolation',
     });
   });
