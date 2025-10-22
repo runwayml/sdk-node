@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.5.0 (2025-10-22)
+
+Full Changelog: [v3.4.0...v3.5.0](https://github.com/runwayml/sdk-node/compare/v3.4.0...v3.5.0)
+
+### Features
+
+* **api:** Add speech to speech ([1ce9142](https://github.com/runwayml/sdk-node/commit/1ce91425fe6e0973c160d8786111a4e2eb9cb327))
+* **api:** Added speech to speech ([35ac252](https://github.com/runwayml/sdk-node/commit/35ac2527980a38e4d7f2a331aa244e7fa143c9aa))
+
 ## 3.4.0 (2025-10-15)
 
 Full Changelog: [v3.3.0...v3.4.0](https://github.com/runwayml/sdk-node/compare/v3.3.0...v3.4.0)
