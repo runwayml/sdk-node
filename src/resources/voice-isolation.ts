@@ -6,7 +6,8 @@ import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/poll
 
 export class VoiceIsolation extends APIResource {
   /**
-   * This endpoint will start a new task to isolate and enhance voices in audio.
+   * This endpoint will start a new task to isolate the voice from the background
+   * audio.
    */
   create(
     body: VoiceIsolationCreateParams,
@@ -19,22 +20,15 @@ export class VoiceIsolation extends APIResource {
 }
 
 export interface VoiceIsolationCreateResponse {
-  /**
-   * The ID of the newly created task.
-   */
   id: string;
 }
 
 export interface VoiceIsolationCreateParams {
   /**
-   * A HTTPS URL or data URI containing the audio file to process. See
-   * [our docs](/assets/inputs#audio) on audio inputs for more information.
+   * A data URI containing encoded audio.
    */
-  audioUrl: string;
+  audioUri: string;
 
-  /**
-   * The model variant to use.
-   */
   model: 'eleven_voice_isolation';
 }
 

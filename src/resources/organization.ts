@@ -70,6 +70,11 @@ export namespace OrganizationRetrieveResponse {
       act_two?: Models.ActTwo;
 
       /**
+       * Limits associated with the eleven_multilingual_sts_v2 model.
+       */
+      eleven_multilingual_sts_v2?: Models.ElevenMultilingualStsV2;
+
+      /**
        * Limits associated with the eleven_multilingual_v2 model.
        */
       eleven_multilingual_v2?: Models.ElevenMultilingualV2;
@@ -145,6 +150,21 @@ export namespace OrganizationRetrieveResponse {
        * Limits associated with the act_two model.
        */
       export interface ActTwo {
+        /**
+         * The maximum number of generations that can be run concurrently for this model.
+         */
+        maxConcurrentGenerations: number;
+
+        /**
+         * The maximum number of generations that can be created each day for this model.
+         */
+        maxDailyGenerations: number;
+      }
+
+      /**
+       * Limits associated with the eleven_multilingual_sts_v2 model.
+       */
+      export interface ElevenMultilingualStsV2 {
         /**
          * The maximum number of generations that can be run concurrently for this model.
          */
@@ -389,6 +409,11 @@ export namespace OrganizationRetrieveResponse {
       act_two?: Models.ActTwo;
 
       /**
+       * Usage data for the eleven_multilingual_sts_v2 model.
+       */
+      eleven_multilingual_sts_v2?: Models.ElevenMultilingualStsV2;
+
+      /**
        * Usage data for the eleven_multilingual_v2 model.
        */
       eleven_multilingual_v2?: Models.ElevenMultilingualV2;
@@ -464,6 +489,16 @@ export namespace OrganizationRetrieveResponse {
        * Usage data for the act_two model.
        */
       export interface ActTwo {
+        /**
+         * The number of generations that have been run for this model in the past day.
+         */
+        dailyGenerations: number;
+      }
+
+      /**
+       * Usage data for the eleven_multilingual_sts_v2 model.
+       */
+      export interface ElevenMultilingualStsV2 {
         /**
          * The number of generations that have been run for this model in the past day.
          */
@@ -619,6 +654,7 @@ export interface OrganizationRetrieveUsageResponse {
    */
   models: Array<
     | 'act_two'
+    | 'eleven_multilingual_sts_v2'
     | 'eleven_multilingual_v2'
     | 'eleven_text_to_sound_v2'
     | 'eleven_voice_dubbing'
@@ -664,6 +700,7 @@ export namespace OrganizationRetrieveUsageResponse {
        */
       model:
         | 'act_two'
+        | 'eleven_multilingual_sts_v2'
         | 'eleven_multilingual_v2'
         | 'eleven_text_to_sound_v2'
         | 'eleven_voice_dubbing'
