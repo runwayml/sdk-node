@@ -33,7 +33,11 @@ import {
   OrganizationRetrieveUsageResponse,
 } from './resources/organization';
 import { SoundEffect, SoundEffectCreateParams, SoundEffectCreateResponse } from './resources/sound-effect';
-import { SpeechToSpeech } from './resources/speech-to-speech';
+import {
+  SpeechToSpeech,
+  SpeechToSpeechCreateParams,
+  SpeechToSpeechCreateResponse,
+} from './resources/speech-to-speech';
 import { TaskRetrieveResponse, Tasks } from './resources/tasks';
 import { TextToImage, TextToImageCreateParams, TextToImageCreateResponse } from './resources/text-to-image';
 import {
@@ -869,7 +873,11 @@ export declare namespace RunwayML {
     type VoiceDubbingCreateParams as VoiceDubbingCreateParams,
   };
 
-  export { SpeechToSpeech as SpeechToSpeech };
+  export {
+    SpeechToSpeech as SpeechToSpeech,
+    type SpeechToSpeechCreateResponse as SpeechToSpeechCreateResponse,
+    type SpeechToSpeechCreateParams as SpeechToSpeechCreateParams,
+  };
 
   export {
     Organization as Organization,

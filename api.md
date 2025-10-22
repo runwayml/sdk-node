@@ -111,6 +111,14 @@ Methods:
 
 # SpeechToSpeech
 
+Types:
+
+- <code><a href="./src/resources/speech-to-speech.ts">SpeechToSpeechCreateResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/speech_to_speech">client.speechToSpeech.<a href="./src/resources/speech-to-speech.ts">create</a>({ ...params }) -> SpeechToSpeechCreateResponse</code>
+
 # Organization
 
 Types:
