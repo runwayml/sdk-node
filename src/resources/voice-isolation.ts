@@ -7,7 +7,16 @@ import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/poll
 export class VoiceIsolation extends APIResource {
   /**
    * This endpoint will start a new task to isolate the voice from the background
-   * audio.
+   * audio. Audio duration must be greater than 4.6 seconds and less than 3600
+   * seconds.
+   *
+   * @example
+   * ```ts
+   * const voiceIsolation = await client.voiceIsolation.create({
+   *   audioUri: 'https://example.com/audio.mp3',
+   *   model: 'eleven_voice_isolation',
+   * });
+   * ```
    */
   create(
     body: VoiceIsolationCreateParams,
@@ -25,7 +34,7 @@ export interface VoiceIsolationCreateResponse {
 
 export interface VoiceIsolationCreateParams {
   /**
-   * A data URI containing encoded audio.
+   * A HTTPS URL.
    */
   audioUri: string;
 

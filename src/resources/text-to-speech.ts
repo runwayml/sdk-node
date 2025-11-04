@@ -32,14 +32,14 @@ export interface TextToSpeechCreateParams {
   promptText: string;
 
   /**
-   * The voice to use for the generated speech.
+   * A voice preset from the RunwayML API.
    */
   voice: TextToSpeechCreateParams.Voice;
 }
 
 export namespace TextToSpeechCreateParams {
   /**
-   * The voice to use for the generated speech.
+   * A voice preset from the RunwayML API.
    */
   export interface Voice {
     /**

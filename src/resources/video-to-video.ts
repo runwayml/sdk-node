@@ -7,6 +7,16 @@ import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/poll
 export class VideoToVideo extends APIResource {
   /**
    * This endpoint will start a new task to generate a video from a video.
+   *
+   * @example
+   * ```ts
+   * const videoToVideo = await client.videoToVideo.create({
+   *   model: 'gen4_aleph',
+   *   promptText: 'x',
+   *   ratio: '1280:720',
+   *   videoUri: 'https://example.com/video.mp4',
+   * });
+   * ```
    */
   create(
     body: VideoToVideoCreateParams,
@@ -19,16 +29,10 @@ export class VideoToVideo extends APIResource {
 }
 
 export interface VideoToVideoCreateResponse {
-  /**
-   * The ID of the newly created task.
-   */
   id: string;
 }
 
 export interface VideoToVideoCreateParams {
-  /**
-   * The model variant to use.
-   */
   model: 'gen4_aleph';
 
   /**
@@ -43,8 +47,7 @@ export interface VideoToVideoCreateParams {
   ratio: '1280:720' | '720:1280' | '1104:832' | '960:960' | '832:1104' | '1584:672' | '848:480' | '640:480';
 
   /**
-   * A HTTPS URL pointing to a video or a data URI containing a video. See
-   * [our docs](/assets/inputs#videos) on video inputs for more information.
+   * A HTTPS URL.
    */
   videoUri: string;
 
@@ -87,8 +90,7 @@ export namespace VideoToVideoCreateParams {
     type: 'image';
 
     /**
-     * A HTTPS URL pointing to an image or a data URI containing an image. See
-     * [our docs](/assets/inputs#images) on image inputs for more information.
+     * A HTTPS URL.
      */
     uri: string;
   }

@@ -23,39 +23,51 @@ export interface SpeechToSpeechCreateResponse {
 }
 
 export interface SpeechToSpeechCreateParams {
+  /**
+   * The media to use as a source for the dialogue for the generated speech.
+   */
   media: SpeechToSpeechCreateParams.Audio | SpeechToSpeechCreateParams.Video;
 
   model: 'eleven_multilingual_sts_v2';
 
   /**
-   * The voice to use for the generated speech.
+   * A voice preset from the RunwayML API.
    */
   voice: SpeechToSpeechCreateParams.Voice;
 
+  /**
+   * Whether to remove background noise from the generated speech.
+   */
   removeBackgroundNoise?: boolean;
 }
 
 export namespace SpeechToSpeechCreateParams {
+  /**
+   * An audio file containing dialogue to be processed.
+   */
   export interface Audio {
     type: 'audio';
 
     /**
-     * A data URI containing encoded audio.
-     */
-    uri: string;
-  }
-
-  export interface Video {
-    type: 'video';
-
-    /**
-     * A data URI containing an encoded video.
+     * A HTTPS URL.
      */
     uri: string;
   }
 
   /**
-   * The voice to use for the generated speech.
+   * A video file containing dialogue to be processed.
+   */
+  export interface Video {
+    type: 'video';
+
+    /**
+     * A HTTPS URL.
+     */
+    uri: string;
+  }
+
+  /**
+   * A voice preset from the RunwayML API.
    */
   export interface Voice {
     /**

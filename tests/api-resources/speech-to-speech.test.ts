@@ -10,7 +10,7 @@ const client = new RunwayML({
 describe('resource speechToSpeech', () => {
   test('create: only required params', async () => {
     const responsePromise = client.speechToSpeech.create({
-      media: { type: 'audio', uri: 'data:audio/J!' },
+      media: { type: 'audio', uri: 'https://example.com/file' },
       model: 'eleven_multilingual_sts_v2',
       voice: { presetId: 'Maya', type: 'runway-preset' },
     });
@@ -25,7 +25,7 @@ describe('resource speechToSpeech', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.speechToSpeech.create({
-      media: { type: 'audio', uri: 'data:audio/J!' },
+      media: { type: 'audio', uri: 'https://example.com/file' },
       model: 'eleven_multilingual_sts_v2',
       voice: { presetId: 'Maya', type: 'runway-preset' },
       removeBackgroundNoise: true,
