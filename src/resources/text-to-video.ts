@@ -19,41 +19,74 @@ export class TextToVideo extends APIResource {
 }
 
 export interface TextToVideoCreateResponse {
-  /**
-   * The ID of the newly created task.
-   */
   id: string;
 }
 
-export interface TextToVideoCreateParams {
-  /**
-   * `veo3` videos must be 8 seconds long. `veo3.1` and `veo3.1_fast` videos must be
-   * 4, 6, or 8 seconds long.
-   */
-  duration: 4 | 6 | 8;
+export type TextToVideoCreateParams =
+  | TextToVideoCreateParams.Veo3_1
+  | TextToVideoCreateParams.Veo3_1Fast
+  | TextToVideoCreateParams.Veo3;
 
-  /**
-   * The model variant to use.
-   */
-  model: 'veo3.1' | 'veo3.1_fast' | 'veo3';
+export declare namespace TextToVideoCreateParams {
+  export interface Veo3_1 {
+    model: 'veo3.1';
 
-  /**
-   * A non-empty string up to 1000 characters (measured in UTF-16 code units). This
-   * should describe in detail what should appear in the output.
-   */
-  promptText: string;
+    /**
+     * A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+     * should describe in detail what should appear in the output.
+     */
+    promptText: string;
 
-  /**
-   * A string representing the aspect ratio of the output video.
-   */
-  ratio: '1280:720' | '720:1280' | '1080:1920' | '1920:1080';
+    /**
+     * The resolution of the output video.
+     */
+    ratio: '1280:720' | '720:1280' | '1080:1920' | '1920:1080';
 
-  /**
-   * If unspecified, a random number is chosen. Varying the seed integer is a way to
-   * get different results for the same other request parameters. Using the same seed
-   * integer for an identical request will produce similar results.
-   */
-  seed?: number;
+    /**
+     * The number of seconds of duration for the output video.
+     */
+    duration?: 4 | 6 | 8;
+  }
+
+  export interface Veo3_1Fast {
+    model: 'veo3.1_fast';
+
+    /**
+     * A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+     * should describe in detail what should appear in the output.
+     */
+    promptText: string;
+
+    /**
+     * The resolution of the output video.
+     */
+    ratio: '1280:720' | '720:1280' | '1080:1920' | '1920:1080';
+
+    /**
+     * The number of seconds of duration for the output video.
+     */
+    duration?: 4 | 6 | 8;
+  }
+
+  export interface Veo3 {
+    /**
+     * The number of seconds of duration for the output video.
+     */
+    duration: 8;
+
+    model: 'veo3';
+
+    /**
+     * A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+     * should describe in detail what should appear in the output.
+     */
+    promptText: string;
+
+    /**
+     * The resolution of the output video.
+     */
+    ratio: '1280:720' | '720:1280' | '1080:1920' | '1920:1080';
+  }
 }
 
 export declare namespace TextToVideo {

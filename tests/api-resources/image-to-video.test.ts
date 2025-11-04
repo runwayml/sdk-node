@@ -11,7 +11,7 @@ describe('resource imageToVideo', () => {
   test('create: only required params', async () => {
     const responsePromise = client.imageToVideo.create({
       model: 'gen4_turbo',
-      promptImage: 'https://example.com',
+      promptImage: 'https://example.com/file',
       ratio: '1280:720',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -26,11 +26,11 @@ describe('resource imageToVideo', () => {
   test('create: required and optional params', async () => {
     const response = await client.imageToVideo.create({
       model: 'gen4_turbo',
-      promptImage: 'https://example.com',
+      promptImage: 'https://example.com/file',
       ratio: '1280:720',
       contentModeration: { publicFigureThreshold: 'auto' },
       duration: 2,
-      promptText: 'promptText',
+      promptText: 'x',
       seed: 0,
     });
   });
