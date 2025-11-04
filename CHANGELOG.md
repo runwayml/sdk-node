@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.7.0 (2025-11-04)
+
+Full Changelog: [v3.6.0...v3.7.0](https://github.com/runwayml/sdk-node/compare/v3.6.0...v3.7.0)
+
+### Features
+
+* **api:** Support ephemeral uploads ([95f5a53](https://github.com/runwayml/sdk-node/commit/95f5a53cbcab4d458b45c209cc5b20960a163a90))
+
 ## 3.6.0 (2025-11-04)
 
 Full Changelog: [v3.5.0...v3.6.0](https://github.com/runwayml/sdk-node/compare/v3.5.0...v3.6.0)
