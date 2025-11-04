@@ -13,7 +13,7 @@ import * as Shims from './internal/shims';
 import * as Opts from './internal/request-options';
 import { VERSION } from './version';
 import * as Errors from './core/error';
-import * as Uploads from './core/uploads';
+import * as UploadsCore from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
 import {
@@ -66,6 +66,7 @@ import {
   VoiceIsolationCreateParams,
   VoiceIsolationCreateResponse,
 } from './resources/voice-isolation';
+import { Uploads, UploadsCreateEphemeralParams, UploadCreateEphemeralResponse } from './resources/uploads';
 import { type Fetch } from './internal/builtin-types';
 import { isRunningInBrowser } from './internal/detect-platform';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
@@ -777,7 +778,7 @@ export class RunwayML {
   static PermissionDeniedError = Errors.PermissionDeniedError;
   static UnprocessableEntityError = Errors.UnprocessableEntityError;
 
-  static toFile = Uploads.toFile;
+  static toFile = UploadsCore.toFile;
 
   tasks: API.Tasks = new API.Tasks(this);
   imageToVideo: API.ImageToVideo = new API.ImageToVideo(this);
@@ -792,6 +793,7 @@ export class RunwayML {
   voiceDubbing: API.VoiceDubbing = new API.VoiceDubbing(this);
   speechToSpeech: API.SpeechToSpeech = new API.SpeechToSpeech(this);
   organization: API.Organization = new API.Organization(this);
+  uploads: API.Uploads = new API.Uploads(this);
 }
 
 RunwayML.Tasks = Tasks;
@@ -807,6 +809,7 @@ RunwayML.VoiceIsolation = VoiceIsolation;
 RunwayML.VoiceDubbing = VoiceDubbing;
 RunwayML.SpeechToSpeech = SpeechToSpeech;
 RunwayML.Organization = Organization;
+RunwayML.Uploads = Uploads;
 
 export declare namespace RunwayML {
   export type RequestOptions = Opts.RequestOptions;
@@ -884,5 +887,11 @@ export declare namespace RunwayML {
     type OrganizationRetrieveResponse as OrganizationRetrieveResponse,
     type OrganizationRetrieveUsageResponse as OrganizationRetrieveUsageResponse,
     type OrganizationRetrieveUsageParams as OrganizationRetrieveUsageParams,
+  };
+
+  export {
+    Uploads as Uploads,
+    type UploadCreateEphemeralResponse as UploadCreateEphemeralResponse,
+    type UploadsCreateEphemeralParams as UploadsCreateEphemeralParams,
   };
 }

@@ -50,3 +50,4 @@ export {
   type VoiceIsolationCreateResponse,
   type VoiceIsolationCreateParams,
 } from './voice-isolation';
+export { Uploads, type UploadCreateEphemeralResponse, type UploadsCreateEphemeralParams } from './uploads';
