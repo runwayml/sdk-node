@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.6.0 (2025-11-04)
+
+Full Changelog: [v3.5.0...v3.6.0](https://github.com/runwayml/sdk-node/compare/v3.5.0...v3.6.0)
+
+### Features
+
+* **api:** Update discriminated union schema ([032d6e6](https://github.com/runwayml/sdk-node/commit/032d6e631b606660a5edc070dc8162969fa9a480))
+
 ## 3.5.0 (2025-10-22)
 
 Full Changelog: [v3.4.0...v3.5.0](https://github.com/runwayml/sdk-node/compare/v3.4.0...v3.5.0)
