@@ -10,9 +10,9 @@ const client = new RunwayML({
 describe('resource characterPerformance', () => {
   test('create: only required params', async () => {
     const responsePromise = client.characterPerformance.create({
-      character: { type: 'image', uri: 'data:image/J!' },
+      character: { type: 'image', uri: 'https://example.com/file' },
       model: 'act_two',
-      reference: { type: 'video', uri: 'data:video/J!' },
+      reference: { type: 'video', uri: 'https://example.com/reference-performance.mp4' },
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -25,12 +25,12 @@ describe('resource characterPerformance', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.characterPerformance.create({
-      character: { type: 'image', uri: 'data:image/J!' },
+      character: { type: 'image', uri: 'https://example.com/file' },
       model: 'act_two',
-      reference: { type: 'video', uri: 'data:video/J!' },
+      reference: { type: 'video', uri: 'https://example.com/reference-performance.mp4' },
       bodyControl: true,
       contentModeration: { publicFigureThreshold: 'auto' },
-      expressionIntensity: 1,
+      expressionIntensity: 3,
       ratio: '1280:720',
       seed: 0,
     });

@@ -11,7 +11,7 @@ describe('resource videoUpscale', () => {
   test('create: only required params', async () => {
     const responsePromise = client.videoUpscale.create({
       model: 'upscale_v1',
-      videoUri: 'https://example.com',
+      videoUri: 'https://example.com/video.mp4',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -25,7 +25,7 @@ describe('resource videoUpscale', () => {
   test('create: required and optional params', async () => {
     const response = await client.videoUpscale.create({
       model: 'upscale_v1',
-      videoUri: 'https://example.com',
+      videoUri: 'https://example.com/video.mp4',
     });
   });
 });

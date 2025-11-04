@@ -7,6 +7,15 @@ import { RequestOptions } from '../internal/request-options';
 export class VoiceDubbing extends APIResource {
   /**
    * This endpoint will start a new task to dub audio content to a target language.
+   *
+   * @example
+   * ```ts
+   * const voiceDubbing = await client.voiceDubbing.create({
+   *   audioUri: 'https://example.com/audio.mp3',
+   *   model: 'eleven_voice_dubbing',
+   *   targetLang: 'en',
+   * });
+   * ```
    */
   create(body: VoiceDubbingCreateParams, options?: RequestOptions): APIPromise<VoiceDubbingCreateResponse> {
     return this._client.post('/v1/voice_dubbing', { body, ...options });
@@ -19,7 +28,7 @@ export interface VoiceDubbingCreateResponse {
 
 export interface VoiceDubbingCreateParams {
   /**
-   * A data URI containing encoded audio.
+   * A HTTPS URL.
    */
   audioUri: string;
 

@@ -8,6 +8,22 @@ export class CharacterPerformance extends APIResource {
   /**
    * This endpoint will start a new task to control a character's facial expressions
    * and body movements using a reference video.
+   *
+   * @example
+   * ```ts
+   * const characterPerformance =
+   *   await client.characterPerformance.create({
+   *     character: {
+   *       type: 'image',
+   *       uri: 'https://example.com/file',
+   *     },
+   *     model: 'act_two',
+   *     reference: {
+   *       type: 'video',
+   *       uri: 'https://example.com/reference-performance.mp4',
+   *     },
+   *   });
+   * ```
    */
   create(
     body: CharacterPerformanceCreateParams,
@@ -31,7 +47,8 @@ export interface CharacterPerformanceCreateParams {
   model: 'act_two';
 
   /**
-   * The reference video containing the performance to apply to the character.
+   * A video of a person performing in the manner that you would like your character
+   * to perform. The video must be between 3 and 30 seconds in duration.
    */
   reference: CharacterPerformanceCreateParams.Reference;
 
@@ -58,6 +75,11 @@ export interface CharacterPerformanceCreateParams {
    */
   ratio?: '1280:720' | '720:1280' | '960:960' | '1104:832' | '832:1104' | '1584:672';
 
+  /**
+   * If unspecified, a random number is chosen. Varying the seed integer is a way to
+   * get different results for the same other request parameters. Using the same seed
+   * integer for an identical request will produce similar results.
+   */
   seed?: number;
 }
 
@@ -70,7 +92,7 @@ export namespace CharacterPerformanceCreateParams {
     type: 'image';
 
     /**
-     * A data URI containing an encoded image.
+     * A HTTPS URL.
      */
     uri: string;
   }
@@ -84,19 +106,20 @@ export namespace CharacterPerformanceCreateParams {
     type: 'video';
 
     /**
-     * A data URI containing an encoded video.
+     * A HTTPS URL.
      */
     uri: string;
   }
 
   /**
-   * The reference video containing the performance to apply to the character.
+   * A video of a person performing in the manner that you would like your character
+   * to perform. The video must be between 3 and 30 seconds in duration.
    */
   export interface Reference {
     type: 'video';
 
     /**
-     * A data URI containing an encoded video.
+     * A HTTPS URL.
      */
     uri: string;
   }
@@ -105,6 +128,10 @@ export namespace CharacterPerformanceCreateParams {
    * Settings that affect the behavior of the content moderation system.
    */
   export interface ContentModeration {
+    /**
+     * When set to `low`, the content moderation system will be less strict about
+     * preventing generations that include recognizable public figures.
+     */
     publicFigureThreshold?: 'auto' | 'low';
   }
 }

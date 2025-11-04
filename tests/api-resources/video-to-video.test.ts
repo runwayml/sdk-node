@@ -11,9 +11,9 @@ describe('resource videoToVideo', () => {
   test('create: only required params', async () => {
     const responsePromise = client.videoToVideo.create({
       model: 'gen4_aleph',
-      promptText: 'promptText',
+      promptText: 'x',
       ratio: '1280:720',
-      videoUri: 'https://example.com',
+      videoUri: 'https://example.com/video.mp4',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -27,11 +27,11 @@ describe('resource videoToVideo', () => {
   test('create: required and optional params', async () => {
     const response = await client.videoToVideo.create({
       model: 'gen4_aleph',
-      promptText: 'promptText',
+      promptText: 'x',
       ratio: '1280:720',
-      videoUri: 'https://example.com',
+      videoUri: 'https://example.com/video.mp4',
       contentModeration: { publicFigureThreshold: 'auto' },
-      references: [{ type: 'image', uri: 'https://example.com' }],
+      references: [{ type: 'image', uri: 'https://example.com/file' }],
       seed: 0,
     });
   });
