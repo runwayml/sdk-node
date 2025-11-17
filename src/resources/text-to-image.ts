@@ -19,140 +19,197 @@ export class TextToImage extends APIResource {
 }
 
 export interface TextToImageCreateResponse {
-  /**
-   * The ID of the newly created task.
-   */
   id: string;
 }
 
-export interface TextToImageCreateParams {
-  /**
-   * The model variant to use.
-   */
-  model: 'gen4_image_turbo' | 'gen4_image' | 'gemini_2.5_flash';
+export type TextToImageCreateParams =
+  | TextToImageCreateParams.Gen4ImageTurbo
+  | TextToImageCreateParams.Gen4Image
+  | TextToImageCreateParams.Gemini2_5Flash;
 
-  /**
-   * A non-empty string up to 1000 characters (measured in UTF-16 code units). This
-   * should describe in detail what should appear in the output.
-   */
-  promptText: string;
+export declare namespace TextToImageCreateParams {
+  export interface Gen4ImageTurbo {
+    model: 'gen4_image_turbo';
 
-  /**
-   * The resolution of the output image.
-   *
-   * `gen4_image_turbo`, `gen4_image` support the following values:
-   *
-   * - `1920:1080`
-   * - `1080:1920`
-   * - `1024:1024`
-   * - `1360:768`
-   * - `1080:1080`
-   * - `1168:880`
-   * - `1440:1080`
-   * - `1080:1440`
-   * - `1808:768`
-   * - `2112:912`
-   * - `1280:720`
-   * - `720:1280`
-   * - `720:720`
-   * - `960:720`
-   * - `720:960`
-   * - `1680:720`
-   *
-   * `gemini_2.5_flash` supports the following values:
-   *
-   * - `1344:768`
-   * - `768:1344`
-   * - `1024:1024`
-   * - `1184:864`
-   * - `864:1184`
-   * - `1536:672`
-   * - `832x1248`
-   * - `1248x832`
-   * - `896x1152`
-   * - `1152x896`
-   */
-  ratio:
-    | '1920:1080'
-    | '1080:1920'
-    | '1024:1024'
-    | '1360:768'
-    | '1080:1080'
-    | '1168:880'
-    | '1440:1080'
-    | '1080:1440'
-    | '1808:768'
-    | '2112:912'
-    | '1280:720'
-    | '720:1280'
-    | '720:720'
-    | '960:720'
-    | '720:960'
-    | '1680:720'
-    | '1344:768'
-    | '768:1344'
-    | '1184:864'
-    | '864:1184'
-    | '1536:672'
-    | '832x1248'
-    | '1248x832'
-    | '896x1152'
-    | '1152x896';
-
-  /**
-   * Settings that affect the behavior of the content moderation system.
-   *
-   * This field is allowed only for the following model variants: `gen4_image_turbo`,
-   * `gen4_image`
-   */
-  contentModeration?: TextToImageCreateParams.ContentModeration;
-
-  /**
-   * An array of up to three images to be used as references for the generated image
-   * output.
-   *
-   * For `gen4_image_turbo`, _at least one_ reference image is required.
-   */
-  referenceImages?: Array<TextToImageCreateParams.ReferenceImage>;
-
-  /**
-   * If unspecified, a random number is chosen. Varying the seed integer is a way to
-   * get different results for the same other request parameters. Using the same seed
-   * integer for an identical request will produce similar results.
-   */
-  seed?: number;
-}
-
-export namespace TextToImageCreateParams {
-  /**
-   * Settings that affect the behavior of the content moderation system.
-   *
-   * This field is allowed only for the following model variants: `gen4_image_turbo`,
-   * `gen4_image`
-   */
-  export interface ContentModeration {
     /**
-     * When set to `low`, the content moderation system will be less strict about
-     * preventing generations that include recognizable public figures.
+     * A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+     * should describe in detail what should appear in the output.
      */
-    publicFigureThreshold?: 'auto' | 'low';
+    promptText: string;
+
+    /**
+     * The resolution of the output image.
+     */
+    ratio:
+      | '1024:1024'
+      | '1080:1080'
+      | '1168:880'
+      | '1360:768'
+      | '1440:1080'
+      | '1080:1440'
+      | '1808:768'
+      | '1920:1080'
+      | '1080:1920'
+      | '2112:912'
+      | '1280:720'
+      | '720:1280'
+      | '720:720'
+      | '960:720'
+      | '720:960'
+      | '1680:720';
+
+    /**
+     * An array of one to three images to be used as references for the generated image
+     * output.
+     */
+    referenceImages: Array<Gen4ImageTurbo.ReferenceImage>;
+
+    /**
+     * Settings that affect the behavior of the content moderation system.
+     */
+    contentModeration?: Gen4ImageTurbo.ContentModeration;
+
+    /**
+     * If unspecified, a random number is chosen. Varying the seed integer is a way to
+     * get different results for the same other request parameters. Using the same seed
+     * integer for an identical request will produce similar results.
+     */
+    seed?: number;
   }
 
-  export interface ReferenceImage {
-    /**
-     * A HTTPS URL, Runway or data URI containing an encoded image to be used as
-     * reference for the generated output image. See [our docs](/assets/inputs#images)
-     * on image inputs for more information.
-     */
-    uri: string;
+  export namespace Gen4ImageTurbo {
+    export interface ReferenceImage {
+      /**
+       * A HTTPS URL.
+       */
+      uri: string;
+
+      tag?: string;
+    }
 
     /**
-     * A name used to refer to the image reference, from 3 to 16 characters in length.
-     * Tags must be alphanumeric (plus underscores) and start with a letter. You can
-     * refer to the reference image's tag in the prompt text with at-mention syntax:
-     * `@tag`. Tags are case-sensitive.
+     * Settings that affect the behavior of the content moderation system.
      */
-    tag?: string;
+    export interface ContentModeration {
+      /**
+       * When set to `low`, the content moderation system will be less strict about
+       * preventing generations that include recognizable public figures.
+       */
+      publicFigureThreshold?: 'auto' | 'low';
+    }
+  }
+
+  export interface Gen4Image {
+    model: 'gen4_image';
+
+    /**
+     * A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+     * should describe in detail what should appear in the output.
+     */
+    promptText: string;
+
+    /**
+     * The resolution of the output image.
+     */
+    ratio:
+      | '1024:1024'
+      | '1080:1080'
+      | '1168:880'
+      | '1360:768'
+      | '1440:1080'
+      | '1080:1440'
+      | '1808:768'
+      | '1920:1080'
+      | '1080:1920'
+      | '2112:912'
+      | '1280:720'
+      | '720:1280'
+      | '720:720'
+      | '960:720'
+      | '720:960'
+      | '1680:720';
+
+    /**
+     * Settings that affect the behavior of the content moderation system.
+     */
+    contentModeration?: Gen4Image.ContentModeration;
+
+    /**
+     * An array of up to three images to be used as references for the generated image
+     * output.
+     */
+    referenceImages?: Array<Gen4Image.ReferenceImage>;
+
+    /**
+     * If unspecified, a random number is chosen. Varying the seed integer is a way to
+     * get different results for the same other request parameters. Using the same seed
+     * integer for an identical request will produce similar results.
+     */
+    seed?: number;
+  }
+
+  export namespace Gen4Image {
+    /**
+     * Settings that affect the behavior of the content moderation system.
+     */
+    export interface ContentModeration {
+      /**
+       * When set to `low`, the content moderation system will be less strict about
+       * preventing generations that include recognizable public figures.
+       */
+      publicFigureThreshold?: 'auto' | 'low';
+    }
+
+    export interface ReferenceImage {
+      /**
+       * A HTTPS URL.
+       */
+      uri: string;
+
+      tag?: string;
+    }
+  }
+
+  export interface Gemini2_5Flash {
+    model: 'gemini_2.5_flash';
+
+    /**
+     * A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+     * should describe in detail what should appear in the output.
+     */
+    promptText: string;
+
+    /**
+     * The resolution of the output image.
+     */
+    ratio:
+      | '1344:768'
+      | '768:1344'
+      | '1024:1024'
+      | '1184:864'
+      | '864:1184'
+      | '1536:672'
+      | '832:1248'
+      | '1248:832'
+      | '896:1152'
+      | '1152:896';
+
+    /**
+     * An array of up to three images to be used as references for the generated image
+     * output.
+     */
+    referenceImages?: Array<Gemini2_5Flash.ReferenceImage>;
+  }
+
+  export namespace Gemini2_5Flash {
+    export interface ReferenceImage {
+      /**
+       * A HTTPS URL.
+       */
+      uri: string;
+
+      tag?: string;
+    }
   }
 }
 
