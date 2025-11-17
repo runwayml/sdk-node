@@ -28,6 +28,7 @@ describe('resource textToVideo', () => {
       model: 'veo3.1',
       promptText: 'x',
       ratio: '1280:720',
+      audio: true,
       duration: 4,
     });
   });
