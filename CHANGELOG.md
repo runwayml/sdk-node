@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.8.0 (2025-11-17)
+
+Full Changelog: [v3.7.0...v3.8.0](https://github.com/runwayml/sdk-node/compare/v3.7.0...v3.8.0)
+
+### Features
+
+* **api:** veo3.1 audio parameter ([cdb64ac](https://github.com/runwayml/sdk-node/commit/cdb64ac931d32f0dcff5d308d8f9759ef65cf27c))
+
 ## 3.7.0 (2025-11-04)
 
 Full Changelog: [v3.6.0...v3.7.0](https://github.com/runwayml/sdk-node/compare/v3.6.0...v3.7.0)
