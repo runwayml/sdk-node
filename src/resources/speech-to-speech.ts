@@ -23,7 +23,7 @@ export interface SpeechToSpeechCreateResponse {
 
 export interface SpeechToSpeechCreateParams {
   /**
-   * The media to use as a source for the dialogue for the generated speech.
+   * An audio file containing dialogue to be processed.
    */
   media: SpeechToSpeechCreateParams.Audio | SpeechToSpeechCreateParams.Video;
 

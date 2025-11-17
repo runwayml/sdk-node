@@ -38,6 +38,11 @@ export declare namespace TextToVideoCreateParams {
     ratio: '1280:720' | '720:1280' | '1080:1920' | '1920:1080';
 
     /**
+     * Whether to generate audio for the video. Audio inclusion affects pricing.
+     */
+    audio?: boolean;
+
+    /**
      * The number of seconds of duration for the output video.
      */
     duration?: 4 | 6 | 8;
@@ -56,6 +61,11 @@ export declare namespace TextToVideoCreateParams {
      * The resolution of the output video.
      */
     ratio: '1280:720' | '720:1280' | '1080:1920' | '1920:1080';
+
+    /**
+     * Whether to generate audio for the video. Audio inclusion affects pricing.
+     */
+    audio?: boolean;
 
     /**
      * The number of seconds of duration for the output video.
