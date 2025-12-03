@@ -1,5 +1,21 @@
 # Changelog
 
+## 3.9.0 (2025-12-03)
+
+Full Changelog: [v3.8.0...v3.9.0](https://github.com/runwayml/sdk-node/compare/v3.8.0...v3.9.0)
+
+### Features
+
+* **api:** gemini_3_pro t2i ([e714636](https://github.com/runwayml/sdk-node/commit/e714636f7a1a94cde1df221ad93ccbea1c27fe49))
+* **client:** Handle new discriminated task responses ([2d36d8a](https://github.com/runwayml/sdk-node/commit/2d36d8adf67e0e69e9c7d468e45262bf1e4f86e1))
+* **client:** waitForTaskOutput only returns successes ([11ed209](https://github.com/runwayml/sdk-node/commit/11ed20962ac3a302cef45d3f50007a90ec5e7a16))
+
+
+### Chores
+
+* **client:** fix logger property type ([4988e7f](https://github.com/runwayml/sdk-node/commit/4988e7f27af07ab4e7ec702f8863da79d7c7e0a5))
+* **internal:** upgrade eslint ([fdc5077](https://github.com/runwayml/sdk-node/commit/fdc50772b5ede0c11da8aa24dcabe3c975b7af8b))
+
 ## 3.8.0 (2025-11-17)
 
 Full Changelog: [v3.7.0...v3.8.0](https://github.com/runwayml/sdk-node/compare/v3.7.0...v3.8.0)
