@@ -35,140 +35,56 @@ export class Tasks extends APIResource {
   }
 }
 
-/**
- * A pending task
- */
-export type TaskRetrieveResponse =
-  | TaskRetrieveResponse.Pending
-  | TaskRetrieveResponse.Throttled
-  | TaskRetrieveResponse.Cancelled
-  | TaskRetrieveResponse.Running
-  | TaskRetrieveResponse.Failed
-  | TaskRetrieveResponse.Succeeded;
-
-export namespace TaskRetrieveResponse {
+export interface TaskRetrieveResponse {
   /**
-   * A pending task
+   * The ID of the task being returned.
    */
-  export interface Pending {
-    /**
-     * The ID of the task being returned.
-     */
-    id: string;
-
-    /**
-     * The timestamp that the task was submitted at.
-     */
-    createdAt: string;
-
-    status: 'PENDING';
-  }
+  id: string;
 
   /**
-   * A throttled task
+   * The timestamp that the task was submitted at.
    */
-  export interface Throttled {
-    /**
-     * The ID of the task being returned.
-     */
-    id: string;
-
-    /**
-     * The timestamp that the task was submitted at.
-     */
-    createdAt: string;
-
-    status: 'THROTTLED';
-  }
+  createdAt: string;
 
   /**
-   * A cancelled or deleted task
+   * - `PENDING` tasks have been enqueued and are waiting to run.
+   * - `THROTTLED` tasks are waiting to be enqueued until other jobs have finished
+   *   running.
+   * - `RUNNING` tasks are currently being processed.
+   * - `SUCCEEDED` tasks have completed successfully.
+   * - `FAILED` tasks have failed.
+   * - `CANCELLED` tasks have been aborted.
    */
-  export interface Cancelled {
-    /**
-     * The ID of the task being returned.
-     */
-    id: string;
-
-    /**
-     * The timestamp that the task was submitted at.
-     */
-    createdAt: string;
-
-    status: 'CANCELLED';
-  }
+  status: 'RUNNING' | 'SUCCEEDED' | 'FAILED' | 'PENDING' | 'CANCELLED' | 'THROTTLED';
 
   /**
-   * A running task
+   * If the status is `FAILED`, this will contain a human-friendly reason for the
+   * failure.
    */
-  export interface Running {
-    /**
-     * The ID of the task being returned.
-     */
-    id: string;
-
-    /**
-     * The timestamp that the task was submitted at.
-     */
-    createdAt: string;
-
-    progress: number;
-
-    status: 'RUNNING';
-  }
+  failure?: string;
 
   /**
-   * A failed task
+   * If the task has a status of `FAILED`, this contains a machine-readable error
+   * code. This is a dot-separated string, with the leftmost segment being the most
+   * generic and the rightmost segment being the most specific. For example,
+   * `SAFETY.INPUT.TEXT` would indicate that the task failed due to a content
+   * moderation error on the input text.
    */
-  export interface Failed {
-    /**
-     * The ID of the task being returned.
-     */
-    id: string;
-
-    /**
-     * The timestamp that the task was submitted at.
-     */
-    createdAt: string;
-
-    /**
-     * A human-friendly reason for the failure. We do not recommend returning this to
-     * users directly without adding context.
-     */
-    failure: string;
-
-    status: 'FAILED';
-
-    /**
-     * A machine-readable error code for the failure. See
-     * https://docs.dev.runwayml.com/errors/task-failures/ for more information.
-     */
-    failureCode?: string;
-  }
+  failureCode?: string;
 
   /**
-   * A succeeded task
+   * If the status is `SUCCEEDED`, this will contain an array of strings. Each string
+   * will be a URL that returns an output from the task. URLs expire within 24-48
+   * hours; fetch the task again to get fresh URLs. It is expected that you download
+   * the assets at these URLs and store them in your own storage system.
    */
-  export interface Succeeded {
-    /**
-     * The ID of the task being returned.
-     */
-    id: string;
+  output?: Array<string>;
 
-    /**
-     * The timestamp that the task was submitted at.
-     */
-    createdAt: string;
-
-    /**
-     * An array of URLs that return the output of the task. These URLs will expire
-     * within 24-48 hours; fetch the task again to get fresh URLs. It is expected that
-     * you download the assets at these URLs and store them in your own storage system.
-     */
-    output: Array<string>;
-
-    status: 'SUCCEEDED';
-  }
+  /**
+   * If the task has a status of `RUNNING`, this will contain a floating point number
+   * between 0 and 1 representing the progress of the generation.
+   */
+  progress?: number;
 }
 
 export declare namespace Tasks {
