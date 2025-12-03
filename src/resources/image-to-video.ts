@@ -28,6 +28,9 @@ export class ImageToVideo extends APIResource {
 }
 
 export interface ImageToVideoCreateResponse {
+  /**
+   * The ID of the task that was created. Use this to retrieve the task later.
+   */
   id: string;
 }
 

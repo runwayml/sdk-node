@@ -28,6 +28,9 @@ export class VoiceDubbing extends APIResource {
 }
 
 export interface VoiceDubbingCreateResponse {
+  /**
+   * The ID of the task that was created. Use this to retrieve the task later.
+   */
   id: string;
 }
 
