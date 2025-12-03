@@ -34,6 +34,9 @@ export class CharacterPerformance extends APIResource {
 }
 
 export interface CharacterPerformanceCreateResponse {
+  /**
+   * The ID of the task that was created. Use this to retrieve the task later.
+   */
   id: string;
 }
 
