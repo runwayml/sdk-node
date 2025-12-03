@@ -51,7 +51,7 @@ async function main() {
       });
 
       const output = await imageTask.waitForTaskOutput();
-      console.log(output.output![0]);
+      console.log(output.output[0]);
     }
   } catch (e) {
     if (e instanceof TaskFailedError) {

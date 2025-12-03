@@ -58,7 +58,7 @@ export type APIPromiseWithAwaitableTask<T extends { id: string }> = APIPromise<T
    *
    * If the task fails or is cancelled, a `TaskFailedError` will be thrown.
    */
-  waitForTaskOutput: (options?: WaitForTaskOutputOptions) => Promise<TaskRetrieveResponse>;
+  waitForTaskOutput: (options?: WaitForTaskOutputOptions) => Promise<TaskRetrieveResponse.Succeeded>;
 };
 
 export function wrapAsWaitableResource<T extends { id: string }>(client: RunwayML) {
@@ -103,7 +103,7 @@ export function wrapAsWaitableResource<T extends { id: string }>(client: RunwayM
       enumerable: false,
       configurable: false,
     }) as APIPromise<T> & {
-      waitForTaskOutput: () => Promise<TaskRetrieveResponse>;
+      waitForTaskOutput: () => Promise<TaskRetrieveResponse.Succeeded>;
     };
   };
 }

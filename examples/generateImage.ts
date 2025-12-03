@@ -12,7 +12,7 @@ async function main() {
       })
       .waitForTaskOutput();
 
-    console.log(output.output![0]);
+    console.log(output.output[0]);
   } catch (e) {
     if (e instanceof TaskFailedError) {
       console.error('The image failed to generate.');
