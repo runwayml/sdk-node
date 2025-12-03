@@ -14,9 +14,6 @@ export class TextToSpeech extends APIResource {
 }
 
 export interface TextToSpeechCreateResponse {
-  /**
-   * The ID of the task that was created. Use this to retrieve the task later.
-   */
   id: string;
 }
 

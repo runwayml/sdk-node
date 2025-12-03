@@ -23,9 +23,6 @@ export class VideoUpscale extends APIResource {
 }
 
 export interface VideoUpscaleCreateResponse {
-  /**
-   * The ID of the task that was created. Use this to retrieve the task later.
-   */
   id: string;
 }
 
