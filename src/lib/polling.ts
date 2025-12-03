@@ -7,8 +7,8 @@ const POLL_JITTER = 3000; // 3 seconds
 
 export class TaskFailedError extends Error {
   taskDetails: TaskRetrieveResponse;
-  constructor(taskDetails: TaskRetrieveResponse) {
-    super(taskDetails.failure!);
+  constructor(taskDetails: TaskRetrieveResponse.Failed | TaskRetrieveResponse.Cancelled) {
+    super('failure' in taskDetails ? taskDetails.failure : 'Task cancelled');
     this.taskDetails = taskDetails;
     this.name = 'TaskFailedError';
   }
