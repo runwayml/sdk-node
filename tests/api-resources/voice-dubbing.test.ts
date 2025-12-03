@@ -30,7 +30,7 @@ describe('resource voiceDubbing', () => {
       targetLang: 'en',
       disableVoiceCloning: true,
       dropBackgroundAudio: true,
-      numSpeakers: 9007199254740991,
+      numSpeakers: 1,
     });
   });
 });
