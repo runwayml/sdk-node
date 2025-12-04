@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.11.0 (2025-12-04)
+
+Full Changelog: [v3.10.0...v3.11.0](https://github.com/runwayml/sdk-node/compare/v3.10.0...v3.11.0)
+
+### Features
+
+* **api:** Remove unreleased model ([d0a9870](https://github.com/runwayml/sdk-node/commit/d0a98707a7b62e914c09d5c5bf2dd91008f3e2bd))
+
 ## 3.10.0 (2025-12-04)
 
 Full Changelog: [v3.9.0...v3.10.0](https://github.com/runwayml/sdk-node/compare/v3.9.0...v3.10.0)
