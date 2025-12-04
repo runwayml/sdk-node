@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.10.0 (2025-12-04)
+
+Full Changelog: [v3.9.0...v3.10.0](https://github.com/runwayml/sdk-node/compare/v3.9.0...v3.10.0)
+
+### Features
+
+* **api:** Autogen spec updates ([9ff692a](https://github.com/runwayml/sdk-node/commit/9ff692a459c6a03ca2fc8f45e524ca4e31adf369))
+* **api:** Revert G3P changes ([f4210e4](https://github.com/runwayml/sdk-node/commit/f4210e4fbb1ebf6b2c585597ef5e64888366b869))
+
 ## 3.9.0 (2025-12-03)
 
 Full Changelog: [v3.8.0...v3.9.0](https://github.com/runwayml/sdk-node/compare/v3.8.0...v3.9.0)
