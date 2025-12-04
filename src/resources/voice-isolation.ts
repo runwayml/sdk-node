@@ -27,6 +27,9 @@ export class VoiceIsolation extends APIResource {
 }
 
 export interface VoiceIsolationCreateResponse {
+  /**
+   * The ID of the task that was created. Use this to retrieve the task later.
+   */
   id: string;
 }
 
