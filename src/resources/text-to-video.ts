@@ -19,6 +19,9 @@ export class TextToVideo extends APIResource {
 }
 
 export interface TextToVideoCreateResponse {
+  /**
+   * The ID of the task that was created. Use this to retrieve the task later.
+   */
   id: string;
 }
 
