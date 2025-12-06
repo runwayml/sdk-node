@@ -1,5 +1,20 @@
 # Changelog
 
+## 3.11.1 (2025-12-06)
+
+Full Changelog: [v3.11.0...v3.11.1](https://github.com/runwayml/sdk-node/compare/v3.11.0...v3.11.1)
+
+### Bug Fixes
+
+* **mcp:** correct code tool API endpoint ([57d4a99](https://github.com/runwayml/sdk-node/commit/57d4a9902807f0ef52fc5bba9e7f86458db8662f))
+* **mcp:** return correct lines on typescript errors ([35fd83a](https://github.com/runwayml/sdk-node/commit/35fd83aeda8a6dff376a3210226ec53590874ba4))
+
+
+### Chores
+
+* **internal:** codegen related update ([fd24c92](https://github.com/runwayml/sdk-node/commit/fd24c92b95e3b735ef44f6c4839fbe059e873d3d))
+* **internal:** codegen related update ([7b0ad37](https://github.com/runwayml/sdk-node/commit/7b0ad372c8d4c9d46b7a5164c30f11d50f242bdf))
+
 ## 3.11.0 (2025-12-04)
 
 Full Changelog: [v3.10.0...v3.11.0](https://github.com/runwayml/sdk-node/compare/v3.10.0...v3.11.0)
