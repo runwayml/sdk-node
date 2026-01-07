@@ -114,7 +114,12 @@ const client = new RunwayML({
 });
 
 // Or, configure per-request:
-await client.imageToVideo.create({ model: 'gen4_turbo', promptImage: 'https://example.com/assets/bunny.jpg', ratio: '1280:720', promptText: 'The bunny is eating a carrot' }, {
+await client.imageToVideo.create({
+  model: 'gen4_turbo',
+  promptImage: 'https://example.com/assets/bunny.jpg',
+  ratio: '1280:720',
+  promptText: 'The bunny is eating a carrot',
+}, {
   maxRetries: 5,
 });
 ```
@@ -131,7 +136,12 @@ const client = new RunwayML({
 });
 
 // Override per-request:
-await client.imageToVideo.create({ model: 'gen4_turbo', promptImage: 'https://example.com/assets/bunny.jpg', ratio: '1280:720', promptText: 'The bunny is eating a carrot' }, {
+await client.imageToVideo.create({
+  model: 'gen4_turbo',
+  promptImage: 'https://example.com/assets/bunny.jpg',
+  ratio: '1280:720',
+  promptText: 'The bunny is eating a carrot',
+}, {
   timeout: 5 * 1000,
 });
 ```
