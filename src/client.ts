@@ -51,11 +51,7 @@ import {
   VideoToVideoCreateParams,
   VideoToVideoCreateResponse,
 } from './resources/video-to-video';
-import {
-  VideoUpscale,
-  VideoUpscaleCreateParams,
-  VideoUpscaleCreateResponse,
-} from './resources/video-upscale';
+import { VideoUpscale } from './resources/video-upscale';
 import {
   VoiceDubbing,
   VoiceDubbingCreateParams,
@@ -837,11 +833,7 @@ export declare namespace RunwayML {
     type TextToImageCreateParams as TextToImageCreateParams,
   };
 
-  export {
-    VideoUpscale as VideoUpscale,
-    type VideoUpscaleCreateResponse as VideoUpscaleCreateResponse,
-    type VideoUpscaleCreateParams as VideoUpscaleCreateParams,
-  };
+  export { VideoUpscale as VideoUpscale };
 
   export {
     CharacterPerformance as CharacterPerformance,

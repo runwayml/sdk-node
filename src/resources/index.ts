@@ -35,11 +35,7 @@ export {
   type VideoToVideoCreateResponse,
   type VideoToVideoCreateParams,
 } from './video-to-video';
-export {
-  VideoUpscale,
-  type VideoUpscaleCreateResponse,
-  type VideoUpscaleCreateParams,
-} from './video-upscale';
+export { VideoUpscale } from './video-upscale';
 export {
   VoiceDubbing,
   type VoiceDubbingCreateResponse,
