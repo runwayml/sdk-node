@@ -51,7 +51,6 @@ import {
   VideoToVideoCreateParams,
   VideoToVideoCreateResponse,
 } from './resources/video-to-video';
-import { VideoUpscale } from './resources/video-upscale';
 import {
   VoiceDubbing,
   VoiceDubbingCreateParams,
@@ -780,7 +779,6 @@ export class RunwayML {
   videoToVideo: API.VideoToVideo = new API.VideoToVideo(this);
   textToVideo: API.TextToVideo = new API.TextToVideo(this);
   textToImage: API.TextToImage = new API.TextToImage(this);
-  videoUpscale: API.VideoUpscale = new API.VideoUpscale(this);
   characterPerformance: API.CharacterPerformance = new API.CharacterPerformance(this);
   textToSpeech: API.TextToSpeech = new API.TextToSpeech(this);
   soundEffect: API.SoundEffect = new API.SoundEffect(this);
@@ -795,7 +793,6 @@ RunwayML.ImageToVideo = ImageToVideo;
 RunwayML.VideoToVideo = VideoToVideo;
 RunwayML.TextToVideo = TextToVideo;
 RunwayML.TextToImage = TextToImage;
-RunwayML.VideoUpscale = VideoUpscale;
 RunwayML.CharacterPerformance = CharacterPerformance;
 RunwayML.TextToSpeech = TextToSpeech;
 RunwayML.SoundEffect = SoundEffect;
@@ -832,8 +829,6 @@ export declare namespace RunwayML {
     type TextToImageCreateResponse as TextToImageCreateResponse,
     type TextToImageCreateParams as TextToImageCreateParams,
   };
-
-  export { VideoUpscale as VideoUpscale };
 
   export {
     CharacterPerformance as CharacterPerformance,
