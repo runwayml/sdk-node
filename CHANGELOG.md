@@ -1,5 +1,29 @@
 # Changelog
 
+## 3.12.0 (2026-01-17)
+
+Full Changelog: [v3.11.0...v3.12.0](https://github.com/runwayml/sdk-node/compare/v3.11.0...v3.12.0)
+
+### Features
+
+* **api:** Remove video_upscale resource ([5faaa58](https://github.com/runwayml/sdk-node/commit/5faaa5818b2654d067bbe84d502061dac24a46b6))
+* **api:** Sunset upscale endpoint ([76beaa9](https://github.com/runwayml/sdk-node/commit/76beaa91fac29ca3efaab369754927b96a020b37))
+
+
+### Bug Fixes
+
+* **mcp:** correct code tool API endpoint ([57d4a99](https://github.com/runwayml/sdk-node/commit/57d4a9902807f0ef52fc5bba9e7f86458db8662f))
+* **mcp:** return correct lines on typescript errors ([35fd83a](https://github.com/runwayml/sdk-node/commit/35fd83aeda8a6dff376a3210226ec53590874ba4))
+
+
+### Chores
+
+* break long lines in snippets into multiline ([08bfc7d](https://github.com/runwayml/sdk-node/commit/08bfc7d7bb67f864d847296917f0778096a2ffc6))
+* **internal:** codegen related update ([7d38c14](https://github.com/runwayml/sdk-node/commit/7d38c1491bbb0738bb6e3035cc8ca830a45e5756))
+* **internal:** codegen related update ([fd24c92](https://github.com/runwayml/sdk-node/commit/fd24c92b95e3b735ef44f6c4839fbe059e873d3d))
+* **internal:** codegen related update ([7b0ad37](https://github.com/runwayml/sdk-node/commit/7b0ad372c8d4c9d46b7a5164c30f11d50f242bdf))
+* **internal:** upgrade babel, qs, js-yaml ([07dcaf5](https://github.com/runwayml/sdk-node/commit/07dcaf56b0a45fd0a64004c42269bde5eef48cba))
+
 ## 3.11.0 (2025-12-04)
 
 Full Changelog: [v3.10.0...v3.11.0](https://github.com/runwayml/sdk-node/compare/v3.10.0...v3.11.0)
