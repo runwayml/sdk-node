@@ -49,16 +49,6 @@ Methods:
 
 - <code title="post /v1/text_to_image">client.textToImage.<a href="./src/resources/text-to-image.ts">create</a>({ ...params }) -> TextToImageCreateResponse</code>
 
-# VideoUpscale
-
-Types:
-
-- <code><a href="./src/resources/video-upscale.ts">VideoUpscaleCreateResponse</a></code>
-
-Methods:
-
-- <code title="post /v1/video_upscale">client.videoUpscale.<a href="./src/resources/video-upscale.ts">create</a>({ ...params }) -> VideoUpscaleCreateResponse</code>
-
 # CharacterPerformance
 
 Types:
