@@ -13,7 +13,6 @@ export class VideoToVideo extends APIResource {
    * const videoToVideo = await client.videoToVideo.create({
    *   model: 'gen4_aleph',
    *   promptText: 'x',
-   *   ratio: '1280:720',
    *   videoUri: 'https://example.com/video.mp4',
    * });
    * ```
@@ -45,11 +44,6 @@ export interface VideoToVideoCreateParams {
   promptText: string;
 
   /**
-   * The resolution of the output video.
-   */
-  ratio: '1280:720' | '720:1280' | '1104:832' | '960:960' | '832:1104' | '1584:672' | '848:480' | '640:480';
-
-  /**
    * A HTTPS URL.
    */
   videoUri: string;
@@ -58,6 +52,12 @@ export interface VideoToVideoCreateParams {
    * Settings that affect the behavior of the content moderation system.
    */
   contentModeration?: VideoToVideoCreateParams.ContentModeration;
+
+  /**
+   * @deprecated Deprecated. This field is ignored. The resolution of the output
+   * video is determined by the input video.
+   */
+  ratio?: '1280:720' | '720:1280' | '1104:832' | '960:960' | '832:1104' | '1584:672' | '848:480' | '640:480';
 
   /**
    * An array of references. Currently up to one reference is supported. See
