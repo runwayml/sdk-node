@@ -1,5 +1,25 @@
 # Changelog
 
+## 3.13.0 (2026-02-03)
+
+Full Changelog: [v3.12.0...v3.13.0](https://github.com/runwayml/sdk-node/compare/v3.12.0...v3.13.0)
+
+### Features
+
+* **api:** Deprecate v2v ratio ([59dacf5](https://github.com/runwayml/sdk-node/commit/59dacf52a52f4d9dd706305448c834dcf9286146))
+
+
+### Bug Fixes
+
+* **client:** avoid memory leak with abort signals ([71a3c3f](https://github.com/runwayml/sdk-node/commit/71a3c3f14dac8533af93206a5bf0b914d82e9e58))
+
+
+### Chores
+
+* **ci:** upgrade `actions/github-script` ([e9e6329](https://github.com/runwayml/sdk-node/commit/e9e6329cdb7dbe97cc93d2881cb6b6e37897a1b8))
+* **client:** do not parse responses with empty content-length ([750bb75](https://github.com/runwayml/sdk-node/commit/750bb7514b888c70b90335d72ea51b5559c204d1))
+* **internal:** update `actions/checkout` version ([1b556a4](https://github.com/runwayml/sdk-node/commit/1b556a470410c8fa3aa656d1ee07694590721c88))
+
 ## 3.12.0 (2026-01-17)
 
 Full Changelog: [v3.11.0...v3.12.0](https://github.com/runwayml/sdk-node/compare/v3.11.0...v3.12.0)
