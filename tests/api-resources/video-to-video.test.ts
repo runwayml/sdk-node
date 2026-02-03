@@ -12,7 +12,6 @@ describe('resource videoToVideo', () => {
     const responsePromise = client.videoToVideo.create({
       model: 'gen4_aleph',
       promptText: 'x',
-      ratio: '1280:720',
       videoUri: 'https://example.com/video.mp4',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -28,9 +27,9 @@ describe('resource videoToVideo', () => {
     const response = await client.videoToVideo.create({
       model: 'gen4_aleph',
       promptText: 'x',
-      ratio: '1280:720',
       videoUri: 'https://example.com/video.mp4',
       contentModeration: { publicFigureThreshold: 'auto' },
+      ratio: '1280:720',
       references: [{ type: 'image', uri: 'https://example.com/file' }],
       seed: 0,
     });
