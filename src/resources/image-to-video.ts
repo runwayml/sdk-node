@@ -35,6 +35,7 @@ export interface ImageToVideoCreateResponse {
 }
 
 export type ImageToVideoCreateParams =
+  | ImageToVideoCreateParams.Gen4_5
   | ImageToVideoCreateParams.Gen4Turbo
   | ImageToVideoCreateParams.Veo3_1
   | ImageToVideoCreateParams.Gen3aTurbo
@@ -42,6 +43,70 @@ export type ImageToVideoCreateParams =
   | ImageToVideoCreateParams.Veo3;
 
 export declare namespace ImageToVideoCreateParams {
+  export interface Gen4_5 {
+    /**
+     * The number of seconds of duration for the output video. Must be an integer from
+     * 2 to 10.
+     */
+    duration: number;
+
+    model: 'gen4.5';
+
+    /**
+     * A HTTPS URL.
+     */
+    promptImage: string | Array<Gen4_5.PromptImage>;
+
+    /**
+     * A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+     * should describe in detail what should appear in the output.
+     */
+    promptText: string;
+
+    /**
+     * The resolution of the output video.
+     */
+    ratio: '1280:720' | '720:1280' | '1104:832' | '960:960' | '832:1104' | '1584:672' | '672:1584';
+
+    /**
+     * Settings that affect the behavior of the content moderation system.
+     */
+    contentModeration?: Gen4_5.ContentModeration;
+
+    /**
+     * If unspecified, a random number is chosen. Varying the seed integer is a way to
+     * get different results for the same other request parameters. Using the same seed
+     * integer for an identical request will produce similar results.
+     */
+    seed?: number;
+  }
+
+  export namespace Gen4_5 {
+    export interface PromptImage {
+      /**
+       * The position of the image in the output video. "first" will use the image as the
+       * first frame of the video.
+       */
+      position: 'first';
+
+      /**
+       * A HTTPS URL.
+       */
+      uri: string;
+    }
+
+    /**
+     * Settings that affect the behavior of the content moderation system.
+     */
+    export interface ContentModeration {
+      /**
+       * When set to `low`, the content moderation system will be less strict about
+       * preventing generations that include recognizable public figures.
+       */
+      publicFigureThreshold?: 'auto' | 'low';
+    }
+  }
+
   export interface Gen4Turbo {
     model: 'gen4_turbo';
 
