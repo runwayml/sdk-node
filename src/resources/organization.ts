@@ -101,6 +101,7 @@ export interface OrganizationRetrieveUsageResponse {
    * The list of models with usage during the queried time range.
    */
   models: Array<
+    | 'gen4.5'
     | 'gen3a_turbo'
     | 'gen4_turbo'
     | 'gen4_image'
@@ -146,6 +147,7 @@ export namespace OrganizationRetrieveUsageResponse {
        * The model that credits were spent on.
        */
       model:
+        | 'gen4.5'
         | 'gen3a_turbo'
         | 'gen4_turbo'
         | 'gen4_image'
