@@ -1,5 +1,24 @@
 # Changelog
 
+## 3.14.0 (2026-02-12)
+
+Full Changelog: [v3.13.0...v3.14.0](https://github.com/runwayml/sdk-node/compare/v3.13.0...v3.14.0)
+
+### Features
+
+* **api:** Gen-4.5 t2v+i2v ([dca7320](https://github.com/runwayml/sdk-node/commit/dca732027218879d0e6c2e000bfa68c96793ebd8))
+
+
+### Bug Fixes
+
+* **client:** avoid removing abort listener too early ([5b9cfe9](https://github.com/runwayml/sdk-node/commit/5b9cfe9bb2930300250f70418ec2784074db3908))
+
+
+### Chores
+
+* **client:** restructure abort controller binding ([72b0d5a](https://github.com/runwayml/sdk-node/commit/72b0d5ac5383ea1f667d578a4d41e33dc3b9d1af))
+* **internal:** avoid type checking errors with ts-reset ([2fecbbf](https://github.com/runwayml/sdk-node/commit/2fecbbf2c2d6857a25a6c6829a034ce8a2e1ab1c))
+
 ## 3.13.0 (2026-02-03)
 
 Full Changelog: [v3.12.0...v3.13.0](https://github.com/runwayml/sdk-node/compare/v3.12.0...v3.13.0)
