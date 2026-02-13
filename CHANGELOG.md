@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.14.1 (2026-02-13)
+
+Full Changelog: [v3.14.0...v3.14.1](https://github.com/runwayml/sdk-node/compare/v3.14.0...v3.14.1)
+
+### Bug Fixes
+
+* **api:** Remove invalid 4.5 i2v ratio ([445c547](https://github.com/runwayml/sdk-node/commit/445c547bfe5ca956c3b65b0f55ed6bce6f3d6375))
+
 ## 3.14.0 (2026-02-12)
 
 Full Changelog: [v3.13.0...v3.14.0](https://github.com/runwayml/sdk-node/compare/v3.13.0...v3.14.0)
