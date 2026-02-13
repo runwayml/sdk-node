@@ -61,7 +61,7 @@ export declare namespace ImageToVideoCreateParams {
     /**
      * The resolution of the output video.
      */
-    ratio: '1280:720' | '720:1280' | '1104:832' | '960:960' | '832:1104' | '1584:672' | '672:1584';
+    ratio: '1280:720' | '720:1280' | '1104:832' | '960:960' | '832:1104' | '1584:672';
 
     /**
      * Settings that affect the behavior of the content moderation system.
