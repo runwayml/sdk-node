@@ -60,7 +60,7 @@ $ yarn link @runwayml/sdk
 # With pnpm
 $ pnpm link --global
 $ cd ../my-package
-$ pnpm link -—global @runwayml/sdk
+$ pnpm link --global @runwayml/sdk
 ```
 
 ## Running tests
