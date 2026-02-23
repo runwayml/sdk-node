@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.14.3 (2026-02-23)
+
+Full Changelog: [v3.14.2...v3.14.3](https://github.com/runwayml/sdk-node/compare/v3.14.2...v3.14.3)
+
+### Chores
+
+* update SDK settings ([33d29dc](https://github.com/runwayml/sdk-node/commit/33d29dc4cf285d901ad009072d62c27d3d9d5c87))
+* update SDK settings ([5729c74](https://github.com/runwayml/sdk-node/commit/5729c74a33e032e12b36e5afc95aaabfbc3d62ad))
+* update SDK settings ([e412022](https://github.com/runwayml/sdk-node/commit/e412022ebbee63a25d68a053949b35668668c4ca))
+
 ## 3.14.2 (2026-02-23)
 
 Full Changelog: [v3.14.1...v3.14.2](https://github.com/runwayml/sdk-node/compare/v3.14.1...v3.14.2)
