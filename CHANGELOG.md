@@ -1,5 +1,19 @@
 # Changelog
 
+## 3.14.2 (2026-02-23)
+
+Full Changelog: [v3.14.1...v3.14.2](https://github.com/runwayml/sdk-node/compare/v3.14.1...v3.14.2)
+
+### Bug Fixes
+
+* **docs/contributing:** correct pnpm link command ([6ef2e72](https://github.com/runwayml/sdk-node/commit/6ef2e72b83770f631461812d09ef279cd9df99f3))
+
+
+### Chores
+
+* **internal/client:** fix form-urlencoded requests ([5f9ef37](https://github.com/runwayml/sdk-node/commit/5f9ef3706dd70eb0a1a95a26f01d7e08bcced1c6))
+* update mock server docs ([3eece21](https://github.com/runwayml/sdk-node/commit/3eece21562712a0619b67de364dbc57041089dbb))
+
 ## 3.14.1 (2026-02-13)
 
 Full Changelog: [v3.14.0...v3.14.1](https://github.com/runwayml/sdk-node/compare/v3.14.0...v3.14.1)
