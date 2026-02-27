@@ -778,16 +778,49 @@ export class RunwayML {
 
   static toFile = UploadsCore.toFile;
 
+  /**
+   * Endpoints for managing tasks that have been submitted.
+   */
   tasks: API.Tasks = new API.Tasks(this);
+  /**
+   * These endpoints all kick off tasks to create generations.
+   */
   imageToVideo: API.ImageToVideo = new API.ImageToVideo(this);
+  /**
+   * These endpoints all kick off tasks to create generations.
+   */
   videoToVideo: API.VideoToVideo = new API.VideoToVideo(this);
+  /**
+   * These endpoints all kick off tasks to create generations.
+   */
   textToVideo: API.TextToVideo = new API.TextToVideo(this);
+  /**
+   * These endpoints all kick off tasks to create generations.
+   */
   textToImage: API.TextToImage = new API.TextToImage(this);
+  /**
+   * These endpoints all kick off tasks to create generations.
+   */
   characterPerformance: API.CharacterPerformance = new API.CharacterPerformance(this);
+  /**
+   * These endpoints all kick off tasks to create generations.
+   */
   textToSpeech: API.TextToSpeech = new API.TextToSpeech(this);
+  /**
+   * These endpoints all kick off tasks to create generations.
+   */
   soundEffect: API.SoundEffect = new API.SoundEffect(this);
+  /**
+   * These endpoints all kick off tasks to create generations.
+   */
   voiceIsolation: API.VoiceIsolation = new API.VoiceIsolation(this);
+  /**
+   * These endpoints all kick off tasks to create generations.
+   */
   voiceDubbing: API.VoiceDubbing = new API.VoiceDubbing(this);
+  /**
+   * These endpoints all kick off tasks to create generations.
+   */
   speechToSpeech: API.SpeechToSpeech = new API.SpeechToSpeech(this);
   organization: API.Organization = new API.Organization(this);
   uploads: API.Uploads = new API.Uploads(this);
