@@ -4,6 +4,9 @@ import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
+/**
+ * These endpoints all kick off tasks to create generations.
+ */
 export class SoundEffect extends APIResource {
   /**
    * This endpoint will start a new task to generate sound effects from a text

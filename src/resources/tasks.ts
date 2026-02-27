@@ -6,6 +6,9 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * Endpoints for managing tasks that have been submitted.
+ */
 export class Tasks extends APIResource {
   /**
    * Return details about a task. Consumers of this API should not expect updates

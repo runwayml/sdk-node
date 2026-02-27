@@ -4,6 +4,9 @@ import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
+/**
+ * These endpoints all kick off tasks to create generations.
+ */
 export class ImageToVideo extends APIResource {
   /**
    * This endpoint will start a new task to generate a video from an image.
