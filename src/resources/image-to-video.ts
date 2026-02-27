@@ -4,6 +4,9 @@ import { APIResource } from '../core/resource';
 import { RequestOptions } from '../internal/request-options';
 import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/polling';
 
+/**
+ * These endpoints all kick off tasks to create generations.
+ */
 export class ImageToVideo extends APIResource {
   /**
    * This endpoint will start a new task to generate a video from an image.

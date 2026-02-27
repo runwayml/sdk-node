@@ -7,6 +7,9 @@ import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/polling';
 
+/**
+ * Endpoints for managing tasks that have been submitted.
+ */
 export class Tasks extends APIResource {
   /**
    * Return details about a task. Consumers of this API should not expect updates
