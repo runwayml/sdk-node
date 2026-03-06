@@ -14,14 +14,36 @@ import * as Opts from './internal/request-options';
 import { stringifyQuery } from './internal/utils/query';
 import { VERSION } from './version';
 import * as Errors from './core/error';
+import * as Pagination from './core/pagination';
+import { AbstractPage, type CursorPageParams, CursorPageResponse } from './core/pagination';
 import * as UploadsCore from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
+import {
+  AvatarCreateParams,
+  AvatarCreateResponse,
+  AvatarListParams,
+  AvatarListResponse,
+  AvatarListResponsesCursorPage,
+  AvatarRetrieveResponse,
+  AvatarUpdateParams,
+  AvatarUpdateResponse,
+  Avatars,
+} from './resources/avatars';
 import {
   CharacterPerformance,
   CharacterPerformanceCreateParams,
   CharacterPerformanceCreateResponse,
 } from './resources/character-performance';
+import {
+  DocumentCreateParams,
+  DocumentCreateResponse,
+  DocumentListParams,
+  DocumentListResponse,
+  DocumentListResponsesCursorPage,
+  DocumentRetrieveResponse,
+  Documents,
+} from './resources/documents';
 import {
   ImageToVideo,
   ImageToVideoCreateParams,
@@ -33,6 +55,12 @@ import {
   OrganizationRetrieveUsageParams,
   OrganizationRetrieveUsageResponse,
 } from './resources/organization';
+import {
+  RealtimeSessionCreateParams,
+  RealtimeSessionCreateResponse,
+  RealtimeSessionRetrieveResponse,
+  RealtimeSessions,
+} from './resources/realtime-sessions';
 import { SoundEffect, SoundEffectCreateParams, SoundEffectCreateResponse } from './resources/sound-effect';
 import {
   SpeechToSpeech,
@@ -63,6 +91,17 @@ import {
   VoiceIsolationCreateResponse,
 } from './resources/voice-isolation';
 import { Uploads, UploadsCreateEphemeralParams, UploadCreateEphemeralResponse } from './resources/uploads';
+import {
+  VoiceCreateParams,
+  VoiceCreateResponse,
+  VoiceListParams,
+  VoiceListResponse,
+  VoiceListResponsesCursorPage,
+  VoicePreviewParams,
+  VoicePreviewResponse,
+  VoiceRetrieveResponse,
+  Voices,
+} from './resources/voices';
 import { type Fetch } from './internal/builtin-types';
 import { isRunningInBrowser } from './internal/detect-platform';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
@@ -530,6 +569,30 @@ export class RunwayML {
     return { response, options, controller, requestLogID, retryOfRequestLogID, startTime };
   }
 
+  getAPIList<Item, PageClass extends Pagination.AbstractPage<Item> = Pagination.AbstractPage<Item>>(
+    path: string,
+    Page: new (...args: any[]) => PageClass,
+    opts?: PromiseOrValue<RequestOptions>,
+  ): Pagination.PagePromise<PageClass, Item> {
+    return this.requestAPIList(
+      Page,
+      opts && 'then' in opts ?
+        opts.then((opts) => ({ method: 'get', path, ...opts }))
+      : { method: 'get', path, ...opts },
+    );
+  }
+
+  requestAPIList<
+    Item = unknown,
+    PageClass extends Pagination.AbstractPage<Item> = Pagination.AbstractPage<Item>,
+  >(
+    Page: new (...args: ConstructorParameters<typeof Pagination.AbstractPage>) => PageClass,
+    options: PromiseOrValue<FinalRequestOptions>,
+  ): Pagination.PagePromise<PageClass, Item> {
+    const request = this.makeRequest(options, null, undefined);
+    return new Pagination.PagePromise<PageClass, Item>(this as any as RunwayML, request, Page);
+  }
+
   async fetchWithTimeout(
     url: RequestInfo,
     init: RequestInit | undefined,
@@ -823,6 +886,10 @@ export class RunwayML {
    */
   speechToSpeech: API.SpeechToSpeech = new API.SpeechToSpeech(this);
   organization: API.Organization = new API.Organization(this);
+  avatars: API.Avatars = new API.Avatars(this);
+  documents: API.Documents = new API.Documents(this);
+  realtimeSessions: API.RealtimeSessions = new API.RealtimeSessions(this);
+  voices: API.Voices = new API.Voices(this);
   uploads: API.Uploads = new API.Uploads(this);
 }
 
@@ -838,10 +905,17 @@ RunwayML.VoiceIsolation = VoiceIsolation;
 RunwayML.VoiceDubbing = VoiceDubbing;
 RunwayML.SpeechToSpeech = SpeechToSpeech;
 RunwayML.Organization = Organization;
+RunwayML.Avatars = Avatars;
+RunwayML.Documents = Documents;
+RunwayML.RealtimeSessions = RealtimeSessions;
+RunwayML.Voices = Voices;
 RunwayML.Uploads = Uploads;
 
 export declare namespace RunwayML {
   export type RequestOptions = Opts.RequestOptions;
+
+  export import CursorPage = Pagination.CursorPage;
+  export { type CursorPageParams as CursorPageParams, type CursorPageResponse as CursorPageResponse };
 
   export { Tasks as Tasks, type TaskRetrieveResponse as TaskRetrieveResponse };
 
@@ -910,6 +984,47 @@ export declare namespace RunwayML {
     type OrganizationRetrieveResponse as OrganizationRetrieveResponse,
     type OrganizationRetrieveUsageResponse as OrganizationRetrieveUsageResponse,
     type OrganizationRetrieveUsageParams as OrganizationRetrieveUsageParams,
+  };
+
+  export {
+    Avatars as Avatars,
+    type AvatarCreateResponse as AvatarCreateResponse,
+    type AvatarRetrieveResponse as AvatarRetrieveResponse,
+    type AvatarUpdateResponse as AvatarUpdateResponse,
+    type AvatarListResponse as AvatarListResponse,
+    type AvatarListResponsesCursorPage as AvatarListResponsesCursorPage,
+    type AvatarCreateParams as AvatarCreateParams,
+    type AvatarUpdateParams as AvatarUpdateParams,
+    type AvatarListParams as AvatarListParams,
+  };
+
+  export {
+    Documents as Documents,
+    type DocumentCreateResponse as DocumentCreateResponse,
+    type DocumentRetrieveResponse as DocumentRetrieveResponse,
+    type DocumentListResponse as DocumentListResponse,
+    type DocumentListResponsesCursorPage as DocumentListResponsesCursorPage,
+    type DocumentCreateParams as DocumentCreateParams,
+    type DocumentListParams as DocumentListParams,
+  };
+
+  export {
+    RealtimeSessions as RealtimeSessions,
+    type RealtimeSessionCreateResponse as RealtimeSessionCreateResponse,
+    type RealtimeSessionRetrieveResponse as RealtimeSessionRetrieveResponse,
+    type RealtimeSessionCreateParams as RealtimeSessionCreateParams,
+  };
+
+  export {
+    Voices as Voices,
+    type VoiceCreateResponse as VoiceCreateResponse,
+    type VoiceRetrieveResponse as VoiceRetrieveResponse,
+    type VoiceListResponse as VoiceListResponse,
+    type VoicePreviewResponse as VoicePreviewResponse,
+    type VoiceListResponsesCursorPage as VoiceListResponsesCursorPage,
+    type VoiceCreateParams as VoiceCreateParams,
+    type VoiceListParams as VoiceListParams,
+    type VoicePreviewParams as VoicePreviewParams,
   };
 
   export {

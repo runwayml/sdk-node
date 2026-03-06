@@ -120,3 +120,65 @@ Methods:
 
 - <code title="get /v1/organization">client.organization.<a href="./src/resources/organization.ts">retrieve</a>() -> OrganizationRetrieveResponse</code>
 - <code title="post /v1/organization/usage">client.organization.<a href="./src/resources/organization.ts">retrieveUsage</a>({ ...params }) -> OrganizationRetrieveUsageResponse</code>
+
+# Avatars
+
+Types:
+
+- <code><a href="./src/resources/avatars.ts">AvatarCreateResponse</a></code>
+- <code><a href="./src/resources/avatars.ts">AvatarRetrieveResponse</a></code>
+- <code><a href="./src/resources/avatars.ts">AvatarUpdateResponse</a></code>
+- <code><a href="./src/resources/avatars.ts">AvatarListResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/avatars">client.avatars.<a href="./src/resources/avatars.ts">create</a>({ ...params }) -> AvatarCreateResponse</code>
+- <code title="get /v1/avatars/{id}">client.avatars.<a href="./src/resources/avatars.ts">retrieve</a>(id) -> AvatarRetrieveResponse</code>
+- <code title="patch /v1/avatars/{id}">client.avatars.<a href="./src/resources/avatars.ts">update</a>(id, { ...params }) -> AvatarUpdateResponse</code>
+- <code title="get /v1/avatars">client.avatars.<a href="./src/resources/avatars.ts">list</a>({ ...params }) -> AvatarListResponsesCursorPage</code>
+- <code title="delete /v1/avatars/{id}">client.avatars.<a href="./src/resources/avatars.ts">delete</a>(id) -> void</code>
+
+# Documents
+
+Types:
+
+- <code><a href="./src/resources/documents.ts">DocumentCreateResponse</a></code>
+- <code><a href="./src/resources/documents.ts">DocumentRetrieveResponse</a></code>
+- <code><a href="./src/resources/documents.ts">DocumentListResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/documents">client.documents.<a href="./src/resources/documents.ts">create</a>({ ...params }) -> DocumentCreateResponse</code>
+- <code title="get /v1/documents/{id}">client.documents.<a href="./src/resources/documents.ts">retrieve</a>(id) -> DocumentRetrieveResponse</code>
+- <code title="get /v1/documents">client.documents.<a href="./src/resources/documents.ts">list</a>({ ...params }) -> DocumentListResponsesCursorPage</code>
+- <code title="delete /v1/documents/{id}">client.documents.<a href="./src/resources/documents.ts">delete</a>(id) -> void</code>
+
+# RealtimeSessions
+
+Types:
+
+- <code><a href="./src/resources/realtime-sessions.ts">RealtimeSessionCreateResponse</a></code>
+- <code><a href="./src/resources/realtime-sessions.ts">RealtimeSessionRetrieveResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/realtime_sessions">client.realtimeSessions.<a href="./src/resources/realtime-sessions.ts">create</a>({ ...params }) -> RealtimeSessionCreateResponse</code>
+- <code title="get /v1/realtime_sessions/{id}">client.realtimeSessions.<a href="./src/resources/realtime-sessions.ts">retrieve</a>(id) -> RealtimeSessionRetrieveResponse</code>
+- <code title="delete /v1/realtime_sessions/{id}">client.realtimeSessions.<a href="./src/resources/realtime-sessions.ts">delete</a>(id) -> void</code>
+
+# Voices
+
+Types:
+
+- <code><a href="./src/resources/voices.ts">VoiceCreateResponse</a></code>
+- <code><a href="./src/resources/voices.ts">VoiceRetrieveResponse</a></code>
+- <code><a href="./src/resources/voices.ts">VoiceListResponse</a></code>
+- <code><a href="./src/resources/voices.ts">VoicePreviewResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/voices">client.voices.<a href="./src/resources/voices.ts">create</a>({ ...params }) -> VoiceCreateResponse</code>
+- <code title="get /v1/voices/{id}">client.voices.<a href="./src/resources/voices.ts">retrieve</a>(id) -> VoiceRetrieveResponse</code>
+- <code title="get /v1/voices">client.voices.<a href="./src/resources/voices.ts">list</a>({ ...params }) -> VoiceListResponsesCursorPage</code>
+- <code title="delete /v1/voices/{id}">client.voices.<a href="./src/resources/voices.ts">delete</a>(id) -> void</code>
+- <code title="post /v1/voices/preview">client.voices.<a href="./src/resources/voices.ts">preview</a>({ ...params }) -> VoicePreviewResponse</code>
