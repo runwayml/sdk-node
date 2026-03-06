@@ -1,5 +1,25 @@
 # Changelog
 
+## 3.15.0 (2026-03-06)
+
+Full Changelog: [v3.14.3...v3.15.0](https://github.com/runwayml/sdk-node/compare/v3.14.3...v3.15.0)
+
+### Features
+
+* **api:** add avatar, voice, document, and realtime session endpoints ([9534a7e](https://github.com/runwayml/sdk-node/commit/9534a7e892b9b11d7c2420a0b79b4c065b820a42))
+
+
+### Bug Fixes
+
+* fix request delays for retrying to be more respectful of high requested delays ([0a0a653](https://github.com/runwayml/sdk-node/commit/0a0a653562760410cbe9425ab6ef118ee8682546))
+
+
+### Chores
+
+* **docs:** add missing descriptions ([322c513](https://github.com/runwayml/sdk-node/commit/322c513a65a9250c65215cc636ee1ca061c1592a))
+* **internal:** move stringifyQuery implementation to internal function ([bdc20f1](https://github.com/runwayml/sdk-node/commit/bdc20f12c6558a6f405f0790b1601d4bbf2b9078))
+* **test:** do not count install time for mock server timeout ([a5761c0](https://github.com/runwayml/sdk-node/commit/a5761c04cc605146aa284eeefcaf1f23bd7ab0ff))
+
 ## 3.14.3 (2026-02-23)
 
 Full Changelog: [v3.14.2...v3.14.3](https://github.com/runwayml/sdk-node/compare/v3.14.2...v3.14.3)
