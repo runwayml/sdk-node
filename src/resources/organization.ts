@@ -117,6 +117,8 @@ export interface OrganizationRetrieveUsageResponse {
     | 'eleven_voice_isolation'
     | 'eleven_voice_dubbing'
     | 'eleven_multilingual_sts_v2'
+    | 'gwm1_avatars'
+    | 'voice_processing'
   >;
 
   results: Array<OrganizationRetrieveUsageResponse.Result>;
@@ -162,7 +164,9 @@ export namespace OrganizationRetrieveUsageResponse {
         | 'eleven_text_to_sound_v2'
         | 'eleven_voice_isolation'
         | 'eleven_voice_dubbing'
-        | 'eleven_multilingual_sts_v2';
+        | 'eleven_multilingual_sts_v2'
+        | 'gwm1_avatars'
+        | 'voice_processing';
     }
   }
 }
