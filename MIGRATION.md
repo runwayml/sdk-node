@@ -54,6 +54,7 @@ client.example.list(undefined, { headers: { ... } });
 This affects the following methods:
 
 - `client.organization.retrieveUsage()`
+- `client.avatars.update()`
 
 ### Removed `httpAgent` in favor of `fetchOptions`
 
@@ -150,6 +151,43 @@ import RunwayML from '@runwayml/sdk';
 ```
 
 The `@runwayml/sdk/shims` imports have been removed. Your global types must now be [correctly configured](#minimum-types-requirements).
+
+### Pagination changes
+
+The `for await` syntax **is not affected**. This still works as-is:
+
+```ts
+// Automatically fetches more pages as needed.
+for await (const avatarListResponse of client.avatars.list({ limit: 1 })) {
+  console.log(avatarListResponse);
+}
+```
+
+The interface for manually paginating through list results has been simplified:
+
+```ts
+// Before
+page.nextPageParams();
+page.nextPageInfo();
+// Required manually handling { url } | { params } type
+
+// After
+page.nextPageRequestOptions();
+```
+
+#### Removed unnecessary classes
+
+Page classes for individual methods are now type aliases:
+
+```ts
+// Before
+export class AvatarListResponsesCursorPage extends CursorPage<AvatarListResponse> {}
+
+// After
+export type AvatarListResponsesCursorPage = CursorPage<AvatarListResponse>;
+```
+
+If you were importing these classes at runtime, you'll need to switch to importing the base class or only import them at the type-level.
 
 ### `@runwayml/sdk/src` directory removed
 

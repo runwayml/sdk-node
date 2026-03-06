@@ -1,10 +1,30 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 export {
+  Avatars,
+  type AvatarCreateResponse,
+  type AvatarRetrieveResponse,
+  type AvatarUpdateResponse,
+  type AvatarListResponse,
+  type AvatarCreateParams,
+  type AvatarUpdateParams,
+  type AvatarListParams,
+  type AvatarListResponsesCursorPage,
+} from './avatars';
+export {
   CharacterPerformance,
   type CharacterPerformanceCreateResponse,
   type CharacterPerformanceCreateParams,
 } from './character-performance';
+export {
+  Documents,
+  type DocumentCreateResponse,
+  type DocumentRetrieveResponse,
+  type DocumentListResponse,
+  type DocumentCreateParams,
+  type DocumentListParams,
+  type DocumentListResponsesCursorPage,
+} from './documents';
 export {
   ImageToVideo,
   type ImageToVideoCreateResponse,
@@ -16,6 +36,12 @@ export {
   type OrganizationRetrieveUsageResponse,
   type OrganizationRetrieveUsageParams,
 } from './organization';
+export {
+  RealtimeSessions,
+  type RealtimeSessionCreateResponse,
+  type RealtimeSessionRetrieveResponse,
+  type RealtimeSessionCreateParams,
+} from './realtime-sessions';
 export { SoundEffect, type SoundEffectCreateResponse, type SoundEffectCreateParams } from './sound-effect';
 export {
   SpeechToSpeech,
@@ -45,4 +71,15 @@ export {
   type VoiceIsolationCreateResponse,
   type VoiceIsolationCreateParams,
 } from './voice-isolation';
+export {
+  Voices,
+  type VoiceCreateResponse,
+  type VoiceRetrieveResponse,
+  type VoiceListResponse,
+  type VoicePreviewResponse,
+  type VoiceCreateParams,
+  type VoiceListParams,
+  type VoicePreviewParams,
+  type VoiceListResponsesCursorPage,
+} from './voices';
 export { Uploads, type UploadCreateEphemeralResponse, type UploadsCreateEphemeralParams } from './uploads';
