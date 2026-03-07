@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.15.1 (2026-03-07)
+
+Full Changelog: [v3.15.0...v3.15.1](https://github.com/runwayml/sdk-node/compare/v3.15.0...v3.15.1)
+
+### Bug Fixes
+
+* **client:** preserve URL params already embedded in path ([10b9137](https://github.com/runwayml/sdk-node/commit/10b91375950cc1e6b6b89cbb0288a62b1ffebcc0))
+
+
+### Chores
+
+* **ci:** skip uploading artifacts on stainless-internal branches ([c3a0315](https://github.com/runwayml/sdk-node/commit/c3a0315d591480cb483482e19a21174294a9fa0a))
+
 ## 3.15.0 (2026-03-06)
 
 Full Changelog: [v3.14.3...v3.15.0](https://github.com/runwayml/sdk-node/compare/v3.14.3...v3.15.0)
