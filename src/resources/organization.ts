@@ -118,6 +118,7 @@ export interface OrganizationRetrieveUsageResponse {
     | 'eleven_voice_dubbing'
     | 'eleven_multilingual_sts_v2'
     | 'gwm1_avatars'
+    | 'gwm1_avatar_async_audio_to_video'
     | 'voice_processing'
   >;
 
@@ -166,6 +167,7 @@ export namespace OrganizationRetrieveUsageResponse {
         | 'eleven_voice_dubbing'
         | 'eleven_multilingual_sts_v2'
         | 'gwm1_avatars'
+        | 'gwm1_avatar_async_audio_to_video'
         | 'voice_processing';
     }
   }

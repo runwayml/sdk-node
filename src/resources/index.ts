@@ -22,6 +22,7 @@ export {
   type DocumentRetrieveResponse,
   type DocumentListResponse,
   type DocumentCreateParams,
+  type DocumentUpdateParams,
   type DocumentListParams,
   type DocumentListResponsesCursorPage,
 } from './documents';
