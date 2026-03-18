@@ -69,6 +69,7 @@ This affects the following methods:
 
 - `client.organization.retrieveUsage()`
 - `client.avatars.update()`
+- `client.documents.update()`
 
 ### Removed `httpAgent` in favor of `fetchOptions`
 

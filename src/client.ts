@@ -42,6 +42,7 @@ import {
   DocumentListResponse,
   DocumentListResponsesCursorPage,
   DocumentRetrieveResponse,
+  DocumentUpdateParams,
   Documents,
 } from './resources/documents';
 import {
@@ -1003,6 +1004,7 @@ export declare namespace RunwayML {
     type DocumentListResponse as DocumentListResponse,
     type DocumentListResponsesCursorPage as DocumentListResponsesCursorPage,
     type DocumentCreateParams as DocumentCreateParams,
+    type DocumentUpdateParams as DocumentUpdateParams,
     type DocumentListParams as DocumentListParams,
   };
 

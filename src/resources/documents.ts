@@ -40,6 +40,29 @@ export class Documents extends APIResource {
   }
 
   /**
+   * Update a knowledge document. At least one of `name` or `content` must be
+   * provided.
+   *
+   * @example
+   * ```ts
+   * await client.documents.update(
+   *   '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+   * );
+   * ```
+   */
+  update(
+    id: string,
+    body: DocumentUpdateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    return this._client.patch(path`/v1/documents/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
+  }
+
+  /**
    * List knowledge documents for the authenticated user with cursor-based
    * pagination.
    *
@@ -256,6 +279,18 @@ export interface DocumentCreateParams {
   name: string;
 }
 
+export interface DocumentUpdateParams {
+  /**
+   * New markdown or plain text content for the document.
+   */
+  content?: string;
+
+  /**
+   * A new name for the document.
+   */
+  name?: string;
+}
+
 export interface DocumentListParams extends CursorPageParams {}
 
 export declare namespace Documents {
@@ -265,6 +300,7 @@ export declare namespace Documents {
     type DocumentListResponse as DocumentListResponse,
     type DocumentListResponsesCursorPage as DocumentListResponsesCursorPage,
     type DocumentCreateParams as DocumentCreateParams,
+    type DocumentUpdateParams as DocumentUpdateParams,
     type DocumentListParams as DocumentListParams,
   };
 }

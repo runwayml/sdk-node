@@ -205,6 +205,18 @@ export interface RealtimeSessionCreateParams {
    * Maximum session duration in seconds.
    */
   maxDuration?: number;
+
+  /**
+   * Override the avatar personality for this session. If not provided, uses the
+   * avatar default.
+   */
+  personality?: string;
+
+  /**
+   * Override the avatar start script for this session. If not provided, uses the
+   * avatar default.
+   */
+  startScript?: string;
 }
 
 export namespace RealtimeSessionCreateParams {

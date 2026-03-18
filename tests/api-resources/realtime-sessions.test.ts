@@ -27,6 +27,8 @@ describe('resource realtimeSessions', () => {
       avatar: { presetId: 'game-character', type: 'runway-preset' },
       model: 'gwm1_avatars',
       maxDuration: 10,
+      personality: 'x',
+      startScript: 'x',
     });
   });
 

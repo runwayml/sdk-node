@@ -35,8 +35,8 @@ export interface ImageToVideoCreateResponse {
 export type ImageToVideoCreateParams =
   | ImageToVideoCreateParams.Gen4_5
   | ImageToVideoCreateParams.Gen4Turbo
-  | ImageToVideoCreateParams.Veo3_1
   | ImageToVideoCreateParams.Gen3aTurbo
+  | ImageToVideoCreateParams.Veo3_1
   | ImageToVideoCreateParams.Veo3_1Fast
   | ImageToVideoCreateParams.Veo3;
 
@@ -168,54 +168,6 @@ export declare namespace ImageToVideoCreateParams {
     }
   }
 
-  export interface Veo3_1 {
-    model: 'veo3.1';
-
-    /**
-     * You may specify an image to use as the first frame of the output video, or an
-     * array with a first frame and optionally a last frame. This model does not
-     * support generating with only a last frame.
-     */
-    promptImage: string | Array<Veo3_1.PromptImage>;
-
-    /**
-     * The resolution of the output video.
-     */
-    ratio: '1280:720' | '720:1280' | '1080:1920' | '1920:1080';
-
-    /**
-     * Whether to generate audio for the video. Audio inclusion affects pricing.
-     */
-    audio?: boolean;
-
-    /**
-     * The number of seconds of duration for the output video.
-     */
-    duration?: 4 | 6 | 8;
-
-    /**
-     * A non-empty string up to 1000 characters (measured in UTF-16 code units). This
-     * should describe in detail what should appear in the output.
-     */
-    promptText?: string;
-  }
-
-  export namespace Veo3_1 {
-    export interface PromptImage {
-      /**
-       * The position of the image in the output video. "first" will use the image as the
-       * first frame of the video, "last" will use the image as the last frame of the
-       * video.
-       */
-      position: 'first' | 'last';
-
-      /**
-       * A HTTPS URL.
-       */
-      uri: string;
-    }
-  }
-
   export interface Gen3aTurbo {
     model: 'gen3a_turbo';
 
@@ -277,6 +229,54 @@ export declare namespace ImageToVideoCreateParams {
        * preventing generations that include recognizable public figures.
        */
       publicFigureThreshold?: 'auto' | 'low';
+    }
+  }
+
+  export interface Veo3_1 {
+    model: 'veo3.1';
+
+    /**
+     * You may specify an image to use as the first frame of the output video, or an
+     * array with a first frame and optionally a last frame. This model does not
+     * support generating with only a last frame.
+     */
+    promptImage: string | Array<Veo3_1.PromptImage>;
+
+    /**
+     * The resolution of the output video.
+     */
+    ratio: '1280:720' | '720:1280' | '1080:1920' | '1920:1080';
+
+    /**
+     * Whether to generate audio for the video. Audio inclusion affects pricing.
+     */
+    audio?: boolean;
+
+    /**
+     * The number of seconds of duration for the output video.
+     */
+    duration?: 4 | 6 | 8;
+
+    /**
+     * A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+     * should describe in detail what should appear in the output.
+     */
+    promptText?: string;
+  }
+
+  export namespace Veo3_1 {
+    export interface PromptImage {
+      /**
+       * The position of the image in the output video. "first" will use the image as the
+       * first frame of the video, "last" will use the image as the last frame of the
+       * video.
+       */
+      position: 'first' | 'last';
+
+      /**
+       * A HTTPS URL.
+       */
+      uri: string;
     }
   }
 
