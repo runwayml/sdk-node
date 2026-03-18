@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.16.0 (2026-03-18)
+
+Full Changelog: [v3.15.1...v3.16.0](https://github.com/runwayml/sdk-node/compare/v3.15.1...v3.16.0)
+
+### Features
+
+* **api:** Add document update endpoint ([defeffa](https://github.com/runwayml/sdk-node/commit/defeffa9a7836920f286a3ab0f489c8279a3efce))
+
 ## 3.15.1 (2026-03-16)
 
 Full Changelog: [v3.15.0...v3.15.1](https://github.com/runwayml/sdk-node/compare/v3.15.0...v3.15.1)
