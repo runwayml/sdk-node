@@ -1,5 +1,19 @@
 # Changelog
 
+## 3.16.1 (2026-03-20)
+
+Full Changelog: [v3.16.0...v3.16.1](https://github.com/runwayml/sdk-node/compare/v3.16.0...v3.16.1)
+
+### Chores
+
+* **tests:** bump steady to v0.19.4 ([8d37113](https://github.com/runwayml/sdk-node/commit/8d37113cff2c0c37621f5e3d62aefb1654facb78))
+* **tests:** bump steady to v0.19.5 ([515e736](https://github.com/runwayml/sdk-node/commit/515e7362611ffaec52882c020130e7c904962b78))
+
+
+### Refactors
+
+* **tests:** switch from prism to steady ([0f4e7e8](https://github.com/runwayml/sdk-node/commit/0f4e7e86b48708beaa4ba844f53f5cb5b7e0ad98))
+
 ## 3.16.0 (2026-03-18)
 
 Full Changelog: [v3.15.1...v3.16.0](https://github.com/runwayml/sdk-node/compare/v3.15.1...v3.16.0)
