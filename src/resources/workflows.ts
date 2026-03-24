@@ -79,13 +79,12 @@ export namespace WorkflowRetrieveResponse {
    */
   export interface Graph {
     /**
-     * The list of edges connecting nodes in the workflow graph. Each edge defines data
-     * flow between nodes.
+     * The list of edges connecting nodes in the workflow graph.
      */
     edges: Array<unknown>;
 
     /**
-     * The list of nodes in the workflow graph. Each node represents a processing step.
+     * The list of nodes in the workflow graph.
      */
     nodes: Array<unknown>;
 
