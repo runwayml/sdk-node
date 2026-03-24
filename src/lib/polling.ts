@@ -1,13 +1,20 @@
 import type { RunwayML } from '../client';
 import { APIPromise } from '../core/api-promise';
 import { TaskRetrieveResponse } from '../resources/tasks';
+import { WorkflowInvocationRetrieveResponse } from '../resources/workflow-invocations';
 
 const POLL_TIME = 6000; // 6 seconds
 const POLL_JITTER = 3000; // 3 seconds
 
 export class TaskFailedError extends Error {
-  taskDetails: TaskRetrieveResponse;
-  constructor(taskDetails: TaskRetrieveResponse.Failed | TaskRetrieveResponse.Cancelled) {
+  taskDetails: TaskRetrieveResponse | WorkflowInvocationRetrieveResponse;
+  constructor(
+    taskDetails:
+      | TaskRetrieveResponse.Failed
+      | TaskRetrieveResponse.Cancelled
+      | WorkflowInvocationRetrieveResponse.Failed
+      | WorkflowInvocationRetrieveResponse.Cancelled,
+  ) {
     super('failure' in taskDetails ? taskDetails.failure : 'Task cancelled');
     this.taskDetails = taskDetails;
     this.name = 'TaskFailedError';
@@ -15,8 +22,8 @@ export class TaskFailedError extends Error {
 }
 
 export class TaskTimedOutError extends Error {
-  taskDetails: TaskRetrieveResponse;
-  constructor(taskDetails: TaskRetrieveResponse) {
+  taskDetails: TaskRetrieveResponse | WorkflowInvocationRetrieveResponse;
+  constructor(taskDetails: TaskRetrieveResponse | WorkflowInvocationRetrieveResponse) {
     super('Task timed out');
     this.taskDetails = taskDetails;
     this.name = 'TaskTimedOutError';
@@ -104,6 +111,64 @@ export function wrapAsWaitableResource<T extends { id: string }>(client: RunwayM
       configurable: false,
     }) as APIPromise<T> & {
       waitForTaskOutput: () => Promise<TaskRetrieveResponse.Succeeded>;
+    };
+  };
+}
+
+export type APIPromiseWithAwaitableWorkflowInvocation<T extends { id: string }> = APIPromise<T> & {
+  /**
+   * When called, this will wait until the workflow invocation is complete.
+   *
+   * If the invocation fails or is cancelled, a `TaskFailedError` will be thrown.
+   */
+  waitForTaskOutput: (
+    options?: WaitForTaskOutputOptions,
+  ) => Promise<WorkflowInvocationRetrieveResponse.Succeeded>;
+};
+
+export function wrapAsWaitableWorkflowInvocation<T extends { id: string }>(client: RunwayML) {
+  return (
+    responsePromise: APIPromise<T>,
+    skipInitialWait: boolean = false,
+  ): APIPromiseWithAwaitableWorkflowInvocation<T> => {
+    return Object.defineProperty(responsePromise, 'waitForTaskOutput', {
+      value: async (options?: WaitForTaskOutputOptions) => {
+        const wait = () =>
+          new Promise<void>((resolve) =>
+            setTimeout(resolve, POLL_TIME + Math.random() * POLL_JITTER - POLL_JITTER / 2),
+          );
+
+        if (!skipInitialWait) {
+          await wait();
+        }
+
+        const { timeout = 60 * 10 * 1000 } = options ?? {};
+        const output = await responsePromise;
+        const startTime = Date.now();
+        let details: WorkflowInvocationRetrieveResponse;
+        do {
+          if (options?.abortSignal?.aborted) {
+            throw new AbortError();
+          }
+          details = await client.workflowInvocations.retrieve(output.id);
+          if (details.status === 'SUCCEEDED') {
+            return details;
+          }
+          if (details.status === 'FAILED' || details.status === 'CANCELLED') {
+            throw new TaskFailedError(details);
+          }
+          await wait();
+          if (timeout != null && Date.now() - startTime > timeout && !options?.abortSignal?.aborted) {
+            throw new TaskTimedOutError(details);
+          }
+        } while (['THROTTLED', 'PENDING', 'RUNNING'].includes(details.status));
+        throw new TaskTimedOutError(details);
+      },
+      writable: false,
+      enumerable: false,
+      configurable: false,
+    }) as APIPromise<T> & {
+      waitForTaskOutput: () => Promise<WorkflowInvocationRetrieveResponse.Succeeded>;
     };
   };
 }
