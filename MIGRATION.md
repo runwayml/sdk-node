@@ -70,6 +70,7 @@ This affects the following methods:
 - `client.organization.retrieveUsage()`
 - `client.avatars.update()`
 - `client.documents.update()`
+- `client.workflows.run()`
 
 ### Removed `httpAgent` in favor of `fetchOptions`
 
