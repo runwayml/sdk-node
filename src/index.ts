@@ -28,4 +28,5 @@ export {
   WaitForTaskOutputOptions,
   AbortError,
   type APIPromiseWithAwaitableTask,
+  type APIPromiseWithAwaitableWorkflowInvocation,
 } from './lib/polling';

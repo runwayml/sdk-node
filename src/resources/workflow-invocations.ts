@@ -1,9 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
+import { APIPromiseWithAwaitableWorkflowInvocation, wrapAsWaitableWorkflowInvocation } from '../lib/polling';
 
 export class WorkflowInvocations extends APIResource {
   /**
@@ -11,8 +11,14 @@ export class WorkflowInvocations extends APIResource {
    * expect updates more frequent than once every five seconds for a given workflow
    * invocation.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<WorkflowInvocationRetrieveResponse> {
-    return this._client.get(path`/v1/workflow_invocations/${id}`, options);
+  retrieve(
+    id: string,
+    options?: RequestOptions,
+  ): APIPromiseWithAwaitableWorkflowInvocation<WorkflowInvocationRetrieveResponse> {
+    return wrapAsWaitableWorkflowInvocation<WorkflowInvocationRetrieveResponse>(this._client)(
+      this._client.get(path`/v1/workflow_invocations/${id}`, options),
+      true,
+    );
   }
 }
 
