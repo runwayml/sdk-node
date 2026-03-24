@@ -83,4 +83,12 @@ export {
   type VoicePreviewParams,
   type VoiceListResponsesCursorPage,
 } from './voices';
+export { WorkflowInvocations, type WorkflowInvocationRetrieveResponse } from './workflow-invocations';
+export {
+  Workflows,
+  type WorkflowRetrieveResponse,
+  type WorkflowListResponse,
+  type WorkflowRunResponse,
+  type WorkflowRunParams,
+} from './workflows';
 export { Uploads, type UploadCreateEphemeralResponse, type UploadsCreateEphemeralParams } from './uploads';

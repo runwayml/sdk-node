@@ -103,6 +103,14 @@ import {
   VoiceRetrieveResponse,
   Voices,
 } from './resources/voices';
+import { WorkflowInvocationRetrieveResponse, WorkflowInvocations } from './resources/workflow-invocations';
+import {
+  WorkflowListResponse,
+  WorkflowRetrieveResponse,
+  WorkflowRunParams,
+  WorkflowRunResponse,
+  Workflows,
+} from './resources/workflows';
 import { type Fetch } from './internal/builtin-types';
 import { isRunningInBrowser } from './internal/detect-platform';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
@@ -893,6 +901,8 @@ export class RunwayML {
   realtimeSessions: API.RealtimeSessions = new API.RealtimeSessions(this);
   voices: API.Voices = new API.Voices(this);
   uploads: API.Uploads = new API.Uploads(this);
+  workflows: API.Workflows = new API.Workflows(this);
+  workflowInvocations: API.WorkflowInvocations = new API.WorkflowInvocations(this);
 }
 
 RunwayML.Tasks = Tasks;
@@ -912,6 +922,8 @@ RunwayML.Documents = Documents;
 RunwayML.RealtimeSessions = RealtimeSessions;
 RunwayML.Voices = Voices;
 RunwayML.Uploads = Uploads;
+RunwayML.Workflows = Workflows;
+RunwayML.WorkflowInvocations = WorkflowInvocations;
 
 export declare namespace RunwayML {
   export type RequestOptions = Opts.RequestOptions;
@@ -1034,5 +1046,18 @@ export declare namespace RunwayML {
     Uploads as Uploads,
     type UploadCreateEphemeralResponse as UploadCreateEphemeralResponse,
     type UploadsCreateEphemeralParams as UploadsCreateEphemeralParams,
+  };
+
+  export {
+    Workflows as Workflows,
+    type WorkflowRetrieveResponse as WorkflowRetrieveResponse,
+    type WorkflowListResponse as WorkflowListResponse,
+    type WorkflowRunResponse as WorkflowRunResponse,
+    type WorkflowRunParams as WorkflowRunParams,
+  };
+
+  export {
+    WorkflowInvocations as WorkflowInvocations,
+    type WorkflowInvocationRetrieveResponse as WorkflowInvocationRetrieveResponse,
   };
 }
