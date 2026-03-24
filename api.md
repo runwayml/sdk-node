@@ -183,3 +183,27 @@ Methods:
 - <code title="get /v1/voices">client.voices.<a href="./src/resources/voices.ts">list</a>({ ...params }) -> VoiceListResponsesCursorPage</code>
 - <code title="delete /v1/voices/{id}">client.voices.<a href="./src/resources/voices.ts">delete</a>(id) -> void</code>
 - <code title="post /v1/voices/preview">client.voices.<a href="./src/resources/voices.ts">preview</a>({ ...params }) -> VoicePreviewResponse</code>
+
+# Workflows
+
+Types:
+
+- <code><a href="./src/resources/workflows.ts">WorkflowRetrieveResponse</a></code>
+- <code><a href="./src/resources/workflows.ts">WorkflowListResponse</a></code>
+- <code><a href="./src/resources/workflows.ts">WorkflowRunResponse</a></code>
+
+Methods:
+
+- <code title="get /v1/workflows/{id}">client.workflows.<a href="./src/resources/workflows.ts">retrieve</a>(id) -> WorkflowRetrieveResponse</code>
+- <code title="get /v1/workflows">client.workflows.<a href="./src/resources/workflows.ts">list</a>() -> WorkflowListResponse</code>
+- <code title="post /v1/workflows/{id}">client.workflows.<a href="./src/resources/workflows.ts">run</a>(id, { ...params }) -> WorkflowRunResponse</code>
+
+# WorkflowInvocations
+
+Types:
+
+- <code><a href="./src/resources/workflow-invocations.ts">WorkflowInvocationRetrieveResponse</a></code>
+
+Methods:
+
+- <code title="get /v1/workflow_invocations/{id}">client.workflowInvocations.<a href="./src/resources/workflow-invocations.ts">retrieve</a>(id) -> WorkflowInvocationRetrieveResponse</code>
