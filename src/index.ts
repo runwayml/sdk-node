@@ -25,6 +25,8 @@ export {
 export {
   TaskFailedError,
   TaskTimedOutError,
+  WorkflowInvocationFailedError,
+  WorkflowInvocationTimedOutError,
   WaitForTaskOutputOptions,
   AbortError,
   type APIPromiseWithAwaitableTask,

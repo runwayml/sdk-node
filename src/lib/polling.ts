@@ -7,14 +7,8 @@ const POLL_TIME = 6000; // 6 seconds
 const POLL_JITTER = 3000; // 3 seconds
 
 export class TaskFailedError extends Error {
-  taskDetails: TaskRetrieveResponse | WorkflowInvocationRetrieveResponse;
-  constructor(
-    taskDetails:
-      | TaskRetrieveResponse.Failed
-      | TaskRetrieveResponse.Cancelled
-      | WorkflowInvocationRetrieveResponse.Failed
-      | WorkflowInvocationRetrieveResponse.Cancelled,
-  ) {
+  taskDetails: TaskRetrieveResponse;
+  constructor(taskDetails: TaskRetrieveResponse.Failed | TaskRetrieveResponse.Cancelled) {
     super('failure' in taskDetails ? taskDetails.failure : 'Task cancelled');
     this.taskDetails = taskDetails;
     this.name = 'TaskFailedError';
@@ -22,8 +16,8 @@ export class TaskFailedError extends Error {
 }
 
 export class TaskTimedOutError extends Error {
-  taskDetails: TaskRetrieveResponse | WorkflowInvocationRetrieveResponse;
-  constructor(taskDetails: TaskRetrieveResponse | WorkflowInvocationRetrieveResponse) {
+  taskDetails: TaskRetrieveResponse;
+  constructor(taskDetails: TaskRetrieveResponse) {
     super('Task timed out');
     this.taskDetails = taskDetails;
     this.name = 'TaskTimedOutError';
@@ -56,6 +50,28 @@ export class AbortError extends Error {
   constructor() {
     super('Polling aborted');
     this.name = 'AbortError';
+  }
+}
+
+export class WorkflowInvocationFailedError extends Error {
+  invocationDetails: WorkflowInvocationRetrieveResponse;
+  constructor(
+    invocationDetails:
+      | WorkflowInvocationRetrieveResponse.Failed
+      | WorkflowInvocationRetrieveResponse.Cancelled,
+  ) {
+    super('failure' in invocationDetails ? invocationDetails.failure : 'Workflow invocation cancelled');
+    this.invocationDetails = invocationDetails;
+    this.name = 'WorkflowInvocationFailedError';
+  }
+}
+
+export class WorkflowInvocationTimedOutError extends Error {
+  invocationDetails: WorkflowInvocationRetrieveResponse;
+  constructor(invocationDetails: WorkflowInvocationRetrieveResponse) {
+    super('Workflow invocation timed out');
+    this.invocationDetails = invocationDetails;
+    this.name = 'WorkflowInvocationTimedOutError';
   }
 }
 
@@ -119,7 +135,7 @@ export type APIPromiseWithAwaitableWorkflowInvocation<T extends { id: string }> 
   /**
    * When called, this will wait until the workflow invocation is complete.
    *
-   * If the invocation fails or is cancelled, a `TaskFailedError` will be thrown.
+   * If the invocation fails or is cancelled, a `WorkflowInvocationFailedError` will be thrown.
    */
   waitForTaskOutput: (
     options?: WaitForTaskOutputOptions,
@@ -155,14 +171,14 @@ export function wrapAsWaitableWorkflowInvocation<T extends { id: string }>(clien
             return details;
           }
           if (details.status === 'FAILED' || details.status === 'CANCELLED') {
-            throw new TaskFailedError(details);
+            throw new WorkflowInvocationFailedError(details);
           }
           await wait();
           if (timeout != null && Date.now() - startTime > timeout && !options?.abortSignal?.aborted) {
-            throw new TaskTimedOutError(details);
+            throw new WorkflowInvocationTimedOutError(details);
           }
         } while (['THROTTLED', 'PENDING', 'RUNNING'].includes(details.status));
-        throw new TaskTimedOutError(details);
+        throw new WorkflowInvocationTimedOutError(details);
       },
       writable: false,
       enumerable: false,
