@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import RunwayML, { TaskFailedError, TaskTimedOutError } from '@runwayml/sdk';
+import RunwayML, { WorkflowInvocationFailedError, WorkflowInvocationTimedOutError } from '@runwayml/sdk';
 import { WorkflowInvocationRetrieveResponse } from '@runwayml/sdk/resources/workflow-invocations';
 import { wrapAsWaitableWorkflowInvocation } from '@runwayml/sdk/lib/polling';
 
@@ -85,20 +85,20 @@ describe('workflowInvocations polling', () => {
     expect(spy).toHaveBeenCalledTimes(2);
   });
 
-  test('waitForTaskOutput throws TaskFailedError on FAILED', async () => {
+  test('waitForTaskOutput throws WorkflowInvocationFailedError on FAILED', async () => {
     mockRetrieveSequence([failedResponse]);
 
     await expect(
       client.workflowInvocations.retrieve('inv-1').waitForTaskOutput({ timeout: 5000 }),
-    ).rejects.toThrow(TaskFailedError);
+    ).rejects.toThrow(WorkflowInvocationFailedError);
   });
 
-  test('waitForTaskOutput throws TaskFailedError on CANCELLED', async () => {
+  test('waitForTaskOutput throws WorkflowInvocationFailedError on CANCELLED', async () => {
     mockRetrieveSequence([cancelledResponse]);
 
     await expect(
       client.workflowInvocations.retrieve('inv-1').waitForTaskOutput({ timeout: 5000 }),
-    ).rejects.toThrow(TaskFailedError);
+    ).rejects.toThrow(WorkflowInvocationFailedError);
   });
 
   test('waitForTaskOutput polls until SUCCEEDED', async () => {
@@ -112,12 +112,26 @@ describe('workflowInvocations polling', () => {
     expect(spy).toHaveBeenCalledTimes(3);
   });
 
-  test('waitForTaskOutput throws TaskTimedOutError on timeout', async () => {
+  test('waitForTaskOutput throws WorkflowInvocationTimedOutError on timeout', async () => {
     mockRetrieveSequence([pendingResponse]);
 
     const resultPromise = client.workflowInvocations.retrieve('inv-1').waitForTaskOutput({ timeout: 0 });
-    const expectation = expect(resultPromise).rejects.toThrow(TaskTimedOutError);
+    const expectation = expect(resultPromise).rejects.toThrow(WorkflowInvocationTimedOutError);
     await jest.advanceTimersByTimeAsync(10000);
     await expectation;
+  });
+
+  test('WorkflowInvocationFailedError exposes invocationDetails', async () => {
+    mockRetrieveSequence([failedResponse]);
+
+    try {
+      await client.workflowInvocations.retrieve('inv-1').waitForTaskOutput({ timeout: 5000 });
+      throw new Error('Expected WorkflowInvocationFailedError');
+    } catch (e) {
+      expect(e).toBeInstanceOf(WorkflowInvocationFailedError);
+      const err = e as WorkflowInvocationFailedError;
+      expect(err.invocationDetails).toEqual(failedResponse);
+      expect(err.message).toBe('Workflow execution failed');
+    }
   });
 });
