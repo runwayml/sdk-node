@@ -1,5 +1,30 @@
 # Changelog
 
+## 3.17.0 (2026-03-25)
+
+Full Changelog: [v3.16.0...v3.17.0](https://github.com/runwayml/sdk-node/compare/v3.16.0...v3.17.0)
+
+### Features
+
+* **api:** add workflow invocation polling support ([c05733c](https://github.com/runwayml/sdk-node/commit/c05733cc5753b1f7d72e85168cfb321707b1494f))
+* **api:** add workflows and workflow invocations resources ([6aa098e](https://github.com/runwayml/sdk-node/commit/6aa098e3ba74be27f8d49c52fcfefc39447af79b))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([80ce659](https://github.com/runwayml/sdk-node/commit/80ce6596ed45087d5bedb61dce9db065d898610f))
+* **internal:** update gitignore ([6dc6507](https://github.com/runwayml/sdk-node/commit/6dc6507fdb901cfd58f60284182d0065419e64e0))
+* **tests:** bump steady to v0.19.4 ([8d37113](https://github.com/runwayml/sdk-node/commit/8d37113cff2c0c37621f5e3d62aefb1654facb78))
+* **tests:** bump steady to v0.19.5 ([515e736](https://github.com/runwayml/sdk-node/commit/515e7362611ffaec52882c020130e7c904962b78))
+* **tests:** bump steady to v0.19.6 ([1363c44](https://github.com/runwayml/sdk-node/commit/1363c447d7bc7add2684d5e98a3ad20883a782af))
+* **tests:** bump steady to v0.19.7 ([f628805](https://github.com/runwayml/sdk-node/commit/f6288059be86ff9ed4d60533e8437ed812748b90))
+
+
+### Refactors
+
+* introduce dedicated error types for workflow invocation polling ([3153b42](https://github.com/runwayml/sdk-node/commit/3153b42db14762a8e288b920fd9fca2190d9e05a))
+* **tests:** switch from prism to steady ([0f4e7e8](https://github.com/runwayml/sdk-node/commit/0f4e7e86b48708beaa4ba844f53f5cb5b7e0ad98))
+
 ## 3.16.0 (2026-03-18)
 
 Full Changelog: [v3.15.1...v3.16.0](https://github.com/runwayml/sdk-node/compare/v3.15.1...v3.16.0)
