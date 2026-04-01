@@ -217,6 +217,11 @@ export interface RealtimeSessionCreateParams {
    * avatar default.
    */
   startScript?: string;
+
+  /**
+   * Tools available to the avatar during the session.
+   */
+  tools?: Array<RealtimeSessionCreateParams.ClientEvent | RealtimeSessionCreateParams.BackendRpc>;
 }
 
 export namespace RealtimeSessionCreateParams {
@@ -251,6 +256,355 @@ export namespace RealtimeSessionCreateParams {
     avatarId: string;
 
     type: 'custom';
+  }
+
+  /**
+   * A fire-and-forget tool that sends arguments to the frontend client of the
+   * realtime session.
+   */
+  export interface ClientEvent {
+    /**
+     * A description of when and how the tool should be used. Be specific so the avatar
+     * understands the right context to invoke it.
+     */
+    description: string;
+
+    /**
+     * The tool name. Must start with a letter or underscore, followed by alphanumeric
+     * characters or underscores.
+     */
+    name: string;
+
+    type: 'client_event';
+
+    parameters?: Array<
+      | ClientEvent.String
+      | ClientEvent.Integer
+      | ClientEvent.Number
+      | ClientEvent.Boolean
+      | ClientEvent.Array_
+      | ClientEvent.Object
+    >;
+  }
+
+  export namespace ClientEvent {
+    export interface String {
+      /**
+       * A description of the parameter.
+       */
+      description: string;
+
+      /**
+       * The parameter name.
+       */
+      name: string;
+
+      type: 'string';
+
+      /**
+       * Allowed values for the parameter.
+       */
+      enum?: Array<string>;
+
+      /**
+       * Whether the parameter is required.
+       */
+      required?: boolean;
+    }
+
+    export interface Integer {
+      /**
+       * A description of the parameter.
+       */
+      description: string;
+
+      /**
+       * The parameter name.
+       */
+      name: string;
+
+      type: 'integer';
+
+      /**
+       * Whether the parameter is required.
+       */
+      required?: boolean;
+    }
+
+    export interface Number {
+      /**
+       * A description of the parameter.
+       */
+      description: string;
+
+      /**
+       * The parameter name.
+       */
+      name: string;
+
+      type: 'number';
+
+      /**
+       * Whether the parameter is required.
+       */
+      required?: boolean;
+    }
+
+    export interface Boolean {
+      /**
+       * A description of the parameter.
+       */
+      description: string;
+
+      /**
+       * The parameter name.
+       */
+      name: string;
+
+      type: 'boolean';
+
+      /**
+       * Whether the parameter is required.
+       */
+      required?: boolean;
+    }
+
+    export interface Array_ {
+      /**
+       * A description of the parameter.
+       */
+      description: string;
+
+      /**
+       * Item schema for array elements.
+       */
+      items: Array_.Items;
+
+      /**
+       * The parameter name.
+       */
+      name: string;
+
+      type: 'array';
+
+      /**
+       * Whether the parameter is required.
+       */
+      required?: boolean;
+    }
+
+    export namespace Array_ {
+      /**
+       * Item schema for array elements.
+       */
+      export interface Items {
+        /**
+         * The type of each element in the array.
+         */
+        type: 'string' | 'integer' | 'number' | 'boolean';
+      }
+    }
+
+    export interface Object {
+      /**
+       * A description of the parameter.
+       */
+      description: string;
+
+      /**
+       * The parameter name.
+       */
+      name: string;
+
+      /**
+       * The properties of the object.
+       */
+      properties: Array<unknown>;
+
+      type: 'object';
+
+      /**
+       * Whether the parameter is required.
+       */
+      required?: boolean;
+    }
+  }
+
+  /**
+   * A tool that makes a round-trip RPC call to your backend server during the
+   * session.
+   */
+  export interface BackendRpc {
+    /**
+     * A description of when and how the tool should be used. Be specific so the avatar
+     * understands the right context to invoke it.
+     */
+    description: string;
+
+    /**
+     * The tool name. Must start with a letter or underscore, followed by alphanumeric
+     * characters or underscores.
+     */
+    name: string;
+
+    type: 'backend_rpc';
+
+    parameters?: Array<
+      | BackendRpc.String
+      | BackendRpc.Integer
+      | BackendRpc.Number
+      | BackendRpc.Boolean
+      | BackendRpc.Array_
+      | BackendRpc.Object
+    >;
+
+    /**
+     * Maximum time to wait for the backend to respond.
+     */
+    timeoutSeconds?: number;
+  }
+
+  export namespace BackendRpc {
+    export interface String {
+      /**
+       * A description of the parameter.
+       */
+      description: string;
+
+      /**
+       * The parameter name.
+       */
+      name: string;
+
+      type: 'string';
+
+      /**
+       * Allowed values for the parameter.
+       */
+      enum?: Array<string>;
+
+      /**
+       * Whether the parameter is required.
+       */
+      required?: boolean;
+    }
+
+    export interface Integer {
+      /**
+       * A description of the parameter.
+       */
+      description: string;
+
+      /**
+       * The parameter name.
+       */
+      name: string;
+
+      type: 'integer';
+
+      /**
+       * Whether the parameter is required.
+       */
+      required?: boolean;
+    }
+
+    export interface Number {
+      /**
+       * A description of the parameter.
+       */
+      description: string;
+
+      /**
+       * The parameter name.
+       */
+      name: string;
+
+      type: 'number';
+
+      /**
+       * Whether the parameter is required.
+       */
+      required?: boolean;
+    }
+
+    export interface Boolean {
+      /**
+       * A description of the parameter.
+       */
+      description: string;
+
+      /**
+       * The parameter name.
+       */
+      name: string;
+
+      type: 'boolean';
+
+      /**
+       * Whether the parameter is required.
+       */
+      required?: boolean;
+    }
+
+    export interface Array_ {
+      /**
+       * A description of the parameter.
+       */
+      description: string;
+
+      /**
+       * Item schema for array elements.
+       */
+      items: Array_.Items;
+
+      /**
+       * The parameter name.
+       */
+      name: string;
+
+      type: 'array';
+
+      /**
+       * Whether the parameter is required.
+       */
+      required?: boolean;
+    }
+
+    export namespace Array_ {
+      /**
+       * Item schema for array elements.
+       */
+      export interface Items {
+        /**
+         * The type of each element in the array.
+         */
+        type: 'string' | 'integer' | 'number' | 'boolean';
+      }
+    }
+
+    export interface Object {
+      /**
+       * A description of the parameter.
+       */
+      description: string;
+
+      /**
+       * The parameter name.
+       */
+      name: string;
+
+      /**
+       * The properties of the object.
+       */
+      properties: Array<unknown>;
+
+      type: 'object';
+
+      /**
+       * Whether the parameter is required.
+       */
+      required?: boolean;
+    }
   }
 }
 
