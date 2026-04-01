@@ -1,5 +1,26 @@
 # Changelog
 
+## 3.18.0 (2026-04-01)
+
+Full Changelog: [v3.17.0...v3.18.0](https://github.com/runwayml/sdk-node/compare/v3.17.0...v3.18.0)
+
+### Features
+
+* **api:** add tools parameter to realtime sessions ([3ca95a7](https://github.com/runwayml/sdk-node/commit/3ca95a7d79eb510b1156d3bd02ba3554109be274))
+
+
+### Bug Fixes
+
+* **internal:** gitignore generated `oidc` dir ([4beb1b1](https://github.com/runwayml/sdk-node/commit/4beb1b1826a5763cd28c966c705b270e5c89c501))
+
+
+### Chores
+
+* **internal:** codegen related update ([5923778](https://github.com/runwayml/sdk-node/commit/5923778aefb50508e2b61ac31368e127d96ab22e))
+* **internal:** update multipart form array serialization ([6034e99](https://github.com/runwayml/sdk-node/commit/6034e9945f15a789984853fcc1911bc04cdda8c4))
+* **tests:** bump steady to v0.20.1 ([20342cd](https://github.com/runwayml/sdk-node/commit/20342cd1f609dcdef034a6b24fcbf3843c3459b9))
+* **tests:** bump steady to v0.20.2 ([6cd7202](https://github.com/runwayml/sdk-node/commit/6cd7202bad8927cfa12a8bdf69f007c310ce71da))
+
 ## 3.17.0 (2026-03-25)
 
 Full Changelog: [v3.16.0...v3.17.0](https://github.com/runwayml/sdk-node/compare/v3.16.0...v3.17.0)
