@@ -29,6 +29,22 @@ describe('resource realtimeSessions', () => {
       maxDuration: 10,
       personality: 'x',
       startScript: 'x',
+      tools: [
+        {
+          description: 'x',
+          name: 'name',
+          type: 'client_event',
+          parameters: [
+            {
+              description: 'x',
+              name: 'name',
+              type: 'string',
+              enum: ['string'],
+              required: true,
+            },
+          ],
+        },
+      ],
     });
   });
 
