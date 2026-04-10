@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
+import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/polling';
 
 export class AvatarVideos extends APIResource {
   /**
@@ -11,8 +11,13 @@ export class AvatarVideos extends APIResource {
    * TTS). Poll `GET /v1/tasks/:id` to check progress and retrieve the output video
    * URL once complete.
    */
-  create(body: AvatarVideoCreateParams, options?: RequestOptions): APIPromise<AvatarVideoCreateResponse> {
-    return this._client.post('/v1/avatar_videos', { body, ...options });
+  create(
+    body: AvatarVideoCreateParams,
+    options?: RequestOptions,
+  ): APIPromiseWithAwaitableTask<AvatarVideoCreateResponse> {
+    return wrapAsWaitableResource<AvatarVideoCreateResponse>(this._client)(
+      this._client.post('/v1/avatar_videos', { body, ...options }),
+    );
   }
 }
 
