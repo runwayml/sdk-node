@@ -1,5 +1,20 @@
 # Changelog
 
+## 3.19.0 (2026-04-10)
+
+Full Changelog: [v3.18.0...v3.19.0](https://github.com/runwayml/sdk-node/compare/v3.18.0...v3.19.0)
+
+### Features
+
+* add polling support to avatarVideos.create() ([6c289fc](https://github.com/runwayml/sdk-node/commit/6c289fc8a57912a81bce89d509e76d24ec30ed08))
+* **api:** add avatar_videos resource ([c435fa0](https://github.com/runwayml/sdk-node/commit/c435fa0edcc1684739ec79d53e67f9baa10386ee))
+
+
+### Chores
+
+* **internal:** codegen related update ([1d2744c](https://github.com/runwayml/sdk-node/commit/1d2744ca0a51f602de14c16a552c0c677815f373))
+* pin GitHub Actions to full commit SHAs ([95c0349](https://github.com/runwayml/sdk-node/commit/95c0349195255bb61faf0a719fa409610afac918))
+
 ## 3.18.0 (2026-04-01)
 
 Full Changelog: [v3.17.0...v3.18.0](https://github.com/runwayml/sdk-node/compare/v3.17.0...v3.18.0)
