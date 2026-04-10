@@ -138,6 +138,16 @@ Methods:
 - <code title="get /v1/avatars">client.avatars.<a href="./src/resources/avatars.ts">list</a>({ ...params }) -> AvatarListResponsesCursorPage</code>
 - <code title="delete /v1/avatars/{id}">client.avatars.<a href="./src/resources/avatars.ts">delete</a>(id) -> void</code>
 
+# AvatarVideos
+
+Types:
+
+- <code><a href="./src/resources/avatar-videos.ts">AvatarVideoCreateResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/avatar_videos">client.avatarVideos.<a href="./src/resources/avatar-videos.ts">create</a>({ ...params }) -> AvatarVideoCreateResponse</code>
+
 # Documents
 
 Types:

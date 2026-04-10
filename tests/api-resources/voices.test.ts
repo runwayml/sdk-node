@@ -11,7 +11,7 @@ describe('resource voices', () => {
   test('create: only required params', async () => {
     const responsePromise = client.voices.create({
       from: {
-        model: 'eleven_multilingual_ttv_v2',
+        model: 'eleven_ttv_v3',
         prompt: 'xxxxxxxxxxxxxxxxxxxx',
         type: 'text',
       },
@@ -29,7 +29,7 @@ describe('resource voices', () => {
   test('create: required and optional params', async () => {
     const response = await client.voices.create({
       from: {
-        model: 'eleven_multilingual_ttv_v2',
+        model: 'eleven_ttv_v3',
         prompt: 'xxxxxxxxxxxxxxxxxxxx',
         type: 'text',
       },
@@ -76,10 +76,7 @@ describe('resource voices', () => {
   });
 
   test('preview: only required params', async () => {
-    const responsePromise = client.voices.preview({
-      model: 'eleven_multilingual_ttv_v2',
-      prompt: 'xxxxxxxxxxxxxxxxxxxx',
-    });
+    const responsePromise = client.voices.preview({ model: 'eleven_ttv_v3', prompt: 'xxxxxxxxxxxxxxxxxxxx' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -90,9 +87,6 @@ describe('resource voices', () => {
   });
 
   test('preview: required and optional params', async () => {
-    const response = await client.voices.preview({
-      model: 'eleven_multilingual_ttv_v2',
-      prompt: 'xxxxxxxxxxxxxxxxxxxx',
-    });
+    const response = await client.voices.preview({ model: 'eleven_ttv_v3', prompt: 'xxxxxxxxxxxxxxxxxxxx' });
   });
 });

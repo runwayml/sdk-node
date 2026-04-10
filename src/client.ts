@@ -19,6 +19,7 @@ import { AbstractPage, type CursorPageParams, CursorPageResponse } from './core/
 import * as UploadsCore from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
+import { AvatarVideoCreateParams, AvatarVideoCreateResponse, AvatarVideos } from './resources/avatar-videos';
 import {
   AvatarCreateParams,
   AvatarCreateResponse,
@@ -897,6 +898,7 @@ export class RunwayML {
   speechToSpeech: API.SpeechToSpeech = new API.SpeechToSpeech(this);
   organization: API.Organization = new API.Organization(this);
   avatars: API.Avatars = new API.Avatars(this);
+  avatarVideos: API.AvatarVideos = new API.AvatarVideos(this);
   documents: API.Documents = new API.Documents(this);
   realtimeSessions: API.RealtimeSessions = new API.RealtimeSessions(this);
   voices: API.Voices = new API.Voices(this);
@@ -918,6 +920,7 @@ RunwayML.VoiceDubbing = VoiceDubbing;
 RunwayML.SpeechToSpeech = SpeechToSpeech;
 RunwayML.Organization = Organization;
 RunwayML.Avatars = Avatars;
+RunwayML.AvatarVideos = AvatarVideos;
 RunwayML.Documents = Documents;
 RunwayML.RealtimeSessions = RealtimeSessions;
 RunwayML.Voices = Voices;
@@ -1010,6 +1013,12 @@ export declare namespace RunwayML {
     type AvatarCreateParams as AvatarCreateParams,
     type AvatarUpdateParams as AvatarUpdateParams,
     type AvatarListParams as AvatarListParams,
+  };
+
+  export {
+    AvatarVideos as AvatarVideos,
+    type AvatarVideoCreateResponse as AvatarVideoCreateResponse,
+    type AvatarVideoCreateParams as AvatarVideoCreateParams,
   };
 
   export {
