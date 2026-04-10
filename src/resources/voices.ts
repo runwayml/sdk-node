@@ -9,7 +9,8 @@ import { path } from '../internal/utils/path';
 
 export class Voices extends APIResource {
   /**
-   * Create a custom voice from a text description.
+   * Create a custom voice from a text description, or clone a voice from an audio
+   * sample.
    */
   create(body: VoiceCreateParams, options?: RequestOptions): APIPromise<VoiceCreateResponse> {
     return this._client.post('/v1/voices', { body, ...options });
@@ -283,7 +284,7 @@ export interface VoiceCreateParams {
   /**
    * The source configuration for creating the voice.
    */
-  from: VoiceCreateParams.From;
+  from: VoiceCreateParams.Text | VoiceCreateParams.Audio;
 
   /**
    * A name for the voice.
@@ -300,11 +301,12 @@ export namespace VoiceCreateParams {
   /**
    * The source configuration for creating the voice.
    */
-  export interface From {
+  export interface Text {
     /**
-     * The voice design model to use.
+     * The voice design model to use. Prefer eleven_ttv_v3 (latest);
+     * eleven_multilingual_ttv_v2 is the previous generation.
      */
-    model: 'eleven_multilingual_ttv_v2' | 'eleven_ttv_v3';
+    model: 'eleven_ttv_v3' | 'eleven_multilingual_ttv_v2';
 
     /**
      * A text description of the desired voice characteristics. Must be at least 20
@@ -314,15 +316,25 @@ export namespace VoiceCreateParams {
 
     type: 'text';
   }
+
+  export interface Audio {
+    /**
+     * A HTTPS URL.
+     */
+    audio: string;
+
+    type: 'audio';
+  }
 }
 
 export interface VoiceListParams extends CursorPageParams {}
 
 export interface VoicePreviewParams {
   /**
-   * The voice design model to use.
+   * The voice design model to use. Prefer eleven_ttv_v3 (latest);
+   * eleven_multilingual_ttv_v2 is the previous generation.
    */
-  model: 'eleven_multilingual_ttv_v2' | 'eleven_ttv_v3';
+  model: 'eleven_ttv_v3' | 'eleven_multilingual_ttv_v2';
 
   /**
    * A text description of the desired voice characteristics. Must be at least 20

@@ -1,5 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+export { AvatarVideos, type AvatarVideoCreateResponse, type AvatarVideoCreateParams } from './avatar-videos';
 export {
   Avatars,
   type AvatarCreateResponse,
