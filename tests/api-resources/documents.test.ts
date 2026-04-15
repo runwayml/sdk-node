@@ -63,7 +63,11 @@ describe('resource documents', () => {
   });
 
   test('list: only required params', async () => {
-    const responsePromise = client.documents.list({ limit: 1 });
+    const responsePromise = client.documents.list({
+      limit: 1,
+      order: 'asc',
+      sort: 'createdAt',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -74,7 +78,12 @@ describe('resource documents', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.documents.list({ limit: 1, cursor: 'x' });
+    const response = await client.documents.list({
+      limit: 1,
+      order: 'asc',
+      sort: 'createdAt',
+      cursor: 'x',
+    });
   });
 
   test('delete', async () => {

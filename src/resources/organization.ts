@@ -112,14 +112,20 @@ export interface OrganizationRetrieveUsageResponse {
     | 'veo3.1'
     | 'veo3.1_fast'
     | 'gemini_2.5_flash'
+    | 'gemini_image3_pro'
+    | 'gemini_image3.1_flash'
     | 'eleven_multilingual_v2'
+    | 'eleven_v3'
     | 'eleven_text_to_sound_v2'
     | 'eleven_voice_isolation'
     | 'eleven_voice_dubbing'
     | 'eleven_multilingual_sts_v2'
+    | 'eleven_scribe_v2'
     | 'gwm1_avatars'
     | 'gwm1_avatar_async_audio_to_video'
+    | 'gwm1_avatar_async_text_to_video'
     | 'voice_processing'
+    | 'seedance2'
   >;
 
   results: Array<OrganizationRetrieveUsageResponse.Result>;
@@ -142,7 +148,8 @@ export namespace OrganizationRetrieveUsageResponse {
   export namespace Result {
     export interface UsedCredit {
       /**
-       * The number of credits spent on the model.
+       * The net number of credits spent on the model. May be negative if refunds
+       * exceeded charges on this day.
        */
       amount: number;
 
@@ -161,14 +168,20 @@ export namespace OrganizationRetrieveUsageResponse {
         | 'veo3.1'
         | 'veo3.1_fast'
         | 'gemini_2.5_flash'
+        | 'gemini_image3_pro'
+        | 'gemini_image3.1_flash'
         | 'eleven_multilingual_v2'
+        | 'eleven_v3'
         | 'eleven_text_to_sound_v2'
         | 'eleven_voice_isolation'
         | 'eleven_voice_dubbing'
         | 'eleven_multilingual_sts_v2'
+        | 'eleven_scribe_v2'
         | 'gwm1_avatars'
         | 'gwm1_avatar_async_audio_to_video'
-        | 'voice_processing';
+        | 'gwm1_avatar_async_text_to_video'
+        | 'voice_processing'
+        | 'seedance2';
     }
   }
 }
