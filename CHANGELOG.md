@@ -1,5 +1,23 @@
 # Changelog
 
+## 3.20.0 (2026-04-15)
+
+Full Changelog: [v3.19.0...v3.20.0](https://github.com/runwayml/sdk-node/compare/v3.19.0...v3.20.0)
+
+### Features
+
+* **api:** seedance2 ([cbaaf3c](https://github.com/runwayml/sdk-node/commit/cbaaf3c42efd8bbd4471b94c4e389f86748e0226))
+
+
+### Bug Fixes
+
+* **api:** remove spurious api param ([bde5309](https://github.com/runwayml/sdk-node/commit/bde5309f727e6d15f8edef2a8837402b3ff85b06))
+
+
+### Chores
+
+* **internal:** codegen related update ([3257fe4](https://github.com/runwayml/sdk-node/commit/3257fe4ee47cedeea5a65009d37d92919716927b))
+
 ## 3.19.0 (2026-04-10)
 
 Full Changelog: [v3.18.0...v3.19.0](https://github.com/runwayml/sdk-node/compare/v3.18.0...v3.19.0)
