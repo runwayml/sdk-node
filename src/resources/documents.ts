@@ -70,7 +70,11 @@ export class Documents extends APIResource {
    * ```ts
    * // Automatically fetches more pages as needed.
    * for await (const documentListResponse of client.documents.list(
-   *   { limit: 1 },
+   *   {
+   *     limit: 1,
+   *     order: 'asc',
+   *     sort: 'createdAt',
+   *   },
    * )) {
    *   // ...
    * }
@@ -291,7 +295,17 @@ export interface DocumentUpdateParams {
   name?: string;
 }
 
-export interface DocumentListParams extends CursorPageParams {}
+export interface DocumentListParams extends CursorPageParams {
+  /**
+   * Sort direction.
+   */
+  order: 'asc' | 'desc';
+
+  /**
+   * Field to sort results by.
+   */
+  sort: 'createdAt' | 'updatedAt';
+}
 
 export declare namespace Documents {
   export {

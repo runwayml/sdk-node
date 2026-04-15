@@ -10,11 +10,7 @@ const client = new RunwayML({
 describe('resource voices', () => {
   test('create: only required params', async () => {
     const responsePromise = client.voices.create({
-      from: {
-        model: 'eleven_ttv_v3',
-        prompt: 'xxxxxxxxxxxxxxxxxxxx',
-        type: 'text',
-      },
+      from: { audio: 'https://example.com/file', type: 'audio' },
       name: 'x',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -28,11 +24,7 @@ describe('resource voices', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.voices.create({
-      from: {
-        model: 'eleven_ttv_v3',
-        prompt: 'xxxxxxxxxxxxxxxxxxxx',
-        type: 'text',
-      },
+      from: { audio: 'https://example.com/file', type: 'audio' },
       name: 'x',
       description: 'x',
     });
