@@ -38,6 +38,7 @@ export type ImageToVideoCreateParams =
   | ImageToVideoCreateParams.Gen3aTurbo
   | ImageToVideoCreateParams.Veo3_1
   | ImageToVideoCreateParams.Veo3_1Fast
+  | ImageToVideoCreateParams.Seedance2
   | ImageToVideoCreateParams.Veo3;
 
 export declare namespace ImageToVideoCreateParams {
@@ -325,6 +326,69 @@ export declare namespace ImageToVideoCreateParams {
        * A HTTPS URL.
        */
       uri: string;
+    }
+  }
+
+  export interface Seedance2 {
+    model: 'seedance2';
+
+    /**
+     * An image or array of images. Use position `first`/`last` for keyframe mode, or
+     * omit position for reference images. The two modes cannot be mixed.
+     */
+    promptImage: string | Array<Seedance2.PromptImage>;
+
+    /**
+     * Whether to generate audio for the video. Audio inclusion affects pricing.
+     */
+    audio?: boolean;
+
+    /**
+     * The number of seconds of duration for the output video.
+     */
+    duration?: number;
+
+    /**
+     * The number of video generations to produce.
+     */
+    outputCount?: number;
+
+    /**
+     * An optional text prompt up to 3500 characters (measured in UTF-16 code units).
+     * This should describe in detail what should appear in the output.
+     */
+    promptText?: string;
+
+    /**
+     * The resolution of the output video.
+     */
+    ratio?:
+      | '992:432'
+      | '864:496'
+      | '752:560'
+      | '640:640'
+      | '560:752'
+      | '496:864'
+      | '1470:630'
+      | '1280:720'
+      | '1112:834'
+      | '960:960'
+      | '834:1112'
+      | '720:1280';
+  }
+
+  export namespace Seedance2 {
+    export interface PromptImage {
+      /**
+       * A HTTPS URL.
+       */
+      uri: string;
+
+      /**
+       * The position of the image in the output video. "first" will use the image as the
+       * first frame, "last" as the last frame. Omit for a reference image.
+       */
+      position?: 'first' | 'last';
     }
   }
 

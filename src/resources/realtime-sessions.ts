@@ -8,7 +8,9 @@ import { path } from '../internal/utils/path';
 
 export class RealtimeSessions extends APIResource {
   /**
-   * Create a new realtime session with the specified model configuration.
+   * Create a new realtime session with the specified model configuration. The
+   * returned ID is also the conversation ID used later to fetch transcripts and
+   * recordings from the avatar conversation endpoints.
    */
   create(
     body: RealtimeSessionCreateParams,
@@ -18,7 +20,8 @@ export class RealtimeSessions extends APIResource {
   }
 
   /**
-   * Get the status of a realtime session.
+   * Get the status of a realtime session. This endpoint uses the same ID that the
+   * avatar conversation endpoints later expose as the conversation ID.
    */
   retrieve(id: string, options?: RequestOptions): APIPromise<RealtimeSessionRetrieveResponse> {
     return this._client.get(path`/v1/realtime_sessions/${id}`, options);
@@ -37,7 +40,8 @@ export class RealtimeSessions extends APIResource {
 
 export interface RealtimeSessionCreateResponse {
   /**
-   * The ID of the created realtime session.
+   * The ID of the created realtime session. This same value is later used as the
+   * conversation ID in the avatar conversation endpoints.
    */
   id: string;
 }
@@ -59,7 +63,8 @@ export namespace RealtimeSessionRetrieveResponse {
    */
   export interface NotReady {
     /**
-     * The realtime session ID.
+     * The realtime session ID. This same value is later used as the conversation ID in
+     * the avatar conversation endpoints.
      */
     id: string;
 
@@ -82,7 +87,8 @@ export namespace RealtimeSessionRetrieveResponse {
    */
   export interface Ready {
     /**
-     * The realtime session ID.
+     * The realtime session ID. This same value is later used as the conversation ID in
+     * the avatar conversation endpoints.
      */
     id: string;
 
@@ -109,7 +115,8 @@ export namespace RealtimeSessionRetrieveResponse {
    */
   export interface Running {
     /**
-     * The realtime session ID.
+     * The realtime session ID. This same value is later used as the conversation ID in
+     * the avatar conversation endpoints.
      */
     id: string;
 
@@ -126,7 +133,8 @@ export namespace RealtimeSessionRetrieveResponse {
    */
   export interface Completed {
     /**
-     * The realtime session ID.
+     * The realtime session ID. This same value is later used as the conversation ID in
+     * the avatar conversation endpoints.
      */
     id: string;
 
@@ -148,7 +156,8 @@ export namespace RealtimeSessionRetrieveResponse {
    */
   export interface Failed {
     /**
-     * The realtime session ID.
+     * The realtime session ID. This same value is later used as the conversation ID in
+     * the avatar conversation endpoints.
      */
     id: string;
 
@@ -177,7 +186,8 @@ export namespace RealtimeSessionRetrieveResponse {
    */
   export interface Cancelled {
     /**
-     * The realtime session ID.
+     * The realtime session ID. This same value is later used as the conversation ID in
+     * the avatar conversation endpoints.
      */
     id: string;
 

@@ -281,10 +281,7 @@ export interface VoicePreviewResponse {
 }
 
 export interface VoiceCreateParams {
-  /**
-   * The source configuration for creating the voice.
-   */
-  from: VoiceCreateParams.Text | VoiceCreateParams.Audio;
+  from: VoiceCreateParams.Audio | VoiceCreateParams.Text;
 
   /**
    * A name for the voice.
@@ -298,9 +295,15 @@ export interface VoiceCreateParams {
 }
 
 export namespace VoiceCreateParams {
-  /**
-   * The source configuration for creating the voice.
-   */
+  export interface Audio {
+    /**
+     * A HTTPS URL.
+     */
+    audio: string;
+
+    type: 'audio';
+  }
+
   export interface Text {
     /**
      * The voice design model to use. Prefer eleven_ttv_v3 (latest);
@@ -315,15 +318,6 @@ export namespace VoiceCreateParams {
     prompt: string;
 
     type: 'text';
-  }
-
-  export interface Audio {
-    /**
-     * A HTTPS URL.
-     */
-    audio: string;
-
-    type: 'audio';
   }
 }
 
