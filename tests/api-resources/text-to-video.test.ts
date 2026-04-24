@@ -2,19 +2,16 @@
 
 import RunwayML from '@runwayml/sdk';
 
-const client = new RunwayML({
-  apiKey: 'My API Key',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
-});
+const client = new RunwayML({ apiKey: 'My API Key', baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010' });
 
 describe('resource textToVideo', () => {
   test('create: only required params', async () => {
     const responsePromise = client.textToVideo.create({
-      duration: 2,
-      model: 'gen4.5',
-      promptText: 'x',
-      ratio: '1280:720',
-    });
+    duration: 2,
+    model: 'gen4.5',
+    promptText: 'x',
+    ratio: '1280:720',
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -26,12 +23,12 @@ describe('resource textToVideo', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.textToVideo.create({
-      duration: 2,
-      model: 'gen4.5',
-      promptText: 'x',
-      ratio: '1280:720',
-      contentModeration: { publicFigureThreshold: 'auto' },
-      seed: 0,
-    });
+    duration: 2,
+    model: 'gen4.5',
+    promptText: 'x',
+    ratio: '1280:720',
+    contentModeration: { publicFigureThreshold: 'auto' },
+    seed: 0,
+  });
   });
 });

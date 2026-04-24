@@ -23,12 +23,7 @@ export interface TextToVideoCreateResponse {
   id: string;
 }
 
-export type TextToVideoCreateParams =
-  | TextToVideoCreateParams.Gen4_5
-  | TextToVideoCreateParams.Veo3_1
-  | TextToVideoCreateParams.Veo3_1Fast
-  | TextToVideoCreateParams.Seedance2
-  | TextToVideoCreateParams.Veo3;
+export type TextToVideoCreateParams = TextToVideoCreateParams.Gen4_5 | TextToVideoCreateParams.Veo3_1 | TextToVideoCreateParams.Veo3_1Fast | TextToVideoCreateParams.Seedance2 | TextToVideoCreateParams.Veo3
 
 export declare namespace TextToVideoCreateParams {
   export interface Gen4_5 {
@@ -154,19 +149,7 @@ export declare namespace TextToVideoCreateParams {
     /**
      * The resolution of the output video.
      */
-    ratio?:
-      | '992:432'
-      | '864:496'
-      | '752:560'
-      | '640:640'
-      | '560:752'
-      | '496:864'
-      | '1470:630'
-      | '1280:720'
-      | '1112:834'
-      | '960:960'
-      | '834:1112'
-      | '720:1280';
+    ratio?: '992:432' | '864:496' | '752:560' | '640:640' | '560:752' | '496:864' | '1470:630' | '1280:720' | '1112:834' | '960:960' | '834:1112' | '720:1280';
   }
 
   export interface Veo3 {
@@ -193,6 +176,6 @@ export declare namespace TextToVideoCreateParams {
 export declare namespace TextToVideo {
   export {
     type TextToVideoCreateResponse as TextToVideoCreateResponse,
-    type TextToVideoCreateParams as TextToVideoCreateParams,
+    type TextToVideoCreateParams as TextToVideoCreateParams
   };
 }

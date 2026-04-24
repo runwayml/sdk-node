@@ -19,13 +19,7 @@ export class WorkflowInvocations extends APIResource {
 /**
  * A pending workflow invocation
  */
-export type WorkflowInvocationRetrieveResponse =
-  | WorkflowInvocationRetrieveResponse.Pending
-  | WorkflowInvocationRetrieveResponse.Throttled
-  | WorkflowInvocationRetrieveResponse.Cancelled
-  | WorkflowInvocationRetrieveResponse.Running
-  | WorkflowInvocationRetrieveResponse.Failed
-  | WorkflowInvocationRetrieveResponse.Succeeded;
+export type WorkflowInvocationRetrieveResponse = WorkflowInvocationRetrieveResponse.Pending | WorkflowInvocationRetrieveResponse.Throttled | WorkflowInvocationRetrieveResponse.Cancelled | WorkflowInvocationRetrieveResponse.Running | WorkflowInvocationRetrieveResponse.Failed | WorkflowInvocationRetrieveResponse.Succeeded
 
 export namespace WorkflowInvocationRetrieveResponse {
   /**
@@ -226,5 +220,7 @@ export namespace WorkflowInvocationRetrieveResponse {
 }
 
 export declare namespace WorkflowInvocations {
-  export { type WorkflowInvocationRetrieveResponse as WorkflowInvocationRetrieveResponse };
+  export {
+    type WorkflowInvocationRetrieveResponse as WorkflowInvocationRetrieveResponse
+  };
 }

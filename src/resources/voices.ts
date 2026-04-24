@@ -27,10 +27,7 @@ export class Voices extends APIResource {
    * List custom voices for the authenticated organization with cursor-based
    * pagination.
    */
-  list(
-    query: VoiceListParams,
-    options?: RequestOptions,
-  ): PagePromise<VoiceListResponsesCursorPage, VoiceListResponse> {
+  list(query: VoiceListParams, options?: RequestOptions): PagePromise<VoiceListResponsesCursorPage, VoiceListResponse> {
     return this._client.getAPIList('/v1/voices', CursorPage<VoiceListResponse>, { query, ...options });
   }
 
@@ -38,10 +35,7 @@ export class Voices extends APIResource {
    * Delete a custom voice.
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/v1/voices/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/v1/voices/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -53,7 +47,7 @@ export class Voices extends APIResource {
   }
 }
 
-export type VoiceListResponsesCursorPage = CursorPage<VoiceListResponse>;
+export type VoiceListResponsesCursorPage = CursorPage<VoiceListResponse>
 
 export interface VoiceCreateResponse {
   /**
@@ -65,10 +59,7 @@ export interface VoiceCreateResponse {
 /**
  * A voice that is still being processed.
  */
-export type VoiceRetrieveResponse =
-  | VoiceRetrieveResponse.Processing
-  | VoiceRetrieveResponse.Ready
-  | VoiceRetrieveResponse.Failed;
+export type VoiceRetrieveResponse = VoiceRetrieveResponse.Processing | VoiceRetrieveResponse.Ready | VoiceRetrieveResponse.Failed
 
 export namespace VoiceRetrieveResponse {
   /**
@@ -168,10 +159,7 @@ export namespace VoiceRetrieveResponse {
 /**
  * A voice that is still being processed.
  */
-export type VoiceListResponse =
-  | VoiceListResponse.Processing
-  | VoiceListResponse.Ready
-  | VoiceListResponse.Failed;
+export type VoiceListResponse = VoiceListResponse.Processing | VoiceListResponse.Ready | VoiceListResponse.Failed
 
 export namespace VoiceListResponse {
   /**
@@ -321,7 +309,8 @@ export namespace VoiceCreateParams {
   }
 }
 
-export interface VoiceListParams extends CursorPageParams {}
+export interface VoiceListParams extends CursorPageParams {
+}
 
 export interface VoicePreviewParams {
   /**
@@ -346,6 +335,6 @@ export declare namespace Voices {
     type VoiceListResponsesCursorPage as VoiceListResponsesCursorPage,
     type VoiceCreateParams as VoiceCreateParams,
     type VoiceListParams as VoiceListParams,
-    type VoicePreviewParams as VoicePreviewParams,
+    type VoicePreviewParams as VoicePreviewParams
   };
 }
