@@ -55,16 +55,7 @@ export namespace AvatarVideoCreateParams {
     /**
      * ID of a preset avatar.
      */
-    presetId:
-      | 'game-character'
-      | 'music-superstar'
-      | 'game-character-man'
-      | 'cat-character'
-      | 'influencer'
-      | 'tennis-coach'
-      | 'human-resource'
-      | 'fashion-designer'
-      | 'cooking-teacher';
+    presetId: 'game-character' | 'music-superstar' | 'game-character-man' | 'cat-character' | 'influencer' | 'tennis-coach' | 'human-resource' | 'fashion-designer' | 'cooking-teacher';
 
     type: 'runway-preset';
   }
@@ -116,37 +107,7 @@ export namespace AvatarVideoCreateParams {
      * A preset voice from the Runway API.
      */
     export interface Preset {
-      presetId:
-        | 'victoria'
-        | 'vincent'
-        | 'clara'
-        | 'drew'
-        | 'skye'
-        | 'max'
-        | 'morgan'
-        | 'felix'
-        | 'mia'
-        | 'marcus'
-        | 'summer'
-        | 'ruby'
-        | 'aurora'
-        | 'jasper'
-        | 'leo'
-        | 'adrian'
-        | 'nina'
-        | 'emma'
-        | 'blake'
-        | 'david'
-        | 'maya'
-        | 'nathan'
-        | 'sam'
-        | 'georgia'
-        | 'petra'
-        | 'adam'
-        | 'zach'
-        | 'violet'
-        | 'roman'
-        | 'luna';
+      presetId: 'victoria' | 'vincent' | 'clara' | 'drew' | 'skye' | 'max' | 'morgan' | 'felix' | 'mia' | 'marcus' | 'summer' | 'ruby' | 'aurora' | 'jasper' | 'leo' | 'adrian' | 'nina' | 'emma' | 'blake' | 'david' | 'maya' | 'nathan' | 'sam' | 'georgia' | 'petra' | 'adam' | 'zach' | 'violet' | 'roman' | 'luna';
 
       type: 'preset';
     }
@@ -165,6 +126,6 @@ export namespace AvatarVideoCreateParams {
 export declare namespace AvatarVideos {
   export {
     type AvatarVideoCreateResponse as AvatarVideoCreateResponse,
-    type AvatarVideoCreateParams as AvatarVideoCreateParams,
+    type AvatarVideoCreateParams as AvatarVideoCreateParams
   };
 }

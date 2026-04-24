@@ -18,10 +18,7 @@ export class Organization extends APIResource {
    * associated with the API key used to make the request. Up to 90 days of data can
    * be queried at a time.
    */
-  retrieveUsage(
-    body: OrganizationRetrieveUsageParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<OrganizationRetrieveUsageResponse> {
+  retrieveUsage(body: OrganizationRetrieveUsageParams | null | undefined = {}, options?: RequestOptions): APIPromise<OrganizationRetrieveUsageResponse> {
     return this._client.post('/v1/organization/usage', { body, ...options });
   }
 }
@@ -100,33 +97,7 @@ export interface OrganizationRetrieveUsageResponse {
   /**
    * The list of models with usage during the queried time range.
    */
-  models: Array<
-    | 'gen4.5'
-    | 'gen3a_turbo'
-    | 'gen4_turbo'
-    | 'gen4_image'
-    | 'gen4_image_turbo'
-    | 'act_two'
-    | 'gen4_aleph'
-    | 'veo3'
-    | 'veo3.1'
-    | 'veo3.1_fast'
-    | 'gemini_2.5_flash'
-    | 'gemini_image3_pro'
-    | 'gemini_image3.1_flash'
-    | 'eleven_multilingual_v2'
-    | 'eleven_v3'
-    | 'eleven_text_to_sound_v2'
-    | 'eleven_voice_isolation'
-    | 'eleven_voice_dubbing'
-    | 'eleven_multilingual_sts_v2'
-    | 'eleven_scribe_v2'
-    | 'gwm1_avatars'
-    | 'gwm1_avatar_async_audio_to_video'
-    | 'gwm1_avatar_async_text_to_video'
-    | 'voice_processing'
-    | 'seedance2'
-  >;
+  models: Array<'gen4.5' | 'gen3a_turbo' | 'gen4_turbo' | 'gen4_image' | 'gen4_image_turbo' | 'act_two' | 'gen4_aleph' | 'veo3' | 'veo3.1' | 'veo3.1_fast' | 'gemini_2.5_flash' | 'gemini_image3_pro' | 'gemini_image3.1_flash' | 'eleven_multilingual_v2' | 'eleven_v3' | 'eleven_text_to_sound_v2' | 'eleven_voice_isolation' | 'eleven_voice_dubbing' | 'eleven_multilingual_sts_v2' | 'eleven_scribe_v2' | 'gwm1_avatars' | 'gwm1_avatar_async_audio_to_video' | 'gwm1_avatar_async_text_to_video' | 'voice_processing' | 'seedance2'>;
 
   results: Array<OrganizationRetrieveUsageResponse.Result>;
 }
@@ -156,32 +127,7 @@ export namespace OrganizationRetrieveUsageResponse {
       /**
        * The model that credits were spent on.
        */
-      model:
-        | 'gen4.5'
-        | 'gen3a_turbo'
-        | 'gen4_turbo'
-        | 'gen4_image'
-        | 'gen4_image_turbo'
-        | 'act_two'
-        | 'gen4_aleph'
-        | 'veo3'
-        | 'veo3.1'
-        | 'veo3.1_fast'
-        | 'gemini_2.5_flash'
-        | 'gemini_image3_pro'
-        | 'gemini_image3.1_flash'
-        | 'eleven_multilingual_v2'
-        | 'eleven_v3'
-        | 'eleven_text_to_sound_v2'
-        | 'eleven_voice_isolation'
-        | 'eleven_voice_dubbing'
-        | 'eleven_multilingual_sts_v2'
-        | 'eleven_scribe_v2'
-        | 'gwm1_avatars'
-        | 'gwm1_avatar_async_audio_to_video'
-        | 'gwm1_avatar_async_text_to_video'
-        | 'voice_processing'
-        | 'seedance2';
+      model: 'gen4.5' | 'gen3a_turbo' | 'gen4_turbo' | 'gen4_image' | 'gen4_image_turbo' | 'act_two' | 'gen4_aleph' | 'veo3' | 'veo3.1' | 'veo3.1_fast' | 'gemini_2.5_flash' | 'gemini_image3_pro' | 'gemini_image3.1_flash' | 'eleven_multilingual_v2' | 'eleven_v3' | 'eleven_text_to_sound_v2' | 'eleven_voice_isolation' | 'eleven_voice_dubbing' | 'eleven_multilingual_sts_v2' | 'eleven_scribe_v2' | 'gwm1_avatars' | 'gwm1_avatar_async_audio_to_video' | 'gwm1_avatar_async_text_to_video' | 'voice_processing' | 'seedance2';
     }
   }
 }
@@ -206,6 +152,6 @@ export declare namespace Organization {
   export {
     type OrganizationRetrieveResponse as OrganizationRetrieveResponse,
     type OrganizationRetrieveUsageResponse as OrganizationRetrieveUsageResponse,
-    type OrganizationRetrieveUsageParams as OrganizationRetrieveUsageParams,
+    type OrganizationRetrieveUsageParams as OrganizationRetrieveUsageParams
   };
 }

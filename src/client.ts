@@ -20,110 +20,31 @@ import * as UploadsCore from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
 import { AvatarVideoCreateParams, AvatarVideoCreateResponse, AvatarVideos } from './resources/avatar-videos';
-import {
-  AvatarCreateParams,
-  AvatarCreateResponse,
-  AvatarListParams,
-  AvatarListResponse,
-  AvatarListResponsesCursorPage,
-  AvatarRetrieveResponse,
-  AvatarUpdateParams,
-  AvatarUpdateResponse,
-  Avatars,
-} from './resources/avatars';
-import {
-  CharacterPerformance,
-  CharacterPerformanceCreateParams,
-  CharacterPerformanceCreateResponse,
-} from './resources/character-performance';
-import {
-  DocumentCreateParams,
-  DocumentCreateResponse,
-  DocumentListParams,
-  DocumentListResponse,
-  DocumentListResponsesCursorPage,
-  DocumentRetrieveResponse,
-  DocumentUpdateParams,
-  Documents,
-} from './resources/documents';
-import {
-  ImageToVideo,
-  ImageToVideoCreateParams,
-  ImageToVideoCreateResponse,
-} from './resources/image-to-video';
-import {
-  Organization,
-  OrganizationRetrieveResponse,
-  OrganizationRetrieveUsageParams,
-  OrganizationRetrieveUsageResponse,
-} from './resources/organization';
-import {
-  RealtimeSessionCreateParams,
-  RealtimeSessionCreateResponse,
-  RealtimeSessionRetrieveResponse,
-  RealtimeSessions,
-} from './resources/realtime-sessions';
+import { AvatarCreateParams, AvatarCreateResponse, AvatarListParams, AvatarListResponse, AvatarListResponsesCursorPage, AvatarRetrieveResponse, AvatarUpdateParams, AvatarUpdateResponse, Avatars } from './resources/avatars';
+import { CharacterPerformance, CharacterPerformanceCreateParams, CharacterPerformanceCreateResponse } from './resources/character-performance';
+import { DocumentCreateParams, DocumentCreateResponse, DocumentListParams, DocumentListResponse, DocumentListResponsesCursorPage, DocumentRetrieveResponse, DocumentUpdateParams, Documents } from './resources/documents';
+import { ImageToVideo, ImageToVideoCreateParams, ImageToVideoCreateResponse } from './resources/image-to-video';
+import { Organization, OrganizationRetrieveResponse, OrganizationRetrieveUsageParams, OrganizationRetrieveUsageResponse } from './resources/organization';
+import { RealtimeSessionCreateParams, RealtimeSessionCreateResponse, RealtimeSessionRetrieveResponse, RealtimeSessions } from './resources/realtime-sessions';
 import { SoundEffect, SoundEffectCreateParams, SoundEffectCreateResponse } from './resources/sound-effect';
-import {
-  SpeechToSpeech,
-  SpeechToSpeechCreateParams,
-  SpeechToSpeechCreateResponse,
-} from './resources/speech-to-speech';
+import { SpeechToSpeech, SpeechToSpeechCreateParams, SpeechToSpeechCreateResponse } from './resources/speech-to-speech';
 import { TaskRetrieveResponse, Tasks } from './resources/tasks';
 import { TextToImage, TextToImageCreateParams, TextToImageCreateResponse } from './resources/text-to-image';
-import {
-  TextToSpeech,
-  TextToSpeechCreateParams,
-  TextToSpeechCreateResponse,
-} from './resources/text-to-speech';
+import { TextToSpeech, TextToSpeechCreateParams, TextToSpeechCreateResponse } from './resources/text-to-speech';
 import { TextToVideo, TextToVideoCreateParams, TextToVideoCreateResponse } from './resources/text-to-video';
-import {
-  VideoToVideo,
-  VideoToVideoCreateParams,
-  VideoToVideoCreateResponse,
-} from './resources/video-to-video';
-import {
-  VoiceDubbing,
-  VoiceDubbingCreateParams,
-  VoiceDubbingCreateResponse,
-} from './resources/voice-dubbing';
-import {
-  VoiceIsolation,
-  VoiceIsolationCreateParams,
-  VoiceIsolationCreateResponse,
-} from './resources/voice-isolation';
+import { VideoToVideo, VideoToVideoCreateParams, VideoToVideoCreateResponse } from './resources/video-to-video';
+import { VoiceDubbing, VoiceDubbingCreateParams, VoiceDubbingCreateResponse } from './resources/voice-dubbing';
+import { VoiceIsolation, VoiceIsolationCreateParams, VoiceIsolationCreateResponse } from './resources/voice-isolation';
 import { Uploads, UploadsCreateEphemeralParams, UploadCreateEphemeralResponse } from './resources/uploads';
-import {
-  VoiceCreateParams,
-  VoiceCreateResponse,
-  VoiceListParams,
-  VoiceListResponse,
-  VoiceListResponsesCursorPage,
-  VoicePreviewParams,
-  VoicePreviewResponse,
-  VoiceRetrieveResponse,
-  Voices,
-} from './resources/voices';
+import { VoiceCreateParams, VoiceCreateResponse, VoiceListParams, VoiceListResponse, VoiceListResponsesCursorPage, VoicePreviewParams, VoicePreviewResponse, VoiceRetrieveResponse, Voices } from './resources/voices';
 import { WorkflowInvocationRetrieveResponse, WorkflowInvocations } from './resources/workflow-invocations';
-import {
-  WorkflowListResponse,
-  WorkflowRetrieveResponse,
-  WorkflowRunParams,
-  WorkflowRunResponse,
-  Workflows,
-} from './resources/workflows';
+import { WorkflowListResponse, WorkflowRetrieveResponse, WorkflowRunParams, WorkflowRunResponse, Workflows } from './resources/workflows';
 import { type Fetch } from './internal/builtin-types';
 import { isRunningInBrowser } from './internal/detect-platform';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
 import { readEnv } from './internal/utils/env';
-import {
-  type LogLevel,
-  type Logger,
-  formatRequestDetails,
-  loggerFor,
-  parseLogLevel,
-} from './internal/utils/log';
+import { type LogLevel, type Logger, formatRequestDetails, loggerFor, parseLogLevel } from './internal/utils/log';
 import { isEmptyObj } from './internal/utils/values';
 
 export interface ClientOptions {
@@ -204,7 +125,7 @@ export interface ClientOptions {
 }
 
 /**
- * API Client for interfacing with the RunwayML API.
+ * API Client for interfacing with the RunwayML API. 
  */
 export class RunwayML {
   apiKey: string;
@@ -243,7 +164,7 @@ export class RunwayML {
   }: ClientOptions = {}) {
     if (apiKey === undefined) {
       throw new Errors.RunwayMLError(
-        "The RUNWAYML_API_SECRET environment variable is missing or empty; either provide it, or instantiate the RunwayML client with an apiKey option, like new RunwayML({ apiKey: 'My API Key' }).",
+        'The RUNWAYML_API_SECRET environment variable is missing or empty; either provide it, or instantiate the RunwayML client with an apiKey option, like new RunwayML({ apiKey: \'My API Key\' }).'
       );
     }
 
@@ -255,9 +176,7 @@ export class RunwayML {
     };
 
     if (isRunningInBrowser()) {
-      throw new Errors.RunwayMLError(
-        "It looks like you're running in a browser-like environment, which is disabled to protect your secret API credentials from attackers. If you have a strong business need for client-side use of this API, please open a GitHub issue with your use-case and security mitigations.",
-      );
+      throw new Errors.RunwayMLError("It looks like you're running in a browser-like environment, which is disabled to protect your secret API credentials from attackers. If you have a strong business need for client-side use of this API, please open a GitHub issue with your use-case and security mitigations.")
     }
 
     this.baseURL = options.baseURL!;
@@ -266,10 +185,7 @@ export class RunwayML {
     const defaultLogLevel = 'warn';
     // Set default logLevel early so that we can log a warning in parseLogLevel.
     this.logLevel = defaultLogLevel;
-    this.logLevel =
-      parseLogLevel(options.logLevel, 'ClientOptions.logLevel', this) ??
-      parseLogLevel(readEnv('RUNWAYML_LOG'), "process.env['RUNWAYML_LOG']", this) ??
-      defaultLogLevel;
+    this.logLevel = parseLogLevel(options.logLevel, 'ClientOptions.logLevel', this) ?? parseLogLevel(readEnv('RUNWAYML_LOG'), 'process.env[\'RUNWAYML_LOG\']', this) ?? defaultLogLevel;
     this.fetchOptions = options.fetchOptions;
     this.maxRetries = options.maxRetries ?? 2;
     this.fetch = options.fetch ?? Shims.getDefaultFetch();
@@ -296,7 +212,7 @@ export class RunwayML {
       fetchOptions: this.fetchOptions,
       apiKey: this.apiKey,
       runwayVersion: this.runwayVersion,
-      ...options,
+      ...options
     });
     return client;
   }
@@ -309,7 +225,7 @@ export class RunwayML {
   }
 
   protected defaultQuery(): Record<string, string | undefined> | undefined {
-    return this._options.defaultQuery;
+    return this._options.defaultQuery
   }
 
   protected validateHeaders({ values, nulls }: NullableHeaders) {
@@ -344,11 +260,7 @@ export class RunwayML {
     return Errors.APIError.generate(status, error, message, headers);
   }
 
-  buildURL(
-    path: string,
-    query: Record<string, unknown> | null | undefined,
-    defaultBaseURL?: string | undefined,
-  ): string {
+  buildURL(path: string, query: Record<string, unknown> | null | undefined, defaultBaseURL?: string | undefined): string {
     const baseURL = (!this.#baseURLOverridden() && defaultBaseURL) || this.baseURL;
     const url =
       isAbsoluteURL(path) ?
@@ -436,9 +348,7 @@ export class RunwayML {
 
     await this.prepareOptions(options);
 
-    const { req, url, timeout } = await this.buildRequest(options, {
-      retryCount: maxRetries - retriesRemaining,
-    });
+    const { req, url, timeout } = await this.buildRequest(options, { retryCount: maxRetries - retriesRemaining });
 
     await this.prepareRequest(req, { url, options });
 
@@ -447,16 +357,7 @@ export class RunwayML {
     const retryLogStr = retryOfRequestLogID === undefined ? '' : `, retryOf: ${retryOfRequestLogID}`;
     const startTime = Date.now();
 
-    loggerFor(this).debug(
-      `[${requestLogID}] sending request`,
-      formatRequestDetails({
-        retryOfRequestLogID,
-        method: options.method,
-        url,
-        options,
-        headers: req.headers,
-      }),
-    );
+    loggerFor(this).debug(`[${requestLogID}] sending request`, formatRequestDetails({ retryOfRequestLogID, method: options.method, url, options, headers: req.headers }));
 
     if (options.signal?.aborted) {
       throw new Errors.APIUserAbortError();
@@ -475,45 +376,21 @@ export class RunwayML {
       // deno throws "TypeError: error sending request for url (https://example/): client error (Connect): tcp connect error: Operation timed out (os error 60): Operation timed out (os error 60)"
       // undici throws "TypeError: fetch failed" with cause "ConnectTimeoutError: Connect Timeout Error (attempted address: example:443, timeout: 1ms)"
       // others do not provide enough information to distinguish timeouts from other connection errors
-      const isTimeout =
-        isAbortError(response) ||
-        /timed? ?out/i.test(String(response) + ('cause' in response ? String(response.cause) : ''));
+      const isTimeout = isAbortError(response) || /timed? ?out/i.test(String(response) + ('cause' in response ? String(response.cause) : ''))
       if (retriesRemaining) {
-        loggerFor(this).info(
-          `[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} - ${retryMessage}`,
-        );
-        loggerFor(this).debug(
-          `[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} (${retryMessage})`,
-          formatRequestDetails({
-            retryOfRequestLogID,
-            url,
-            durationMs: headersTime - startTime,
-            message: response.message,
-          }),
-        );
+        loggerFor(this).info(`[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} - ${retryMessage}`)
+        loggerFor(this).debug(`[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} (${retryMessage})`, formatRequestDetails({ retryOfRequestLogID, url, durationMs: headersTime - startTime, message: response.message }));
         return this.retryRequest(options, retriesRemaining, retryOfRequestLogID ?? requestLogID);
       }
-      loggerFor(this).info(
-        `[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} - error; no more retries left`,
-      );
-      loggerFor(this).debug(
-        `[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} (error; no more retries left)`,
-        formatRequestDetails({
-          retryOfRequestLogID,
-          url,
-          durationMs: headersTime - startTime,
-          message: response.message,
-        }),
-      );
+      loggerFor(this).info(`[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} - error; no more retries left`)
+      loggerFor(this).debug(`[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} (error; no more retries left)`, formatRequestDetails({ retryOfRequestLogID, url, durationMs: headersTime - startTime, message: response.message }));
       if (isTimeout) {
         throw new Errors.APIConnectionTimeoutError();
       }
       throw new Errors.APIConnectionError({ cause: response });
     }
 
-    const responseInfo = `[${requestLogID}${retryLogStr}] ${req.method} ${url} ${
-      response.ok ? 'succeeded' : 'failed'
-    } with status ${response.status} in ${headersTime - startTime}ms`;
+    const responseInfo = `[${requestLogID}${retryLogStr}] ${req.method} ${url} ${response.ok ? 'succeeded' : 'failed'} with status ${response.status} in ${headersTime - startTime}ms`;
 
     if (!response.ok) {
       const shouldRetry = await this.shouldRetry(response);
@@ -522,60 +399,27 @@ export class RunwayML {
 
         // We don't need the body of this response.
         await Shims.CancelReadableStream(response.body);
-        loggerFor(this).info(`${responseInfo} - ${retryMessage}`);
-        loggerFor(this).debug(
-          `[${requestLogID}] response error (${retryMessage})`,
-          formatRequestDetails({
-            retryOfRequestLogID,
-            url: response.url,
-            status: response.status,
-            headers: response.headers,
-            durationMs: headersTime - startTime,
-          }),
-        );
-        return this.retryRequest(
-          options,
-          retriesRemaining,
-          retryOfRequestLogID ?? requestLogID,
-          response.headers,
-        );
+        loggerFor(this).info(`${responseInfo} - ${retryMessage}`)
+        loggerFor(this).debug(`[${requestLogID}] response error (${retryMessage})`, formatRequestDetails({ retryOfRequestLogID, url: response.url, status: response.status, headers: response.headers, durationMs: headersTime - startTime }));
+        return this.retryRequest(options, retriesRemaining, retryOfRequestLogID ?? requestLogID, response.headers);
       }
 
       const retryMessage = shouldRetry ? `error; no more retries left` : `error; not retryable`;
 
-      loggerFor(this).info(`${responseInfo} - ${retryMessage}`);
+      loggerFor(this).info(`${responseInfo} - ${retryMessage}`)
 
       const errText = await response.text().catch((err: any) => castToError(err).message);
       const errJSON = safeJSON(errText) as any;
       const errMessage = errJSON ? undefined : errText;
 
-      loggerFor(this).debug(
-        `[${requestLogID}] response error (${retryMessage})`,
-        formatRequestDetails({
-          retryOfRequestLogID,
-          url: response.url,
-          status: response.status,
-          headers: response.headers,
-          message: errMessage,
-          durationMs: Date.now() - startTime,
-        }),
-      );
+      loggerFor(this).debug(`[${requestLogID}] response error (${retryMessage})`, formatRequestDetails({ retryOfRequestLogID, url: response.url, status: response.status, headers: response.headers, message: errMessage, durationMs: Date.now() - startTime }));
 
       const err = this.makeStatusError(response.status, errJSON, errMessage, response.headers);
       throw err;
     }
 
-    loggerFor(this).info(responseInfo);
-    loggerFor(this).debug(
-      `[${requestLogID}] response start`,
-      formatRequestDetails({
-        retryOfRequestLogID,
-        url: response.url,
-        status: response.status,
-        headers: response.headers,
-        durationMs: headersTime - startTime,
-      }),
-    );
+    loggerFor(this).info(responseInfo)
+    loggerFor(this).debug(`[${requestLogID}] response start`, formatRequestDetails({ retryOfRequestLogID, url: response.url, status: response.status, headers: response.headers, durationMs: headersTime - startTime }));
 
     return { response, options, controller, requestLogID, retryOfRequestLogID, startTime };
   }
@@ -593,10 +437,7 @@ export class RunwayML {
     );
   }
 
-  requestAPIList<
-    Item = unknown,
-    PageClass extends Pagination.AbstractPage<Item> = Pagination.AbstractPage<Item>,
-  >(
+  requestAPIList<Item = unknown, PageClass extends Pagination.AbstractPage<Item> = Pagination.AbstractPage<Item>>(
     Page: new (...args: ConstructorParameters<typeof Pagination.AbstractPage>) => PageClass,
     options: PromiseOrValue<FinalRequestOptions>,
   ): Pagination.PagePromise<PageClass, Item> {
@@ -616,9 +457,7 @@ export class RunwayML {
 
     const timeout = setTimeout(abort, ms);
 
-    const isReadableBody =
-      ((globalThis as any).ReadableStream && options.body instanceof (globalThis as any).ReadableStream) ||
-      (typeof options.body === 'object' && options.body !== null && Symbol.asyncIterator in options.body);
+    const isReadableBody = ((globalThis as any).ReadableStream && options.body instanceof (globalThis as any).ReadableStream) || (typeof options.body === "object" && options.body !== null && Symbol.asyncIterator in options.body);
 
     const fetchOptions: RequestInit = {
       signal: controller.signal as any,
@@ -633,6 +472,7 @@ export class RunwayML {
     }
 
     try {
+
       // use undefined this binding; fetch errors if bound to something else in browser/cloudflare
       return await this.fetch.call(undefined, url, fetchOptions);
     } finally {
@@ -733,12 +573,11 @@ export class RunwayML {
     const req: FinalizedRequestInit = {
       method,
       headers: reqHeaders,
-      ...(options.signal && { signal: options.signal }),
-      ...((globalThis as any).ReadableStream &&
-        body instanceof (globalThis as any).ReadableStream && { duplex: 'half' }),
+      ...(options.signal && { signal: options.signal}),
+      ...((globalThis as any).ReadableStream && body instanceof (globalThis as any).ReadableStream && { duplex: "half" }),
       ...(body && { body }),
-      ...((this.fetchOptions as any) ?? {}),
-      ...((options.fetchOptions as any) ?? {}),
+      ...(this.fetchOptions as any ?? {}),
+      ...(options.fetchOptions as any ?? {}),
     };
 
     return { req, url, timeout: options.timeout };
@@ -763,18 +602,16 @@ export class RunwayML {
 
     const headers = buildHeaders([
       idempotencyHeaders,
-      {
-        Accept: 'application/json',
-        'User-Agent': this.getUserAgent(),
-        'X-Stainless-Retry-Count': String(retryCount),
-        ...(options.timeout ? { 'X-Stainless-Timeout': String(Math.trunc(options.timeout / 1000)) } : {}),
-        ...getPlatformHeaders(),
-        'X-Runway-Version': this.runwayVersion,
-      },
+      {Accept: 'application/json',
+      'User-Agent': this.getUserAgent(),
+      'X-Stainless-Retry-Count': String(retryCount),
+      ...(options.timeout ? { 'X-Stainless-Timeout': String(Math.trunc(options.timeout / 1000)) } : {}),
+      ...getPlatformHeaders(),
+      'X-Runway-Version': this.runwayVersion},
       await this.authHeaders(options),
       this._options.defaultHeaders,
       bodyHeaders,
-      options.headers,
+      options.headers
     ]);
 
     this.validateHeaders(headers);
@@ -801,9 +638,11 @@ export class RunwayML {
       ArrayBuffer.isView(body) ||
       body instanceof ArrayBuffer ||
       body instanceof DataView ||
-      (typeof body === 'string' &&
+      (
+        typeof body === 'string' &&
         // Preserve legacy string encoding behavior for now
-        headers.values.has('content-type')) ||
+        headers.values.has('content-type')
+      ) ||
       // `Blob` is superset of `File`
       ((globalThis as any).Blob && body instanceof (globalThis as any).Blob) ||
       // `FormData` -> `multipart/form-data`
@@ -834,7 +673,7 @@ export class RunwayML {
   }
 
   static RunwayML = this;
-  static DEFAULT_TIMEOUT = 60000; // 1 minute
+  static DEFAULT_TIMEOUT = 60000 // 1 minute
 
   static RunwayMLError = Errors.RunwayMLError;
   static APIError = Errors.APIError;
@@ -929,127 +768,133 @@ RunwayML.Workflows = Workflows;
 RunwayML.WorkflowInvocations = WorkflowInvocations;
 
 export declare namespace RunwayML {
-  export type RequestOptions = Opts.RequestOptions;
+      export type RequestOptions = Opts.RequestOptions;
 
-  export import CursorPage = Pagination.CursorPage;
-  export { type CursorPageParams as CursorPageParams, type CursorPageResponse as CursorPageResponse };
+      export import CursorPage = Pagination.CursorPage;
+export {
+  type CursorPageParams as CursorPageParams,
+  type CursorPageResponse as CursorPageResponse
+};
 
-  export { Tasks as Tasks, type TaskRetrieveResponse as TaskRetrieveResponse };
+export {
+  Tasks as Tasks,
+  type TaskRetrieveResponse as TaskRetrieveResponse
+};
 
-  export {
-    ImageToVideo as ImageToVideo,
-    type ImageToVideoCreateResponse as ImageToVideoCreateResponse,
-    type ImageToVideoCreateParams as ImageToVideoCreateParams,
-  };
+export {
+  ImageToVideo as ImageToVideo,
+  type ImageToVideoCreateResponse as ImageToVideoCreateResponse,
+  type ImageToVideoCreateParams as ImageToVideoCreateParams
+};
 
-  export {
-    VideoToVideo as VideoToVideo,
-    type VideoToVideoCreateResponse as VideoToVideoCreateResponse,
-    type VideoToVideoCreateParams as VideoToVideoCreateParams,
-  };
+export {
+  VideoToVideo as VideoToVideo,
+  type VideoToVideoCreateResponse as VideoToVideoCreateResponse,
+  type VideoToVideoCreateParams as VideoToVideoCreateParams
+};
 
-  export {
-    TextToVideo as TextToVideo,
-    type TextToVideoCreateResponse as TextToVideoCreateResponse,
-    type TextToVideoCreateParams as TextToVideoCreateParams,
-  };
+export {
+  TextToVideo as TextToVideo,
+  type TextToVideoCreateResponse as TextToVideoCreateResponse,
+  type TextToVideoCreateParams as TextToVideoCreateParams
+};
 
-  export {
-    TextToImage as TextToImage,
-    type TextToImageCreateResponse as TextToImageCreateResponse,
-    type TextToImageCreateParams as TextToImageCreateParams,
-  };
+export {
+  TextToImage as TextToImage,
+  type TextToImageCreateResponse as TextToImageCreateResponse,
+  type TextToImageCreateParams as TextToImageCreateParams
+};
 
-  export {
-    CharacterPerformance as CharacterPerformance,
-    type CharacterPerformanceCreateResponse as CharacterPerformanceCreateResponse,
-    type CharacterPerformanceCreateParams as CharacterPerformanceCreateParams,
-  };
+export {
+  CharacterPerformance as CharacterPerformance,
+  type CharacterPerformanceCreateResponse as CharacterPerformanceCreateResponse,
+  type CharacterPerformanceCreateParams as CharacterPerformanceCreateParams
+};
 
-  export {
-    TextToSpeech as TextToSpeech,
-    type TextToSpeechCreateResponse as TextToSpeechCreateResponse,
-    type TextToSpeechCreateParams as TextToSpeechCreateParams,
-  };
+export {
+  TextToSpeech as TextToSpeech,
+  type TextToSpeechCreateResponse as TextToSpeechCreateResponse,
+  type TextToSpeechCreateParams as TextToSpeechCreateParams
+};
 
-  export {
-    SoundEffect as SoundEffect,
-    type SoundEffectCreateResponse as SoundEffectCreateResponse,
-    type SoundEffectCreateParams as SoundEffectCreateParams,
-  };
+export {
+  SoundEffect as SoundEffect,
+  type SoundEffectCreateResponse as SoundEffectCreateResponse,
+  type SoundEffectCreateParams as SoundEffectCreateParams
+};
 
-  export {
-    VoiceIsolation as VoiceIsolation,
-    type VoiceIsolationCreateResponse as VoiceIsolationCreateResponse,
-    type VoiceIsolationCreateParams as VoiceIsolationCreateParams,
-  };
+export {
+  VoiceIsolation as VoiceIsolation,
+  type VoiceIsolationCreateResponse as VoiceIsolationCreateResponse,
+  type VoiceIsolationCreateParams as VoiceIsolationCreateParams
+};
 
-  export {
-    VoiceDubbing as VoiceDubbing,
-    type VoiceDubbingCreateResponse as VoiceDubbingCreateResponse,
-    type VoiceDubbingCreateParams as VoiceDubbingCreateParams,
-  };
+export {
+  VoiceDubbing as VoiceDubbing,
+  type VoiceDubbingCreateResponse as VoiceDubbingCreateResponse,
+  type VoiceDubbingCreateParams as VoiceDubbingCreateParams
+};
 
-  export {
-    SpeechToSpeech as SpeechToSpeech,
-    type SpeechToSpeechCreateResponse as SpeechToSpeechCreateResponse,
-    type SpeechToSpeechCreateParams as SpeechToSpeechCreateParams,
-  };
+export {
+  SpeechToSpeech as SpeechToSpeech,
+  type SpeechToSpeechCreateResponse as SpeechToSpeechCreateResponse,
+  type SpeechToSpeechCreateParams as SpeechToSpeechCreateParams
+};
 
-  export {
-    Organization as Organization,
-    type OrganizationRetrieveResponse as OrganizationRetrieveResponse,
-    type OrganizationRetrieveUsageResponse as OrganizationRetrieveUsageResponse,
-    type OrganizationRetrieveUsageParams as OrganizationRetrieveUsageParams,
-  };
+export {
+  Organization as Organization,
+  type OrganizationRetrieveResponse as OrganizationRetrieveResponse,
+  type OrganizationRetrieveUsageResponse as OrganizationRetrieveUsageResponse,
+  type OrganizationRetrieveUsageParams as OrganizationRetrieveUsageParams
+};
 
-  export {
-    Avatars as Avatars,
-    type AvatarCreateResponse as AvatarCreateResponse,
-    type AvatarRetrieveResponse as AvatarRetrieveResponse,
-    type AvatarUpdateResponse as AvatarUpdateResponse,
-    type AvatarListResponse as AvatarListResponse,
-    type AvatarListResponsesCursorPage as AvatarListResponsesCursorPage,
-    type AvatarCreateParams as AvatarCreateParams,
-    type AvatarUpdateParams as AvatarUpdateParams,
-    type AvatarListParams as AvatarListParams,
-  };
+export {
+  Avatars as Avatars,
+  type AvatarCreateResponse as AvatarCreateResponse,
+  type AvatarRetrieveResponse as AvatarRetrieveResponse,
+  type AvatarUpdateResponse as AvatarUpdateResponse,
+  type AvatarListResponse as AvatarListResponse,
+  type AvatarListResponsesCursorPage as AvatarListResponsesCursorPage,
+  type AvatarCreateParams as AvatarCreateParams,
+  type AvatarUpdateParams as AvatarUpdateParams,
+  type AvatarListParams as AvatarListParams
+};
 
-  export {
-    AvatarVideos as AvatarVideos,
-    type AvatarVideoCreateResponse as AvatarVideoCreateResponse,
-    type AvatarVideoCreateParams as AvatarVideoCreateParams,
-  };
+export {
+  AvatarVideos as AvatarVideos,
+  type AvatarVideoCreateResponse as AvatarVideoCreateResponse,
+  type AvatarVideoCreateParams as AvatarVideoCreateParams
+};
 
-  export {
-    Documents as Documents,
-    type DocumentCreateResponse as DocumentCreateResponse,
-    type DocumentRetrieveResponse as DocumentRetrieveResponse,
-    type DocumentListResponse as DocumentListResponse,
-    type DocumentListResponsesCursorPage as DocumentListResponsesCursorPage,
-    type DocumentCreateParams as DocumentCreateParams,
-    type DocumentUpdateParams as DocumentUpdateParams,
-    type DocumentListParams as DocumentListParams,
-  };
+export {
+  Documents as Documents,
+  type DocumentCreateResponse as DocumentCreateResponse,
+  type DocumentRetrieveResponse as DocumentRetrieveResponse,
+  type DocumentListResponse as DocumentListResponse,
+  type DocumentListResponsesCursorPage as DocumentListResponsesCursorPage,
+  type DocumentCreateParams as DocumentCreateParams,
+  type DocumentUpdateParams as DocumentUpdateParams,
+  type DocumentListParams as DocumentListParams
+};
 
-  export {
-    RealtimeSessions as RealtimeSessions,
-    type RealtimeSessionCreateResponse as RealtimeSessionCreateResponse,
-    type RealtimeSessionRetrieveResponse as RealtimeSessionRetrieveResponse,
-    type RealtimeSessionCreateParams as RealtimeSessionCreateParams,
-  };
+export {
+  RealtimeSessions as RealtimeSessions,
+  type RealtimeSessionCreateResponse as RealtimeSessionCreateResponse,
+  type RealtimeSessionRetrieveResponse as RealtimeSessionRetrieveResponse,
+  type RealtimeSessionCreateParams as RealtimeSessionCreateParams
+};
 
-  export {
-    Voices as Voices,
-    type VoiceCreateResponse as VoiceCreateResponse,
-    type VoiceRetrieveResponse as VoiceRetrieveResponse,
-    type VoiceListResponse as VoiceListResponse,
-    type VoicePreviewResponse as VoicePreviewResponse,
-    type VoiceListResponsesCursorPage as VoiceListResponsesCursorPage,
-    type VoiceCreateParams as VoiceCreateParams,
-    type VoiceListParams as VoiceListParams,
-    type VoicePreviewParams as VoicePreviewParams,
-  };
+export {
+  Voices as Voices,
+  type VoiceCreateResponse as VoiceCreateResponse,
+  type VoiceRetrieveResponse as VoiceRetrieveResponse,
+  type VoiceListResponse as VoiceListResponse,
+  type VoicePreviewResponse as VoicePreviewResponse,
+  type VoiceListResponsesCursorPage as VoiceListResponsesCursorPage,
+  type VoiceCreateParams as VoiceCreateParams,
+  type VoiceListParams as VoiceListParams,
+  type VoicePreviewParams as VoicePreviewParams
+};
 
   export {
     Uploads as Uploads,
@@ -1062,11 +907,11 @@ export declare namespace RunwayML {
     type WorkflowRetrieveResponse as WorkflowRetrieveResponse,
     type WorkflowListResponse as WorkflowListResponse,
     type WorkflowRunResponse as WorkflowRunResponse,
-    type WorkflowRunParams as WorkflowRunParams,
+    type WorkflowRunParams as WorkflowRunParams
   };
 
-  export {
-    WorkflowInvocations as WorkflowInvocations,
-    type WorkflowInvocationRetrieveResponse as WorkflowInvocationRetrieveResponse,
-  };
-}
+export {
+  WorkflowInvocations as WorkflowInvocations,
+  type WorkflowInvocationRetrieveResponse as WorkflowInvocationRetrieveResponse
+};
+    }
