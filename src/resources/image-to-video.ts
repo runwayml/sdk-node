@@ -37,7 +37,14 @@ export interface ImageToVideoCreateResponse {
   id: string;
 }
 
-export type ImageToVideoCreateParams = ImageToVideoCreateParams.Gen4_5 | ImageToVideoCreateParams.Gen4Turbo | ImageToVideoCreateParams.Gen3aTurbo | ImageToVideoCreateParams.Veo3_1 | ImageToVideoCreateParams.Veo3_1Fast | ImageToVideoCreateParams.Seedance2 | ImageToVideoCreateParams.Veo3
+export type ImageToVideoCreateParams =
+  | ImageToVideoCreateParams.Gen4_5
+  | ImageToVideoCreateParams.Gen4Turbo
+  | ImageToVideoCreateParams.Gen3aTurbo
+  | ImageToVideoCreateParams.Veo3_1
+  | ImageToVideoCreateParams.Veo3_1Fast
+  | ImageToVideoCreateParams.Seedance2
+  | ImageToVideoCreateParams.Veo3;
 
 export declare namespace ImageToVideoCreateParams {
   export interface Gen4_5 {
@@ -360,7 +367,19 @@ export declare namespace ImageToVideoCreateParams {
     /**
      * The resolution of the output video.
      */
-    ratio?: '992:432' | '864:496' | '752:560' | '640:640' | '560:752' | '496:864' | '1470:630' | '1280:720' | '1112:834' | '960:960' | '834:1112' | '720:1280';
+    ratio?:
+      | '992:432'
+      | '864:496'
+      | '752:560'
+      | '640:640'
+      | '560:752'
+      | '496:864'
+      | '1470:630'
+      | '1280:720'
+      | '1112:834'
+      | '960:960'
+      | '834:1112'
+      | '720:1280';
   }
 
   export namespace Seedance2 {
@@ -422,6 +441,6 @@ export declare namespace ImageToVideoCreateParams {
 export declare namespace ImageToVideo {
   export {
     type ImageToVideoCreateResponse as ImageToVideoCreateResponse,
-    type ImageToVideoCreateParams as ImageToVideoCreateParams
+    type ImageToVideoCreateParams as ImageToVideoCreateParams,
   };
 }

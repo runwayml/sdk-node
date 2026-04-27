@@ -49,7 +49,36 @@ export interface VoiceDubbingCreateParams {
    * The target language code to dub the audio to (e.g., "es" for Spanish, "fr" for
    * French).
    */
-  targetLang: 'en' | 'hi' | 'pt' | 'zh' | 'es' | 'fr' | 'de' | 'ja' | 'ar' | 'ru' | 'ko' | 'id' | 'it' | 'nl' | 'tr' | 'pl' | 'sv' | 'fil' | 'ms' | 'ro' | 'uk' | 'el' | 'cs' | 'da' | 'fi' | 'bg' | 'hr' | 'sk' | 'ta';
+  targetLang:
+    | 'en'
+    | 'hi'
+    | 'pt'
+    | 'zh'
+    | 'es'
+    | 'fr'
+    | 'de'
+    | 'ja'
+    | 'ar'
+    | 'ru'
+    | 'ko'
+    | 'id'
+    | 'it'
+    | 'nl'
+    | 'tr'
+    | 'pl'
+    | 'sv'
+    | 'fil'
+    | 'ms'
+    | 'ro'
+    | 'uk'
+    | 'el'
+    | 'cs'
+    | 'da'
+    | 'fi'
+    | 'bg'
+    | 'hr'
+    | 'sk'
+    | 'ta';
 
   /**
    * Whether to disable voice cloning and use a generic voice instead.
@@ -71,6 +100,6 @@ export interface VoiceDubbingCreateParams {
 export declare namespace VoiceDubbing {
   export {
     type VoiceDubbingCreateResponse as VoiceDubbingCreateResponse,
-    type VoiceDubbingCreateParams as VoiceDubbingCreateParams
+    type VoiceDubbingCreateParams as VoiceDubbingCreateParams,
   };
 }
