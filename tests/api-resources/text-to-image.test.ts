@@ -2,16 +2,19 @@
 
 import RunwayML from '@runwayml/sdk';
 
-const client = new RunwayML({ apiKey: 'My API Key', baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010' });
+const client = new RunwayML({
+  apiKey: 'My API Key',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+});
 
 describe('resource textToImage', () => {
   test('create: only required params', async () => {
     const responsePromise = client.textToImage.create({
-    model: 'gen4_image_turbo',
-    promptText: 'x',
-    ratio: '1024:1024',
-    referenceImages: [{ uri: 'https://example.com/file' }],
-  });
+      model: 'gen4_image_turbo',
+      promptText: 'x',
+      ratio: '1024:1024',
+      referenceImages: [{ uri: 'https://example.com/file' }],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -23,12 +26,12 @@ describe('resource textToImage', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.textToImage.create({
-    model: 'gen4_image_turbo',
-    promptText: 'x',
-    ratio: '1024:1024',
-    referenceImages: [{ uri: 'https://example.com/file', tag: 'tag' }],
-    contentModeration: { publicFigureThreshold: 'auto' },
-    seed: 0,
-  });
+      model: 'gen4_image_turbo',
+      promptText: 'x',
+      ratio: '1024:1024',
+      referenceImages: [{ uri: 'https://example.com/file', tag: 'tag' }],
+      contentModeration: { publicFigureThreshold: 'auto' },
+      seed: 0,
+    });
   });
 });

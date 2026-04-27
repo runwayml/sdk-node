@@ -28,7 +28,10 @@ export interface TextToImageCreateResponse {
   id: string;
 }
 
-export type TextToImageCreateParams = TextToImageCreateParams.Gen4ImageTurbo | TextToImageCreateParams.Gen4Image | TextToImageCreateParams.Gemini2_5Flash
+export type TextToImageCreateParams =
+  | TextToImageCreateParams.Gen4ImageTurbo
+  | TextToImageCreateParams.Gen4Image
+  | TextToImageCreateParams.Gemini2_5Flash;
 
 export declare namespace TextToImageCreateParams {
   export interface Gen4ImageTurbo {
@@ -43,7 +46,23 @@ export declare namespace TextToImageCreateParams {
     /**
      * The resolution of the output image.
      */
-    ratio: '1024:1024' | '1080:1080' | '1168:880' | '1360:768' | '1440:1080' | '1080:1440' | '1808:768' | '1920:1080' | '1080:1920' | '2112:912' | '1280:720' | '720:1280' | '720:720' | '960:720' | '720:960' | '1680:720';
+    ratio:
+      | '1024:1024'
+      | '1080:1080'
+      | '1168:880'
+      | '1360:768'
+      | '1440:1080'
+      | '1080:1440'
+      | '1808:768'
+      | '1920:1080'
+      | '1080:1920'
+      | '2112:912'
+      | '1280:720'
+      | '720:1280'
+      | '720:720'
+      | '960:720'
+      | '720:960'
+      | '1680:720';
 
     /**
      * An array of one to three images to be used as references for the generated image
@@ -102,7 +121,23 @@ export declare namespace TextToImageCreateParams {
     /**
      * The resolution of the output image.
      */
-    ratio: '1024:1024' | '1080:1080' | '1168:880' | '1360:768' | '1440:1080' | '1080:1440' | '1808:768' | '1920:1080' | '1080:1920' | '2112:912' | '1280:720' | '720:1280' | '720:720' | '960:720' | '720:960' | '1680:720';
+    ratio:
+      | '1024:1024'
+      | '1080:1080'
+      | '1168:880'
+      | '1360:768'
+      | '1440:1080'
+      | '1080:1440'
+      | '1808:768'
+      | '1920:1080'
+      | '1080:1920'
+      | '2112:912'
+      | '1280:720'
+      | '720:1280'
+      | '720:720'
+      | '960:720'
+      | '720:960'
+      | '1680:720';
 
     /**
      * Settings that affect the behavior of the content moderation system.
@@ -161,7 +196,17 @@ export declare namespace TextToImageCreateParams {
     /**
      * The resolution of the output image.
      */
-    ratio: '1344:768' | '768:1344' | '1024:1024' | '1184:864' | '864:1184' | '1536:672' | '832:1248' | '1248:832' | '896:1152' | '1152:896';
+    ratio:
+      | '1344:768'
+      | '768:1344'
+      | '1024:1024'
+      | '1184:864'
+      | '864:1184'
+      | '1536:672'
+      | '832:1248'
+      | '1248:832'
+      | '896:1152'
+      | '1152:896';
 
     /**
      * An array of up to three images to be used as references for the generated image
@@ -189,6 +234,6 @@ export declare namespace TextToImageCreateParams {
 export declare namespace TextToImage {
   export {
     type TextToImageCreateResponse as TextToImageCreateResponse,
-    type TextToImageCreateParams as TextToImageCreateParams
+    type TextToImageCreateParams as TextToImageCreateParams,
   };
 }

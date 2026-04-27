@@ -50,7 +50,11 @@ export class Avatars extends APIResource {
    * );
    * ```
    */
-  update(id: string, body: AvatarUpdateParams | null | undefined = {}, options?: RequestOptions): APIPromise<AvatarUpdateResponse> {
+  update(
+    id: string,
+    body: AvatarUpdateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AvatarUpdateResponse> {
     return this._client.patch(path`/v1/avatars/${id}`, { body, ...options });
   }
 
@@ -67,7 +71,10 @@ export class Avatars extends APIResource {
    * }
    * ```
    */
-  list(query: AvatarListParams, options?: RequestOptions): PagePromise<AvatarListResponsesCursorPage, AvatarListResponse> {
+  list(
+    query: AvatarListParams,
+    options?: RequestOptions,
+  ): PagePromise<AvatarListResponsesCursorPage, AvatarListResponse> {
     return this._client.getAPIList('/v1/avatars', CursorPage<AvatarListResponse>, { query, ...options });
   }
 
@@ -82,16 +89,22 @@ export class Avatars extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/v1/avatars/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/v1/avatars/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type AvatarListResponsesCursorPage = CursorPage<AvatarListResponse>
+export type AvatarListResponsesCursorPage = CursorPage<AvatarListResponse>;
 
 /**
  * An avatar that is still being processed.
  */
-export type AvatarCreateResponse = AvatarCreateResponse.Processing | AvatarCreateResponse.Ready | AvatarCreateResponse.Failed
+export type AvatarCreateResponse =
+  | AvatarCreateResponse.Processing
+  | AvatarCreateResponse.Ready
+  | AvatarCreateResponse.Failed;
 
 export namespace AvatarCreateResponse {
   /**
@@ -170,7 +183,37 @@ export namespace AvatarCreateResponse {
       /**
        * The preset voice identifier.
        */
-      presetId: 'victoria' | 'vincent' | 'clara' | 'drew' | 'skye' | 'max' | 'morgan' | 'felix' | 'mia' | 'marcus' | 'summer' | 'ruby' | 'aurora' | 'jasper' | 'leo' | 'adrian' | 'nina' | 'emma' | 'blake' | 'david' | 'maya' | 'nathan' | 'sam' | 'georgia' | 'petra' | 'adam' | 'zach' | 'violet' | 'roman' | 'luna';
+      presetId:
+        | 'victoria'
+        | 'vincent'
+        | 'clara'
+        | 'drew'
+        | 'skye'
+        | 'max'
+        | 'morgan'
+        | 'felix'
+        | 'mia'
+        | 'marcus'
+        | 'summer'
+        | 'ruby'
+        | 'aurora'
+        | 'jasper'
+        | 'leo'
+        | 'adrian'
+        | 'nina'
+        | 'emma'
+        | 'blake'
+        | 'david'
+        | 'maya'
+        | 'nathan'
+        | 'sam'
+        | 'georgia'
+        | 'petra'
+        | 'adam'
+        | 'zach'
+        | 'violet'
+        | 'roman'
+        | 'luna';
 
       type: 'runway-live-preset';
     }
@@ -279,7 +322,37 @@ export namespace AvatarCreateResponse {
       /**
        * The preset voice identifier.
        */
-      presetId: 'victoria' | 'vincent' | 'clara' | 'drew' | 'skye' | 'max' | 'morgan' | 'felix' | 'mia' | 'marcus' | 'summer' | 'ruby' | 'aurora' | 'jasper' | 'leo' | 'adrian' | 'nina' | 'emma' | 'blake' | 'david' | 'maya' | 'nathan' | 'sam' | 'georgia' | 'petra' | 'adam' | 'zach' | 'violet' | 'roman' | 'luna';
+      presetId:
+        | 'victoria'
+        | 'vincent'
+        | 'clara'
+        | 'drew'
+        | 'skye'
+        | 'max'
+        | 'morgan'
+        | 'felix'
+        | 'mia'
+        | 'marcus'
+        | 'summer'
+        | 'ruby'
+        | 'aurora'
+        | 'jasper'
+        | 'leo'
+        | 'adrian'
+        | 'nina'
+        | 'emma'
+        | 'blake'
+        | 'david'
+        | 'maya'
+        | 'nathan'
+        | 'sam'
+        | 'georgia'
+        | 'petra'
+        | 'adam'
+        | 'zach'
+        | 'violet'
+        | 'roman'
+        | 'luna';
 
       type: 'runway-live-preset';
     }
@@ -394,7 +467,37 @@ export namespace AvatarCreateResponse {
       /**
        * The preset voice identifier.
        */
-      presetId: 'victoria' | 'vincent' | 'clara' | 'drew' | 'skye' | 'max' | 'morgan' | 'felix' | 'mia' | 'marcus' | 'summer' | 'ruby' | 'aurora' | 'jasper' | 'leo' | 'adrian' | 'nina' | 'emma' | 'blake' | 'david' | 'maya' | 'nathan' | 'sam' | 'georgia' | 'petra' | 'adam' | 'zach' | 'violet' | 'roman' | 'luna';
+      presetId:
+        | 'victoria'
+        | 'vincent'
+        | 'clara'
+        | 'drew'
+        | 'skye'
+        | 'max'
+        | 'morgan'
+        | 'felix'
+        | 'mia'
+        | 'marcus'
+        | 'summer'
+        | 'ruby'
+        | 'aurora'
+        | 'jasper'
+        | 'leo'
+        | 'adrian'
+        | 'nina'
+        | 'emma'
+        | 'blake'
+        | 'david'
+        | 'maya'
+        | 'nathan'
+        | 'sam'
+        | 'georgia'
+        | 'petra'
+        | 'adam'
+        | 'zach'
+        | 'violet'
+        | 'roman'
+        | 'luna';
 
       type: 'runway-live-preset';
     }
@@ -431,7 +534,10 @@ export namespace AvatarCreateResponse {
 /**
  * An avatar that is still being processed.
  */
-export type AvatarRetrieveResponse = AvatarRetrieveResponse.Processing | AvatarRetrieveResponse.Ready | AvatarRetrieveResponse.Failed
+export type AvatarRetrieveResponse =
+  | AvatarRetrieveResponse.Processing
+  | AvatarRetrieveResponse.Ready
+  | AvatarRetrieveResponse.Failed;
 
 export namespace AvatarRetrieveResponse {
   /**
@@ -510,7 +616,37 @@ export namespace AvatarRetrieveResponse {
       /**
        * The preset voice identifier.
        */
-      presetId: 'victoria' | 'vincent' | 'clara' | 'drew' | 'skye' | 'max' | 'morgan' | 'felix' | 'mia' | 'marcus' | 'summer' | 'ruby' | 'aurora' | 'jasper' | 'leo' | 'adrian' | 'nina' | 'emma' | 'blake' | 'david' | 'maya' | 'nathan' | 'sam' | 'georgia' | 'petra' | 'adam' | 'zach' | 'violet' | 'roman' | 'luna';
+      presetId:
+        | 'victoria'
+        | 'vincent'
+        | 'clara'
+        | 'drew'
+        | 'skye'
+        | 'max'
+        | 'morgan'
+        | 'felix'
+        | 'mia'
+        | 'marcus'
+        | 'summer'
+        | 'ruby'
+        | 'aurora'
+        | 'jasper'
+        | 'leo'
+        | 'adrian'
+        | 'nina'
+        | 'emma'
+        | 'blake'
+        | 'david'
+        | 'maya'
+        | 'nathan'
+        | 'sam'
+        | 'georgia'
+        | 'petra'
+        | 'adam'
+        | 'zach'
+        | 'violet'
+        | 'roman'
+        | 'luna';
 
       type: 'runway-live-preset';
     }
@@ -619,7 +755,37 @@ export namespace AvatarRetrieveResponse {
       /**
        * The preset voice identifier.
        */
-      presetId: 'victoria' | 'vincent' | 'clara' | 'drew' | 'skye' | 'max' | 'morgan' | 'felix' | 'mia' | 'marcus' | 'summer' | 'ruby' | 'aurora' | 'jasper' | 'leo' | 'adrian' | 'nina' | 'emma' | 'blake' | 'david' | 'maya' | 'nathan' | 'sam' | 'georgia' | 'petra' | 'adam' | 'zach' | 'violet' | 'roman' | 'luna';
+      presetId:
+        | 'victoria'
+        | 'vincent'
+        | 'clara'
+        | 'drew'
+        | 'skye'
+        | 'max'
+        | 'morgan'
+        | 'felix'
+        | 'mia'
+        | 'marcus'
+        | 'summer'
+        | 'ruby'
+        | 'aurora'
+        | 'jasper'
+        | 'leo'
+        | 'adrian'
+        | 'nina'
+        | 'emma'
+        | 'blake'
+        | 'david'
+        | 'maya'
+        | 'nathan'
+        | 'sam'
+        | 'georgia'
+        | 'petra'
+        | 'adam'
+        | 'zach'
+        | 'violet'
+        | 'roman'
+        | 'luna';
 
       type: 'runway-live-preset';
     }
@@ -734,7 +900,37 @@ export namespace AvatarRetrieveResponse {
       /**
        * The preset voice identifier.
        */
-      presetId: 'victoria' | 'vincent' | 'clara' | 'drew' | 'skye' | 'max' | 'morgan' | 'felix' | 'mia' | 'marcus' | 'summer' | 'ruby' | 'aurora' | 'jasper' | 'leo' | 'adrian' | 'nina' | 'emma' | 'blake' | 'david' | 'maya' | 'nathan' | 'sam' | 'georgia' | 'petra' | 'adam' | 'zach' | 'violet' | 'roman' | 'luna';
+      presetId:
+        | 'victoria'
+        | 'vincent'
+        | 'clara'
+        | 'drew'
+        | 'skye'
+        | 'max'
+        | 'morgan'
+        | 'felix'
+        | 'mia'
+        | 'marcus'
+        | 'summer'
+        | 'ruby'
+        | 'aurora'
+        | 'jasper'
+        | 'leo'
+        | 'adrian'
+        | 'nina'
+        | 'emma'
+        | 'blake'
+        | 'david'
+        | 'maya'
+        | 'nathan'
+        | 'sam'
+        | 'georgia'
+        | 'petra'
+        | 'adam'
+        | 'zach'
+        | 'violet'
+        | 'roman'
+        | 'luna';
 
       type: 'runway-live-preset';
     }
@@ -771,7 +967,10 @@ export namespace AvatarRetrieveResponse {
 /**
  * An avatar that is still being processed.
  */
-export type AvatarUpdateResponse = AvatarUpdateResponse.Processing | AvatarUpdateResponse.Ready | AvatarUpdateResponse.Failed
+export type AvatarUpdateResponse =
+  | AvatarUpdateResponse.Processing
+  | AvatarUpdateResponse.Ready
+  | AvatarUpdateResponse.Failed;
 
 export namespace AvatarUpdateResponse {
   /**
@@ -850,7 +1049,37 @@ export namespace AvatarUpdateResponse {
       /**
        * The preset voice identifier.
        */
-      presetId: 'victoria' | 'vincent' | 'clara' | 'drew' | 'skye' | 'max' | 'morgan' | 'felix' | 'mia' | 'marcus' | 'summer' | 'ruby' | 'aurora' | 'jasper' | 'leo' | 'adrian' | 'nina' | 'emma' | 'blake' | 'david' | 'maya' | 'nathan' | 'sam' | 'georgia' | 'petra' | 'adam' | 'zach' | 'violet' | 'roman' | 'luna';
+      presetId:
+        | 'victoria'
+        | 'vincent'
+        | 'clara'
+        | 'drew'
+        | 'skye'
+        | 'max'
+        | 'morgan'
+        | 'felix'
+        | 'mia'
+        | 'marcus'
+        | 'summer'
+        | 'ruby'
+        | 'aurora'
+        | 'jasper'
+        | 'leo'
+        | 'adrian'
+        | 'nina'
+        | 'emma'
+        | 'blake'
+        | 'david'
+        | 'maya'
+        | 'nathan'
+        | 'sam'
+        | 'georgia'
+        | 'petra'
+        | 'adam'
+        | 'zach'
+        | 'violet'
+        | 'roman'
+        | 'luna';
 
       type: 'runway-live-preset';
     }
@@ -959,7 +1188,37 @@ export namespace AvatarUpdateResponse {
       /**
        * The preset voice identifier.
        */
-      presetId: 'victoria' | 'vincent' | 'clara' | 'drew' | 'skye' | 'max' | 'morgan' | 'felix' | 'mia' | 'marcus' | 'summer' | 'ruby' | 'aurora' | 'jasper' | 'leo' | 'adrian' | 'nina' | 'emma' | 'blake' | 'david' | 'maya' | 'nathan' | 'sam' | 'georgia' | 'petra' | 'adam' | 'zach' | 'violet' | 'roman' | 'luna';
+      presetId:
+        | 'victoria'
+        | 'vincent'
+        | 'clara'
+        | 'drew'
+        | 'skye'
+        | 'max'
+        | 'morgan'
+        | 'felix'
+        | 'mia'
+        | 'marcus'
+        | 'summer'
+        | 'ruby'
+        | 'aurora'
+        | 'jasper'
+        | 'leo'
+        | 'adrian'
+        | 'nina'
+        | 'emma'
+        | 'blake'
+        | 'david'
+        | 'maya'
+        | 'nathan'
+        | 'sam'
+        | 'georgia'
+        | 'petra'
+        | 'adam'
+        | 'zach'
+        | 'violet'
+        | 'roman'
+        | 'luna';
 
       type: 'runway-live-preset';
     }
@@ -1074,7 +1333,37 @@ export namespace AvatarUpdateResponse {
       /**
        * The preset voice identifier.
        */
-      presetId: 'victoria' | 'vincent' | 'clara' | 'drew' | 'skye' | 'max' | 'morgan' | 'felix' | 'mia' | 'marcus' | 'summer' | 'ruby' | 'aurora' | 'jasper' | 'leo' | 'adrian' | 'nina' | 'emma' | 'blake' | 'david' | 'maya' | 'nathan' | 'sam' | 'georgia' | 'petra' | 'adam' | 'zach' | 'violet' | 'roman' | 'luna';
+      presetId:
+        | 'victoria'
+        | 'vincent'
+        | 'clara'
+        | 'drew'
+        | 'skye'
+        | 'max'
+        | 'morgan'
+        | 'felix'
+        | 'mia'
+        | 'marcus'
+        | 'summer'
+        | 'ruby'
+        | 'aurora'
+        | 'jasper'
+        | 'leo'
+        | 'adrian'
+        | 'nina'
+        | 'emma'
+        | 'blake'
+        | 'david'
+        | 'maya'
+        | 'nathan'
+        | 'sam'
+        | 'georgia'
+        | 'petra'
+        | 'adam'
+        | 'zach'
+        | 'violet'
+        | 'roman'
+        | 'luna';
 
       type: 'runway-live-preset';
     }
@@ -1111,7 +1400,10 @@ export namespace AvatarUpdateResponse {
 /**
  * An avatar that is still being processed.
  */
-export type AvatarListResponse = AvatarListResponse.Processing | AvatarListResponse.Ready | AvatarListResponse.Failed
+export type AvatarListResponse =
+  | AvatarListResponse.Processing
+  | AvatarListResponse.Ready
+  | AvatarListResponse.Failed;
 
 export namespace AvatarListResponse {
   /**
@@ -1190,7 +1482,37 @@ export namespace AvatarListResponse {
       /**
        * The preset voice identifier.
        */
-      presetId: 'victoria' | 'vincent' | 'clara' | 'drew' | 'skye' | 'max' | 'morgan' | 'felix' | 'mia' | 'marcus' | 'summer' | 'ruby' | 'aurora' | 'jasper' | 'leo' | 'adrian' | 'nina' | 'emma' | 'blake' | 'david' | 'maya' | 'nathan' | 'sam' | 'georgia' | 'petra' | 'adam' | 'zach' | 'violet' | 'roman' | 'luna';
+      presetId:
+        | 'victoria'
+        | 'vincent'
+        | 'clara'
+        | 'drew'
+        | 'skye'
+        | 'max'
+        | 'morgan'
+        | 'felix'
+        | 'mia'
+        | 'marcus'
+        | 'summer'
+        | 'ruby'
+        | 'aurora'
+        | 'jasper'
+        | 'leo'
+        | 'adrian'
+        | 'nina'
+        | 'emma'
+        | 'blake'
+        | 'david'
+        | 'maya'
+        | 'nathan'
+        | 'sam'
+        | 'georgia'
+        | 'petra'
+        | 'adam'
+        | 'zach'
+        | 'violet'
+        | 'roman'
+        | 'luna';
 
       type: 'runway-live-preset';
     }
@@ -1299,7 +1621,37 @@ export namespace AvatarListResponse {
       /**
        * The preset voice identifier.
        */
-      presetId: 'victoria' | 'vincent' | 'clara' | 'drew' | 'skye' | 'max' | 'morgan' | 'felix' | 'mia' | 'marcus' | 'summer' | 'ruby' | 'aurora' | 'jasper' | 'leo' | 'adrian' | 'nina' | 'emma' | 'blake' | 'david' | 'maya' | 'nathan' | 'sam' | 'georgia' | 'petra' | 'adam' | 'zach' | 'violet' | 'roman' | 'luna';
+      presetId:
+        | 'victoria'
+        | 'vincent'
+        | 'clara'
+        | 'drew'
+        | 'skye'
+        | 'max'
+        | 'morgan'
+        | 'felix'
+        | 'mia'
+        | 'marcus'
+        | 'summer'
+        | 'ruby'
+        | 'aurora'
+        | 'jasper'
+        | 'leo'
+        | 'adrian'
+        | 'nina'
+        | 'emma'
+        | 'blake'
+        | 'david'
+        | 'maya'
+        | 'nathan'
+        | 'sam'
+        | 'georgia'
+        | 'petra'
+        | 'adam'
+        | 'zach'
+        | 'violet'
+        | 'roman'
+        | 'luna';
 
       type: 'runway-live-preset';
     }
@@ -1414,7 +1766,37 @@ export namespace AvatarListResponse {
       /**
        * The preset voice identifier.
        */
-      presetId: 'victoria' | 'vincent' | 'clara' | 'drew' | 'skye' | 'max' | 'morgan' | 'felix' | 'mia' | 'marcus' | 'summer' | 'ruby' | 'aurora' | 'jasper' | 'leo' | 'adrian' | 'nina' | 'emma' | 'blake' | 'david' | 'maya' | 'nathan' | 'sam' | 'georgia' | 'petra' | 'adam' | 'zach' | 'violet' | 'roman' | 'luna';
+      presetId:
+        | 'victoria'
+        | 'vincent'
+        | 'clara'
+        | 'drew'
+        | 'skye'
+        | 'max'
+        | 'morgan'
+        | 'felix'
+        | 'mia'
+        | 'marcus'
+        | 'summer'
+        | 'ruby'
+        | 'aurora'
+        | 'jasper'
+        | 'leo'
+        | 'adrian'
+        | 'nina'
+        | 'emma'
+        | 'blake'
+        | 'david'
+        | 'maya'
+        | 'nathan'
+        | 'sam'
+        | 'georgia'
+        | 'petra'
+        | 'adam'
+        | 'zach'
+        | 'violet'
+        | 'roman'
+        | 'luna';
 
       type: 'runway-live-preset';
     }
@@ -1501,7 +1883,37 @@ export namespace AvatarCreateParams {
      * (Maya), `nathan` (Nathan), `sam` (Sam), `georgia` (Georgia), `petra` (Petra),
      * `adam` (Adam), `zach` (Zach), `violet` (Violet), `roman` (Roman), `luna` (Luna).
      */
-    presetId: 'victoria' | 'vincent' | 'clara' | 'drew' | 'skye' | 'max' | 'morgan' | 'felix' | 'mia' | 'marcus' | 'summer' | 'ruby' | 'aurora' | 'jasper' | 'leo' | 'adrian' | 'nina' | 'emma' | 'blake' | 'david' | 'maya' | 'nathan' | 'sam' | 'georgia' | 'petra' | 'adam' | 'zach' | 'violet' | 'roman' | 'luna';
+    presetId:
+      | 'victoria'
+      | 'vincent'
+      | 'clara'
+      | 'drew'
+      | 'skye'
+      | 'max'
+      | 'morgan'
+      | 'felix'
+      | 'mia'
+      | 'marcus'
+      | 'summer'
+      | 'ruby'
+      | 'aurora'
+      | 'jasper'
+      | 'leo'
+      | 'adrian'
+      | 'nina'
+      | 'emma'
+      | 'blake'
+      | 'david'
+      | 'maya'
+      | 'nathan'
+      | 'sam'
+      | 'georgia'
+      | 'petra'
+      | 'adam'
+      | 'zach'
+      | 'violet'
+      | 'roman'
+      | 'luna';
 
     type: 'runway-live-preset';
   }
@@ -1573,7 +1985,37 @@ export namespace AvatarUpdateParams {
      * (Maya), `nathan` (Nathan), `sam` (Sam), `georgia` (Georgia), `petra` (Petra),
      * `adam` (Adam), `zach` (Zach), `violet` (Violet), `roman` (Roman), `luna` (Luna).
      */
-    presetId: 'victoria' | 'vincent' | 'clara' | 'drew' | 'skye' | 'max' | 'morgan' | 'felix' | 'mia' | 'marcus' | 'summer' | 'ruby' | 'aurora' | 'jasper' | 'leo' | 'adrian' | 'nina' | 'emma' | 'blake' | 'david' | 'maya' | 'nathan' | 'sam' | 'georgia' | 'petra' | 'adam' | 'zach' | 'violet' | 'roman' | 'luna';
+    presetId:
+      | 'victoria'
+      | 'vincent'
+      | 'clara'
+      | 'drew'
+      | 'skye'
+      | 'max'
+      | 'morgan'
+      | 'felix'
+      | 'mia'
+      | 'marcus'
+      | 'summer'
+      | 'ruby'
+      | 'aurora'
+      | 'jasper'
+      | 'leo'
+      | 'adrian'
+      | 'nina'
+      | 'emma'
+      | 'blake'
+      | 'david'
+      | 'maya'
+      | 'nathan'
+      | 'sam'
+      | 'georgia'
+      | 'petra'
+      | 'adam'
+      | 'zach'
+      | 'violet'
+      | 'roman'
+      | 'luna';
 
     type: 'runway-live-preset';
   }
@@ -1591,8 +2033,7 @@ export namespace AvatarUpdateParams {
   }
 }
 
-export interface AvatarListParams extends CursorPageParams {
-}
+export interface AvatarListParams extends CursorPageParams {}
 
 export declare namespace Avatars {
   export {
@@ -1603,6 +2044,6 @@ export declare namespace Avatars {
     type AvatarListResponsesCursorPage as AvatarListResponsesCursorPage,
     type AvatarCreateParams as AvatarCreateParams,
     type AvatarUpdateParams as AvatarUpdateParams,
-    type AvatarListParams as AvatarListParams
+    type AvatarListParams as AvatarListParams,
   };
 }

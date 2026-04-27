@@ -2,11 +2,17 @@
 
 import RunwayML from '@runwayml/sdk';
 
-const client = new RunwayML({ apiKey: 'My API Key', baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010' });
+const client = new RunwayML({
+  apiKey: 'My API Key',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+});
 
 describe('resource documents', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.documents.create({ content: '# Product FAQ\n\n## What is your return policy?\n\nWe offer a 30-day return policy...', name: 'Product FAQ' });
+    const responsePromise = client.documents.create({
+      content: '# Product FAQ\n\n## What is your return policy?\n\nWe offer a 30-day return policy...',
+      name: 'Product FAQ',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -17,7 +23,10 @@ describe('resource documents', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await client.documents.create({ content: '# Product FAQ\n\n## What is your return policy?\n\nWe offer a 30-day return policy...', name: 'Product FAQ' });
+    const response = await client.documents.create({
+      content: '# Product FAQ\n\n## What is your return policy?\n\nWe offer a 30-day return policy...',
+      name: 'Product FAQ',
+    });
   });
 
   test('retrieve', async () => {
@@ -44,17 +53,21 @@ describe('resource documents', () => {
 
   test('update: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.documents.update('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { content: '# Updated FAQ\n\n...', name: 'Updated Product FAQ' }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(RunwayML.NotFoundError);
+    await expect(
+      client.documents.update(
+        '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        { content: '# Updated FAQ\n\n...', name: 'Updated Product FAQ' },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(RunwayML.NotFoundError);
   });
 
   test('list: only required params', async () => {
     const responsePromise = client.documents.list({
-    limit: 1,
-    order: 'asc',
-    sort: 'createdAt',
-  });
+      limit: 1,
+      order: 'asc',
+      sort: 'createdAt',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -66,11 +79,11 @@ describe('resource documents', () => {
 
   test('list: required and optional params', async () => {
     const response = await client.documents.list({
-    limit: 1,
-    order: 'asc',
-    sort: 'createdAt',
-    cursor: 'x',
-  });
+      limit: 1,
+      order: 'asc',
+      sort: 'createdAt',
+      cursor: 'x',
+    });
   });
 
   test('delete', async () => {

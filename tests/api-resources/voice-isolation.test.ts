@@ -2,11 +2,17 @@
 
 import RunwayML from '@runwayml/sdk';
 
-const client = new RunwayML({ apiKey: 'My API Key', baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010' });
+const client = new RunwayML({
+  apiKey: 'My API Key',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+});
 
 describe('resource voiceIsolation', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.voiceIsolation.create({ audioUri: 'https://example.com/audio.mp3', model: 'eleven_voice_isolation' });
+    const responsePromise = client.voiceIsolation.create({
+      audioUri: 'https://example.com/audio.mp3',
+      model: 'eleven_voice_isolation',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -17,6 +23,9 @@ describe('resource voiceIsolation', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await client.voiceIsolation.create({ audioUri: 'https://example.com/audio.mp3', model: 'eleven_voice_isolation' });
+    const response = await client.voiceIsolation.create({
+      audioUri: 'https://example.com/audio.mp3',
+      model: 'eleven_voice_isolation',
+    });
   });
 });

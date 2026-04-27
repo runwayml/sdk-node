@@ -2,14 +2,17 @@
 
 import RunwayML from '@runwayml/sdk';
 
-const client = new RunwayML({ apiKey: 'My API Key', baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010' });
+const client = new RunwayML({
+  apiKey: 'My API Key',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+});
 
 describe('resource voices', () => {
   test('create: only required params', async () => {
     const responsePromise = client.voices.create({
-    from: { audio: 'https://example.com/file', type: 'audio' },
-    name: 'x',
-  });
+      from: { audio: 'https://example.com/file', type: 'audio' },
+      name: 'x',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,10 +24,10 @@ describe('resource voices', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.voices.create({
-    from: { audio: 'https://example.com/file', type: 'audio' },
-    name: 'x',
-    description: 'x',
-  });
+      from: { audio: 'https://example.com/file', type: 'audio' },
+      name: 'x',
+      description: 'x',
+    });
   });
 
   test('retrieve', async () => {

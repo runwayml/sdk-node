@@ -21,7 +21,10 @@ export class VoiceIsolation extends APIResource {
    * });
    * ```
    */
-  create(body: VoiceIsolationCreateParams, options?: RequestOptions): APIPromiseWithAwaitableTask<VoiceIsolationCreateResponse> {
+  create(
+    body: VoiceIsolationCreateParams,
+    options?: RequestOptions,
+  ): APIPromiseWithAwaitableTask<VoiceIsolationCreateResponse> {
     return wrapAsWaitableResource<VoiceIsolationCreateResponse>(this._client)(
       this._client.post('/v1/voice_isolation', { body, ...options }),
     );
@@ -47,6 +50,6 @@ export interface VoiceIsolationCreateParams {
 export declare namespace VoiceIsolation {
   export {
     type VoiceIsolationCreateResponse as VoiceIsolationCreateResponse,
-    type VoiceIsolationCreateParams as VoiceIsolationCreateParams
+    type VoiceIsolationCreateParams as VoiceIsolationCreateParams,
   };
 }

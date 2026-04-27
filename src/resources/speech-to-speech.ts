@@ -11,7 +11,10 @@ export class SpeechToSpeech extends APIResource {
    * This endpoint will start a new task to convert speech from one voice to another
    * in audio or video.
    */
-  create(body: SpeechToSpeechCreateParams, options?: RequestOptions): APIPromiseWithAwaitableTask<SpeechToSpeechCreateResponse> {
+  create(
+    body: SpeechToSpeechCreateParams,
+    options?: RequestOptions,
+  ): APIPromiseWithAwaitableTask<SpeechToSpeechCreateResponse> {
     return wrapAsWaitableResource<SpeechToSpeechCreateResponse>(this._client)(
       this._client.post('/v1/speech_to_speech', { body, ...options }),
     );
@@ -76,7 +79,56 @@ export namespace SpeechToSpeechCreateParams {
     /**
      * The preset voice ID to use for the generated speech.
      */
-    presetId: 'Maya' | 'Arjun' | 'Serene' | 'Bernard' | 'Billy' | 'Mark' | 'Clint' | 'Mabel' | 'Chad' | 'Leslie' | 'Eleanor' | 'Elias' | 'Elliot' | 'Grungle' | 'Brodie' | 'Sandra' | 'Kirk' | 'Kylie' | 'Lara' | 'Lisa' | 'Malachi' | 'Marlene' | 'Martin' | 'Miriam' | 'Monster' | 'Paula' | 'Pip' | 'Rusty' | 'Ragnar' | 'Xylar' | 'Maggie' | 'Jack' | 'Katie' | 'Noah' | 'James' | 'Rina' | 'Ella' | 'Mariah' | 'Frank' | 'Claudia' | 'Niki' | 'Vincent' | 'Kendrick' | 'Myrna' | 'Tom' | 'Wanda' | 'Benjamin' | 'Kiana' | 'Rachel';
+    presetId:
+      | 'Maya'
+      | 'Arjun'
+      | 'Serene'
+      | 'Bernard'
+      | 'Billy'
+      | 'Mark'
+      | 'Clint'
+      | 'Mabel'
+      | 'Chad'
+      | 'Leslie'
+      | 'Eleanor'
+      | 'Elias'
+      | 'Elliot'
+      | 'Grungle'
+      | 'Brodie'
+      | 'Sandra'
+      | 'Kirk'
+      | 'Kylie'
+      | 'Lara'
+      | 'Lisa'
+      | 'Malachi'
+      | 'Marlene'
+      | 'Martin'
+      | 'Miriam'
+      | 'Monster'
+      | 'Paula'
+      | 'Pip'
+      | 'Rusty'
+      | 'Ragnar'
+      | 'Xylar'
+      | 'Maggie'
+      | 'Jack'
+      | 'Katie'
+      | 'Noah'
+      | 'James'
+      | 'Rina'
+      | 'Ella'
+      | 'Mariah'
+      | 'Frank'
+      | 'Claudia'
+      | 'Niki'
+      | 'Vincent'
+      | 'Kendrick'
+      | 'Myrna'
+      | 'Tom'
+      | 'Wanda'
+      | 'Benjamin'
+      | 'Kiana'
+      | 'Rachel';
 
     type: 'runway-preset';
   }
@@ -85,6 +137,6 @@ export namespace SpeechToSpeechCreateParams {
 export declare namespace SpeechToSpeech {
   export {
     type SpeechToSpeechCreateResponse as SpeechToSpeechCreateResponse,
-    type SpeechToSpeechCreateParams as SpeechToSpeechCreateParams
+    type SpeechToSpeechCreateParams as SpeechToSpeechCreateParams,
   };
 }
