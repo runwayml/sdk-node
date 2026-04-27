@@ -32,7 +32,9 @@ export interface VideoToVideoCreateResponse {
   id: string;
 }
 
-export type VideoToVideoCreateParams = VideoToVideoCreateParams.Gen4Aleph | VideoToVideoCreateParams.Seedance2
+export type VideoToVideoCreateParams =
+  | VideoToVideoCreateParams.Gen4Aleph
+  | VideoToVideoCreateParams.Seedance2;
 
 export declare namespace VideoToVideoCreateParams {
   export interface Gen4Aleph {
@@ -58,7 +60,15 @@ export declare namespace VideoToVideoCreateParams {
      * @deprecated Deprecated. This field is ignored. The resolution of the output
      * video is determined by the input video.
      */
-    ratio?: '1280:720' | '720:1280' | '1104:832' | '960:960' | '832:1104' | '1584:672' | '848:480' | '640:480';
+    ratio?:
+      | '1280:720'
+      | '720:1280'
+      | '1104:832'
+      | '960:960'
+      | '832:1104'
+      | '1584:672'
+      | '848:480'
+      | '640:480';
 
     /**
      * An array of references. Currently up to one reference is supported. See
@@ -133,7 +143,19 @@ export declare namespace VideoToVideoCreateParams {
     /**
      * The resolution of the output video.
      */
-    ratio?: '992:432' | '864:496' | '752:560' | '640:640' | '560:752' | '496:864' | '1470:630' | '1280:720' | '1112:834' | '960:960' | '834:1112' | '720:1280';
+    ratio?:
+      | '992:432'
+      | '864:496'
+      | '752:560'
+      | '640:640'
+      | '560:752'
+      | '496:864'
+      | '1470:630'
+      | '1280:720'
+      | '1112:834'
+      | '960:960'
+      | '834:1112'
+      | '720:1280';
 
     /**
      * An optional array of image references (up to 9). See
@@ -180,6 +202,6 @@ export declare namespace VideoToVideoCreateParams {
 export declare namespace VideoToVideo {
   export {
     type VideoToVideoCreateResponse as VideoToVideoCreateResponse,
-    type VideoToVideoCreateParams as VideoToVideoCreateParams
+    type VideoToVideoCreateParams as VideoToVideoCreateParams,
   };
 }

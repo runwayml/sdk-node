@@ -27,14 +27,23 @@ export class Tasks extends APIResource {
    * will not be able to be fetched again in the future.
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/v1/tasks/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/v1/tasks/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
 /**
  * A pending task
  */
-export type TaskRetrieveResponse = TaskRetrieveResponse.Pending | TaskRetrieveResponse.Throttled | TaskRetrieveResponse.Cancelled | TaskRetrieveResponse.Running | TaskRetrieveResponse.Failed | TaskRetrieveResponse.Succeeded
+export type TaskRetrieveResponse =
+  | TaskRetrieveResponse.Pending
+  | TaskRetrieveResponse.Throttled
+  | TaskRetrieveResponse.Cancelled
+  | TaskRetrieveResponse.Running
+  | TaskRetrieveResponse.Failed
+  | TaskRetrieveResponse.Succeeded;
 
 export namespace TaskRetrieveResponse {
   /**
@@ -162,7 +171,5 @@ export namespace TaskRetrieveResponse {
 }
 
 export declare namespace Tasks {
-  export {
-    type TaskRetrieveResponse as TaskRetrieveResponse
-  };
+  export { type TaskRetrieveResponse as TaskRetrieveResponse };
 }

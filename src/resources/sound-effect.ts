@@ -48,6 +48,6 @@ export interface SoundEffectCreateParams {
 export declare namespace SoundEffect {
   export {
     type SoundEffectCreateResponse as SoundEffectCreateResponse,
-    type SoundEffectCreateParams as SoundEffectCreateParams
+    type SoundEffectCreateParams as SoundEffectCreateParams,
   };
 }

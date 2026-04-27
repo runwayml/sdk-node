@@ -12,7 +12,10 @@ export class RealtimeSessions extends APIResource {
    * returned ID is also the conversation ID used later to fetch transcripts and
    * recordings from the avatar conversation endpoints.
    */
-  create(body: RealtimeSessionCreateParams, options?: RequestOptions): APIPromise<RealtimeSessionCreateResponse> {
+  create(
+    body: RealtimeSessionCreateParams,
+    options?: RequestOptions,
+  ): APIPromise<RealtimeSessionCreateResponse> {
     return this._client.post('/v1/realtime_sessions', { body, ...options });
   }
 
@@ -28,7 +31,10 @@ export class RealtimeSessions extends APIResource {
    * Cancel an active realtime session.
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/v1/realtime_sessions/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/v1/realtime_sessions/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
@@ -43,7 +49,13 @@ export interface RealtimeSessionCreateResponse {
 /**
  * A session that is being provisioned.
  */
-export type RealtimeSessionRetrieveResponse = RealtimeSessionRetrieveResponse.NotReady | RealtimeSessionRetrieveResponse.Ready | RealtimeSessionRetrieveResponse.Running | RealtimeSessionRetrieveResponse.Completed | RealtimeSessionRetrieveResponse.Failed | RealtimeSessionRetrieveResponse.Cancelled
+export type RealtimeSessionRetrieveResponse =
+  | RealtimeSessionRetrieveResponse.NotReady
+  | RealtimeSessionRetrieveResponse.Ready
+  | RealtimeSessionRetrieveResponse.Running
+  | RealtimeSessionRetrieveResponse.Completed
+  | RealtimeSessionRetrieveResponse.Failed
+  | RealtimeSessionRetrieveResponse.Cancelled;
 
 export namespace RealtimeSessionRetrieveResponse {
   /**
@@ -230,7 +242,16 @@ export namespace RealtimeSessionCreateParams {
     /**
      * ID of a preset avatar.
      */
-    presetId: 'game-character' | 'music-superstar' | 'game-character-man' | 'cat-character' | 'influencer' | 'tennis-coach' | 'human-resource' | 'fashion-designer' | 'cooking-teacher';
+    presetId:
+      | 'game-character'
+      | 'music-superstar'
+      | 'game-character-man'
+      | 'cat-character'
+      | 'influencer'
+      | 'tennis-coach'
+      | 'human-resource'
+      | 'fashion-designer'
+      | 'cooking-teacher';
 
     type: 'runway-preset';
   }
@@ -266,7 +287,14 @@ export namespace RealtimeSessionCreateParams {
 
     type: 'client_event';
 
-    parameters?: Array<ClientEvent.String | ClientEvent.Integer | ClientEvent.Number | ClientEvent.Boolean | ClientEvent.Array_ | ClientEvent.Object>;
+    parameters?: Array<
+      | ClientEvent.String
+      | ClientEvent.Integer
+      | ClientEvent.Number
+      | ClientEvent.Boolean
+      | ClientEvent.Array_
+      | ClientEvent.Object
+    >;
   }
 
   export namespace ClientEvent {
@@ -431,7 +459,14 @@ export namespace RealtimeSessionCreateParams {
 
     type: 'backend_rpc';
 
-    parameters?: Array<BackendRpc.String | BackendRpc.Integer | BackendRpc.Number | BackendRpc.Boolean | BackendRpc.Array_ | BackendRpc.Object>;
+    parameters?: Array<
+      | BackendRpc.String
+      | BackendRpc.Integer
+      | BackendRpc.Number
+      | BackendRpc.Boolean
+      | BackendRpc.Array_
+      | BackendRpc.Object
+    >;
 
     /**
      * Maximum time to wait for the backend to respond.
@@ -587,6 +622,6 @@ export declare namespace RealtimeSessions {
   export {
     type RealtimeSessionCreateResponse as RealtimeSessionCreateResponse,
     type RealtimeSessionRetrieveResponse as RealtimeSessionRetrieveResponse,
-    type RealtimeSessionCreateParams as RealtimeSessionCreateParams
+    type RealtimeSessionCreateParams as RealtimeSessionCreateParams,
   };
 }

@@ -28,7 +28,10 @@ export class CharacterPerformance extends APIResource {
    *   });
    * ```
    */
-  create(body: CharacterPerformanceCreateParams, options?: RequestOptions): APIPromise<CharacterPerformanceCreateResponse> {
+  create(
+    body: CharacterPerformanceCreateParams,
+    options?: RequestOptions,
+  ): APIPromise<CharacterPerformanceCreateResponse> {
     return this._client.post('/v1/character_performance', { body, ...options });
   }
 }
@@ -142,6 +145,6 @@ export namespace CharacterPerformanceCreateParams {
 export declare namespace CharacterPerformance {
   export {
     type CharacterPerformanceCreateResponse as CharacterPerformanceCreateResponse,
-    type CharacterPerformanceCreateParams as CharacterPerformanceCreateParams
+    type CharacterPerformanceCreateParams as CharacterPerformanceCreateParams,
   };
 }

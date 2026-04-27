@@ -50,8 +50,16 @@ export class Documents extends APIResource {
    * );
    * ```
    */
-  update(id: string, body: DocumentUpdateParams | null | undefined = {}, options?: RequestOptions): APIPromise<void> {
-    return this._client.patch(path`/v1/documents/${id}`, { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+  update(
+    id: string,
+    body: DocumentUpdateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    return this._client.patch(path`/v1/documents/${id}`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -72,7 +80,10 @@ export class Documents extends APIResource {
    * }
    * ```
    */
-  list(query: DocumentListParams, options?: RequestOptions): PagePromise<DocumentListResponsesCursorPage, DocumentListResponse> {
+  list(
+    query: DocumentListParams,
+    options?: RequestOptions,
+  ): PagePromise<DocumentListResponsesCursorPage, DocumentListResponse> {
     return this._client.getAPIList('/v1/documents', CursorPage<DocumentListResponse>, { query, ...options });
   }
 
@@ -88,11 +99,14 @@ export class Documents extends APIResource {
    * ```
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/v1/documents/${id}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
+    return this._client.delete(path`/v1/documents/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
-export type DocumentListResponsesCursorPage = CursorPage<DocumentListResponse>
+export type DocumentListResponsesCursorPage = CursorPage<DocumentListResponse>;
 
 export interface DocumentCreateResponse {
   /**
@@ -301,6 +315,6 @@ export declare namespace Documents {
     type DocumentListResponsesCursorPage as DocumentListResponsesCursorPage,
     type DocumentCreateParams as DocumentCreateParams,
     type DocumentUpdateParams as DocumentUpdateParams,
-    type DocumentListParams as DocumentListParams
+    type DocumentListParams as DocumentListParams,
   };
 }

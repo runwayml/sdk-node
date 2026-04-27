@@ -2,7 +2,10 @@
 
 import RunwayML from '@runwayml/sdk';
 
-const client = new RunwayML({ apiKey: 'My API Key', baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010' });
+const client = new RunwayML({
+  apiKey: 'My API Key',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+});
 
 describe('resource workflowInvocations', () => {
   test('retrieve', async () => {

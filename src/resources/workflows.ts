@@ -26,7 +26,11 @@ export class Workflows extends APIResource {
    * custom input values via `nodeOutputs` to override the defaults defined in the
    * workflow graph.
    */
-  run(id: string, body: WorkflowRunParams | null | undefined = {}, options?: RequestOptions): APIPromise<WorkflowRunResponse> {
+  run(
+    id: string,
+    body: WorkflowRunParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<WorkflowRunResponse> {
     return this._client.post(path`/v1/workflows/${id}`, { body, ...options });
   }
 }
@@ -150,7 +154,15 @@ export interface WorkflowRunParams {
    * Optional node outputs to override default values. Keys are node IDs from the
    * workflow graph, values are objects mapping output keys to typed values.
    */
-  nodeOutputs?: { [key: string]: { [key: string]: WorkflowRunParams.Primitive | WorkflowRunParams.Image | WorkflowRunParams.Video | WorkflowRunParams.Audio } };
+  nodeOutputs?: {
+    [key: string]: {
+      [key: string]:
+        | WorkflowRunParams.Primitive
+        | WorkflowRunParams.Image
+        | WorkflowRunParams.Video
+        | WorkflowRunParams.Audio;
+    };
+  };
 }
 
 export namespace WorkflowRunParams {
@@ -205,6 +217,6 @@ export declare namespace Workflows {
     type WorkflowRetrieveResponse as WorkflowRetrieveResponse,
     type WorkflowListResponse as WorkflowListResponse,
     type WorkflowRunResponse as WorkflowRunResponse,
-    type WorkflowRunParams as WorkflowRunParams
+    type WorkflowRunParams as WorkflowRunParams,
   };
 }
