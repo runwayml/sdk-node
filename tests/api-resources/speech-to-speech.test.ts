@@ -29,6 +29,7 @@ describe('resource speechToSpeech', () => {
       model: 'eleven_multilingual_sts_v2',
       voice: { presetId: 'Maya', type: 'runway-preset' },
       removeBackgroundNoise: true,
+      runwayVoiceId: 'runwayVoiceId',
     });
   });
 });
