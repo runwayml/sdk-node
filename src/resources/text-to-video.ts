@@ -27,7 +27,6 @@ export type TextToVideoCreateParams =
   | TextToVideoCreateParams.Gen4_5
   | TextToVideoCreateParams.Veo3_1
   | TextToVideoCreateParams.Veo3_1Fast
-  | TextToVideoCreateParams.Seedance2
   | TextToVideoCreateParams.Veo3;
 
 export declare namespace TextToVideoCreateParams {
@@ -125,48 +124,6 @@ export declare namespace TextToVideoCreateParams {
      * The number of seconds of duration for the output video.
      */
     duration?: 4 | 6 | 8;
-  }
-
-  export interface Seedance2 {
-    model: 'seedance2';
-
-    /**
-     * A non-empty string up to 3500 characters (measured in UTF-16 code units). This
-     * should describe in detail what should appear in the output.
-     */
-    promptText: string;
-
-    /**
-     * Whether to generate audio for the video. Audio inclusion affects pricing.
-     */
-    audio?: boolean;
-
-    /**
-     * The number of seconds of duration for the output video.
-     */
-    duration?: number;
-
-    /**
-     * The number of video generations to produce.
-     */
-    outputCount?: number;
-
-    /**
-     * The resolution of the output video.
-     */
-    ratio?:
-      | '992:432'
-      | '864:496'
-      | '752:560'
-      | '640:640'
-      | '560:752'
-      | '496:864'
-      | '1470:630'
-      | '1280:720'
-      | '1112:834'
-      | '960:960'
-      | '834:1112'
-      | '720:1280';
   }
 
   export interface Veo3 {
