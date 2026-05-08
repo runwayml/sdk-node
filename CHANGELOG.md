@@ -1,5 +1,30 @@
 # Changelog
 
+## 3.21.0 (2026-05-08)
+
+Full Changelog: [v3.20.0...v3.21.0](https://github.com/runwayml/sdk-node/compare/v3.20.0...v3.21.0)
+
+### Features
+
+* **api:** gemini 3 pro ([0e52cd7](https://github.com/runwayml/sdk-node/commit/0e52cd77d928ca457a45bf6131993a0953eee054))
+* **api:** gpt_image_2 ([7142bed](https://github.com/runwayml/sdk-node/commit/7142bede9ea57808b19377e769e5dfe7d88a5780))
+* support setting headers via env ([fd0b1fc](https://github.com/runwayml/sdk-node/commit/fd0b1fc5d4b807c466a64f272cce71be2501f7b9))
+
+
+### Bug Fixes
+
+* **api:** Fix bad extra param ([eb6acce](https://github.com/runwayml/sdk-node/commit/eb6accef3dbe64b7f6b5b06cdbb91ca587ba16bf))
+
+
+### Chores
+
+* **format:** run eslint and prettier separately ([8b06cf1](https://github.com/runwayml/sdk-node/commit/8b06cf1c0bdc98f291b1b68c0ea4243d452f5dcb))
+* **formatter:** run prettier and eslint separately ([baf477f](https://github.com/runwayml/sdk-node/commit/baf477fa9baf858505fd72f53619e085bcf7d26c))
+* **internal:** codegen related update ([ac413d7](https://github.com/runwayml/sdk-node/commit/ac413d70879a75188a86adb98749dd91d06be4c1))
+* **internal:** more robust bootstrap script ([e60ad62](https://github.com/runwayml/sdk-node/commit/e60ad623e60878b0425706e277ef06a0589dbe0c))
+* redact api-key headers in debug logs ([4cf3d0c](https://github.com/runwayml/sdk-node/commit/4cf3d0c393bcacfb68086d032c5b0c13b4e51257))
+* **tests:** bump steady to v0.22.1 ([3dfcb66](https://github.com/runwayml/sdk-node/commit/3dfcb6637961c5d8781c2e29a4a5b1598b16aaf3))
+
 ## 3.20.0 (2026-04-15)
 
 Full Changelog: [v3.19.0...v3.20.0](https://github.com/runwayml/sdk-node/compare/v3.19.0...v3.20.0)
