@@ -26,6 +26,7 @@ export interface TextToImageCreateResponse {
 export type TextToImageCreateParams =
   | TextToImageCreateParams.Gen4ImageTurbo
   | TextToImageCreateParams.Gen4Image
+  | TextToImageCreateParams.GptImage2
   | TextToImageCreateParams.GeminiImage3Pro
   | TextToImageCreateParams.Gemini2_5Flash;
 
@@ -180,6 +181,90 @@ export declare namespace TextToImageCreateParams {
     }
   }
 
+  export interface GptImage2 {
+    model: 'gpt_image_2';
+
+    /**
+     * A non-empty string up to 32,000 characters describing the desired image.
+     */
+    promptText: string;
+
+    /**
+     * The resolution of the output image, expressed as `<width>:<height>`. Use `auto`
+     * to let the model choose.
+     */
+    ratio:
+      | '2048:880'
+      | '1920:1088'
+      | '1920:1280'
+      | '1920:1440'
+      | '1920:1536'
+      | '1920:1920'
+      | '1536:1920'
+      | '1440:1920'
+      | '1280:1920'
+      | '1088:1920'
+      | '2912:1248'
+      | '2560:1440'
+      | '2560:1712'
+      | '2560:1920'
+      | '2560:2048'
+      | '2560:2560'
+      | '2048:2560'
+      | '1920:2560'
+      | '1712:2560'
+      | '1440:2560'
+      | '3840:1648'
+      | '3840:2160'
+      | '3504:2336'
+      | '3264:2448'
+      | '3200:2560'
+      | '2880:2880'
+      | '2560:3200'
+      | '2448:3264'
+      | '2336:3504'
+      | '2160:3840'
+      | 'auto';
+
+    /**
+     * Background treatment. Defaults to `auto`, which lets the model pick.
+     * `transparent` is not supported by this model.
+     */
+    background?: 'opaque' | 'auto';
+
+    /**
+     * The number of images to generate (1-10). Increasing this number will affect the
+     * number of credits consumed by the generation.
+     */
+    outputCount?: number;
+
+    /**
+     * Rendering quality. Higher qualities consume more credits. Defaults to `high`.
+     */
+    quality?: 'low' | 'medium' | 'high' | 'auto';
+
+    /**
+     * An array of up to 16 images to be used as references for the generated image
+     * output.
+     */
+    referenceImages?: Array<GptImage2.ReferenceImage>;
+  }
+
+  export namespace GptImage2 {
+    export interface ReferenceImage {
+      /**
+       * A HTTPS URL.
+       */
+      uri: string;
+
+      /**
+       * A tag to identify the reference image. This may be used to reference the image
+       * in prompt text.
+       */
+      tag?: string;
+    }
+  }
+
   export interface GeminiImage3Pro {
     model: 'gemini_image3_pro';
 
@@ -244,15 +329,15 @@ export declare namespace TextToImageCreateParams {
   export namespace GeminiImage3Pro {
     export interface ReferenceImage {
       /**
-       * Whether this is a reference of a human subject (for character consistency) or an
-       * object that appears in the output.
-       */
-      subject: 'object' | 'human';
-
-      /**
        * A HTTPS URL.
        */
       uri: string;
+
+      /**
+       * Whether this is a reference of a human subject (for character consistency) or an
+       * object that appears in the output.
+       */
+      subject?: 'object' | 'human';
 
       /**
        * A tag to identify the reference image. This is used to reference the image in
