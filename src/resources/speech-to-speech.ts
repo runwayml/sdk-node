@@ -44,8 +44,6 @@ export interface SpeechToSpeechCreateParams {
    * Whether to remove background noise from the generated speech.
    */
   removeBackgroundNoise?: boolean;
-
-  runwayVoiceId?: string;
 }
 
 export namespace SpeechToSpeechCreateParams {
