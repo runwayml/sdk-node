@@ -1,5 +1,19 @@
 # Changelog
 
+## 3.21.1 (2026-05-27)
+
+Full Changelog: [v3.21.0...v3.21.1](https://github.com/runwayml/sdk-node/compare/v3.21.0...v3.21.1)
+
+### Bug Fixes
+
+* **typescript:** upgrade tsc-multi so that it works with Node 26 ([6e0b05d](https://github.com/runwayml/sdk-node/commit/6e0b05debb72d3db72c67ec85fb4fda8d3c266e2))
+
+
+### Chores
+
+* **internal:** codegen related update ([7b6e5ce](https://github.com/runwayml/sdk-node/commit/7b6e5cec92c78550f717d7f7f1ffdc65461515b1))
+* **tests:** remove redundant File import ([dad721a](https://github.com/runwayml/sdk-node/commit/dad721a84307ba47560416440119425dcdff1d91))
+
 ## 3.21.0 (2026-05-08)
 
 Full Changelog: [v3.20.0...v3.21.0](https://github.com/runwayml/sdk-node/compare/v3.20.0...v3.21.0)
