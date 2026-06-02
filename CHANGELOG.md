@@ -1,5 +1,19 @@
 # Changelog
 
+## 3.22.0 (2026-06-02)
+
+Full Changelog: [v3.21.1...v3.22.0](https://github.com/runwayml/sdk-node/compare/v3.21.1...v3.22.0)
+
+### Features
+
+* **api:** Aleph2 ([d05ce4d](https://github.com/runwayml/sdk-node/commit/d05ce4dcfe8d92a730c4a2ce75f93541c252a03f))
+* **api:** Image upscale endpoint ([5ffa7b9](https://github.com/runwayml/sdk-node/commit/5ffa7b980e2e06db13579915d515e15bed637b3b))
+
+
+### Bug Fixes
+
+* **client:** Awaitable task output on image upscale ([d07cebf](https://github.com/runwayml/sdk-node/commit/d07cebf8ba10d9324043eb4f087a703c2fb01a69))
+
 ## 3.21.1 (2026-05-27)
 
 Full Changelog: [v3.21.0...v3.21.1](https://github.com/runwayml/sdk-node/compare/v3.21.0...v3.21.1)
