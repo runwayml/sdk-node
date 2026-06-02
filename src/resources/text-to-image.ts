@@ -28,6 +28,7 @@ export type TextToImageCreateParams =
   | TextToImageCreateParams.Gen4Image
   | TextToImageCreateParams.GptImage2
   | TextToImageCreateParams.GeminiImage3Pro
+  | TextToImageCreateParams.GeminiImage3_1Flash
   | TextToImageCreateParams.Gemini2_5Flash;
 
 export declare namespace TextToImageCreateParams {
@@ -327,6 +328,114 @@ export declare namespace TextToImageCreateParams {
   }
 
   export namespace GeminiImage3Pro {
+    export interface ReferenceImage {
+      /**
+       * A HTTPS URL.
+       */
+      uri: string;
+
+      /**
+       * Whether this is a reference of a human subject (for character consistency) or an
+       * object that appears in the output.
+       */
+      subject?: 'object' | 'human';
+
+      /**
+       * A tag to identify the reference image. This is used to reference the image in
+       * prompt text.
+       */
+      tag?: string;
+    }
+  }
+
+  export interface GeminiImage3_1Flash {
+    model: 'gemini_image3.1_flash';
+
+    /**
+     * A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+     * should describe in detail what should appear in the output.
+     */
+    promptText: string;
+
+    /**
+     * The resolution of the output image.
+     */
+    ratio:
+      | '512:512'
+      | '416:624'
+      | '624:416'
+      | '432:592'
+      | '592:432'
+      | '448:576'
+      | '576:448'
+      | '384:672'
+      | '672:384'
+      | '768:336'
+      | '256:1024'
+      | '1024:256'
+      | '176:1408'
+      | '1408:176'
+      | '1024:1024'
+      | '832:1248'
+      | '1248:832'
+      | '864:1184'
+      | '1184:864'
+      | '896:1152'
+      | '1152:896'
+      | '768:1344'
+      | '1344:768'
+      | '1536:672'
+      | '512:2048'
+      | '2048:512'
+      | '352:2816'
+      | '2816:352'
+      | '2048:2048'
+      | '1696:2528'
+      | '2528:1696'
+      | '1792:2400'
+      | '2400:1792'
+      | '1856:2304'
+      | '2304:1856'
+      | '1536:2752'
+      | '2752:1536'
+      | '3168:1344'
+      | '1024:4096'
+      | '4096:1024'
+      | '704:5632'
+      | '5632:704'
+      | '4096:4096'
+      | '3392:5056'
+      | '5056:3392'
+      | '3584:4800'
+      | '4800:3584'
+      | '3712:4608'
+      | '4608:3712'
+      | '3072:5504'
+      | '5504:3072'
+      | '6336:2688'
+      | '2048:8192'
+      | '8192:2048'
+      | '1408:11264'
+      | '11264:1408';
+
+    /**
+     * The number of images to generate. Increasing this number will affect the number
+     * of credits consumed by the generation. Up to four images can be generated at
+     * once.
+     */
+    outputCount?: 1 | 4;
+
+    /**
+     * An array of up to 14 images to be used as references for the generated image
+     * output. Up to five of those images can pass `subject: "human"` to maintain
+     * character consistency, and up to nine of those images can pass
+     * `subject: "object"` with high-fidelity images of objects to include in the
+     * output.
+     */
+    referenceImages?: Array<GeminiImage3_1Flash.ReferenceImage>;
+  }
+
+  export namespace GeminiImage3_1Flash {
     export interface ReferenceImage {
       /**
        * A HTTPS URL.
