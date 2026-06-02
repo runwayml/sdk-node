@@ -52,6 +52,11 @@ import {
   ImageToVideoCreateResponse,
 } from './resources/image-to-video';
 import {
+  ImageUpscale,
+  ImageUpscaleCreateParams,
+  ImageUpscaleCreateResponse,
+} from './resources/image-upscale';
+import {
   Organization,
   OrganizationRetrieveResponse,
   OrganizationRetrieveUsageParams,
@@ -908,6 +913,10 @@ export class RunwayML {
    * These endpoints all kick off tasks to create generations.
    */
   speechToSpeech: API.SpeechToSpeech = new API.SpeechToSpeech(this);
+  /**
+   * These endpoints all kick off tasks to create generations.
+   */
+  imageUpscale: API.ImageUpscale = new API.ImageUpscale(this);
   organization: API.Organization = new API.Organization(this);
   avatars: API.Avatars = new API.Avatars(this);
   avatarVideos: API.AvatarVideos = new API.AvatarVideos(this);
@@ -930,6 +939,7 @@ RunwayML.SoundEffect = SoundEffect;
 RunwayML.VoiceIsolation = VoiceIsolation;
 RunwayML.VoiceDubbing = VoiceDubbing;
 RunwayML.SpeechToSpeech = SpeechToSpeech;
+RunwayML.ImageUpscale = ImageUpscale;
 RunwayML.Organization = Organization;
 RunwayML.Avatars = Avatars;
 RunwayML.AvatarVideos = AvatarVideos;
@@ -1006,6 +1016,12 @@ export declare namespace RunwayML {
     SpeechToSpeech as SpeechToSpeech,
     type SpeechToSpeechCreateResponse as SpeechToSpeechCreateResponse,
     type SpeechToSpeechCreateParams as SpeechToSpeechCreateParams,
+  };
+
+  export {
+    ImageUpscale as ImageUpscale,
+    type ImageUpscaleCreateResponse as ImageUpscaleCreateResponse,
+    type ImageUpscaleCreateParams as ImageUpscaleCreateParams,
   };
 
   export {
