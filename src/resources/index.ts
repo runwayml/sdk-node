@@ -33,6 +33,11 @@ export {
   type ImageToVideoCreateParams,
 } from './image-to-video';
 export {
+  ImageUpscale,
+  type ImageUpscaleCreateResponse,
+  type ImageUpscaleCreateParams,
+} from './image-upscale';
+export {
   Organization,
   type OrganizationRetrieveResponse,
   type OrganizationRetrieveUsageResponse,

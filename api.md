@@ -109,6 +109,16 @@ Methods:
 
 - <code title="post /v1/speech_to_speech">client.speechToSpeech.<a href="./src/resources/speech-to-speech.ts">create</a>({ ...params }) -> SpeechToSpeechCreateResponse</code>
 
+# ImageUpscale
+
+Types:
+
+- <code><a href="./src/resources/image-upscale.ts">ImageUpscaleCreateResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/image_upscale">client.imageUpscale.<a href="./src/resources/image-upscale.ts">create</a>({ ...params }) -> ImageUpscaleCreateResponse</code>
+
 # Organization
 
 Types:
