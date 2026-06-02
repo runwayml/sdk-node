@@ -22,7 +22,10 @@ export class ImageUpscale extends APIResource {
    * });
    * ```
    */
-  create(body: ImageUpscaleCreateParams, options?: RequestOptions): APIPromiseWithAwaitableTask<ImageUpscaleCreateResponse> {
+  create(
+    body: ImageUpscaleCreateParams,
+    options?: RequestOptions,
+  ): APIPromiseWithAwaitableTask<ImageUpscaleCreateResponse> {
     return wrapAsWaitableResource<ImageUpscaleCreateResponse>(this._client)(
       this._client.post('/v1/image_upscale', { body, ...options }),
     );
