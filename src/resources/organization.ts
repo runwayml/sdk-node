@@ -127,6 +127,16 @@ export interface OrganizationRetrieveUsageResponse {
     | 'gwm1_avatar_async_text_to_video'
     | 'voice_processing'
     | 'seedance2'
+    | 'magnific_precision_upscaler_v2'
+    | 'kling2.5_turbo_pro'
+    | 'kling3.0_pro'
+    | 'kling3.0_4k'
+    | 'kling3.0_standard'
+    | 'klingO3_pro'
+    | 'klingO3_standard'
+    | 'klingO3_4k'
+    | 'happyhorse_1_0'
+    | 'aleph2'
   >;
 
   results: Array<OrganizationRetrieveUsageResponse.Result>;
@@ -183,7 +193,17 @@ export namespace OrganizationRetrieveUsageResponse {
         | 'gwm1_avatar_async_audio_to_video'
         | 'gwm1_avatar_async_text_to_video'
         | 'voice_processing'
-        | 'seedance2';
+        | 'seedance2'
+        | 'magnific_precision_upscaler_v2'
+        | 'kling2.5_turbo_pro'
+        | 'kling3.0_pro'
+        | 'kling3.0_4k'
+        | 'kling3.0_standard'
+        | 'klingO3_pro'
+        | 'klingO3_standard'
+        | 'klingO3_4k'
+        | 'happyhorse_1_0'
+        | 'aleph2';
     }
   }
 }
