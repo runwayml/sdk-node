@@ -43,6 +43,8 @@ export type ImageToVideoCreateParams =
   | ImageToVideoCreateParams.Veo3_1
   | ImageToVideoCreateParams.Gen3aTurbo
   | ImageToVideoCreateParams.Veo3_1Fast
+  | ImageToVideoCreateParams.Happyhorse1_0
+  | ImageToVideoCreateParams.Seedance2
   | ImageToVideoCreateParams.Veo3;
 
 export declare namespace ImageToVideoCreateParams {
@@ -325,6 +327,129 @@ export declare namespace ImageToVideoCreateParams {
        * video.
        */
       position: 'first' | 'last';
+
+      /**
+       * A HTTPS URL.
+       */
+      uri: string;
+    }
+  }
+
+  export interface Happyhorse1_0 {
+    model: 'happyhorse_1_0';
+
+    /**
+     * A HTTPS URL.
+     */
+    promptImage: string | Array<Happyhorse1_0.PromptImage>;
+
+    /**
+     * The number of seconds of duration for the output video.
+     */
+    duration?: number;
+
+    /**
+     * A string up to 2500 characters (measured in UTF-16 code units) describing motion
+     * or changes in the output video.
+     */
+    promptText?: string;
+
+    /**
+     * Output quality tier. Output aspect ratio follows the input image.
+     */
+    resolution?: '720P' | '1080P';
+  }
+
+  export namespace Happyhorse1_0 {
+    export interface PromptImage {
+      /**
+       * The position of the image in the output video. "first" will use the image as the
+       * first frame of the video.
+       */
+      position: 'first';
+
+      /**
+       * A HTTPS URL.
+       */
+      uri: string;
+    }
+  }
+
+  export interface Seedance2 {
+    model: 'seedance2';
+
+    /**
+     * An image or array of images. Use position `first`/`last` for keyframe mode, or
+     * omit position for reference images. The two modes cannot be mixed.
+     */
+    promptImage: string | Array<Seedance2.PromptImage>;
+
+    /**
+     * Whether to generate audio for the video. Audio inclusion affects pricing.
+     */
+    audio?: boolean;
+
+    /**
+     * The number of seconds of duration for the output video.
+     */
+    duration?: number;
+
+    /**
+     * An optional text prompt up to 3500 characters (measured in UTF-16 code units).
+     * This should describe in detail what should appear in the output.
+     */
+    promptText?: string;
+
+    /**
+     * The resolution of the output video.
+     */
+    ratio?:
+      | '992:432'
+      | '864:496'
+      | '752:560'
+      | '640:640'
+      | '560:752'
+      | '496:864'
+      | '1470:630'
+      | '1280:720'
+      | '1112:834'
+      | '960:960'
+      | '834:1112'
+      | '720:1280'
+      | '2206:946'
+      | '1920:1080'
+      | '1664:1248'
+      | '1440:1440'
+      | '1248:1664'
+      | '1080:1920';
+
+    /**
+     * An optional array of audio references. Audio references require a text prompt,
+     * and the total combined duration must not exceed 15 seconds.
+     */
+    referenceAudio?: Array<Seedance2.ReferenceAudio>;
+  }
+
+  export namespace Seedance2 {
+    export interface PromptImage {
+      /**
+       * A HTTPS URL.
+       */
+      uri: string;
+
+      /**
+       * The position of the image in the output video. "first" will use the image as the
+       * first frame, "last" as the last frame. Omit for a reference image.
+       */
+      position?: 'first' | 'last';
+    }
+
+    /**
+     * An audio reference allows the model to use the audio as additional context for
+     * the output.
+     */
+    export interface ReferenceAudio {
+      type: 'audio';
 
       /**
        * A HTTPS URL.

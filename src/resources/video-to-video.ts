@@ -37,7 +37,10 @@ export interface VideoToVideoCreateResponse {
   id: string;
 }
 
-export type VideoToVideoCreateParams = VideoToVideoCreateParams.Gen4Aleph | VideoToVideoCreateParams.Aleph2;
+export type VideoToVideoCreateParams =
+  | VideoToVideoCreateParams.Gen4Aleph
+  | VideoToVideoCreateParams.Aleph2
+  | VideoToVideoCreateParams.Seedance2;
 
 export declare namespace VideoToVideoCreateParams {
   export interface Gen4Aleph {
@@ -222,6 +225,114 @@ export declare namespace VideoToVideoCreateParams {
 
         type: 'position';
       }
+    }
+  }
+
+  export interface Seedance2 {
+    model: 'seedance2';
+
+    /**
+     * A HTTPS URL.
+     */
+    promptVideo: string;
+
+    /**
+     * Whether to generate audio for the video. Audio inclusion affects pricing.
+     */
+    audio?: boolean;
+
+    /**
+     * The number of seconds of duration for the output video.
+     */
+    duration?: number;
+
+    /**
+     * An optional text prompt up to 3500 characters describing what should appear in
+     * the output video.
+     */
+    promptText?: string;
+
+    /**
+     * The resolution of the output video.
+     */
+    ratio?:
+      | '992:432'
+      | '864:496'
+      | '752:560'
+      | '640:640'
+      | '560:752'
+      | '496:864'
+      | '1470:630'
+      | '1280:720'
+      | '1112:834'
+      | '960:960'
+      | '834:1112'
+      | '720:1280'
+      | '2206:946'
+      | '1920:1080'
+      | '1664:1248'
+      | '1440:1440'
+      | '1248:1664'
+      | '1080:1920';
+
+    /**
+     * An optional array of audio references. Audio references require a text prompt,
+     * and the total combined duration must not exceed 15 seconds.
+     */
+    referenceAudio?: Array<Seedance2.ReferenceAudio>;
+
+    /**
+     * An optional array of image references (up to 9). See
+     * [our docs](/assets/inputs#images) on image inputs for more information.
+     */
+    references?: Array<Seedance2.Reference>;
+
+    /**
+     * An optional array of video references. The combined duration across all video
+     * references must not exceed 15 seconds. See [our docs](/assets/inputs#videos) on
+     * video inputs for more information.
+     */
+    referenceVideos?: Array<Seedance2.ReferenceVideo>;
+  }
+
+  export namespace Seedance2 {
+    /**
+     * An audio reference allows the model to use the audio as additional context for
+     * the output.
+     */
+    export interface ReferenceAudio {
+      type: 'audio';
+
+      /**
+       * A HTTPS URL.
+       */
+      uri: string;
+    }
+
+    export interface Reference {
+      /**
+       * A HTTPS URL.
+       */
+      uri: string;
+
+      /**
+       * The position of the image in the output video. "first" will use the image as the
+       * first frame, "last" as the last frame. Omit for a reference image.
+       */
+      position?: 'first' | 'last';
+    }
+
+    /**
+     * A video reference allows the model to use the video as additional context for
+     * the output.
+     */
+    export interface ReferenceVideo {
+      type: 'video';
+
+      /**
+       * A HTTPS URL.
+       */
+      uri: string;
     }
   }
 }
