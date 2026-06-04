@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.23.0 (2026-06-04)
+
+Full Changelog: [v3.22.0...v3.23.0](https://github.com/runwayml/sdk-node/compare/v3.22.0...v3.23.0)
+
+### Features
+
+* **api:** SD2, HH1 ([02c1d41](https://github.com/runwayml/sdk-node/commit/02c1d41630f75806c050cc650379076e9f994b0e))
+
 ## 3.22.0 (2026-06-02)
 
 Full Changelog: [v3.21.1...v3.22.0](https://github.com/runwayml/sdk-node/compare/v3.21.1...v3.22.0)
