@@ -34,6 +34,7 @@ export type TextToVideoCreateParams =
   | TextToVideoCreateParams.Veo3_1Fast
   | TextToVideoCreateParams.Happyhorse1_0
   | TextToVideoCreateParams.Seedance2
+  | TextToVideoCreateParams.Seedance2Fast
   | TextToVideoCreateParams.Veo3;
 
 export declare namespace TextToVideoCreateParams {
@@ -167,8 +168,8 @@ export declare namespace TextToVideoCreateParams {
     model: 'seedance2';
 
     /**
-     * A non-empty string up to 3500 characters (measured in UTF-16 code units). This
-     * should describe in detail what should appear in the output.
+     * A non-empty text prompt up to 3500 characters describing what should appear in
+     * the output.
      */
     promptText: string;
 
@@ -226,6 +227,104 @@ export declare namespace TextToVideoCreateParams {
   }
 
   export namespace Seedance2 {
+    /**
+     * An audio reference allows the model to use the audio as additional context for
+     * the output.
+     */
+    export interface ReferenceAudio {
+      type: 'audio';
+
+      /**
+       * A HTTPS URL.
+       */
+      uri: string;
+    }
+
+    export interface Reference {
+      /**
+       * A HTTPS URL.
+       */
+      uri: string;
+
+      /**
+       * The position of the image in the output video. "first" will use the image as the
+       * first frame, "last" as the last frame. Omit for a reference image.
+       */
+      position?: 'first' | 'last';
+    }
+
+    /**
+     * A video reference allows the model to use the video as additional context for
+     * the output.
+     */
+    export interface ReferenceVideo {
+      type: 'video';
+
+      /**
+       * A HTTPS URL.
+       */
+      uri: string;
+    }
+  }
+
+  export interface Seedance2Fast {
+    model: 'seedance2_fast';
+
+    /**
+     * A non-empty text prompt up to 3500 characters describing what should appear in
+     * the output.
+     */
+    promptText: string;
+
+    /**
+     * Whether to generate audio for the video. Audio inclusion affects pricing.
+     */
+    audio?: boolean;
+
+    /**
+     * The number of seconds of duration for the output video.
+     */
+    duration?: number;
+
+    /**
+     * The resolution of the output video. Seedance 2.0 Fast supports 480p and 720p
+     * only.
+     */
+    ratio?:
+      | '992:432'
+      | '864:496'
+      | '752:560'
+      | '640:640'
+      | '560:752'
+      | '496:864'
+      | '1470:630'
+      | '1280:720'
+      | '1112:834'
+      | '960:960'
+      | '834:1112'
+      | '720:1280';
+
+    /**
+     * An optional array of audio references. Audio references require a text prompt,
+     * and the total combined duration must not exceed 15 seconds.
+     */
+    referenceAudio?: Array<Seedance2Fast.ReferenceAudio>;
+
+    /**
+     * An optional array of image references (up to 9). See
+     * [our docs](/assets/inputs#images) on image inputs for more information.
+     */
+    references?: Array<Seedance2Fast.Reference>;
+
+    /**
+     * An optional array of video references. The combined duration across all video
+     * references must not exceed 15 seconds. See [our docs](/assets/inputs#videos) on
+     * video inputs for more information.
+     */
+    referenceVideos?: Array<Seedance2Fast.ReferenceVideo>;
+  }
+
+  export namespace Seedance2Fast {
     /**
      * An audio reference allows the model to use the audio as additional context for
      * the output.
