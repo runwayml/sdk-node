@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.24.0 (2026-06-05)
+
+Full Changelog: [v3.23.0...v3.24.0](https://github.com/runwayml/sdk-node/compare/v3.23.0...v3.24.0)
+
+### Features
+
+* **api:** seedance2_fast ([0450faa](https://github.com/runwayml/sdk-node/commit/0450faaf4881877119a2eb20b77f87717a978a3e))
+
 ## 3.23.0 (2026-06-04)
 
 Full Changelog: [v3.22.0...v3.23.0](https://github.com/runwayml/sdk-node/compare/v3.22.0...v3.23.0)
