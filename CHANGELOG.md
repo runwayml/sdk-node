@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.0.0 (2026-06-10)
+
+Full Changelog: [v3.24.0...v4.0.0](https://github.com/runwayml/sdk-node/compare/v3.24.0...v4.0.0)
+
+### Features
+
+* **api:** Add new avatar and voice routes ([b5b1eee](https://github.com/runwayml/sdk-node/commit/b5b1eeea557f372922784ff83b9a4ded247aaf43))
+
+
+### Bug Fixes
+
+* **api:** update the right config file this time ([33352d8](https://github.com/runwayml/sdk-node/commit/33352d8f893cbdee97331dc102c24f349207451d))
+
 ## 3.24.0 (2026-06-05)
 
 Full Changelog: [v3.23.0...v3.24.0](https://github.com/runwayml/sdk-node/compare/v3.23.0...v3.24.0)
