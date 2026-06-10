@@ -138,6 +138,7 @@ export interface OrganizationRetrieveUsageResponse {
     | 'klingO3_4k'
     | 'happyhorse_1_0'
     | 'aleph2'
+    | 'product_swap'
   >;
 
   results: Array<OrganizationRetrieveUsageResponse.Result>;
@@ -205,7 +206,8 @@ export namespace OrganizationRetrieveUsageResponse {
         | 'klingO3_standard'
         | 'klingO3_4k'
         | 'happyhorse_1_0'
-        | 'aleph2';
+        | 'aleph2'
+        | 'product_swap';
     }
   }
 }
