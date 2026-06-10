@@ -1,5 +1,12 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+export {
+  AvatarConversations,
+  type AvatarConversationRetrieveResponse,
+  type AvatarConversationListResponse,
+  type AvatarConversationListParams,
+  type AvatarConversationListResponsesCursorPage,
+} from './avatar-conversations';
 export { AvatarVideos, type AvatarVideoCreateResponse, type AvatarVideoCreateParams } from './avatar-videos';
 export {
   Avatars,
@@ -7,9 +14,11 @@ export {
   type AvatarRetrieveResponse,
   type AvatarUpdateResponse,
   type AvatarListResponse,
+  type AvatarGetUsageResponse,
   type AvatarCreateParams,
   type AvatarUpdateParams,
   type AvatarListParams,
+  type AvatarGetUsageParams,
   type AvatarListResponsesCursorPage,
 } from './avatars';
 export {
@@ -82,9 +91,11 @@ export {
   Voices,
   type VoiceCreateResponse,
   type VoiceRetrieveResponse,
+  type VoiceUpdateResponse,
   type VoiceListResponse,
   type VoicePreviewResponse,
   type VoiceCreateParams,
+  type VoiceUpdateParams,
   type VoiceListParams,
   type VoicePreviewParams,
   type VoiceListResponsesCursorPage,
