@@ -19,10 +19,19 @@ import { AbstractPage, type CursorPageParams, CursorPageResponse } from './core/
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
+import {
+  AvatarConversationListParams,
+  AvatarConversationListResponse,
+  AvatarConversationListResponsesCursorPage,
+  AvatarConversationRetrieveResponse,
+  AvatarConversations,
+} from './resources/avatar-conversations';
 import { AvatarVideoCreateParams, AvatarVideoCreateResponse, AvatarVideos } from './resources/avatar-videos';
 import {
   AvatarCreateParams,
   AvatarCreateResponse,
+  AvatarGetUsageParams,
+  AvatarGetUsageResponse,
   AvatarListParams,
   AvatarListResponse,
   AvatarListResponsesCursorPage,
@@ -106,6 +115,8 @@ import {
   VoicePreviewParams,
   VoicePreviewResponse,
   VoiceRetrieveResponse,
+  VoiceUpdateParams,
+  VoiceUpdateResponse,
   Voices,
 } from './resources/voices';
 import { WorkflowInvocationRetrieveResponse, WorkflowInvocations } from './resources/workflow-invocations';
@@ -918,6 +929,7 @@ export class RunwayML {
   imageUpscale: API.ImageUpscale = new API.ImageUpscale(this);
   organization: API.Organization = new API.Organization(this);
   avatars: API.Avatars = new API.Avatars(this);
+  avatarConversations: API.AvatarConversations = new API.AvatarConversations(this);
   avatarVideos: API.AvatarVideos = new API.AvatarVideos(this);
   documents: API.Documents = new API.Documents(this);
   realtimeSessions: API.RealtimeSessions = new API.RealtimeSessions(this);
@@ -940,6 +952,7 @@ RunwayML.SpeechToSpeech = SpeechToSpeech;
 RunwayML.ImageUpscale = ImageUpscale;
 RunwayML.Organization = Organization;
 RunwayML.Avatars = Avatars;
+RunwayML.AvatarConversations = AvatarConversations;
 RunwayML.AvatarVideos = AvatarVideos;
 RunwayML.Documents = Documents;
 RunwayML.RealtimeSessions = RealtimeSessions;
@@ -1034,10 +1047,20 @@ export declare namespace RunwayML {
     type AvatarRetrieveResponse as AvatarRetrieveResponse,
     type AvatarUpdateResponse as AvatarUpdateResponse,
     type AvatarListResponse as AvatarListResponse,
+    type AvatarGetUsageResponse as AvatarGetUsageResponse,
     type AvatarListResponsesCursorPage as AvatarListResponsesCursorPage,
     type AvatarCreateParams as AvatarCreateParams,
     type AvatarUpdateParams as AvatarUpdateParams,
     type AvatarListParams as AvatarListParams,
+    type AvatarGetUsageParams as AvatarGetUsageParams,
+  };
+
+  export {
+    AvatarConversations as AvatarConversations,
+    type AvatarConversationRetrieveResponse as AvatarConversationRetrieveResponse,
+    type AvatarConversationListResponse as AvatarConversationListResponse,
+    type AvatarConversationListResponsesCursorPage as AvatarConversationListResponsesCursorPage,
+    type AvatarConversationListParams as AvatarConversationListParams,
   };
 
   export {
@@ -1068,10 +1091,12 @@ export declare namespace RunwayML {
     Voices as Voices,
     type VoiceCreateResponse as VoiceCreateResponse,
     type VoiceRetrieveResponse as VoiceRetrieveResponse,
+    type VoiceUpdateResponse as VoiceUpdateResponse,
     type VoiceListResponse as VoiceListResponse,
     type VoicePreviewResponse as VoicePreviewResponse,
     type VoiceListResponsesCursorPage as VoiceListResponsesCursorPage,
     type VoiceCreateParams as VoiceCreateParams,
+    type VoiceUpdateParams as VoiceUpdateParams,
     type VoiceListParams as VoiceListParams,
     type VoicePreviewParams as VoicePreviewParams,
   };

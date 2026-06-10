@@ -139,6 +139,7 @@ Types:
 - <code><a href="./src/resources/avatars.ts">AvatarRetrieveResponse</a></code>
 - <code><a href="./src/resources/avatars.ts">AvatarUpdateResponse</a></code>
 - <code><a href="./src/resources/avatars.ts">AvatarListResponse</a></code>
+- <code><a href="./src/resources/avatars.ts">AvatarGetUsageResponse</a></code>
 
 Methods:
 
@@ -147,6 +148,20 @@ Methods:
 - <code title="patch /v1/avatars/{id}">client.avatars.<a href="./src/resources/avatars.ts">update</a>(id, { ...params }) -> AvatarUpdateResponse</code>
 - <code title="get /v1/avatars">client.avatars.<a href="./src/resources/avatars.ts">list</a>({ ...params }) -> AvatarListResponsesCursorPage</code>
 - <code title="delete /v1/avatars/{id}">client.avatars.<a href="./src/resources/avatars.ts">delete</a>(id) -> void</code>
+- <code title="get /v1/avatar_usage">client.avatars.<a href="./src/resources/avatars.ts">getUsage</a>({ ...params }) -> AvatarGetUsageResponse</code>
+
+# AvatarConversations
+
+Types:
+
+- <code><a href="./src/resources/avatar-conversations.ts">AvatarConversationRetrieveResponse</a></code>
+- <code><a href="./src/resources/avatar-conversations.ts">AvatarConversationListResponse</a></code>
+
+Methods:
+
+- <code title="get /v1/avatar_conversations/{id}">client.avatarConversations.<a href="./src/resources/avatar-conversations.ts">retrieve</a>(id) -> AvatarConversationRetrieveResponse</code>
+- <code title="get /v1/avatar_conversations">client.avatarConversations.<a href="./src/resources/avatar-conversations.ts">list</a>({ ...params }) -> AvatarConversationListResponsesCursorPage</code>
+- <code title="delete /v1/avatar_conversations/{id}">client.avatarConversations.<a href="./src/resources/avatar-conversations.ts">delete</a>(id) -> void</code>
 
 # AvatarVideos
 
@@ -193,6 +208,7 @@ Types:
 
 - <code><a href="./src/resources/voices.ts">VoiceCreateResponse</a></code>
 - <code><a href="./src/resources/voices.ts">VoiceRetrieveResponse</a></code>
+- <code><a href="./src/resources/voices.ts">VoiceUpdateResponse</a></code>
 - <code><a href="./src/resources/voices.ts">VoiceListResponse</a></code>
 - <code><a href="./src/resources/voices.ts">VoicePreviewResponse</a></code>
 
@@ -200,6 +216,7 @@ Methods:
 
 - <code title="post /v1/voices">client.voices.<a href="./src/resources/voices.ts">create</a>({ ...params }) -> VoiceCreateResponse</code>
 - <code title="get /v1/voices/{id}">client.voices.<a href="./src/resources/voices.ts">retrieve</a>(id) -> VoiceRetrieveResponse</code>
+- <code title="patch /v1/voices/{id}">client.voices.<a href="./src/resources/voices.ts">update</a>(id, { ...params }) -> VoiceUpdateResponse</code>
 - <code title="get /v1/voices">client.voices.<a href="./src/resources/voices.ts">list</a>({ ...params }) -> VoiceListResponsesCursorPage</code>
 - <code title="delete /v1/voices/{id}">client.voices.<a href="./src/resources/voices.ts">delete</a>(id) -> void</code>
 - <code title="post /v1/voices/preview">client.voices.<a href="./src/resources/voices.ts">preview</a>({ ...params }) -> VoicePreviewResponse</code>
