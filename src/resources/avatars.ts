@@ -94,6 +94,23 @@ export class Avatars extends APIResource {
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
+
+  /**
+   * Get aggregate usage statistics for avatar conversations, including total
+   * duration, session counts, average duration, and a per-day breakdown. Per-day
+   * buckets are keyed by UTC calendar date. The date range must not exceed 90 days.
+   *
+   * @example
+   * ```ts
+   * const response = await client.avatars.getUsage({
+   *   endDate: '2019-12-27T18:11:19.117Z',
+   *   startDate: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
+   */
+  getUsage(query: AvatarGetUsageParams, options?: RequestOptions): APIPromise<AvatarGetUsageResponse> {
+    return this._client.get('/v1/avatar_usage', { query, ...options });
+  }
 }
 
 export type AvatarListResponsesCursorPage = CursorPage<AvatarListResponse>;
@@ -1830,6 +1847,51 @@ export namespace AvatarListResponse {
   }
 }
 
+export interface AvatarGetUsageResponse {
+  /**
+   * Average duration in seconds across conversations with a measured duration, or 0
+   * if none completed. May not equal `totalSeconds / totalSessions` because
+   * unfinished conversations contribute to the session count but not the duration.
+   */
+  avgDurationSeconds: number;
+
+  /**
+   * Per-day usage across the date range. Days with no sessions are included with
+   * zeroes.
+   */
+  byDay: Array<AvatarGetUsageResponse.ByDay>;
+
+  /**
+   * Total seconds across conversations with a measured duration in the date range.
+   */
+  totalSeconds: number;
+
+  /**
+   * Number of conversations started in the date range. Includes unfinished and
+   * failed conversations.
+   */
+  totalSessions: number;
+}
+
+export namespace AvatarGetUsageResponse {
+  export interface ByDay {
+    /**
+     * The UTC calendar date (YYYY-MM-DD).
+     */
+    date: string;
+
+    /**
+     * Total seconds of measured conversation duration on this date.
+     */
+    seconds: number;
+
+    /**
+     * Number of conversations started on this date.
+     */
+    sessions: number;
+  }
+}
+
 export interface AvatarCreateParams {
   /**
    * The character name for the avatar.
@@ -2035,15 +2097,29 @@ export namespace AvatarUpdateParams {
 
 export interface AvatarListParams extends CursorPageParams {}
 
+export interface AvatarGetUsageParams {
+  /**
+   * End of the date range in UTC (exclusive). Required.
+   */
+  endDate: string;
+
+  /**
+   * Start of the date range in UTC (inclusive). Required.
+   */
+  startDate: string;
+}
+
 export declare namespace Avatars {
   export {
     type AvatarCreateResponse as AvatarCreateResponse,
     type AvatarRetrieveResponse as AvatarRetrieveResponse,
     type AvatarUpdateResponse as AvatarUpdateResponse,
     type AvatarListResponse as AvatarListResponse,
+    type AvatarGetUsageResponse as AvatarGetUsageResponse,
     type AvatarListResponsesCursorPage as AvatarListResponsesCursorPage,
     type AvatarCreateParams as AvatarCreateParams,
     type AvatarUpdateParams as AvatarUpdateParams,
     type AvatarListParams as AvatarListParams,
+    type AvatarGetUsageParams as AvatarGetUsageParams,
   };
 }

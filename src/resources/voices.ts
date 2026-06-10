@@ -24,6 +24,17 @@ export class Voices extends APIResource {
   }
 
   /**
+   * Update the name and/or description of a custom voice.
+   */
+  update(
+    id: string,
+    body: VoiceUpdateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<VoiceUpdateResponse> {
+    return this._client.patch(path`/v1/voices/${id}`, { body, ...options });
+  }
+
+  /**
    * List custom voices for the authenticated organization with cursor-based
    * pagination.
    */
@@ -71,6 +82,109 @@ export type VoiceRetrieveResponse =
   | VoiceRetrieveResponse.Failed;
 
 export namespace VoiceRetrieveResponse {
+  /**
+   * A voice that is still being processed.
+   */
+  export interface Processing {
+    /**
+     * The unique identifier of the voice.
+     */
+    id: string;
+
+    /**
+     * When the voice was created.
+     */
+    createdAt: string;
+
+    /**
+     * A description of the voice, or null if not set.
+     */
+    description: string | null;
+
+    /**
+     * The name of the voice.
+     */
+    name: string;
+
+    status: 'PROCESSING';
+  }
+
+  /**
+   * A voice that is ready for use.
+   */
+  export interface Ready {
+    /**
+     * The unique identifier of the voice.
+     */
+    id: string;
+
+    /**
+     * When the voice was created.
+     */
+    createdAt: string;
+
+    /**
+     * A description of the voice, or null if not set.
+     */
+    description: string | null;
+
+    /**
+     * The name of the voice.
+     */
+    name: string;
+
+    /**
+     * A signed URL to an MP3 audio sample of the voice, or null if no sample is
+     * available.
+     */
+    previewUrl: string | null;
+
+    status: 'READY';
+  }
+
+  /**
+   * A voice that failed to finish processing.
+   */
+  export interface Failed {
+    /**
+     * The unique identifier of the voice.
+     */
+    id: string;
+
+    /**
+     * When the voice was created.
+     */
+    createdAt: string;
+
+    /**
+     * A description of the voice, or null if not set.
+     */
+    description: string | null;
+
+    /**
+     * A human-readable error message. This value is not stable and should not be
+     * matched against programmatically.
+     */
+    failureReason: string;
+
+    /**
+     * The name of the voice.
+     */
+    name: string;
+
+    status: 'FAILED';
+  }
+}
+
+/**
+ * A voice that is still being processed.
+ */
+export type VoiceUpdateResponse =
+  | VoiceUpdateResponse.Processing
+  | VoiceUpdateResponse.Ready
+  | VoiceUpdateResponse.Failed;
+
+export namespace VoiceUpdateResponse {
   /**
    * A voice that is still being processed.
    */
@@ -321,6 +435,18 @@ export namespace VoiceCreateParams {
   }
 }
 
+export interface VoiceUpdateParams {
+  /**
+   * An optional description of the voice.
+   */
+  description?: string | null;
+
+  /**
+   * A name for the voice.
+   */
+  name?: string;
+}
+
 export interface VoiceListParams extends CursorPageParams {}
 
 export interface VoicePreviewParams {
@@ -341,10 +467,12 @@ export declare namespace Voices {
   export {
     type VoiceCreateResponse as VoiceCreateResponse,
     type VoiceRetrieveResponse as VoiceRetrieveResponse,
+    type VoiceUpdateResponse as VoiceUpdateResponse,
     type VoiceListResponse as VoiceListResponse,
     type VoicePreviewResponse as VoicePreviewResponse,
     type VoiceListResponsesCursorPage as VoiceListResponsesCursorPage,
     type VoiceCreateParams as VoiceCreateParams,
+    type VoiceUpdateParams as VoiceUpdateParams,
     type VoiceListParams as VoiceListParams,
     type VoicePreviewParams as VoicePreviewParams,
   };
