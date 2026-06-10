@@ -10,7 +10,7 @@ const client = new RunwayML({
 describe('resource videoToVideo', () => {
   test('create: only required params', async () => {
     const responsePromise = client.videoToVideo.create({
-      model: 'gen4_aleph',
+      model: 'aleph2',
       promptText: 'x',
       videoUri: 'https://example.com/video.mp4',
     });
@@ -25,12 +25,11 @@ describe('resource videoToVideo', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.videoToVideo.create({
-      model: 'gen4_aleph',
+      model: 'aleph2',
       promptText: 'x',
       videoUri: 'https://example.com/video.mp4',
       contentModeration: { publicFigureThreshold: 'auto' },
-      ratio: '1280:720',
-      references: [{ type: 'image', uri: 'https://example.com/file' }],
+      keyframes: [{ seconds: 0, uri: 'https://example.com/file' }],
       seed: 0,
     });
   });

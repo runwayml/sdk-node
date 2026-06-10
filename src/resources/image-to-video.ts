@@ -10,15 +10,6 @@ import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/poll
 export class ImageToVideo extends APIResource {
   /**
    * This endpoint will start a new task to generate a video from an image.
-   *
-   * @example
-   * ```ts
-   * const imageToVideo = await client.imageToVideo.create({
-   *   model: 'gen3a_turbo',
-   *   promptImage: 'https://example.com/file',
-   *   promptText: 'A beautiful sunset over a calm ocean.',
-   * });
-   * ```
    */
   create(
     body: ImageToVideoCreateParams,
@@ -41,7 +32,6 @@ export type ImageToVideoCreateParams =
   | ImageToVideoCreateParams.Gen4_5
   | ImageToVideoCreateParams.Gen4Turbo
   | ImageToVideoCreateParams.Veo3_1
-  | ImageToVideoCreateParams.Gen3aTurbo
   | ImageToVideoCreateParams.Veo3_1Fast
   | ImageToVideoCreateParams.Happyhorse1_0
   | ImageToVideoCreateParams.Seedance2
@@ -221,70 +211,6 @@ export declare namespace ImageToVideoCreateParams {
        * A HTTPS URL.
        */
       uri: string;
-    }
-  }
-
-  export interface Gen3aTurbo {
-    model: 'gen3a_turbo';
-
-    /**
-     * A HTTPS URL.
-     */
-    promptImage: string | Array<Gen3aTurbo.PromptImage>;
-
-    /**
-     * A non-empty string up to 1000 characters (measured in UTF-16 code units). This
-     * should describe in detail what should appear in the output.
-     */
-    promptText: string;
-
-    /**
-     * Settings that affect the behavior of the content moderation system.
-     */
-    contentModeration?: Gen3aTurbo.ContentModeration;
-
-    /**
-     * The duration of the output video in seconds.
-     */
-    duration?: 5 | 10;
-
-    /**
-     * The resolution of the output video.
-     */
-    ratio?: '768:1280' | '1280:768';
-
-    /**
-     * If unspecified, a random number is chosen. Varying the seed integer is a way to
-     * get different results for the same other request parameters. Using the same seed
-     * integer for an identical request will produce similar results.
-     */
-    seed?: number;
-  }
-
-  export namespace Gen3aTurbo {
-    export interface PromptImage {
-      /**
-       * The position of the image in the output video. "first" will use the image as the
-       * first frame of the video, "last" will use the image as the last frame of the
-       * video.
-       */
-      position: 'first' | 'last';
-
-      /**
-       * A HTTPS URL.
-       */
-      uri: string;
-    }
-
-    /**
-     * Settings that affect the behavior of the content moderation system.
-     */
-    export interface ContentModeration {
-      /**
-       * When set to `low`, the content moderation system will be less strict about
-       * preventing generations that include recognizable public figures.
-       */
-      publicFigureThreshold?: 'auto' | 'low';
     }
   }
 
