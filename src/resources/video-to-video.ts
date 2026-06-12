@@ -74,6 +74,12 @@ export declare namespace VideoToVideoCreateParams {
      * integer for an identical request will produce similar results.
      */
     seed?: number;
+
+    /**
+     * Target aspect ratio for expand/outpaint. Letterboxes the input video and
+     * keyframes before generation.
+     */
+    targetAspectRatio?: '16:9' | '4:3' | '3:2' | '1:1' | '2:3' | '3:4' | '9:16' | '21:9';
   }
 
   export namespace Variant0 {
