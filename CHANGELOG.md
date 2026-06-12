@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.1.0 (2026-06-12)
+
+Full Changelog: [v4.0.0...v4.1.0](https://github.com/runwayml/sdk-node/compare/v4.0.0...v4.1.0)
+
+### Features
+
+* **api:** add outpaint support for Aleph 2.0 ([d284d71](https://github.com/runwayml/sdk-node/commit/d284d71739594c1c4e9d4f55550acf65bbbdfcf5))
+
 ## 4.0.0 (2026-06-10)
 
 Full Changelog: [v3.24.0...v4.0.0](https://github.com/runwayml/sdk-node/compare/v3.24.0...v4.0.0)
