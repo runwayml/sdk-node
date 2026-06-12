@@ -31,6 +31,7 @@ describe('resource videoToVideo', () => {
       contentModeration: { publicFigureThreshold: 'auto' },
       keyframes: [{ seconds: 0, uri: 'https://example.com/file' }],
       seed: 0,
+      targetAspectRatio: '16:9',
     });
   });
 });
