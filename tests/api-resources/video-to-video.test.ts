@@ -11,7 +11,6 @@ describe('resource videoToVideo', () => {
   test('create: only required params', async () => {
     const responsePromise = client.videoToVideo.create({
       model: 'aleph2',
-      promptText: 'x',
       videoUri: 'https://example.com/video.mp4',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -26,10 +25,17 @@ describe('resource videoToVideo', () => {
   test('create: required and optional params', async () => {
     const response = await client.videoToVideo.create({
       model: 'aleph2',
-      promptText: 'x',
       videoUri: 'https://example.com/video.mp4',
       contentModeration: { publicFigureThreshold: 'auto' },
-      keyframes: [{ seconds: 0, uri: 'https://example.com/file' }],
+      keyframes: [
+        {
+          seconds: 0,
+          uri: 'https://example.com/file',
+          range: { end_seconds: 1, start_seconds: 0 },
+        },
+      ],
+      promptText: 'x',
+      ratio: 'ratio',
       seed: 0,
       targetAspectRatio: '16:9',
     });

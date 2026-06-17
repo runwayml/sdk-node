@@ -15,7 +15,6 @@ export class VideoToVideo extends APIResource {
    * ```ts
    * const videoToVideo = await client.videoToVideo.create({
    *   model: 'aleph2',
-   *   promptText: 'x',
    *   videoUri: 'https://example.com/video.mp4',
    * });
    * ```
@@ -47,12 +46,6 @@ export declare namespace VideoToVideoCreateParams {
     model: 'aleph2';
 
     /**
-     * A non-empty string up to 1000 characters describing what should appear in the
-     * output.
-     */
-    promptText: string;
-
-    /**
      * A HTTPS URL.
      */
     videoUri: string;
@@ -67,6 +60,17 @@ export declare namespace VideoToVideoCreateParams {
      * keyframes.
      */
     keyframes?: Array<Variant0.UnionMember0 | Variant0.UnionMember1>;
+
+    /**
+     * An optional string up to 1000 characters describing what should appear in the
+     * output.
+     */
+    promptText?: string;
+
+    /**
+     * @deprecated
+     */
+    ratio?: string;
 
     /**
      * If unspecified, a random number is chosen. Varying the seed integer is a way to
@@ -105,6 +109,33 @@ export declare namespace VideoToVideoCreateParams {
        * A HTTPS URL.
        */
       uri: string;
+
+      /**
+       * Optional edit window. When set, the edit applies only to this time range and the
+       * keyframe timestamp must fall within it. All keyframes must either set a range or
+       * none may.
+       */
+      range?: UnionMember0.Range;
+    }
+
+    export namespace UnionMember0 {
+      /**
+       * Optional edit window. When set, the edit applies only to this time range and the
+       * keyframe timestamp must fall within it. All keyframes must either set a range or
+       * none may.
+       */
+      export interface Range {
+        /**
+         * End of the edit window (exclusive) in whole seconds from the start of the input
+         * video.
+         */
+        end_seconds: number;
+
+        /**
+         * Start of the edit window in whole seconds from the start of the input video.
+         */
+        start_seconds: number;
+      }
     }
 
     export interface UnionMember1 {
@@ -118,6 +149,33 @@ export declare namespace VideoToVideoCreateParams {
        * A HTTPS URL.
        */
       uri: string;
+
+      /**
+       * Optional edit window. When set, the edit applies only to this time range and the
+       * keyframe timestamp must fall within it. All keyframes must either set a range or
+       * none may.
+       */
+      range?: UnionMember1.Range;
+    }
+
+    export namespace UnionMember1 {
+      /**
+       * Optional edit window. When set, the edit applies only to this time range and the
+       * keyframe timestamp must fall within it. All keyframes must either set a range or
+       * none may.
+       */
+      export interface Range {
+        /**
+         * End of the edit window (exclusive) in whole seconds from the start of the input
+         * video.
+         */
+        end_seconds: number;
+
+        /**
+         * Start of the edit window in whole seconds from the start of the input video.
+         */
+        start_seconds: number;
+      }
     }
   }
 
