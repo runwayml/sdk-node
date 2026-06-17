@@ -77,6 +77,21 @@ import {
   RealtimeSessionRetrieveResponse,
   RealtimeSessions,
 } from './resources/realtime-sessions';
+import {
+  RecipeMarketingStockImageParams,
+  RecipeMarketingStockImageResponse,
+  RecipeMultiShotVideoParams,
+  RecipeMultiShotVideoResponse,
+  RecipeProductAdParams,
+  RecipeProductAdResponse,
+  RecipeProductCampaignImageParams,
+  RecipeProductCampaignImageResponse,
+  RecipeProductSwapParams,
+  RecipeProductSwapResponse,
+  RecipeProductUgcParams,
+  RecipeProductUgcResponse,
+  Recipes,
+} from './resources/recipes';
 import { SoundEffect, SoundEffectCreateParams, SoundEffectCreateResponse } from './resources/sound-effect';
 import {
   SpeechToSpeech,
@@ -941,6 +956,7 @@ export class RunwayML {
   avatarVideos: API.AvatarVideos = new API.AvatarVideos(this);
   documents: API.Documents = new API.Documents(this);
   realtimeSessions: API.RealtimeSessions = new API.RealtimeSessions(this);
+  recipes: API.Recipes = new API.Recipes(this);
   voices: API.Voices = new API.Voices(this);
   workflows: API.Workflows = new API.Workflows(this);
   workflowInvocations: API.WorkflowInvocations = new API.WorkflowInvocations(this);
@@ -964,6 +980,7 @@ RunwayML.AvatarConversations = AvatarConversations;
 RunwayML.AvatarVideos = AvatarVideos;
 RunwayML.Documents = Documents;
 RunwayML.RealtimeSessions = RealtimeSessions;
+RunwayML.Recipes = Recipes;
 RunwayML.Voices = Voices;
 RunwayML.Workflows = Workflows;
 RunwayML.WorkflowInvocations = WorkflowInvocations;
@@ -1093,6 +1110,22 @@ export declare namespace RunwayML {
     type RealtimeSessionCreateResponse as RealtimeSessionCreateResponse,
     type RealtimeSessionRetrieveResponse as RealtimeSessionRetrieveResponse,
     type RealtimeSessionCreateParams as RealtimeSessionCreateParams,
+  };
+
+  export {
+    Recipes as Recipes,
+    type RecipeMarketingStockImageResponse as RecipeMarketingStockImageResponse,
+    type RecipeMultiShotVideoResponse as RecipeMultiShotVideoResponse,
+    type RecipeProductAdResponse as RecipeProductAdResponse,
+    type RecipeProductCampaignImageResponse as RecipeProductCampaignImageResponse,
+    type RecipeProductSwapResponse as RecipeProductSwapResponse,
+    type RecipeProductUgcResponse as RecipeProductUgcResponse,
+    type RecipeMarketingStockImageParams as RecipeMarketingStockImageParams,
+    type RecipeMultiShotVideoParams as RecipeMultiShotVideoParams,
+    type RecipeProductAdParams as RecipeProductAdParams,
+    type RecipeProductCampaignImageParams as RecipeProductCampaignImageParams,
+    type RecipeProductSwapParams as RecipeProductSwapParams,
+    type RecipeProductUgcParams as RecipeProductUgcParams,
   };
 
   export {
