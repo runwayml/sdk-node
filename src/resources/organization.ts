@@ -139,6 +139,11 @@ export interface OrganizationRetrieveUsageResponse {
     | 'happyhorse_1_0'
     | 'aleph2'
     | 'product_swap'
+    | 'product_ad'
+    | 'multi_shot_video'
+    | 'product_ugc'
+    | 'marketing_stock_image'
+    | 'product_campaign_image'
   >;
 
   results: Array<OrganizationRetrieveUsageResponse.Result>;
@@ -207,7 +212,12 @@ export namespace OrganizationRetrieveUsageResponse {
         | 'klingO3_4k'
         | 'happyhorse_1_0'
         | 'aleph2'
-        | 'product_swap';
+        | 'product_swap'
+        | 'product_ad'
+        | 'multi_shot_video'
+        | 'product_ugc'
+        | 'marketing_stock_image'
+        | 'product_campaign_image';
     }
   }
 }
