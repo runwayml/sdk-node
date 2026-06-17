@@ -1,5 +1,21 @@
 # Changelog
 
+## 4.2.0 (2026-06-17)
+
+Full Changelog: [v4.1.0...v4.2.0](https://github.com/runwayml/sdk-node/compare/v4.1.0...v4.2.0)
+
+### Features
+
+* **api:** Recipes, aleph2 range ([05ae79c](https://github.com/runwayml/sdk-node/commit/05ae79c87f5bfc60545c5e8271a9f19c29728085))
+* **client:** add recipe endpoints to config ([8509e2b](https://github.com/runwayml/sdk-node/commit/8509e2bf6a6350873e69186e01a6bf71121f0a1c))
+* **client:** Make recipes waitable ([2806992](https://github.com/runwayml/sdk-node/commit/2806992850b4bacdd24afa5154e63cbcb2c06e52))
+
+
+### Bug Fixes
+
+* **api:** remove range param ([a602a48](https://github.com/runwayml/sdk-node/commit/a602a48b1a6eef9bdc845f09851fa58100c2d155))
+* **client:** send content-type header for requests with an omitted optional body ([b26f126](https://github.com/runwayml/sdk-node/commit/b26f126323c83fca99555e7b897fcda048ccd098))
+
 ## 4.1.0 (2026-06-12)
 
 Full Changelog: [v4.0.0...v4.1.0](https://github.com/runwayml/sdk-node/compare/v4.0.0...v4.1.0)
