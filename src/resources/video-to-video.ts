@@ -109,33 +109,6 @@ export declare namespace VideoToVideoCreateParams {
        * A HTTPS URL.
        */
       uri: string;
-
-      /**
-       * Optional edit window. When set, the edit applies only to this time range and the
-       * keyframe timestamp must fall within it. All keyframes must either set a range or
-       * none may.
-       */
-      range?: UnionMember0.Range;
-    }
-
-    export namespace UnionMember0 {
-      /**
-       * Optional edit window. When set, the edit applies only to this time range and the
-       * keyframe timestamp must fall within it. All keyframes must either set a range or
-       * none may.
-       */
-      export interface Range {
-        /**
-         * End of the edit window (exclusive) in whole seconds from the start of the input
-         * video.
-         */
-        end_seconds: number;
-
-        /**
-         * Start of the edit window in whole seconds from the start of the input video.
-         */
-        start_seconds: number;
-      }
     }
 
     export interface UnionMember1 {
@@ -149,33 +122,6 @@ export declare namespace VideoToVideoCreateParams {
        * A HTTPS URL.
        */
       uri: string;
-
-      /**
-       * Optional edit window. When set, the edit applies only to this time range and the
-       * keyframe timestamp must fall within it. All keyframes must either set a range or
-       * none may.
-       */
-      range?: UnionMember1.Range;
-    }
-
-    export namespace UnionMember1 {
-      /**
-       * Optional edit window. When set, the edit applies only to this time range and the
-       * keyframe timestamp must fall within it. All keyframes must either set a range or
-       * none may.
-       */
-      export interface Range {
-        /**
-         * End of the edit window (exclusive) in whole seconds from the start of the input
-         * video.
-         */
-        end_seconds: number;
-
-        /**
-         * Start of the edit window in whole seconds from the start of the input video.
-         */
-        start_seconds: number;
-      }
     }
   }
 
