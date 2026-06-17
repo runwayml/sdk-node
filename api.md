@@ -202,6 +202,26 @@ Methods:
 - <code title="get /v1/realtime_sessions/{id}">client.realtimeSessions.<a href="./src/resources/realtime-sessions.ts">retrieve</a>(id) -> RealtimeSessionRetrieveResponse</code>
 - <code title="delete /v1/realtime_sessions/{id}">client.realtimeSessions.<a href="./src/resources/realtime-sessions.ts">delete</a>(id) -> void</code>
 
+# Recipes
+
+Types:
+
+- <code><a href="./src/resources/recipes.ts">RecipeMarketingStockImageResponse</a></code>
+- <code><a href="./src/resources/recipes.ts">RecipeMultiShotVideoResponse</a></code>
+- <code><a href="./src/resources/recipes.ts">RecipeProductAdResponse</a></code>
+- <code><a href="./src/resources/recipes.ts">RecipeProductCampaignImageResponse</a></code>
+- <code><a href="./src/resources/recipes.ts">RecipeProductSwapResponse</a></code>
+- <code><a href="./src/resources/recipes.ts">RecipeProductUgcResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/recipes/marketing_stock_image">client.recipes.<a href="./src/resources/recipes.ts">marketingStockImage</a>({ ...params }) -> RecipeMarketingStockImageResponse</code>
+- <code title="post /v1/recipes/multi_shot_video">client.recipes.<a href="./src/resources/recipes.ts">multiShotVideo</a>({ ...params }) -> RecipeMultiShotVideoResponse</code>
+- <code title="post /v1/recipes/product_ad">client.recipes.<a href="./src/resources/recipes.ts">productAd</a>({ ...params }) -> RecipeProductAdResponse</code>
+- <code title="post /v1/recipes/product_campaign_image">client.recipes.<a href="./src/resources/recipes.ts">productCampaignImage</a>({ ...params }) -> RecipeProductCampaignImageResponse</code>
+- <code title="post /v1/recipes/product_swap">client.recipes.<a href="./src/resources/recipes.ts">productSwap</a>({ ...params }) -> RecipeProductSwapResponse</code>
+- <code title="post /v1/recipes/product_ugc">client.recipes.<a href="./src/resources/recipes.ts">productUgc</a>({ ...params }) -> RecipeProductUgcResponse</code>
+
 # Voices
 
 Types:

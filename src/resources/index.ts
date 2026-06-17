@@ -58,6 +58,21 @@ export {
   type RealtimeSessionRetrieveResponse,
   type RealtimeSessionCreateParams,
 } from './realtime-sessions';
+export {
+  Recipes,
+  type RecipeMarketingStockImageResponse,
+  type RecipeMultiShotVideoResponse,
+  type RecipeProductAdResponse,
+  type RecipeProductCampaignImageResponse,
+  type RecipeProductSwapResponse,
+  type RecipeProductUgcResponse,
+  type RecipeMarketingStockImageParams,
+  type RecipeMultiShotVideoParams,
+  type RecipeProductAdParams,
+  type RecipeProductCampaignImageParams,
+  type RecipeProductSwapParams,
+  type RecipeProductUgcParams,
+} from './recipes';
 export { SoundEffect, type SoundEffectCreateResponse, type SoundEffectCreateParams } from './sound-effect';
 export {
   SpeechToSpeech,
