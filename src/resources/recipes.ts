@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
+import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/polling';
 
 export class Recipes extends APIResource {
   /**
@@ -12,8 +12,10 @@ export class Recipes extends APIResource {
   marketingStockImage(
     body: RecipeMarketingStockImageParams,
     options?: RequestOptions,
-  ): APIPromise<RecipeMarketingStockImageResponse> {
-    return this._client.post('/v1/recipes/marketing_stock_image', { body, ...options });
+  ): APIPromiseWithAwaitableTask<RecipeMarketingStockImageResponse> {
+    return wrapAsWaitableResource<RecipeMarketingStockImageResponse>(this._client)(
+      this._client.post('/v1/recipes/marketing_stock_image', { body, ...options }),
+    );
   }
 
   /**
@@ -23,16 +25,23 @@ export class Recipes extends APIResource {
   multiShotVideo(
     body: RecipeMultiShotVideoParams,
     options?: RequestOptions,
-  ): APIPromise<RecipeMultiShotVideoResponse> {
-    return this._client.post('/v1/recipes/multi_shot_video', { body, ...options });
+  ): APIPromiseWithAwaitableTask<RecipeMultiShotVideoResponse> {
+    return wrapAsWaitableResource<RecipeMultiShotVideoResponse>(this._client)(
+      this._client.post('/v1/recipes/multi_shot_video', { body, ...options }),
+    );
   }
 
   /**
    * Generate a cinematic product ad from product images, optional style references,
    * product info, and creative direction.
    */
-  productAd(body: RecipeProductAdParams, options?: RequestOptions): APIPromise<RecipeProductAdResponse> {
-    return this._client.post('/v1/recipes/product_ad', { body, ...options });
+  productAd(
+    body: RecipeProductAdParams,
+    options?: RequestOptions,
+  ): APIPromiseWithAwaitableTask<RecipeProductAdResponse> {
+    return wrapAsWaitableResource<RecipeProductAdResponse>(this._client)(
+      this._client.post('/v1/recipes/product_ad', { body, ...options }),
+    );
   }
 
   /**
@@ -41,8 +50,10 @@ export class Recipes extends APIResource {
   productCampaignImage(
     body: RecipeProductCampaignImageParams,
     options?: RequestOptions,
-  ): APIPromise<RecipeProductCampaignImageResponse> {
-    return this._client.post('/v1/recipes/product_campaign_image', { body, ...options });
+  ): APIPromiseWithAwaitableTask<RecipeProductCampaignImageResponse> {
+    return wrapAsWaitableResource<RecipeProductCampaignImageResponse>(this._client)(
+      this._client.post('/v1/recipes/product_campaign_image', { body, ...options }),
+    );
   }
 
   /**
@@ -52,16 +63,23 @@ export class Recipes extends APIResource {
   productSwap(
     body: RecipeProductSwapParams,
     options?: RequestOptions,
-  ): APIPromise<RecipeProductSwapResponse> {
-    return this._client.post('/v1/recipes/product_swap', { body, ...options });
+  ): APIPromiseWithAwaitableTask<RecipeProductSwapResponse> {
+    return wrapAsWaitableResource<RecipeProductSwapResponse>(this._client)(
+      this._client.post('/v1/recipes/product_swap', { body, ...options }),
+    );
   }
 
   /**
    * Generate a vertical user-generated content ad from a character image, product
    * image, product details, and optional creative direction.
    */
-  productUgc(body: RecipeProductUgcParams, options?: RequestOptions): APIPromise<RecipeProductUgcResponse> {
-    return this._client.post('/v1/recipes/product_ugc', { body, ...options });
+  productUgc(
+    body: RecipeProductUgcParams,
+    options?: RequestOptions,
+  ): APIPromiseWithAwaitableTask<RecipeProductUgcResponse> {
+    return wrapAsWaitableResource<RecipeProductUgcResponse>(this._client)(
+      this._client.post('/v1/recipes/product_ugc', { body, ...options }),
+    );
   }
 }
 
