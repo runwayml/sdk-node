@@ -270,8 +270,7 @@ export declare namespace TextToImageCreateParams {
     model: 'gemini_image3_pro';
 
     /**
-     * A non-empty string up to 5,500 characters (measured in UTF-16 code units). This
-     * should describe in detail what should appear in the output.
+     * This should describe in detail what should appear in the output.
      */
     promptText: string;
 
@@ -352,8 +351,7 @@ export declare namespace TextToImageCreateParams {
     model: 'gemini_image3.1_flash';
 
     /**
-     * A non-empty string up to 1000 characters (measured in UTF-16 code units). This
-     * should describe in detail what should appear in the output.
+     * This should describe in detail what should appear in the output.
      */
     promptText: string;
 
@@ -460,8 +458,7 @@ export declare namespace TextToImageCreateParams {
     model: 'gemini_2.5_flash';
 
     /**
-     * A non-empty string up to 1000 characters (measured in UTF-16 code units). This
-     * should describe in detail what should appear in the output.
+     * This should describe in detail what should appear in the output.
      */
     promptText: string;
 
