@@ -348,7 +348,13 @@ export declare namespace ImageToVideoCreateParams {
       | '1664:1248'
       | '1440:1440'
       | '1248:1664'
-      | '1080:1920';
+      | '1080:1920'
+      | '3840:1646'
+      | '3840:2160'
+      | '3840:2880'
+      | '3840:3840'
+      | '2880:3840'
+      | '2160:3840';
 
     /**
      * An optional array of audio references. Audio references require a text prompt,

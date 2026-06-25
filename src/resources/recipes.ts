@@ -295,10 +295,10 @@ export interface RecipeProductAdParams {
   productImages: Array<RecipeProductAdParams.ProductImage>;
 
   /**
-   * Workflow version. Use a dated version (e.g. "2026-06") to pin behavior, or
+   * Workflow version. Use a dated version (e.g. "2026-07") to pin behavior, or
    * "unsafe-latest" to track the newest stable version (may break without notice).
    */
-  version: '2026-06' | 'unsafe-latest';
+  version: '2026-06' | '2026-07' | 'unsafe-latest';
 
   /**
    * Whether to generate audio for the video.

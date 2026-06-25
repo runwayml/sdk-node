@@ -204,7 +204,13 @@ export declare namespace TextToVideoCreateParams {
       | '1664:1248'
       | '1440:1440'
       | '1248:1664'
-      | '1080:1920';
+      | '1080:1920'
+      | '3840:1646'
+      | '3840:2160'
+      | '3840:2880'
+      | '3840:3840'
+      | '2880:3840'
+      | '2160:3840';
 
     /**
      * An optional array of audio references. Audio references require a text prompt,
@@ -245,12 +251,6 @@ export declare namespace TextToVideoCreateParams {
        * A HTTPS URL.
        */
       uri: string;
-
-      /**
-       * The position of the image in the output video. "first" will use the image as the
-       * first frame, "last" as the last frame. Omit for a reference image.
-       */
-      position?: 'first' | 'last';
     }
 
     /**
@@ -343,12 +343,6 @@ export declare namespace TextToVideoCreateParams {
        * A HTTPS URL.
        */
       uri: string;
-
-      /**
-       * The position of the image in the output video. "first" will use the image as the
-       * first frame, "last" as the last frame. Omit for a reference image.
-       */
-      position?: 'first' | 'last';
     }
 
     /**
