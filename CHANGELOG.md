@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.3.0 (2026-06-25)
+
+Full Changelog: [v4.2.0...v4.3.0](https://github.com/runwayml/sdk-node/compare/v4.2.0...v4.3.0)
+
+### Features
+
+* **api:** document product_ad 2026-07 ([afdb3e3](https://github.com/runwayml/sdk-node/commit/afdb3e356c84af9cb0be6ccb512622fd2bc14e77))
+
 ## 4.2.0 (2026-06-17)
 
 Full Changelog: [v4.1.0...v4.2.0](https://github.com/runwayml/sdk-node/compare/v4.1.0...v4.2.0)
