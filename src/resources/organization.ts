@@ -129,6 +129,7 @@ export interface OrganizationRetrieveUsageResponse {
     | 'seedance2'
     | 'seedance2_fast'
     | 'magnific_precision_upscaler_v2'
+    | 'magnific_video_upscaler_creative'
     | 'kling2.5_turbo_pro'
     | 'kling3.0_pro'
     | 'kling3.0_4k'
@@ -144,6 +145,7 @@ export interface OrganizationRetrieveUsageResponse {
     | 'product_ugc'
     | 'marketing_stock_image'
     | 'product_campaign_image'
+    | 'ad_localization'
   >;
 
   results: Array<OrganizationRetrieveUsageResponse.Result>;
@@ -203,6 +205,7 @@ export namespace OrganizationRetrieveUsageResponse {
         | 'seedance2'
         | 'seedance2_fast'
         | 'magnific_precision_upscaler_v2'
+        | 'magnific_video_upscaler_creative'
         | 'kling2.5_turbo_pro'
         | 'kling3.0_pro'
         | 'kling3.0_4k'
@@ -217,7 +220,8 @@ export namespace OrganizationRetrieveUsageResponse {
         | 'multi_shot_video'
         | 'product_ugc'
         | 'marketing_stock_image'
-        | 'product_campaign_image';
+        | 'product_campaign_image'
+        | 'ad_localization';
     }
   }
 }

@@ -62,8 +62,7 @@ export declare namespace VideoToVideoCreateParams {
     keyframes?: Array<Variant0.UnionMember0 | Variant0.UnionMember1>;
 
     /**
-     * An optional string up to 1000 characters describing what should appear in the
-     * output.
+     * A non-empty and optional string describing what should appear in the output.
      */
     promptText?: string;
 
