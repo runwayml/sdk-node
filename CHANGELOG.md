@@ -1,5 +1,19 @@
 # Changelog
 
+## 4.4.0 (2026-06-26)
+
+Full Changelog: [v4.3.0...v4.4.0](https://github.com/runwayml/sdk-node/compare/v4.3.0...v4.4.0)
+
+### Features
+
+* **api:** add magnific video upscale model ([fbd973e](https://github.com/runwayml/sdk-node/commit/fbd973eb98673f10fd119f27002c145ce2ac875d))
+* **client:** make video upscale waitable ([861ba9b](https://github.com/runwayml/sdk-node/commit/861ba9b60c22f4567adc67cce62b6582d36c6ea1))
+
+
+### Chores
+
+* **client:** remove redundant video upscale class doc ([6431221](https://github.com/runwayml/sdk-node/commit/6431221f159570437a7e57ae23ee43f6fd87cd36))
+
 ## 4.3.0 (2026-06-25)
 
 Full Changelog: [v4.2.0...v4.3.0](https://github.com/runwayml/sdk-node/compare/v4.2.0...v4.3.0)
