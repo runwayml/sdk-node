@@ -93,6 +93,11 @@ export {
   type VideoToVideoCreateParams,
 } from './video-to-video';
 export {
+  VideoUpscale,
+  type VideoUpscaleCreateResponse,
+  type VideoUpscaleCreateParams,
+} from './video-upscale';
+export {
   VoiceDubbing,
   type VoiceDubbingCreateResponse,
   type VoiceDubbingCreateParams,
