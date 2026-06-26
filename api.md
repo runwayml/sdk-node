@@ -119,6 +119,16 @@ Methods:
 
 - <code title="post /v1/image_upscale">client.imageUpscale.<a href="./src/resources/image-upscale.ts">create</a>({ ...params }) -> ImageUpscaleCreateResponse</code>
 
+# VideoUpscale
+
+Types:
+
+- <code><a href="./src/resources/video-upscale.ts">VideoUpscaleCreateResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/video_upscale">client.videoUpscale.<a href="./src/resources/video-upscale.ts">create</a>({ ...params }) -> VideoUpscaleCreateResponse</code>
+
 # Organization
 
 Types:
