@@ -4,9 +4,6 @@ import { APIResource } from '../core/resource';
 import { RequestOptions } from '../internal/request-options';
 import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/polling';
 
-/**
- * These endpoints all kick off tasks to create generations.
- */
 export class VideoUpscale extends APIResource {
   /**
    * This endpoint starts a task to upscale a video. Set `model` to choose the
