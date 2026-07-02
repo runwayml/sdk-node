@@ -121,6 +121,18 @@ export interface RecipeMarketingStockImageParams {
   version: '2026-06' | 'unsafe-latest';
 
   /**
+   * The number of images to generate (1–4). Defaults to 4. Increasing this number
+   * affects credits consumed.
+   */
+  outputCount?: number;
+
+  /**
+   * GPT Image 2 rendering quality (`low`, `medium`, or `high`). Lower settings are
+   * faster and use fewer credits; `high` (default) is slowest and highest fidelity.
+   */
+  quality?: 'low' | 'medium' | 'high';
+
+  /**
    * Optional brand logo image to guide the generated marketing stock image. See
    * [our docs](/assets/inputs#images) on image inputs.
    */
