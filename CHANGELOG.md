@@ -1,5 +1,15 @@
 # Changelog
 
+## 4.5.0 (2026-07-02)
+
+Full Changelog: [v4.4.0...v4.5.0](https://github.com/runwayml/sdk-node/compare/v4.4.0...v4.5.0)
+
+### Features
+
+* **api:** add ad_localization to stainless config ([bdf0682](https://github.com/runwayml/sdk-node/commit/bdf068219c3929b0c35cb072a3c42fb528a669c0))
+* **api:** add seedance2_mini & seed_audio models. ([f49cc3e](https://github.com/runwayml/sdk-node/commit/f49cc3e0c8595b34f186dfb664589e05da68c2fb))
+* **api:** manual updates ([5ab0f68](https://github.com/runwayml/sdk-node/commit/5ab0f685da209360b3cb2763ce5e40e5554a6fa6))
+
 ## 4.4.0 (2026-06-26)
 
 Full Changelog: [v4.3.0...v4.4.0](https://github.com/runwayml/sdk-node/compare/v4.3.0...v4.4.0)
