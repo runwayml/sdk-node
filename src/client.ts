@@ -78,6 +78,8 @@ import {
   RealtimeSessions,
 } from './resources/realtime-sessions';
 import {
+  RecipeAdLocalizationParams,
+  RecipeAdLocalizationResponse,
   RecipeMarketingStockImageParams,
   RecipeMarketingStockImageResponse,
   RecipeMultiShotVideoParams,
@@ -1133,12 +1135,14 @@ export declare namespace RunwayML {
 
   export {
     Recipes as Recipes,
+    type RecipeAdLocalizationResponse as RecipeAdLocalizationResponse,
     type RecipeMarketingStockImageResponse as RecipeMarketingStockImageResponse,
     type RecipeMultiShotVideoResponse as RecipeMultiShotVideoResponse,
     type RecipeProductAdResponse as RecipeProductAdResponse,
     type RecipeProductCampaignImageResponse as RecipeProductCampaignImageResponse,
     type RecipeProductSwapResponse as RecipeProductSwapResponse,
     type RecipeProductUgcResponse as RecipeProductUgcResponse,
+    type RecipeAdLocalizationParams as RecipeAdLocalizationParams,
     type RecipeMarketingStockImageParams as RecipeMarketingStockImageParams,
     type RecipeMultiShotVideoParams as RecipeMultiShotVideoParams,
     type RecipeProductAdParams as RecipeProductAdParams,
