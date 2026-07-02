@@ -8,29 +8,6 @@ const client = new RunwayML({
 });
 
 describe('resource recipes', () => {
-  test('adLocalization: only required params', async () => {
-    const responsePromise = client.recipes.adLocalization({
-      referenceImage: { uri: 'https://example.com/file' },
-      targetLanguage: 'ar',
-      version: '2026-06',
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('adLocalization: required and optional params', async () => {
-    const response = await client.recipes.adLocalization({
-      referenceImage: { uri: 'https://example.com/file' },
-      targetLanguage: 'ar',
-      version: '2026-06',
-    });
-  });
-
   test('marketingStockImage: only required params', async () => {
     const responsePromise = client.recipes.marketingStockImage({ prompt: 'x', version: '2026-06' });
     const rawResponse = await responsePromise.asResponse();

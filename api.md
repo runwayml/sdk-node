@@ -216,7 +216,6 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/recipes.ts">RecipeAdLocalizationResponse</a></code>
 - <code><a href="./src/resources/recipes.ts">RecipeMarketingStockImageResponse</a></code>
 - <code><a href="./src/resources/recipes.ts">RecipeMultiShotVideoResponse</a></code>
 - <code><a href="./src/resources/recipes.ts">RecipeProductAdResponse</a></code>
@@ -226,7 +225,6 @@ Types:
 
 Methods:
 
-- <code title="post /v1/recipes/ad_localization">client.recipes.<a href="./src/resources/recipes.ts">adLocalization</a>({ ...params }) -> RecipeAdLocalizationResponse</code>
 - <code title="post /v1/recipes/marketing_stock_image">client.recipes.<a href="./src/resources/recipes.ts">marketingStockImage</a>({ ...params }) -> RecipeMarketingStockImageResponse</code>
 - <code title="post /v1/recipes/multi_shot_video">client.recipes.<a href="./src/resources/recipes.ts">multiShotVideo</a>({ ...params }) -> RecipeMultiShotVideoResponse</code>
 - <code title="post /v1/recipes/product_ad">client.recipes.<a href="./src/resources/recipes.ts">productAd</a>({ ...params }) -> RecipeProductAdResponse</code>

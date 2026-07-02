@@ -147,7 +147,6 @@ export interface OrganizationRetrieveUsageResponse {
     | 'product_ugc'
     | 'marketing_stock_image'
     | 'product_campaign_image'
-    | 'ad_localization'
   >;
 
   results: Array<OrganizationRetrieveUsageResponse.Result>;
@@ -234,8 +233,7 @@ export namespace OrganizationRetrieveUsageResponse {
         | 'multi_shot_video'
         | 'product_ugc'
         | 'marketing_stock_image'
-        | 'product_campaign_image'
-        | 'ad_localization';
+        | 'product_campaign_image';
     }
   }
 

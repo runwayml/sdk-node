@@ -6,17 +6,6 @@ import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/poll
 
 export class Recipes extends APIResource {
   /**
-   * Localize an existing ad image for a target language, preserving visual creative
-   * while adapting on-screen messaging.
-   */
-  adLocalization(
-    body: RecipeAdLocalizationParams,
-    options?: RequestOptions,
-  ): APIPromise<RecipeAdLocalizationResponse> {
-    return this._client.post('/v1/recipes/ad_localization', { body, ...options });
-  }
-
-  /**
    * Generate a polished marketing stock image from a text brief and optional brand
    * logo image.
    */
@@ -94,13 +83,6 @@ export class Recipes extends APIResource {
   }
 }
 
-export interface RecipeAdLocalizationResponse {
-  /**
-   * The ID of the task that was created. Use this to retrieve the task later.
-   */
-  id: string;
-}
-
 export interface RecipeMarketingStockImageResponse {
   /**
    * The ID of the task that was created. Use this to retrieve the task later.
@@ -141,61 +123,6 @@ export interface RecipeProductUgcResponse {
    * The ID of the task that was created. Use this to retrieve the task later.
    */
   id: string;
-}
-
-export interface RecipeAdLocalizationParams {
-  /**
-   * Reference ad image to localize. See [our docs](/assets/inputs#images) on image
-   * inputs.
-   */
-  referenceImage: RecipeAdLocalizationParams.ReferenceImage;
-
-  /**
-   * Target language for the localized ad. Use ISO-style codes (e.g. "ja" for
-   * Japanese, "es" for Spanish).
-   */
-  targetLanguage:
-    | 'ar'
-    | 'zh'
-    | 'zh-Hant'
-    | 'nl'
-    | 'en'
-    | 'fr'
-    | 'de'
-    | 'hi'
-    | 'id'
-    | 'it'
-    | 'ja'
-    | 'ko'
-    | 'pl'
-    | 'pt'
-    | 'ru'
-    | 'es'
-    | 'sv'
-    | 'th'
-    | 'tr'
-    | 'uk'
-    | 'vi'
-    | 'el';
-
-  /**
-   * Workflow version. Use a dated version (e.g. "2026-06") to pin behavior, or
-   * "unsafe-latest" to track the newest stable version (may break without notice).
-   */
-  version: '2026-06' | 'unsafe-latest';
-}
-
-export namespace RecipeAdLocalizationParams {
-  /**
-   * Reference ad image to localize. See [our docs](/assets/inputs#images) on image
-   * inputs.
-   */
-  export interface ReferenceImage {
-    /**
-     * A HTTPS URL.
-     */
-    uri: string;
-  }
 }
 
 export interface RecipeMarketingStockImageParams {
@@ -634,14 +561,12 @@ export namespace RecipeProductUgcParams {
 
 export declare namespace Recipes {
   export {
-    type RecipeAdLocalizationResponse as RecipeAdLocalizationResponse,
     type RecipeMarketingStockImageResponse as RecipeMarketingStockImageResponse,
     type RecipeMultiShotVideoResponse as RecipeMultiShotVideoResponse,
     type RecipeProductAdResponse as RecipeProductAdResponse,
     type RecipeProductCampaignImageResponse as RecipeProductCampaignImageResponse,
     type RecipeProductSwapResponse as RecipeProductSwapResponse,
     type RecipeProductUgcResponse as RecipeProductUgcResponse,
-    type RecipeAdLocalizationParams as RecipeAdLocalizationParams,
     type RecipeMarketingStockImageParams as RecipeMarketingStockImageParams,
     type RecipeMultiShotVideoParams as RecipeMultiShotVideoParams,
     type RecipeProductAdParams as RecipeProductAdParams,
