@@ -23,6 +23,8 @@ describe('resource recipes', () => {
     const response = await client.recipes.marketingStockImage({
       prompt: 'x',
       version: '2026-06',
+      outputCount: 1,
+      quality: 'low',
       referenceImage: { uri: 'https://example.com/file' },
     });
   });
