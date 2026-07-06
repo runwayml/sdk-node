@@ -212,6 +212,17 @@ export interface RealtimeSessionCreateParams {
   model: 'gwm1_avatars';
 
   /**
+   * External integration. Runway renders the avatar; the integration owns
+   * conversation or audio.
+   */
+  integration?: RealtimeSessionCreateParams.Elevenlabs | RealtimeSessionCreateParams.Livekit;
+
+  /**
+   * @deprecated Use integration with type "livekit" instead.
+   */
+  livekit?: RealtimeSessionCreateParams.Livekit;
+
+  /**
    * Maximum session duration in seconds.
    */
   maxDuration?: number;
@@ -266,6 +277,75 @@ export namespace RealtimeSessionCreateParams {
     avatarId: string;
 
     type: 'custom';
+  }
+
+  /**
+   * ElevenLabs handles conversation; Runway renders the avatar video.
+   */
+  export interface Elevenlabs {
+    /**
+     * ConvAI signed WebSocket URL (~15 min lifetime).
+     */
+    signedUrl: string;
+
+    type: 'elevenlabs';
+  }
+
+  /**
+   * Join an external LiveKit room; Runway publishes video, your agent supplies
+   * audio.
+   */
+  export interface Livekit {
+    /**
+     * LiveKit access token granting the avatar worker publish rights in the external
+     * room.
+     */
+    token: string;
+
+    /**
+     * Name of the external LiveKit room.
+     */
+    roomName: string;
+
+    type: 'livekit';
+
+    /**
+     * WebSocket URL of the external LiveKit server the avatar worker should join.
+     */
+    url: string;
+
+    /**
+     * The participant identity of the customer agent already in the room. When
+     * provided, the avatar worker trusts audio published by this identity.
+     */
+    agentIdentity?: string;
+  }
+
+  /**
+   * @deprecated Use integration with type "livekit" instead.
+   */
+  export interface Livekit {
+    /**
+     * LiveKit access token granting the avatar worker publish rights in the external
+     * room.
+     */
+    token: string;
+
+    /**
+     * Name of the external LiveKit room.
+     */
+    roomName: string;
+
+    /**
+     * WebSocket URL of the external LiveKit server the avatar worker should join.
+     */
+    url: string;
+
+    /**
+     * The participant identity of the customer agent already in the room. When
+     * provided, the avatar worker trusts audio published by this identity.
+     */
+    agentIdentity?: string;
   }
 
   /**
