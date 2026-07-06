@@ -116,7 +116,6 @@ export interface OrganizationRetrieveUsageResponse {
     | 'gemini_image3_pro'
     | 'gemini_image3.1_flash'
     | 'eleven_multilingual_v2'
-    | 'seed_audio'
     | 'eleven_v3'
     | 'eleven_text_to_sound_v2'
     | 'eleven_voice_isolation'
@@ -129,7 +128,6 @@ export interface OrganizationRetrieveUsageResponse {
     | 'voice_processing'
     | 'seedance2'
     | 'seedance2_fast'
-    | 'seedance2_mini'
     | 'magnific_precision_upscaler_v2'
     | 'magnific_video_upscaler_creative'
     | 'kling2.5_turbo_pro'
@@ -147,19 +145,10 @@ export interface OrganizationRetrieveUsageResponse {
     | 'product_ugc'
     | 'marketing_stock_image'
     | 'product_campaign_image'
+    | 'ad_localization'
   >;
 
   results: Array<OrganizationRetrieveUsageResponse.Result>;
-
-  /**
-   * Reserved for future use.
-   */
-  apiKeys?: Array<string>;
-
-  /**
-   * Reserved for future use.
-   */
-  resultsByApiKey?: Array<OrganizationRetrieveUsageResponse.ResultsByAPIKey>;
 }
 
 export namespace OrganizationRetrieveUsageResponse {
@@ -203,7 +192,6 @@ export namespace OrganizationRetrieveUsageResponse {
         | 'gemini_image3_pro'
         | 'gemini_image3.1_flash'
         | 'eleven_multilingual_v2'
-        | 'seed_audio'
         | 'eleven_v3'
         | 'eleven_text_to_sound_v2'
         | 'eleven_voice_isolation'
@@ -216,7 +204,6 @@ export namespace OrganizationRetrieveUsageResponse {
         | 'voice_processing'
         | 'seedance2'
         | 'seedance2_fast'
-        | 'seedance2_mini'
         | 'magnific_precision_upscaler_v2'
         | 'magnific_video_upscaler_creative'
         | 'kling2.5_turbo_pro'
@@ -233,21 +220,8 @@ export namespace OrganizationRetrieveUsageResponse {
         | 'multi_shot_video'
         | 'product_ugc'
         | 'marketing_stock_image'
-        | 'product_campaign_image';
-    }
-  }
-
-  export interface ResultsByAPIKey {
-    date: string;
-
-    usedCredits: Array<ResultsByAPIKey.UsedCredit>;
-  }
-
-  export namespace ResultsByAPIKey {
-    export interface UsedCredit {
-      amount: number;
-
-      apiKeyId: string;
+        | 'product_campaign_image'
+        | 'ad_localization';
     }
   }
 }

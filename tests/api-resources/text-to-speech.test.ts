@@ -9,7 +9,11 @@ const client = new RunwayML({
 
 describe('resource textToSpeech', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.textToSpeech.create({ model: 'seed_audio', promptText: 'x' });
+    const responsePromise = client.textToSpeech.create({
+      model: 'eleven_multilingual_v2',
+      promptText: 'x',
+      voice: { presetId: 'Maya', type: 'runway-preset' },
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,14 +25,9 @@ describe('resource textToSpeech', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.textToSpeech.create({
-      model: 'seed_audio',
+      model: 'eleven_multilingual_v2',
       promptText: 'x',
-      loudnessRate: -50,
-      outputFormat: 'wav',
-      pitchRate: -12,
-      sampleRate: 8000,
-      speechRate: -50,
-      voice: { audioUri: 'https://example.com/file', type: 'reference-audio' },
+      voice: { presetId: 'Maya', type: 'runway-preset' },
     });
   });
 });

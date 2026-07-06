@@ -24,73 +24,25 @@ export interface SoundEffectCreateResponse {
   id: string;
 }
 
-export type SoundEffectCreateParams =
-  | SoundEffectCreateParams.SeedAudio
-  | SoundEffectCreateParams.ElevenTextToSoundV2;
+export interface SoundEffectCreateParams {
+  model: 'eleven_text_to_sound_v2';
 
-export declare namespace SoundEffectCreateParams {
-  export interface SeedAudio {
-    model: 'seed_audio';
+  /**
+   * A text description of the sound effect to generate.
+   */
+  promptText: string;
 
-    /**
-     * A non-empty text prompt. For text-to-speech, the words to speak. For
-     * text-to-audio, a scene description that can include voice direction, dialogue,
-     * music, and sound effects.
-     */
-    promptText: string;
+  /**
+   * The duration of the sound effect in seconds, between 0.5 and 30 seconds. If not
+   * provided, the duration will be determined automatically based on the text
+   * description.
+   */
+  duration?: number;
 
-    /**
-     * Relative output loudness. Negative is quieter, positive is louder; 0 is normal.
-     */
-    loudnessRate?: number;
-
-    /**
-     * Output audio container/format.
-     */
-    outputFormat?: 'wav' | 'mp3' | 'ogg_opus';
-
-    /**
-     * Pitch shift in semitones. Negative lowers, positive raises; 0 is unchanged.
-     */
-    pitchRate?: number;
-
-    /**
-     * Up to three reference audio clips. When provided, reference them in promptText
-     * as @Audio1, @Audio2, and @Audio3 in order.
-     */
-    referenceAudios?: Array<string>;
-
-    /**
-     * Output sample rate in Hz.
-     */
-    sampleRate?: 8000 | 16000 | 24000 | 32000 | 44100 | 48000;
-
-    /**
-     * Relative speech speed. Negative is slower, positive is faster; 0 is normal.
-     */
-    speechRate?: number;
-  }
-
-  export interface ElevenTextToSoundV2 {
-    model: 'eleven_text_to_sound_v2';
-
-    /**
-     * A text description of the sound effect to generate.
-     */
-    promptText: string;
-
-    /**
-     * The duration of the sound effect in seconds, between 0.5 and 30 seconds. If not
-     * provided, the duration will be determined automatically based on the text
-     * description.
-     */
-    duration?: number;
-
-    /**
-     * Whether the output sound effect should be designed to loop seamlessly.
-     */
-    loop?: boolean;
-  }
+  /**
+   * Whether the output sound effect should be designed to loop seamlessly.
+   */
+  loop?: boolean;
 }
 
 export declare namespace SoundEffect {

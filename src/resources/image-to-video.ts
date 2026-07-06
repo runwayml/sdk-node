@@ -31,8 +31,6 @@ export type ImageToVideoCreateParams =
   | ImageToVideoCreateParams.Happyhorse1_0
   | ImageToVideoCreateParams.Seedance2
   | ImageToVideoCreateParams.Seedance2Fast
-  | ImageToVideoCreateParams.Seedance2Mini
-  | ImageToVideoCreateParams.GeminiOmniFlash
   | ImageToVideoCreateParams.Veo3;
 
 export declare namespace ImageToVideoCreateParams {
@@ -309,7 +307,7 @@ export declare namespace ImageToVideoCreateParams {
     promptImage: string | Array<Seedance2.PromptImage>;
 
     /**
-     * Whether to generate audio for the video.
+     * Whether to generate audio for the video. Audio inclusion affects pricing.
      */
     audio?: boolean;
 
@@ -398,7 +396,7 @@ export declare namespace ImageToVideoCreateParams {
     promptImage: string | Array<Seedance2Fast.PromptImage>;
 
     /**
-     * Whether to generate audio for the video.
+     * Whether to generate audio for the video. Audio inclusion affects pricing.
      */
     audio?: boolean;
 
@@ -458,126 +456,6 @@ export declare namespace ImageToVideoCreateParams {
      */
     export interface ReferenceAudio {
       type: 'audio';
-
-      /**
-       * A HTTPS URL.
-       */
-      uri: string;
-    }
-  }
-
-  export interface Seedance2Mini {
-    model: 'seedance2_mini';
-
-    /**
-     * An image or array of images. Use position `first`/`last` for keyframe mode, or
-     * omit position for reference images. The two modes cannot be mixed.
-     */
-    promptImage: string | Array<Seedance2Mini.PromptImage>;
-
-    /**
-     * Whether to generate audio for the video.
-     */
-    audio?: boolean;
-
-    /**
-     * The number of seconds of duration for the output video.
-     */
-    duration?: number;
-
-    /**
-     * An optional text prompt up to 3500 characters describing what should appear in
-     * the output.
-     */
-    promptText?: string;
-
-    /**
-     * The resolution of the output video. Seedance 2.0 Mini supports 480p and 720p
-     * only.
-     */
-    ratio?:
-      | '992:432'
-      | '864:496'
-      | '752:560'
-      | '640:640'
-      | '560:752'
-      | '496:864'
-      | '1470:630'
-      | '1280:720'
-      | '1112:834'
-      | '960:960'
-      | '834:1112'
-      | '720:1280';
-
-    /**
-     * An optional array of audio references. Audio references require a text prompt,
-     * and the total combined duration must not exceed 15 seconds.
-     */
-    referenceAudio?: Array<Seedance2Mini.ReferenceAudio>;
-  }
-
-  export namespace Seedance2Mini {
-    export interface PromptImage {
-      /**
-       * A HTTPS URL.
-       */
-      uri: string;
-
-      /**
-       * The position of the image in the output video. "first" will use the image as the
-       * first frame, "last" as the last frame. Omit for a reference image.
-       */
-      position?: 'first' | 'last';
-    }
-
-    /**
-     * An audio reference allows the model to use the audio as additional context for
-     * the output.
-     */
-    export interface ReferenceAudio {
-      type: 'audio';
-
-      /**
-       * A HTTPS URL.
-       */
-      uri: string;
-    }
-  }
-
-  export interface GeminiOmniFlash {
-    model: 'gemini_omni_flash';
-
-    /**
-     * An image to use as the first frame of the output video. Gemini Omni Flash only
-     * supports a first frame.
-     */
-    promptImage: string | Array<GeminiOmniFlash.PromptImage>;
-
-    /**
-     * The duration of the output video in seconds, as a whole number from 3 to 10.
-     */
-    duration?: number;
-
-    /**
-     * An optional text prompt describing how the video should evolve from the first
-     * frame.
-     */
-    promptText?: string;
-
-    /**
-     * The aspect ratio of the output video: `1280:720` (landscape) or `720:1280`
-     * (portrait).
-     */
-    ratio?: '1280:720' | '720:1280';
-  }
-
-  export namespace GeminiOmniFlash {
-    export interface PromptImage {
-      /**
-       * The position of the image in the output video. "first" will use the image as the
-       * first frame of the video.
-       */
-      position: 'first';
 
       /**
        * A HTTPS URL.
