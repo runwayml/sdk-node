@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.8.0 (2026-07-06)
+
+Full Changelog: [v4.7.0...v4.8.0](https://github.com/runwayml/sdk-node/compare/v4.7.0...v4.8.0)
+
+### Features
+
+* **api:** add realtime session external integrations ([75478c6](https://github.com/runwayml/sdk-node/commit/75478c6b00f8189d0d2e82caae6c3f4a25df2d65))
+
 ## 4.7.0 (2026-07-06)
 
 Full Changelog: [v4.6.0...v4.7.0](https://github.com/runwayml/sdk-node/compare/v4.6.0...v4.7.0)
