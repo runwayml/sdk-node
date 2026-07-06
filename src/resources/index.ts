@@ -60,12 +60,14 @@ export {
 } from './realtime-sessions';
 export {
   Recipes,
+  type RecipeAdLocalizationResponse,
   type RecipeMarketingStockImageResponse,
   type RecipeMultiShotVideoResponse,
   type RecipeProductAdResponse,
   type RecipeProductCampaignImageResponse,
   type RecipeProductSwapResponse,
   type RecipeProductUgcResponse,
+  type RecipeAdLocalizationParams,
   type RecipeMarketingStockImageParams,
   type RecipeMultiShotVideoParams,
   type RecipeProductAdParams,
