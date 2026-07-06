@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.9.0 (2026-07-06)
+
+Full Changelog: [v4.8.0...v4.9.0](https://github.com/runwayml/sdk-node/compare/v4.8.0...v4.9.0)
+
+### Features
+
+* **api:** add ad_localization recipe ([85101d8](https://github.com/runwayml/sdk-node/commit/85101d8c177a9053b631238adaabb3d38875dfaa))
+
 ## 4.8.0 (2026-07-06)
 
 Full Changelog: [v4.7.0...v4.8.0](https://github.com/runwayml/sdk-node/compare/v4.7.0...v4.8.0)
