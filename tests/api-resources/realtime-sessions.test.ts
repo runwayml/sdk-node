@@ -26,6 +26,13 @@ describe('resource realtimeSessions', () => {
     const response = await client.realtimeSessions.create({
       avatar: { presetId: 'game-character', type: 'runway-preset' },
       model: 'gwm1_avatars',
+      integration: { signedUrl: 'https://example.com', type: 'elevenlabs' },
+      livekit: {
+        token: 'x',
+        roomName: 'x',
+        url: 'https://example.com',
+        agentIdentity: 'x',
+      },
       maxDuration: 10,
       personality: 'x',
       startScript: 'x',
