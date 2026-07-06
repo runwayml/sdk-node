@@ -27,7 +27,13 @@ describe('resource videoToVideo', () => {
       model: 'aleph2',
       videoUri: 'https://example.com/video.mp4',
       contentModeration: { publicFigureThreshold: 'auto' },
-      keyframes: [{ seconds: 0, uri: 'https://example.com/file' }],
+      keyframes: [
+        {
+          seconds: 0,
+          uri: 'https://example.com/file',
+          range: { end_seconds: 1, start_seconds: 0 },
+        },
+      ],
       promptText: 'x',
       ratio: 'ratio',
       seed: 0,
