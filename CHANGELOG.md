@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.6.0 (2026-07-06)
+
+Full Changelog: [v4.5.0...v4.6.0](https://github.com/runwayml/sdk-node/compare/v4.5.0...v4.6.0)
+
+### Features
+
+* **api:** add seedance2_mini and gemini_omni_flash models ([8f263e6](https://github.com/runwayml/sdk-node/commit/8f263e608ea327aa73f7146d8639460453e9faf3))
+
 ## 4.5.0 (2026-07-06)
 
 Full Changelog: [v4.4.0...v4.5.0](https://github.com/runwayml/sdk-node/compare/v4.4.0...v4.5.0)
