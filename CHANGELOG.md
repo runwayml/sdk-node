@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.7.0 (2026-07-06)
+
+Full Changelog: [v4.6.0...v4.7.0](https://github.com/runwayml/sdk-node/compare/v4.6.0...v4.7.0)
+
+### Features
+
+* **api:** add seed_audio model ([dd919c1](https://github.com/runwayml/sdk-node/commit/dd919c1bca08e47fb51182f5215a3a8b2c283290))
+
 ## 4.6.0 (2026-07-06)
 
 Full Changelog: [v4.5.0...v4.6.0](https://github.com/runwayml/sdk-node/compare/v4.5.0...v4.6.0)
