@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.9.1 (2026-07-10)
+
+Full Changelog: [v4.9.0...v4.9.1](https://github.com/runwayml/sdk-node/compare/v4.9.0...v4.9.1)
+
+### Bug Fixes
+
+* **ci:** bump @arethetypeswrong/cli to ^0.18.0 and run CI workflows on Node 24 ([ebc9c04](https://github.com/runwayml/sdk-node/commit/ebc9c046933586d6de8f48e81957c2651e702a58))
+
+
+### Chores
+
+* **internal:** codegen related update ([b1b5c4c](https://github.com/runwayml/sdk-node/commit/b1b5c4cd3aa88b6716a94733618aae4d3023c80e))
+
 ## 4.9.0 (2026-07-06)
 
 Full Changelog: [v4.8.0...v4.9.0](https://github.com/runwayml/sdk-node/compare/v4.8.0...v4.9.0)
