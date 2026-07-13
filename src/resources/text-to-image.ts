@@ -29,6 +29,8 @@ export type TextToImageCreateParams =
   | TextToImageCreateParams.GptImage2
   | TextToImageCreateParams.GeminiImage3Pro
   | TextToImageCreateParams.GeminiImage3_1Flash
+  | TextToImageCreateParams.Seedream5Pro
+  | TextToImageCreateParams.Seedream5Lite
   | TextToImageCreateParams.Gemini2_5Flash;
 
 export declare namespace TextToImageCreateParams {
@@ -451,6 +453,120 @@ export declare namespace TextToImageCreateParams {
        * prompt text.
        */
       tag?: string;
+    }
+  }
+
+  export interface Seedream5Pro {
+    model: 'seedream5_pro';
+
+    /**
+     * A non-empty string up to 4,000 characters describing the desired image.
+     */
+    promptText: string;
+
+    /**
+     * The resolution of the output image, expressed as `<width>:<height>`. Use
+     * `auto_1k` or `auto_2k` to let the model pick aspect ratio at a fixed resolution
+     * tier.
+     */
+    ratio:
+      | '1024:1024'
+      | '1184:896'
+      | '896:1184'
+      | '1376:768'
+      | '768:1376'
+      | '1296:864'
+      | '864:1296'
+      | '2048:2048'
+      | '2304:1728'
+      | '1728:2304'
+      | '2720:1530'
+      | '1530:2720'
+      | '2496:1664'
+      | '1664:2496'
+      | 'auto_1k'
+      | 'auto_2k';
+
+    /**
+     * The number of images to generate. Increasing this number will affect the number
+     * of credits consumed by the generation.
+     */
+    outputCount?: number;
+
+    /**
+     * The file format of the output image. Defaults to png.
+     */
+    outputFormat?: 'png' | 'jpeg';
+
+    /**
+     * An array of reference images for multi-image fusion and interactive editing.
+     * Reference by upload order in prompt text (Figure 1, Figure 2, etc.).
+     */
+    referenceImages?: Array<Seedream5Pro.ReferenceImage>;
+  }
+
+  export namespace Seedream5Pro {
+    export interface ReferenceImage {
+      /**
+       * A HTTPS URL.
+       */
+      uri: string;
+    }
+  }
+
+  export interface Seedream5Lite {
+    model: 'seedream5_lite';
+
+    /**
+     * A non-empty string up to 4,000 characters describing the desired image.
+     */
+    promptText: string;
+
+    /**
+     * The resolution of the output image, expressed as `<width>:<height>`.
+     */
+    ratio:
+      | '2048:2048'
+      | '2304:1728'
+      | '1728:2304'
+      | '2848:1600'
+      | '1600:2848'
+      | '2496:1664'
+      | '1664:2496'
+      | '3136:1344'
+      | '3072:3072'
+      | '3456:2592'
+      | '2592:3456'
+      | '4096:2304'
+      | '2304:4096'
+      | '3744:2496'
+      | '2496:3744'
+      | '4704:2016';
+
+    /**
+     * The number of images to generate. Increasing this number will affect the number
+     * of credits consumed by the generation.
+     */
+    outputCount?: number;
+
+    /**
+     * The file format of the output image. Defaults to png.
+     */
+    outputFormat?: 'png' | 'jpeg';
+
+    /**
+     * An array of reference images for multi-image fusion and interactive editing.
+     * Reference by upload order in prompt text (Figure 1, Figure 2, etc.).
+     */
+    referenceImages?: Array<Seedream5Lite.ReferenceImage>;
+  }
+
+  export namespace Seedream5Lite {
+    export interface ReferenceImage {
+      /**
+       * A HTTPS URL.
+       */
+      uri: string;
     }
   }
 
