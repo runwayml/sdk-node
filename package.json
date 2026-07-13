@@ -1,6 +1,6 @@
 {
   "name": "@runwayml/sdk",
-  "version": "4.9.1",
+  "version": "4.10.0",
   "description": "The official TypeScript library for the RunwayML API",
   "author": "RunwayML <dev-feedback@runwayml.com>",
   "types": "dist/index.d.ts",
