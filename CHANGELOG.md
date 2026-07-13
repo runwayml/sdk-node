@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.10.0 (2026-07-13)
+
+Full Changelog: [v4.9.1...v4.10.0](https://github.com/runwayml/sdk-node/compare/v4.9.1...v4.10.0)
+
+### Features
+
+* **api:** Seedream 5 Pro/Lite + negativePrompt for Veo models ([6faf410](https://github.com/runwayml/sdk-node/commit/6faf4102bb5dc74b1d488bcc9c9a6d37e17ef6e4))
+
 ## 4.9.1 (2026-07-10)
 
 Full Changelog: [v4.9.0...v4.9.1](https://github.com/runwayml/sdk-node/compare/v4.9.0...v4.9.1)
