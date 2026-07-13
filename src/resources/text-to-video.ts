@@ -109,6 +109,11 @@ export declare namespace TextToVideoCreateParams {
      * The number of seconds of duration for the output video.
      */
     duration?: 4 | 6 | 8;
+
+    /**
+     * Text describing what should not appear in the output video.
+     */
+    negativePrompt?: string;
   }
 
   export interface Veo3_1Fast {
@@ -134,6 +139,11 @@ export declare namespace TextToVideoCreateParams {
      * The number of seconds of duration for the output video.
      */
     duration?: 4 | 6 | 8;
+
+    /**
+     * Text describing what should not appear in the output video.
+     */
+    negativePrompt?: string;
   }
 
   export interface Happyhorse1_0 {
@@ -491,6 +501,11 @@ export declare namespace TextToVideoCreateParams {
      * The resolution of the output video.
      */
     ratio: '1280:720' | '720:1280' | '1080:1920' | '1920:1080';
+
+    /**
+     * Text describing what should not appear in the output video.
+     */
+    negativePrompt?: string;
   }
 }
 

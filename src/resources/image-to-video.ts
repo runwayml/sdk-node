@@ -194,6 +194,11 @@ export declare namespace ImageToVideoCreateParams {
     duration?: 4 | 6 | 8;
 
     /**
+     * Text describing what should not appear in the output video.
+     */
+    negativePrompt?: string;
+
+    /**
      * A non-empty string up to 1000 characters (measured in UTF-16 code units). This
      * should describe in detail what should appear in the output.
      */
@@ -240,6 +245,11 @@ export declare namespace ImageToVideoCreateParams {
      * The number of seconds of duration for the output video.
      */
     duration?: 4 | 6 | 8;
+
+    /**
+     * Text describing what should not appear in the output video.
+     */
+    negativePrompt?: string;
 
     /**
      * A non-empty string up to 1000 characters (measured in UTF-16 code units). This
@@ -608,6 +618,11 @@ export declare namespace ImageToVideoCreateParams {
      * The resolution of the output video.
      */
     ratio: '1280:720' | '720:1280' | '1080:1920' | '1920:1080';
+
+    /**
+     * Text describing what should not appear in the output video.
+     */
+    negativePrompt?: string;
 
     /**
      * A non-empty string up to 1000 characters (measured in UTF-16 code units). This
