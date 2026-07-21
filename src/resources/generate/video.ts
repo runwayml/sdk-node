@@ -1,16 +1,21 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
-import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
+import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../../lib/polling';
 
 export class Video extends APIResource {
   /**
    * Start a video generation task using a saved Model Router config instead of
    * naming a model.
    */
-  create(body: VideoCreateParams, options?: RequestOptions): APIPromise<VideoCreateResponse> {
-    return this._client.post('/v1/generate/video', { body, ...options });
+  create(
+    body: VideoCreateParams,
+    options?: RequestOptions,
+  ): APIPromiseWithAwaitableTask<VideoCreateResponse.RoutedVideoTaskCreated> {
+    return wrapAsWaitableResource<VideoCreateResponse.RoutedVideoTaskCreated>(this._client)(
+      this._client.post('/v1/generate/video', { body, ...options }),
+    );
   }
 }
 
