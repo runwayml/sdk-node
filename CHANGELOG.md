@@ -1,5 +1,28 @@
 # Changelog
 
+## 4.11.0 (2026-07-21)
+
+Full Changelog: [v4.10.0...v4.11.0](https://github.com/runwayml/sdk-node/compare/v4.10.0...v4.11.0)
+
+### Features
+
+* **api:** add Model Router CRUD and routed video generation ([48477a0](https://github.com/runwayml/sdk-node/commit/48477a0707fe103d36df277fd387bb446b2b2961))
+* **client:** add generate.video.preview for dry-run routing ([cf88c9d](https://github.com/runwayml/sdk-node/commit/cf88c9d238634560f5d2315626e654c44df60bf9))
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([7d32a50](https://github.com/runwayml/sdk-node/commit/7d32a50f43bd87fd47b0a4cf019f79ee0892f94a))
+
+
+### Bug Fixes
+
+* **client:** drop generate.video dry-run/preview from SDK surface ([305ea05](https://github.com/runwayml/sdk-node/commit/305ea05bbf8d1f8ccc3254810813515acf8af27b))
+* **client:** make generate.video responses awaitable ([73d3025](https://github.com/runwayml/sdk-node/commit/73d30259966bf4ab280f273d3a232c878bb7c15f))
+* **client:** point generate.video waitable at task-only response type ([922628c](https://github.com/runwayml/sdk-node/commit/922628c9fba93726dc54d0da97a22f6b1a0d7d4c))
+* **client:** type dryRun separately from waitable generate.video ([9273625](https://github.com/runwayml/sdk-node/commit/927362525d3acff93d08b854c6f89d9384894ed7))
+
+
+### Chores
+
+* **openapi:** keep generate.video SDK schema task-only ([96d6508](https://github.com/runwayml/sdk-node/commit/96d6508af655461d2d9ec4e3458dc0bd8e86608b))
+
 ## 4.10.0 (2026-07-13)
 
 Full Changelog: [v4.9.1...v4.10.0](https://github.com/runwayml/sdk-node/compare/v4.9.1...v4.10.0)
