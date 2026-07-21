@@ -45,7 +45,6 @@ describe('resource video', () => {
         resolution: '480p',
         seed: 0,
       },
-      dryRun: true,
     });
   });
 });
