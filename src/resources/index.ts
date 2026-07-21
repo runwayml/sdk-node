@@ -36,6 +36,7 @@ export {
   type DocumentListParams,
   type DocumentListResponsesCursorPage,
 } from './documents';
+export { Generate } from './generate/generate';
 export {
   ImageToVideo,
   type ImageToVideoCreateResponse,
@@ -75,6 +76,17 @@ export {
   type RecipeProductSwapParams,
   type RecipeProductUgcParams,
 } from './recipes';
+export {
+  Routers,
+  type RouterCreateResponse,
+  type RouterRetrieveResponse,
+  type RouterUpdateResponse,
+  type RouterListResponse,
+  type RouterCreateParams,
+  type RouterUpdateParams,
+  type RouterListParams,
+  type RouterListResponsesCursorPage,
+} from './routers';
 export { SoundEffect, type SoundEffectCreateResponse, type SoundEffectCreateParams } from './sound-effect';
 export {
   SpeechToSpeech,

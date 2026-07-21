@@ -129,6 +129,35 @@ Methods:
 
 - <code title="post /v1/video_upscale">client.videoUpscale.<a href="./src/resources/video-upscale.ts">create</a>({ ...params }) -> VideoUpscaleCreateResponse</code>
 
+# Generate
+
+## Video
+
+Types:
+
+- <code><a href="./src/resources/generate/video.ts">VideoCreateResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/generate/video">client.generate.video.<a href="./src/resources/generate/video.ts">create</a>({ ...params }) -> VideoCreateResponse</code>
+
+# Routers
+
+Types:
+
+- <code><a href="./src/resources/routers.ts">RouterCreateResponse</a></code>
+- <code><a href="./src/resources/routers.ts">RouterRetrieveResponse</a></code>
+- <code><a href="./src/resources/routers.ts">RouterUpdateResponse</a></code>
+- <code><a href="./src/resources/routers.ts">RouterListResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/routers">client.routers.<a href="./src/resources/routers.ts">create</a>({ ...params }) -> RouterCreateResponse</code>
+- <code title="get /v1/routers/{id}">client.routers.<a href="./src/resources/routers.ts">retrieve</a>(id) -> RouterRetrieveResponse</code>
+- <code title="patch /v1/routers/{id}">client.routers.<a href="./src/resources/routers.ts">update</a>(id, { ...params }) -> RouterUpdateResponse</code>
+- <code title="get /v1/routers">client.routers.<a href="./src/resources/routers.ts">list</a>({ ...params }) -> RouterListResponsesCursorPage</code>
+- <code title="delete /v1/routers/{id}">client.routers.<a href="./src/resources/routers.ts">delete</a>(id) -> void</code>
+
 # Organization
 
 Types:
