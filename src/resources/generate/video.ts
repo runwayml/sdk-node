@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../../lib/polling';
 
@@ -8,13 +9,31 @@ export class Video extends APIResource {
   /**
    * Start a video generation task using a saved Model Router config instead of
    * naming a model.
+   *
+   * When `dryRun` is true, no task is created — the promise is not waitable.
    */
+  create(
+    body: VideoCreateParams & { dryRun: true },
+    options?: RequestOptions,
+  ): APIPromise<VideoCreateResponse.RoutedVideoDryRun>;
+  create(
+    body: VideoCreateParams & { dryRun?: false },
+    options?: RequestOptions,
+  ): APIPromiseWithAwaitableTask<VideoCreateResponse.RoutedVideoTaskCreated>;
+  create(body: VideoCreateParams, options?: RequestOptions): APIPromise<VideoCreateResponse>;
   create(
     body: VideoCreateParams,
     options?: RequestOptions,
-  ): APIPromiseWithAwaitableTask<VideoCreateResponse.RoutedVideoTaskCreated> {
+  ):
+    | APIPromise<VideoCreateResponse.RoutedVideoDryRun>
+    | APIPromiseWithAwaitableTask<VideoCreateResponse.RoutedVideoTaskCreated>
+    | APIPromise<VideoCreateResponse> {
+    const response = this._client.post('/v1/generate/video', { body, ...options });
+    if (body.dryRun === true) {
+      return response as APIPromise<VideoCreateResponse.RoutedVideoDryRun>;
+    }
     return wrapAsWaitableResource<VideoCreateResponse.RoutedVideoTaskCreated>(this._client)(
-      this._client.post('/v1/generate/video', { body, ...options }),
+      response as APIPromise<VideoCreateResponse.RoutedVideoTaskCreated>,
     );
   }
 }
