@@ -1,19 +1,19 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
-import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../../lib/polling';
 
-/** Params for routed video create/preview (SDK omits wire `dryRun` — use `preview()`). */
+/**
+ * Routed video create params. `dryRun` is omitted from the SDK for now — use the
+ * HTTP API with `dryRun: true` if you need a routing preview without a task.
+ */
 export type VideoGenerateParams = Omit<VideoCreateParams, 'dryRun'>;
 
 export class Video extends APIResource {
   /**
    * Start a video generation task using a saved Model Router config instead of
    * naming a model.
-   *
-   * For a routing decision without creating a task, use {@link Video.preview}.
    */
   create(
     body: VideoGenerateParams,
@@ -22,23 +22,6 @@ export class Video extends APIResource {
     return wrapAsWaitableResource<VideoCreateResponse.RoutedVideoTaskCreated>(this._client)(
       this._client.post('/v1/generate/video', { body, ...options }),
     );
-  }
-
-  /**
-   * Run Model Router selection for a video request without creating a task or
-   * billing a generation.
-   *
-   * Returns the same routing metadata as `create`, including the selected model and
-   * estimated cost. Prefer this over passing `dryRun` on `create`.
-   */
-  preview(
-    body: VideoGenerateParams,
-    options?: RequestOptions,
-  ): APIPromise<VideoCreateResponse.RoutedVideoDryRun> {
-    return this._client.post('/v1/generate/video', {
-      body: { ...body, dryRun: true },
-      ...options,
-    });
   }
 }
 
