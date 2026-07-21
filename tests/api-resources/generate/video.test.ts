@@ -45,7 +45,20 @@ describe('resource video', () => {
         resolution: '480p',
         seed: 0,
       },
-      dryRun: true,
     });
+  });
+
+  test('preview: only required params', async () => {
+    const responsePromise = client.generate.video.preview({
+      configId: 'n6_',
+      input: {},
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 });
