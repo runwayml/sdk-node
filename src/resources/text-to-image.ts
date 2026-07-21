@@ -488,6 +488,12 @@ export declare namespace TextToImageCreateParams {
       | 'auto_2k';
 
     /**
+     * When true, enable live web search so the model can use current brand, trend, or
+     * event context. Default false for deterministic output.
+     */
+    grounding?: boolean;
+
+    /**
      * The number of images to generate. Increasing this number will affect the number
      * of credits consumed by the generation.
      */

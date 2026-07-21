@@ -94,6 +94,17 @@ import {
   RecipeProductUgcResponse,
   Recipes,
 } from './resources/recipes';
+import {
+  RouterCreateParams,
+  RouterCreateResponse,
+  RouterListParams,
+  RouterListResponse,
+  RouterListResponsesCursorPage,
+  RouterRetrieveResponse,
+  RouterUpdateParams,
+  RouterUpdateResponse,
+  Routers,
+} from './resources/routers';
 import { SoundEffect, SoundEffectCreateParams, SoundEffectCreateResponse } from './resources/sound-effect';
 import {
   SpeechToSpeech,
@@ -149,6 +160,7 @@ import {
   WorkflowRunResponse,
   Workflows,
 } from './resources/workflows';
+import { Generate } from './resources/generate/generate';
 import { type Fetch } from './internal/builtin-types';
 import { isRunningInBrowser } from './internal/detect-platform';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
@@ -961,6 +973,8 @@ export class RunwayML {
    * These endpoints all kick off tasks to create generations.
    */
   videoUpscale: API.VideoUpscale = new API.VideoUpscale(this);
+  generate: API.Generate = new API.Generate(this);
+  routers: API.Routers = new API.Routers(this);
   organization: API.Organization = new API.Organization(this);
   avatars: API.Avatars = new API.Avatars(this);
   avatarConversations: API.AvatarConversations = new API.AvatarConversations(this);
@@ -986,6 +1000,8 @@ RunwayML.VoiceDubbing = VoiceDubbing;
 RunwayML.SpeechToSpeech = SpeechToSpeech;
 RunwayML.ImageUpscale = ImageUpscale;
 RunwayML.VideoUpscale = VideoUpscale;
+RunwayML.Generate = Generate;
+RunwayML.Routers = Routers;
 RunwayML.Organization = Organization;
 RunwayML.Avatars = Avatars;
 RunwayML.AvatarConversations = AvatarConversations;
@@ -1075,6 +1091,20 @@ export declare namespace RunwayML {
     VideoUpscale as VideoUpscale,
     type VideoUpscaleCreateResponse as VideoUpscaleCreateResponse,
     type VideoUpscaleCreateParams as VideoUpscaleCreateParams,
+  };
+
+  export { Generate as Generate };
+
+  export {
+    Routers as Routers,
+    type RouterCreateResponse as RouterCreateResponse,
+    type RouterRetrieveResponse as RouterRetrieveResponse,
+    type RouterUpdateResponse as RouterUpdateResponse,
+    type RouterListResponse as RouterListResponse,
+    type RouterListResponsesCursorPage as RouterListResponsesCursorPage,
+    type RouterCreateParams as RouterCreateParams,
+    type RouterUpdateParams as RouterUpdateParams,
+    type RouterListParams as RouterListParams,
   };
 
   export {
