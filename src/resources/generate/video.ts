@@ -4,22 +4,16 @@ import { APIResource } from '../../core/resource';
 import { RequestOptions } from '../../internal/request-options';
 import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../../lib/polling';
 
-/**
- * Routed video create params. `dryRun` is omitted from the SDK for now — use the
- * HTTP API with `dryRun: true` if you need a routing preview without a task.
- */
-export type VideoGenerateParams = Omit<VideoCreateParams, 'dryRun'>;
-
 export class Video extends APIResource {
   /**
    * Start a video generation task using a saved Model Router config instead of
    * naming a model.
    */
   create(
-    body: VideoGenerateParams,
+    body: VideoCreateParams,
     options?: RequestOptions,
-  ): APIPromiseWithAwaitableTask<VideoCreateResponse.RoutedVideoTaskCreated> {
-    return wrapAsWaitableResource<VideoCreateResponse.RoutedVideoTaskCreated>(this._client)(
+  ): APIPromiseWithAwaitableTask<VideoCreateResponse> {
+    return wrapAsWaitableResource<VideoCreateResponse>(this._client)(
       this._client.post('/v1/generate/video', { body, ...options }),
     );
   }
@@ -302,9 +296,5 @@ export namespace VideoCreateParams {
 }
 
 export declare namespace Video {
-  export {
-    type VideoCreateResponse as VideoCreateResponse,
-    type VideoCreateParams as VideoCreateParams,
-    type VideoGenerateParams as VideoGenerateParams,
-  };
+  export { type VideoCreateResponse as VideoCreateResponse, type VideoCreateParams as VideoCreateParams };
 }
