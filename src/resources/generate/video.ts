@@ -5,36 +5,40 @@ import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../../lib/polling';
 
+/** Params for routed video create/preview (SDK omits wire `dryRun` — use `preview()`). */
+export type VideoGenerateParams = Omit<VideoCreateParams, 'dryRun'>;
+
 export class Video extends APIResource {
   /**
    * Start a video generation task using a saved Model Router config instead of
    * naming a model.
    *
-   * When `dryRun` is true, no task is created — the promise is not waitable.
+   * For a routing decision without creating a task, use {@link Video.preview}.
    */
   create(
-    body: VideoCreateParams & { dryRun: true },
+    body: VideoGenerateParams,
     options?: RequestOptions,
-  ): APIPromise<VideoCreateResponse.RoutedVideoDryRun>;
-  create(
-    body: VideoCreateParams & { dryRun?: false },
-    options?: RequestOptions,
-  ): APIPromiseWithAwaitableTask<VideoCreateResponse.RoutedVideoTaskCreated>;
-  create(body: VideoCreateParams, options?: RequestOptions): APIPromise<VideoCreateResponse>;
-  create(
-    body: VideoCreateParams,
-    options?: RequestOptions,
-  ):
-    | APIPromise<VideoCreateResponse.RoutedVideoDryRun>
-    | APIPromiseWithAwaitableTask<VideoCreateResponse.RoutedVideoTaskCreated>
-    | APIPromise<VideoCreateResponse> {
-    const response = this._client.post('/v1/generate/video', { body, ...options });
-    if (body.dryRun === true) {
-      return response as APIPromise<VideoCreateResponse.RoutedVideoDryRun>;
-    }
+  ): APIPromiseWithAwaitableTask<VideoCreateResponse.RoutedVideoTaskCreated> {
     return wrapAsWaitableResource<VideoCreateResponse.RoutedVideoTaskCreated>(this._client)(
-      response as APIPromise<VideoCreateResponse.RoutedVideoTaskCreated>,
+      this._client.post('/v1/generate/video', { body, ...options }),
     );
+  }
+
+  /**
+   * Run Model Router selection for a video request without creating a task or
+   * billing a generation.
+   *
+   * Returns the same routing metadata as `create`, including the selected model and
+   * estimated cost. Prefer this over passing `dryRun` on `create`.
+   */
+  preview(
+    body: VideoGenerateParams,
+    options?: RequestOptions,
+  ): APIPromise<VideoCreateResponse.RoutedVideoDryRun> {
+    return this._client.post('/v1/generate/video', {
+      body: { ...body, dryRun: true },
+      ...options,
+    });
   }
 }
 
@@ -428,5 +432,9 @@ export namespace VideoCreateParams {
 }
 
 export declare namespace Video {
-  export { type VideoCreateResponse as VideoCreateResponse, type VideoCreateParams as VideoCreateParams };
+  export {
+    type VideoCreateResponse as VideoCreateResponse,
+    type VideoCreateParams as VideoCreateParams,
+    type VideoGenerateParams as VideoGenerateParams,
+  };
 }
