@@ -53,32 +53,6 @@ export class AbortError extends Error {
   }
 }
 
-/**
- * Raised when waitForTaskOutput is called on a dry-run (or otherwise id-less) response.
- */
-export class DryRunHasNoTaskError extends Error {
-  response: unknown;
-  constructor(response: unknown) {
-    super(
-      'Cannot wait for task output: response has no task id (for example dryRun: true creates no task).',
-    );
-    this.response = response;
-    this.name = 'DryRunHasNoTaskError';
-  }
-}
-
-function ensureWaitableTaskId(output: unknown): asserts output is { id: string } {
-  const record = output as { id?: unknown; dryRun?: unknown } | null;
-  if (
-    record == null ||
-    record.dryRun === true ||
-    typeof record.id !== 'string' ||
-    record.id.length === 0
-  ) {
-    throw new DryRunHasNoTaskError(output);
-  }
-}
-
 export class WorkflowInvocationFailedError extends Error {
   invocationDetails: WorkflowInvocationRetrieveResponse;
   constructor(
@@ -128,7 +102,6 @@ export function wrapAsWaitableResource<T extends { id: string }>(client: RunwayM
 
         const { timeout = 60 * 10 * 1000 } = options ?? {};
         const output = await responsePromise;
-        ensureWaitableTaskId(output);
         const startTime = Date.now();
         let taskDetails: TaskRetrieveResponse;
         do {

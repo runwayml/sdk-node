@@ -27,7 +27,6 @@ export {
   TaskTimedOutError,
   WorkflowInvocationFailedError,
   WorkflowInvocationTimedOutError,
-  DryRunHasNoTaskError,
   WaitForTaskOutputOptions,
   AbortError,
   type APIPromiseWithAwaitableTask,
