@@ -141,6 +141,26 @@ Methods:
 
 - <code title="post /v1/generate/video">client.generate.video.<a href="./src/resources/generate/video.ts">create</a>({ ...params }) -> VideoCreateResponse</code>
 
+## Image
+
+Types:
+
+- <code><a href="./src/resources/generate/image.ts">ImageCreateResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/generate/image">client.generate.image.<a href="./src/resources/generate/image.ts">create</a>({ ...params }) -> ImageCreateResponse</code>
+
+## Audio
+
+Types:
+
+- <code><a href="./src/resources/generate/audio.ts">AudioCreateResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/generate/audio">client.generate.audio.<a href="./src/resources/generate/audio.ts">create</a>({ ...params }) -> AudioCreateResponse</code>
+
 # Routers
 
 Types:
