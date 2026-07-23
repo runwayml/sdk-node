@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
-import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
+import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../../lib/polling';
 
 export class Audio extends APIResource {
   /**
@@ -10,8 +10,13 @@ export class Audio extends APIResource {
    * naming a model. Set input.type to speech to speak promptText verbatim, or audio
    * to generate audio described by promptText.
    */
-  create(body: AudioCreateParams, options?: RequestOptions): APIPromise<AudioCreateResponse> {
-    return this._client.post('/v1/generate/audio', { body, ...options });
+  create(
+    body: AudioCreateParams,
+    options?: RequestOptions,
+  ): APIPromiseWithAwaitableTask<AudioCreateResponse> {
+    return wrapAsWaitableResource<AudioCreateResponse>(this._client)(
+      this._client.post('/v1/generate/audio', { body, ...options }),
+    );
   }
 }
 
