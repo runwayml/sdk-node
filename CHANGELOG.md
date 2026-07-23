@@ -1,5 +1,19 @@
 # Changelog
 
+## 4.12.0 (2026-07-23)
+
+Full Changelog: [v4.11.0...v4.12.0](https://github.com/runwayml/sdk-node/compare/v4.11.0...v4.12.0)
+
+### Features
+
+* **api:** add Model Router image and audio generation ([fcf6b45](https://github.com/runwayml/sdk-node/commit/fcf6b458f5dac025834a26b68098e175d0677916))
+* **api:** expose generate image and audio endpoints ([babe552](https://github.com/runwayml/sdk-node/commit/babe5528cccd693ec6e30f94db59ffa5b3e708c0))
+
+
+### Bug Fixes
+
+* **client:** make generate.image and generate.audio responses awaitable ([331945f](https://github.com/runwayml/sdk-node/commit/331945fe026d13ea866d8888c00ec5195a3408c7))
+
 ## 4.11.0 (2026-07-21)
 
 Full Changelog: [v4.10.0...v4.11.0](https://github.com/runwayml/sdk-node/compare/v4.10.0...v4.11.0)
