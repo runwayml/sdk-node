@@ -1,16 +1,21 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
-import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
+import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../../lib/polling';
 
 export class Image extends APIResource {
   /**
    * Start an image generation task using a saved Model Router config instead of
    * naming a model.
    */
-  create(body: ImageCreateParams, options?: RequestOptions): APIPromise<ImageCreateResponse> {
-    return this._client.post('/v1/generate/image', { body, ...options });
+  create(
+    body: ImageCreateParams,
+    options?: RequestOptions,
+  ): APIPromiseWithAwaitableTask<ImageCreateResponse> {
+    return wrapAsWaitableResource<ImageCreateResponse>(this._client)(
+      this._client.post('/v1/generate/image', { body, ...options }),
+    );
   }
 }
 

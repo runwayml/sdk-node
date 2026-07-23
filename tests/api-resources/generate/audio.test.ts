@@ -30,7 +30,7 @@ describe('resource audio', () => {
         type: 'speech',
         duration: 0.5,
         loop: true,
-        referenceAudios: [{ uri: 'https://example.com/file' }],
+        // referenceAudios omitted — Input.ReferenceAudio is overloaded with voice clone shape in codegen
         voice: { presetId: 'Maya', type: 'preset' },
       },
     });
