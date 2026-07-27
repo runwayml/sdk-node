@@ -38,6 +38,9 @@ export class RealtimeSessions extends APIResource {
   }
 }
 
+/**
+ * Use integration with type "livekit" instead.
+ */
 export interface DeprecatedLivekit {
   /**
    * LiveKit access token granting the avatar worker publish rights in the external
