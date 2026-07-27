@@ -109,7 +109,7 @@ export namespace AudioCreateResponse {
       optimizeFor: 'cost' | 'latency' | 'quality';
 
       /**
-       * The applied maximum credits per generation for this request’s modality, or null
+       * The applied maximum credits per generation for this request's modality, or null
        * if the config sets no ceiling.
        */
       priceCeiling: number | null;
@@ -178,7 +178,9 @@ export namespace AudioCreateParams {
   export namespace Input {
     export interface ReferenceAudio {
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+       * [our docs](/assets/inputs#audio) on audio inputs for more information.
        */
       uri: string;
     }
@@ -251,7 +253,9 @@ export namespace AudioCreateParams {
      */
     export interface ReferenceAudio {
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+       * [our docs](/assets/inputs#audio) on audio inputs for more information.
        */
       audioUri: string;
 

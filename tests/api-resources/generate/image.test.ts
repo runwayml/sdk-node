@@ -30,7 +30,7 @@ describe('resource image', () => {
         aspectRatio: '16:9',
         contentModeration: { publicFigureThreshold: 'auto' },
         outputCount: 1,
-        referenceImages: [{ uri: 'https://example.com/file' }],
+        referenceImages: [{ uri: 'https://example.com/image.jpg' }],
         resolution: '1k',
         seed: 0,
       },

@@ -112,7 +112,7 @@ export namespace ImageCreateResponse {
       optimizeFor: 'cost' | 'latency' | 'quality';
 
       /**
-       * The applied maximum credits per generation for this request’s modality, or null
+       * The applied maximum credits per generation for this request's modality, or null
        * if the config sets no ceiling.
        */
       priceCeiling: number | null;
@@ -156,7 +156,7 @@ export namespace ImageCreateParams {
     contentModeration?: Input.ContentModeration;
 
     /**
-     * Number of images to generate (1–10). Models that cannot produce the exact count
+     * Number of images to generate (1-10). Models that cannot produce the exact count
      * are excluded and cost scales with this value.
      */
     outputCount?: number;
@@ -194,7 +194,9 @@ export namespace ImageCreateParams {
 
     export interface ReferenceImage {
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
     }

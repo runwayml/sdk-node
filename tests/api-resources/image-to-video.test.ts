@@ -12,7 +12,7 @@ describe('resource imageToVideo', () => {
     const responsePromise = client.imageToVideo.create({
       duration: 2,
       model: 'gen4.5',
-      promptImage: 'https://example.com/file',
+      promptImage: 'https://example.com/image.jpg',
       promptText: 'x',
       ratio: '1280:720',
     });
@@ -29,7 +29,7 @@ describe('resource imageToVideo', () => {
     const response = await client.imageToVideo.create({
       duration: 2,
       model: 'gen4.5',
-      promptImage: 'https://example.com/file',
+      promptImage: 'https://example.com/image.jpg',
       promptText: 'x',
       ratio: '1280:720',
       contentModeration: { publicFigureThreshold: 'auto' },

@@ -13,7 +13,7 @@ describe('resource textToImage', () => {
       model: 'gen4_image_turbo',
       promptText: 'x',
       ratio: '1024:1024',
-      referenceImages: [{ uri: 'https://example.com/file' }],
+      referenceImages: [{ uri: 'https://example.com/image.jpg' }],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -29,7 +29,7 @@ describe('resource textToImage', () => {
       model: 'gen4_image_turbo',
       promptText: 'x',
       ratio: '1024:1024',
-      referenceImages: [{ uri: 'https://example.com/file', tag: 'tag' }],
+      referenceImages: [{ uri: 'https://example.com/image.jpg', tag: 'tag' }],
       contentModeration: { publicFigureThreshold: 'auto' },
       seed: 0,
     });
