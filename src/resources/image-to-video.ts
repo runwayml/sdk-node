@@ -51,7 +51,9 @@ export declare namespace ImageToVideoCreateParams {
     model: 'gen4.5';
 
     /**
-     * A HTTPS URL.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+     * [our docs](/assets/inputs#images) on image inputs for more information.
      */
     promptImage: string | Array<Gen4_5.PromptImage>;
 
@@ -88,7 +90,9 @@ export declare namespace ImageToVideoCreateParams {
       position: 'first';
 
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
     }
@@ -109,7 +113,9 @@ export declare namespace ImageToVideoCreateParams {
     model: 'gen4_turbo';
 
     /**
-     * A HTTPS URL.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+     * [our docs](/assets/inputs#images) on image inputs for more information.
      */
     promptImage: string | Array<Gen4Turbo.PromptImage>;
 
@@ -151,7 +157,9 @@ export declare namespace ImageToVideoCreateParams {
       position: 'first';
 
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
     }
@@ -215,7 +223,9 @@ export declare namespace ImageToVideoCreateParams {
       position: 'first' | 'last';
 
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
     }
@@ -268,7 +278,9 @@ export declare namespace ImageToVideoCreateParams {
       position: 'first' | 'last';
 
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
     }
@@ -278,7 +290,9 @@ export declare namespace ImageToVideoCreateParams {
     model: 'happyhorse_1_0';
 
     /**
-     * A HTTPS URL.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+     * [our docs](/assets/inputs#images) on image inputs for more information.
      */
     promptImage: string | Array<Happyhorse1_0.PromptImage>;
 
@@ -308,7 +322,9 @@ export declare namespace ImageToVideoCreateParams {
       position: 'first';
 
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
     }
@@ -378,7 +394,9 @@ export declare namespace ImageToVideoCreateParams {
   export namespace Seedance2 {
     export interface PromptImage {
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
 
@@ -397,7 +415,9 @@ export declare namespace ImageToVideoCreateParams {
       type: 'audio';
 
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+       * [our docs](/assets/inputs#audio) on audio inputs for more information.
        */
       uri: string;
     }
@@ -456,7 +476,9 @@ export declare namespace ImageToVideoCreateParams {
   export namespace Seedance2Fast {
     export interface PromptImage {
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
 
@@ -475,7 +497,9 @@ export declare namespace ImageToVideoCreateParams {
       type: 'audio';
 
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+       * [our docs](/assets/inputs#audio) on audio inputs for more information.
        */
       uri: string;
     }
@@ -534,7 +558,9 @@ export declare namespace ImageToVideoCreateParams {
   export namespace Seedance2Mini {
     export interface PromptImage {
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
 
@@ -553,7 +579,9 @@ export declare namespace ImageToVideoCreateParams {
       type: 'audio';
 
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+       * [our docs](/assets/inputs#audio) on audio inputs for more information.
        */
       uri: string;
     }
@@ -595,7 +623,9 @@ export declare namespace ImageToVideoCreateParams {
       position: 'first';
 
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
     }
@@ -610,7 +640,9 @@ export declare namespace ImageToVideoCreateParams {
     model: 'veo3';
 
     /**
-     * A HTTPS URL.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+     * [our docs](/assets/inputs#images) on image inputs for more information.
      */
     promptImage: string | Array<Veo3.PromptImage>;
 
@@ -640,7 +672,9 @@ export declare namespace ImageToVideoCreateParams {
       position: 'first';
 
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
     }

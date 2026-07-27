@@ -12,7 +12,7 @@ describe('resource avatarVideos', () => {
     const responsePromise = client.avatarVideos.create({
       avatar: { presetId: 'game-character', type: 'runway-preset' },
       model: 'gwm1_avatars',
-      speech: { audio: 'https://example.com/file', type: 'audio' },
+      speech: { audio: 'https://example.com/audio.mp3', type: 'audio' },
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -27,7 +27,7 @@ describe('resource avatarVideos', () => {
     const response = await client.avatarVideos.create({
       avatar: { presetId: 'game-character', type: 'runway-preset' },
       model: 'gwm1_avatars',
-      speech: { audio: 'https://example.com/file', type: 'audio' },
+      speech: { audio: 'https://example.com/audio.mp3', type: 'audio' },
     });
   });
 });
