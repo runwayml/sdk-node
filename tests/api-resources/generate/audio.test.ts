@@ -30,7 +30,7 @@ describe('resource audio', () => {
         type: 'speech',
         duration: 0.5,
         loop: true,
-        referenceAudios: [{ uri: 'https://example.com/file' }],
+        referenceAudios: [{ uri: 'https://example.com/audio.mp3' }],
         voice: { presetId: 'Maya', type: 'preset' },
       },
     });

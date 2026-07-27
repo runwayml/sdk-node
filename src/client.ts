@@ -72,6 +72,7 @@ import {
   OrganizationRetrieveUsageResponse,
 } from './resources/organization';
 import {
+  DeprecatedLivekit,
   RealtimeSessionCreateParams,
   RealtimeSessionCreateResponse,
   RealtimeSessionRetrieveResponse,
@@ -1155,6 +1156,7 @@ export declare namespace RunwayML {
 
   export {
     RealtimeSessions as RealtimeSessions,
+    type DeprecatedLivekit as DeprecatedLivekit,
     type RealtimeSessionCreateResponse as RealtimeSessionCreateResponse,
     type RealtimeSessionRetrieveResponse as RealtimeSessionRetrieveResponse,
     type RealtimeSessionCreateParams as RealtimeSessionCreateParams,

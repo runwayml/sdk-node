@@ -174,7 +174,9 @@ export namespace RecipeAdLocalizationParams {
    */
   export interface ReferenceImage {
     /**
-     * A HTTPS URL.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+     * [our docs](/assets/inputs#images) on image inputs for more information.
      */
     uri: string;
   }
@@ -194,7 +196,7 @@ export interface RecipeMarketingStockImageParams {
   version: '2026-06' | 'unsafe-latest';
 
   /**
-   * The number of images to generate (1–4). Defaults to 4. Increasing this number
+   * The number of images to generate (1-4). Defaults to 4. Increasing this number
    * affects credits consumed.
    */
   outputCount?: number;
@@ -219,7 +221,9 @@ export namespace RecipeMarketingStockImageParams {
    */
   export interface ReferenceImage {
     /**
-     * A HTTPS URL.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+     * [our docs](/assets/inputs#images) on image inputs for more information.
      */
     uri: string;
   }
@@ -278,7 +282,9 @@ export declare namespace RecipeMultiShotVideoParams {
      */
     export interface FirstFrame {
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
     }
@@ -286,12 +292,12 @@ export declare namespace RecipeMultiShotVideoParams {
 
   export interface Variant1 {
     /**
-     * Workflow mode. `custom` polishes a user-provided shot list of 3–5 shots.
+     * Workflow mode. `custom` polishes a user-provided shot list of 3-5 shots.
      */
     mode: 'custom';
 
     /**
-     * Shot list for custom mode (3–5 shots). Per-shot durations must sum to
+     * Shot list for custom mode (3-5 shots). Per-shot durations must sum to
      * `duration`.
      */
     shots: Array<Variant1.Shot>;
@@ -345,7 +351,9 @@ export declare namespace RecipeMultiShotVideoParams {
      */
     export interface FirstFrame {
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
     }
@@ -354,7 +362,7 @@ export declare namespace RecipeMultiShotVideoParams {
 
 export interface RecipeProductAdParams {
   /**
-   * Product images (1–10). Multiple angles of the same product. All images inform
+   * Product images (1-10). Multiple angles of the same product. All images inform
    * product analysis and reference generation; only the first image is used as the
    * primary product reference in the storyboard grid. See
    * [our docs](/assets/inputs#images) on image inputs.
@@ -373,7 +381,7 @@ export interface RecipeProductAdParams {
   audio?: boolean;
 
   /**
-   * Duration of the output video in seconds (4–15). Defaults to 10 seconds.
+   * Duration of the output video in seconds (4-15). Defaults to 10 seconds.
    */
   duration?: number;
 
@@ -397,7 +405,7 @@ export interface RecipeProductAdParams {
     | '1248:1664';
 
   /**
-   * Optional style reference images (0–4). Defines the visual treatment (lighting,
+   * Optional style reference images (0-4). Defines the visual treatment (lighting,
    * palette, mood). Treated as a moodboard when multiple are provided.
    */
   styleImages?: Array<RecipeProductAdParams.StyleImage>;
@@ -412,14 +420,18 @@ export interface RecipeProductAdParams {
 export namespace RecipeProductAdParams {
   export interface ProductImage {
     /**
-     * A HTTPS URL.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+     * [our docs](/assets/inputs#images) on image inputs for more information.
      */
     uri: string;
   }
 
   export interface StyleImage {
     /**
-     * A HTTPS URL.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+     * [our docs](/assets/inputs#images) on image inputs for more information.
      */
     uri: string;
   }
@@ -452,7 +464,9 @@ export namespace RecipeProductCampaignImageParams {
    */
   export interface Image {
     /**
-     * A HTTPS URL.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+     * [our docs](/assets/inputs#images) on image inputs for more information.
      */
     uri: string;
   }
@@ -460,8 +474,8 @@ export namespace RecipeProductCampaignImageParams {
 
 export interface RecipeProductSwapParams {
   /**
-   * Reference images of the new product (1–10). Supply multiple angles when the
-   * reference video shows the product from different views — optionally label each
+   * Reference images of the new product (1-10). Supply multiple angles when the
+   * reference video shows the product from different views - optionally label each
    * with `view` ("front", "side", or "back"). A single pre-composed reference sheet
    * is also supported (omit `view`). See [our docs](/assets/inputs#images) on image
    * inputs.
@@ -492,7 +506,7 @@ export interface RecipeProductSwapParams {
   audio?: boolean;
 
   /**
-   * Duration of the output video in seconds (4–15). Defaults to 10 seconds.
+   * Duration of the output video in seconds (4-15). Defaults to 10 seconds.
    */
   duration?: number;
 
@@ -505,7 +519,9 @@ export interface RecipeProductSwapParams {
 export namespace RecipeProductSwapParams {
   export interface NewProductImage {
     /**
-     * A HTTPS URL.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+     * [our docs](/assets/inputs#images) on image inputs for more information.
      */
     uri: string;
 
@@ -522,7 +538,9 @@ export namespace RecipeProductSwapParams {
    */
   export interface OriginalProductImage {
     /**
-     * A HTTPS URL.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+     * [our docs](/assets/inputs#images) on image inputs for more information.
      */
     uri: string;
   }
@@ -533,7 +551,9 @@ export namespace RecipeProductSwapParams {
    */
   export interface ReferenceVideo {
     /**
-     * A HTTPS URL.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+     * [our docs](/assets/inputs#videos) on video inputs for more information.
      */
     uri: string;
   }
@@ -566,12 +586,12 @@ export interface RecipeProductUgcParams {
   audio?: boolean;
 
   /**
-   * Duration of the output video in seconds (4–15). Defaults to 15 seconds.
+   * Duration of the output video in seconds (4-15). Defaults to 15 seconds.
    */
   duration?: number;
 
   /**
-   * Product details and creative brief — what the product is, key benefits, and any
+   * Product details and creative brief - what the product is, key benefits, and any
    * specifics the script should reference.
    */
   productInfo?: string;
@@ -582,7 +602,7 @@ export interface RecipeProductUgcParams {
   ratio?: '720:1280' | '1080:1920';
 
   /**
-   * Optional creative direction for the UGC video — tone, voice register, specific
+   * Optional creative direction for the UGC video - tone, voice register, specific
    * message, or an entire dialog script.
    */
   userConcept?: string;
@@ -596,7 +616,9 @@ export namespace RecipeProductUgcParams {
    */
   export interface CharacterImage {
     /**
-     * A HTTPS URL.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+     * [our docs](/assets/inputs#images) on image inputs for more information.
      */
     uri: string;
   }
@@ -608,7 +630,9 @@ export namespace RecipeProductUgcParams {
    */
   export interface ProductImage {
     /**
-     * A HTTPS URL.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+     * [our docs](/assets/inputs#images) on image inputs for more information.
      */
     uri: string;
   }

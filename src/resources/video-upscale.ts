@@ -36,7 +36,9 @@ export interface VideoUpscaleCreateParams {
   model: 'magnific_video_upscaler_creative';
 
   /**
-   * A HTTPS URL.
+   * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+   * `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+   * [our docs](/assets/inputs#videos) on video inputs for more information.
    */
   videoUri: string;
 
