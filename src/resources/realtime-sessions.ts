@@ -39,7 +39,7 @@ export class RealtimeSessions extends APIResource {
 }
 
 /**
- * Use integration with type "livekit" instead.
+ * @deprecated Use integration with type "livekit" instead.
  */
 export interface DeprecatedLivekit {
   /**
@@ -245,7 +245,7 @@ export interface RealtimeSessionCreateParams {
   integration?: RealtimeSessionCreateParams.Elevenlabs | RealtimeSessionCreateParams.Livekit;
 
   /**
-   * Use integration with type "livekit" instead.
+   * @deprecated Use integration with type "livekit" instead.
    */
   livekit?: DeprecatedLivekit;
 
