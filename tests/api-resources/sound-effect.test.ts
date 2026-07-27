@@ -26,7 +26,7 @@ describe('resource soundEffect', () => {
       loudnessRate: -50,
       outputFormat: 'wav',
       pitchRate: -12,
-      referenceAudios: ['https://example.com/audio.mp3'],
+      referenceAudios: ['https://example.com/file'],
       sampleRate: 8000,
       speechRate: -50,
     });

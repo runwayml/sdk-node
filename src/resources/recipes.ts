@@ -194,9 +194,7 @@ export namespace RecipeAdLocalizationParams {
    */
   export interface ReferenceImage {
     /**
-     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-     * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-     * [our docs](/assets/inputs#images) on image inputs for more information.
+     * A HTTPS URL.
      */
     uri: string;
   }
@@ -241,9 +239,7 @@ export namespace RecipeMarketingStockImageParams {
    */
   export interface ReferenceImage {
     /**
-     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-     * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-     * [our docs](/assets/inputs#images) on image inputs for more information.
+     * A HTTPS URL.
      */
     uri: string;
   }
@@ -302,9 +298,7 @@ export declare namespace RecipeMultiShotVideoParams {
      */
     export interface FirstFrame {
       /**
-       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-       * [our docs](/assets/inputs#images) on image inputs for more information.
+       * A HTTPS URL.
        */
       uri: string;
     }
@@ -371,9 +365,7 @@ export declare namespace RecipeMultiShotVideoParams {
      */
     export interface FirstFrame {
       /**
-       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-       * [our docs](/assets/inputs#images) on image inputs for more information.
+       * A HTTPS URL.
        */
       uri: string;
     }
@@ -440,18 +432,14 @@ export interface RecipeProductAdParams {
 export namespace RecipeProductAdParams {
   export interface ProductImage {
     /**
-     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-     * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-     * [our docs](/assets/inputs#images) on image inputs for more information.
+     * A HTTPS URL.
      */
     uri: string;
   }
 
   export interface StyleImage {
     /**
-     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-     * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-     * [our docs](/assets/inputs#images) on image inputs for more information.
+     * A HTTPS URL.
      */
     uri: string;
   }
@@ -484,9 +472,7 @@ export namespace RecipeProductCampaignImageParams {
    */
   export interface Image {
     /**
-     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-     * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-     * [our docs](/assets/inputs#images) on image inputs for more information.
+     * A HTTPS URL.
      */
     uri: string;
   }
@@ -539,9 +525,7 @@ export interface RecipeProductSwapParams {
 export namespace RecipeProductSwapParams {
   export interface NewProductImage {
     /**
-     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-     * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-     * [our docs](/assets/inputs#images) on image inputs for more information.
+     * A HTTPS URL.
      */
     uri: string;
 
@@ -558,9 +542,7 @@ export namespace RecipeProductSwapParams {
    */
   export interface OriginalProductImage {
     /**
-     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-     * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-     * [our docs](/assets/inputs#images) on image inputs for more information.
+     * A HTTPS URL.
      */
     uri: string;
   }
@@ -571,9 +553,7 @@ export namespace RecipeProductSwapParams {
    */
   export interface ReferenceVideo {
     /**
-     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-     * `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
-     * [our docs](/assets/inputs#videos) on video inputs for more information.
+     * A HTTPS URL.
      */
     uri: string;
   }
@@ -636,9 +616,7 @@ export namespace RecipeProductUgcParams {
    */
   export interface CharacterImage {
     /**
-     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-     * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-     * [our docs](/assets/inputs#images) on image inputs for more information.
+     * A HTTPS URL.
      */
     uri: string;
   }
@@ -650,9 +628,7 @@ export namespace RecipeProductUgcParams {
    */
   export interface ProductImage {
     /**
-     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-     * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-     * [our docs](/assets/inputs#images) on image inputs for more information.
+     * A HTTPS URL.
      */
     uri: string;
   }

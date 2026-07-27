@@ -10,7 +10,7 @@ const client = new RunwayML({
 describe('resource characterPerformance', () => {
   test('create: only required params', async () => {
     const responsePromise = client.characterPerformance.create({
-      character: { type: 'image', uri: 'https://example.com/image.jpg' },
+      character: { type: 'image', uri: 'https://example.com/file' },
       model: 'act_two',
       reference: { type: 'video', uri: 'https://example.com/reference-performance.mp4' },
     });
@@ -25,7 +25,7 @@ describe('resource characterPerformance', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.characterPerformance.create({
-      character: { type: 'image', uri: 'https://example.com/image.jpg' },
+      character: { type: 'image', uri: 'https://example.com/file' },
       model: 'act_two',
       reference: { type: 'video', uri: 'https://example.com/reference-performance.mp4' },
       bodyControl: true,

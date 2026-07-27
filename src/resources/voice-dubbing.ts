@@ -39,9 +39,7 @@ export interface VoiceDubbingCreateResponse {
 
 export interface VoiceDubbingCreateParams {
   /**
-   * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-   * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
-   * [our docs](/assets/inputs#audio) on audio inputs for more information.
+   * A HTTPS URL.
    */
   audioUri: string;
 
