@@ -54,7 +54,6 @@ export {
 } from './organization';
 export {
   RealtimeSessions,
-  type DeprecatedLivekit,
   type RealtimeSessionCreateResponse,
   type RealtimeSessionRetrieveResponse,
   type RealtimeSessionCreateParams,

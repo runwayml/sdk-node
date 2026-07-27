@@ -30,7 +30,7 @@ describe('resource videoToVideo', () => {
       keyframes: [
         {
           seconds: 0,
-          uri: 'https://example.com/image.jpg',
+          uri: 'https://example.com/file',
           range: { end_seconds: 1, start_seconds: 0 },
         },
       ],

@@ -38,33 +38,6 @@ export class RealtimeSessions extends APIResource {
   }
 }
 
-/**
- * @deprecated Use integration with type "livekit" instead.
- */
-export interface DeprecatedLivekit {
-  /**
-   * LiveKit access token granting the avatar worker publish rights in the external
-   * room.
-   */
-  token: string;
-
-  /**
-   * Name of the external LiveKit room.
-   */
-  roomName: string;
-
-  /**
-   * WebSocket URL of the external LiveKit server the avatar worker should join.
-   */
-  url: string;
-
-  /**
-   * The participant identity of the customer agent already in the room. When
-   * provided, the avatar worker trusts audio published by this identity.
-   */
-  agentIdentity?: string;
-}
-
 export interface RealtimeSessionCreateResponse {
   /**
    * The ID of the created realtime session. This same value is later used as the
@@ -247,7 +220,7 @@ export interface RealtimeSessionCreateParams {
   /**
    * @deprecated Use integration with type "livekit" instead.
    */
-  livekit?: DeprecatedLivekit;
+  livekit?: RealtimeSessionCreateParams.Livekit;
 
   /**
    * Maximum session duration in seconds.
@@ -335,6 +308,33 @@ export namespace RealtimeSessionCreateParams {
     roomName: string;
 
     type: 'livekit';
+
+    /**
+     * WebSocket URL of the external LiveKit server the avatar worker should join.
+     */
+    url: string;
+
+    /**
+     * The participant identity of the customer agent already in the room. When
+     * provided, the avatar worker trusts audio published by this identity.
+     */
+    agentIdentity?: string;
+  }
+
+  /**
+   * @deprecated Use integration with type "livekit" instead.
+   */
+  export interface Livekit {
+    /**
+     * LiveKit access token granting the avatar worker publish rights in the external
+     * room.
+     */
+    token: string;
+
+    /**
+     * Name of the external LiveKit room.
+     */
+    roomName: string;
 
     /**
      * WebSocket URL of the external LiveKit server the avatar worker should join.
@@ -700,7 +700,6 @@ export namespace RealtimeSessionCreateParams {
 
 export declare namespace RealtimeSessions {
   export {
-    type DeprecatedLivekit as DeprecatedLivekit,
     type RealtimeSessionCreateResponse as RealtimeSessionCreateResponse,
     type RealtimeSessionRetrieveResponse as RealtimeSessionRetrieveResponse,
     type RealtimeSessionCreateParams as RealtimeSessionCreateParams,

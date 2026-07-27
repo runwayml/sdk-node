@@ -43,9 +43,7 @@ export declare namespace VideoToVideoCreateParams {
     model: 'aleph2';
 
     /**
-     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-     * `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
-     * [our docs](/assets/inputs#videos) on video inputs for more information.
+     * A HTTPS URL.
      */
     videoUri: string;
 
@@ -104,9 +102,7 @@ export declare namespace VideoToVideoCreateParams {
       seconds: number;
 
       /**
-       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-       * [our docs](/assets/inputs#images) on image inputs for more information.
+       * A HTTPS URL.
        */
       uri: string;
 
@@ -146,9 +142,7 @@ export declare namespace VideoToVideoCreateParams {
       at: number;
 
       /**
-       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-       * [our docs](/assets/inputs#images) on image inputs for more information.
+       * A HTTPS URL.
        */
       uri: string;
 
@@ -185,9 +179,7 @@ export declare namespace VideoToVideoCreateParams {
     model: 'seedance2';
 
     /**
-     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-     * `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
-     * [our docs](/assets/inputs#videos) on video inputs for more information.
+     * A HTTPS URL.
      */
     promptVideo: string;
 
@@ -265,18 +257,14 @@ export declare namespace VideoToVideoCreateParams {
       type: 'audio';
 
       /**
-       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
-       * [our docs](/assets/inputs#audio) on audio inputs for more information.
+       * A HTTPS URL.
        */
       uri: string;
     }
 
     export interface Reference {
       /**
-       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-       * [our docs](/assets/inputs#images) on image inputs for more information.
+       * A HTTPS URL.
        */
       uri: string;
     }
@@ -289,9 +277,7 @@ export declare namespace VideoToVideoCreateParams {
       type: 'video';
 
       /**
-       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
-       * [our docs](/assets/inputs#videos) on video inputs for more information.
+       * A HTTPS URL.
        */
       uri: string;
     }
@@ -301,9 +287,7 @@ export declare namespace VideoToVideoCreateParams {
     model: 'seedance2_fast';
 
     /**
-     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-     * `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
-     * [our docs](/assets/inputs#videos) on video inputs for more information.
+     * A HTTPS URL.
      */
     promptVideo: string;
 
@@ -370,18 +354,14 @@ export declare namespace VideoToVideoCreateParams {
       type: 'audio';
 
       /**
-       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
-       * [our docs](/assets/inputs#audio) on audio inputs for more information.
+       * A HTTPS URL.
        */
       uri: string;
     }
 
     export interface Reference {
       /**
-       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-       * [our docs](/assets/inputs#images) on image inputs for more information.
+       * A HTTPS URL.
        */
       uri: string;
     }
@@ -394,9 +374,7 @@ export declare namespace VideoToVideoCreateParams {
       type: 'video';
 
       /**
-       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
-       * [our docs](/assets/inputs#videos) on video inputs for more information.
+       * A HTTPS URL.
        */
       uri: string;
     }
@@ -406,9 +384,7 @@ export declare namespace VideoToVideoCreateParams {
     model: 'seedance2_mini';
 
     /**
-     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-     * `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
-     * [our docs](/assets/inputs#videos) on video inputs for more information.
+     * A HTTPS URL.
      */
     promptVideo: string;
 
@@ -475,18 +451,14 @@ export declare namespace VideoToVideoCreateParams {
       type: 'audio';
 
       /**
-       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
-       * [our docs](/assets/inputs#audio) on audio inputs for more information.
+       * A HTTPS URL.
        */
       uri: string;
     }
 
     export interface Reference {
       /**
-       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-       * [our docs](/assets/inputs#images) on image inputs for more information.
+       * A HTTPS URL.
        */
       uri: string;
     }
@@ -499,9 +471,7 @@ export declare namespace VideoToVideoCreateParams {
       type: 'video';
 
       /**
-       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
-       * [our docs](/assets/inputs#videos) on video inputs for more information.
+       * A HTTPS URL.
        */
       uri: string;
     }
@@ -516,9 +486,7 @@ export declare namespace VideoToVideoCreateParams {
     promptText: string;
 
     /**
-     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-     * `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
-     * [our docs](/assets/inputs#videos) on video inputs for more information.
+     * A HTTPS URL.
      */
     videoUri: string;
 
@@ -531,9 +499,7 @@ export declare namespace VideoToVideoCreateParams {
   export namespace GeminiOmniFlash {
     export interface Reference {
       /**
-       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-       * [our docs](/assets/inputs#images) on image inputs for more information.
+       * A HTTPS URL.
        */
       uri: string;
     }
