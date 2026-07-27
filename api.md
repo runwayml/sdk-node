@@ -203,6 +203,7 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/realtime-sessions.ts">DeprecatedLivekit</a></code>
 - <code><a href="./src/resources/realtime-sessions.ts">RealtimeSessionCreateResponse</a></code>
 - <code><a href="./src/resources/realtime-sessions.ts">RealtimeSessionRetrieveResponse</a></code>
 
