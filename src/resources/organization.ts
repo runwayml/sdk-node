@@ -153,6 +153,16 @@ export interface OrganizationRetrieveUsageResponse {
   >;
 
   results: Array<OrganizationRetrieveUsageResponse.Result>;
+
+  /**
+   * Reserved for future use.
+   */
+  apiKeys?: Array<string>;
+
+  /**
+   * Reserved for future use.
+   */
+  resultsByApiKey?: Array<OrganizationRetrieveUsageResponse.ResultsByAPIKey>;
 }
 
 export namespace OrganizationRetrieveUsageResponse {
@@ -230,6 +240,20 @@ export namespace OrganizationRetrieveUsageResponse {
         | 'marketing_stock_image'
         | 'product_campaign_image'
         | 'ad_localization';
+    }
+  }
+
+  export interface ResultsByAPIKey {
+    date: string;
+
+    usedCredits: Array<ResultsByAPIKey.UsedCredit>;
+  }
+
+  export namespace ResultsByAPIKey {
+    export interface UsedCredit {
+      amount: number;
+
+      apiKeyId: string;
     }
   }
 }
