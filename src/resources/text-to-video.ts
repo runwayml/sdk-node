@@ -248,14 +248,18 @@ export declare namespace TextToVideoCreateParams {
       type: 'audio';
 
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+       * [our docs](/assets/inputs#audio) on audio inputs for more information.
        */
       uri: string;
     }
 
     export interface Reference {
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
     }
@@ -268,7 +272,9 @@ export declare namespace TextToVideoCreateParams {
       type: 'video';
 
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+       * [our docs](/assets/inputs#videos) on video inputs for more information.
        */
       uri: string;
     }
@@ -340,14 +346,18 @@ export declare namespace TextToVideoCreateParams {
       type: 'audio';
 
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+       * [our docs](/assets/inputs#audio) on audio inputs for more information.
        */
       uri: string;
     }
 
     export interface Reference {
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
     }
@@ -360,7 +370,9 @@ export declare namespace TextToVideoCreateParams {
       type: 'video';
 
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+       * [our docs](/assets/inputs#videos) on video inputs for more information.
        */
       uri: string;
     }
@@ -432,14 +444,18 @@ export declare namespace TextToVideoCreateParams {
       type: 'audio';
 
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+       * [our docs](/assets/inputs#audio) on audio inputs for more information.
        */
       uri: string;
     }
 
     export interface Reference {
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
     }
@@ -452,7 +468,9 @@ export declare namespace TextToVideoCreateParams {
       type: 'video';
 
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+       * [our docs](/assets/inputs#videos) on video inputs for more information.
        */
       uri: string;
     }
