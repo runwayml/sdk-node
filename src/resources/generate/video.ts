@@ -112,7 +112,7 @@ export namespace VideoCreateResponse {
       optimizeFor: 'cost' | 'latency' | 'quality';
 
       /**
-       * The applied maximum credits per generation for this request’s modality, or null
+       * The applied maximum credits per generation for this request's modality, or null
        * if the config sets no ceiling.
        */
       priceCeiling: number | null;
@@ -149,7 +149,7 @@ export namespace VideoCreateParams {
      * Whether to generate native audio with the video. When true, only models that
      * output audio remain eligible; when false, silent models and models with an audio
      * toggle remain eligible (always-on native-audio models are excluded). When
-     * omitted, the selected model’s default applies.
+     * omitted, the selected model's default applies.
      */
     audio?: boolean;
 
@@ -226,7 +226,9 @@ export namespace VideoCreateParams {
       seconds: number;
 
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
 
@@ -245,7 +247,9 @@ export namespace VideoCreateParams {
       at: number;
 
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
 
@@ -262,7 +266,9 @@ export namespace VideoCreateParams {
 
     export interface ReferenceAudio {
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+       * [our docs](/assets/inputs#audio) on audio inputs for more information.
        */
       uri: string;
     }
@@ -275,7 +281,9 @@ export namespace VideoCreateParams {
       role: 'first' | 'last' | 'reference';
 
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
     }
@@ -288,7 +296,9 @@ export namespace VideoCreateParams {
       role: 'source' | 'reference';
 
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+       * [our docs](/assets/inputs#videos) on video inputs for more information.
        */
       uri: string;
     }

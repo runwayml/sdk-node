@@ -24,7 +24,7 @@ export class Routers extends APIResource {
 
   /**
    * Update a Model Router configuration. Settings changes append a new version; name
-   * and description updates do not. Settings are merged with the current snapshot —
+   * and description updates do not. Settings are merged with the current snapshot -
    * omitted fields keep their existing values.
    */
   update(
@@ -112,8 +112,8 @@ export namespace RouterCreateResponse {
     schemaVersion: 1;
 
     /**
-     * Optional per-modality hard caps on credits for one generation. Models whose
-     * estimated cost for that modality exceeds the cap are excluded.
+     * Optional per-modality credit caps, applied per generated output. Models whose
+     * estimated per-output cost exceeds the cap are excluded.
      */
     maxCreditsPerGeneration?: Settings.MaxCreditsPerGeneration;
 
@@ -132,8 +132,8 @@ export namespace RouterCreateResponse {
 
   export namespace Settings {
     /**
-     * Optional per-modality hard caps on credits for one generation. Models whose
-     * estimated cost for that modality exceeds the cap are excluded.
+     * Optional per-modality credit caps, applied per generated output. Models whose
+     * estimated per-output cost exceeds the cap are excluded.
      */
     export interface MaxCreditsPerGeneration {
       audio?: number;
@@ -208,8 +208,8 @@ export namespace RouterRetrieveResponse {
     schemaVersion: 1;
 
     /**
-     * Optional per-modality hard caps on credits for one generation. Models whose
-     * estimated cost for that modality exceeds the cap are excluded.
+     * Optional per-modality credit caps, applied per generated output. Models whose
+     * estimated per-output cost exceeds the cap are excluded.
      */
     maxCreditsPerGeneration?: Settings.MaxCreditsPerGeneration;
 
@@ -228,8 +228,8 @@ export namespace RouterRetrieveResponse {
 
   export namespace Settings {
     /**
-     * Optional per-modality hard caps on credits for one generation. Models whose
-     * estimated cost for that modality exceeds the cap are excluded.
+     * Optional per-modality credit caps, applied per generated output. Models whose
+     * estimated per-output cost exceeds the cap are excluded.
      */
     export interface MaxCreditsPerGeneration {
       audio?: number;
@@ -304,8 +304,8 @@ export namespace RouterUpdateResponse {
     schemaVersion: 1;
 
     /**
-     * Optional per-modality hard caps on credits for one generation. Models whose
-     * estimated cost for that modality exceeds the cap are excluded.
+     * Optional per-modality credit caps, applied per generated output. Models whose
+     * estimated per-output cost exceeds the cap are excluded.
      */
     maxCreditsPerGeneration?: Settings.MaxCreditsPerGeneration;
 
@@ -324,8 +324,8 @@ export namespace RouterUpdateResponse {
 
   export namespace Settings {
     /**
-     * Optional per-modality hard caps on credits for one generation. Models whose
-     * estimated cost for that modality exceeds the cap are excluded.
+     * Optional per-modality credit caps, applied per generated output. Models whose
+     * estimated per-output cost exceeds the cap are excluded.
      */
     export interface MaxCreditsPerGeneration {
       audio?: number;
@@ -403,8 +403,8 @@ export namespace RouterListResponse {
     schemaVersion: 1;
 
     /**
-     * Optional per-modality hard caps on credits for one generation. Models whose
-     * estimated cost for that modality exceeds the cap are excluded.
+     * Optional per-modality credit caps, applied per generated output. Models whose
+     * estimated per-output cost exceeds the cap are excluded.
      */
     maxCreditsPerGeneration?: Settings.MaxCreditsPerGeneration;
 
@@ -423,8 +423,8 @@ export namespace RouterListResponse {
 
   export namespace Settings {
     /**
-     * Optional per-modality hard caps on credits for one generation. Models whose
-     * estimated cost for that modality exceeds the cap are excluded.
+     * Optional per-modality credit caps, applied per generated output. Models whose
+     * estimated per-output cost exceeds the cap are excluded.
      */
     export interface MaxCreditsPerGeneration {
       audio?: number;
@@ -482,8 +482,8 @@ export namespace RouterCreateParams {
    */
   export interface Settings {
     /**
-     * Optional per-modality hard caps on credits for one generation. Models whose
-     * estimated cost for that modality exceeds the cap are excluded.
+     * Optional per-modality credit caps, applied per generated output. Models whose
+     * estimated per-output cost exceeds the cap are excluded.
      */
     maxCreditsPerGeneration?: Settings.MaxCreditsPerGeneration;
 
@@ -508,8 +508,8 @@ export namespace RouterCreateParams {
 
   export namespace Settings {
     /**
-     * Optional per-modality hard caps on credits for one generation. Models whose
-     * estimated cost for that modality exceeds the cap are excluded.
+     * Optional per-modality credit caps, applied per generated output. Models whose
+     * estimated per-output cost exceeds the cap are excluded.
      */
     export interface MaxCreditsPerGeneration {
       audio?: number;
@@ -556,8 +556,8 @@ export namespace RouterUpdateParams {
    */
   export interface Settings {
     /**
-     * Optional per-modality hard caps on credits for one generation. Models whose
-     * estimated cost for that modality exceeds the cap are excluded.
+     * Optional per-modality credit caps, applied per generated output. Models whose
+     * estimated per-output cost exceeds the cap are excluded.
      */
     maxCreditsPerGeneration?: Settings.MaxCreditsPerGeneration;
 
@@ -582,8 +582,8 @@ export namespace RouterUpdateParams {
 
   export namespace Settings {
     /**
-     * Optional per-modality hard caps on credits for one generation. Models whose
-     * estimated cost for that modality exceeds the cap are excluded.
+     * Optional per-modality credit caps, applied per generated output. Models whose
+     * estimated per-output cost exceeds the cap are excluded.
      */
     export interface MaxCreditsPerGeneration {
       audio?: number;
