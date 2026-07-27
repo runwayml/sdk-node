@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.13.0 (2026-07-27)
+
+Full Changelog: [v4.12.0...v4.13.0](https://github.com/runwayml/sdk-node/compare/v4.12.0...v4.13.0)
+
+### Features
+
+* **api:** Update OpenAPI copy for asset URL and media field descriptions ([1cd194d](https://github.com/runwayml/sdk-node/commit/1cd194da0e0e4728b7fcc146fd85426859e4163c))
+
 ## 4.12.0 (2026-07-23)
 
 Full Changelog: [v4.11.0...v4.12.0](https://github.com/runwayml/sdk-node/compare/v4.11.0...v4.12.0)
