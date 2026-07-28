@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.13.1 (2026-07-28)
+
+Full Changelog: [v4.13.0...v4.13.1](https://github.com/runwayml/sdk-node/compare/v4.13.0...v4.13.1)
+
+### Chores
+
+* **internal:** codegen related update ([56fa5ae](https://github.com/runwayml/sdk-node/commit/56fa5ae3e85c3529acd0e4b676e8307edebacc5a))
+
 ## 4.13.0 (2026-07-27)
 
 Full Changelog: [v4.12.0...v4.13.0](https://github.com/runwayml/sdk-node/compare/v4.12.0...v4.13.0)
