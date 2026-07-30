@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.13.2 (2026-07-30)
+
+Full Changelog: [v4.13.1...v4.13.2](https://github.com/runwayml/sdk-node/compare/v4.13.1...v4.13.2)
+
+### Bug Fixes
+
+* **stlc:** stop hand-edited CI workflows from blocking seals and builds ([34bf648](https://github.com/runwayml/sdk-node/commit/34bf648bcc7d9b6c4fb25c68a2b6312811b9245b))
+
 ## 4.13.1 (2026-07-28)
 
 Full Changelog: [v4.13.0...v4.13.1](https://github.com/runwayml/sdk-node/compare/v4.13.0...v4.13.1)
