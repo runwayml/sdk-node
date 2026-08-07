@@ -55,6 +55,7 @@ This affects the following methods:
 
 - `client.routers.update()`
 - `client.organization.retrieveUsage()`
+- `client.organization.webapp.auditLogs.retrieve()`
 - `client.avatars.update()`
 - `client.documents.update()`
 - `client.voices.update()`

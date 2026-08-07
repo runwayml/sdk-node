@@ -26,6 +26,25 @@ export interface TextToImageCreateResponse {
    * The ID of the task that was created. Use this to retrieve the task later.
    */
   id: string;
+
+  /**
+   * The maximum credits this task may charge. The final amount may be lower after
+   * the task completes.
+   */
+  estimatedCost: TextToImageCreateResponse.EstimatedCost;
+}
+
+export namespace TextToImageCreateResponse {
+  /**
+   * The maximum credits this task may charge. The final amount may be lower after
+   * the task completes.
+   */
+  export interface EstimatedCost {
+    /**
+     * Estimated cost of the generation in credits.
+     */
+    credits: number;
+  }
 }
 
 export type TextToImageCreateParams =
@@ -570,6 +589,12 @@ export declare namespace TextToImageCreateParams {
       | '3744:2496'
       | '2496:3744'
       | '4704:2016';
+
+    /**
+     * When true, enable live web search so the model can use current brand, trend, or
+     * event context. Default false for deterministic output.
+     */
+    grounding?: boolean;
 
     /**
      * The number of images to generate. Increasing this number will affect the number

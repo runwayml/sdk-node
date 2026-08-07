@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import * as AudioAPI from './audio';
 import { RequestOptions } from '../../internal/request-options';
 import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../../lib/polling';
 
@@ -20,99 +21,273 @@ export class Audio extends APIResource {
   }
 }
 
-export interface AudioCreateResponse {
+/**
+ * Clone a voice from a reference audio clip, then speak promptText in that voice.
+ * Routes only to models that support voice cloning.
+ */
+export interface ReferenceVoice {
   /**
-   * The ID of the created task. Poll GET /v1/tasks/:id for the result.
+   * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+   * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+   * [our docs](/assets/inputs#audio) on audio inputs for more information.
    */
-  id: string;
+  audioUri: string;
 
-  /**
-   * Metadata describing which model the router selected and why.
-   */
-  routing: AudioCreateResponse.Routing;
+  type: 'reference-audio';
 }
 
-export namespace AudioCreateResponse {
+export interface ReferenceAudio {
   /**
-   * Metadata describing which model the router selected and why.
+   * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+   * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+   * [our docs](/assets/inputs#audio) on audio inputs for more information.
    */
-  export interface Routing {
+  uri: string;
+}
+
+export type AudioCreateResponse =
+  | AudioCreateResponse.RoutedAudioTaskCreated
+  | AudioCreateResponse.RoutedAudioDryRun;
+
+export namespace AudioCreateResponse {
+  export interface RoutedAudioTaskCreated {
     /**
-     * The slug of the router config that was applied to this request.
+     * The ID of the created task. Poll GET /v1/tasks/:id for the result.
      */
-    configId: string;
+    id: string;
+
+    dryRun: false;
 
     /**
-     * Estimated cost, computed against current pricing.
+     * Metadata describing which model the router selected and why.
      */
-    estimatedCost: Routing.EstimatedCost;
-
-    /**
-     * The public name of the model the router selected.
-     */
-    model: string;
-
-    /**
-     * The provider of the selected model.
-     */
-    provider: string;
-
-    /**
-     * Request-side defaults resolved for the routing response. Not necessarily
-     * identical to prepared model options.
-     */
-    resolvedInput: Routing.ResolvedInput;
-
-    /**
-     * The resolved config settings the router used for this request.
-     */
-    resolvedSettings: Routing.ResolvedSettings;
+    routing: RoutedAudioTaskCreated.Routing;
   }
 
-  export namespace Routing {
+  export namespace RoutedAudioTaskCreated {
     /**
-     * Estimated cost, computed against current pricing.
+     * Metadata describing which model the router selected and why.
      */
-    export interface EstimatedCost {
+    export interface Routing {
       /**
-       * Estimated cost of the generation in credits.
+       * The slug of the router config that was applied to this request.
        */
-      credits: number;
+      configId: string;
+
+      /**
+       * Estimated cost, computed against current pricing.
+       */
+      estimatedCost: Routing.EstimatedCost;
+
+      /**
+       * The public name of the model the router selected.
+       */
+      model: string;
+
+      /**
+       * The provider of the selected model.
+       */
+      provider: string;
+
+      /**
+       * Request-side defaults resolved for the routing response. Not necessarily
+       * identical to prepared model options.
+       */
+      resolvedInput: Routing.ResolvedInput;
+
+      /**
+       * The resolved config settings the router used for this request.
+       */
+      resolvedSettings: Routing.ResolvedSettings;
+
+      /**
+       * Present only when the config enables fallback.onCapacity and capacity affected
+       * this request.
+       */
+      capacityFallback?: Routing.CapacityFallback;
     }
 
-    /**
-     * Request-side defaults resolved for the routing response. Not necessarily
-     * identical to prepared model options.
-     */
-    export interface ResolvedInput {
+    export namespace Routing {
       /**
-       * The prompt mode the router routed for.
+       * Estimated cost, computed against current pricing.
        */
-      type: 'speech' | 'audio';
+      export interface EstimatedCost {
+        /**
+         * Estimated cost of the generation in credits.
+         */
+        credits: number;
+      }
 
       /**
-       * How the selected model resolves the voice: the requested preset or
-       * reference-audio clone, the model default for voiceless speech, or none for
-       * general audio.
+       * Request-side defaults resolved for the routing response. Not necessarily
+       * identical to prepared model options.
        */
-      voice: 'preset' | 'reference-audio' | 'default' | 'none';
+      export interface ResolvedInput {
+        /**
+         * The prompt mode the router routed for.
+         */
+        type: 'speech' | 'audio';
+
+        /**
+         * How the selected model resolves the voice: the requested preset or
+         * reference-audio clone, the model default for voiceless speech, or none for
+         * general audio.
+         */
+        voice: 'preset' | 'reference-audio' | 'default' | 'none';
+      }
+
+      /**
+       * The resolved config settings the router used for this request.
+       */
+      export interface ResolvedSettings {
+        /**
+         * The single optimization preference the config selected, used as the soft
+         * weighting when scoring eligible models.
+         */
+        optimizeFor: 'cost' | 'latency' | 'quality';
+
+        /**
+         * The applied maximum credits per generation for this request's modality, or null
+         * if the config sets no ceiling.
+         */
+        priceCeiling: number | null;
+      }
+
+      /**
+       * Present only when the config enables fallback.onCapacity and capacity affected
+       * this request.
+       */
+      export interface CapacityFallback {
+        /**
+         * True when every eligible model was at its concurrency limit, so the best-ranked
+         * model was used and the task will queue.
+         */
+        allExhausted: boolean;
+
+        /**
+         * Eligible models that were considered for this request but not selected because
+         * this account is at its concurrency limit for them.
+         */
+        skipped: Array<string>;
+      }
+    }
+  }
+
+  export interface RoutedAudioDryRun {
+    dryRun: true;
+
+    /**
+     * Metadata describing which model the router selected and why.
+     */
+    routing: RoutedAudioDryRun.Routing;
+  }
+
+  export namespace RoutedAudioDryRun {
+    /**
+     * Metadata describing which model the router selected and why.
+     */
+    export interface Routing {
+      /**
+       * The slug of the router config that was applied to this request.
+       */
+      configId: string;
+
+      /**
+       * Estimated cost, computed against current pricing.
+       */
+      estimatedCost: Routing.EstimatedCost;
+
+      /**
+       * The public name of the model the router selected.
+       */
+      model: string;
+
+      /**
+       * The provider of the selected model.
+       */
+      provider: string;
+
+      /**
+       * Request-side defaults resolved for the routing response. Not necessarily
+       * identical to prepared model options.
+       */
+      resolvedInput: Routing.ResolvedInput;
+
+      /**
+       * The resolved config settings the router used for this request.
+       */
+      resolvedSettings: Routing.ResolvedSettings;
+
+      /**
+       * Present only when the config enables fallback.onCapacity and capacity affected
+       * this request.
+       */
+      capacityFallback?: Routing.CapacityFallback;
     }
 
-    /**
-     * The resolved config settings the router used for this request.
-     */
-    export interface ResolvedSettings {
+    export namespace Routing {
       /**
-       * The single optimization preference the config selected, used as the soft
-       * weighting when scoring eligible models.
+       * Estimated cost, computed against current pricing.
        */
-      optimizeFor: 'cost' | 'latency' | 'quality';
+      export interface EstimatedCost {
+        /**
+         * Estimated cost of the generation in credits.
+         */
+        credits: number;
+      }
 
       /**
-       * The applied maximum credits per generation for this request's modality, or null
-       * if the config sets no ceiling.
+       * Request-side defaults resolved for the routing response. Not necessarily
+       * identical to prepared model options.
        */
-      priceCeiling: number | null;
+      export interface ResolvedInput {
+        /**
+         * The prompt mode the router routed for.
+         */
+        type: 'speech' | 'audio';
+
+        /**
+         * How the selected model resolves the voice: the requested preset or
+         * reference-audio clone, the model default for voiceless speech, or none for
+         * general audio.
+         */
+        voice: 'preset' | 'reference-audio' | 'default' | 'none';
+      }
+
+      /**
+       * The resolved config settings the router used for this request.
+       */
+      export interface ResolvedSettings {
+        /**
+         * The single optimization preference the config selected, used as the soft
+         * weighting when scoring eligible models.
+         */
+        optimizeFor: 'cost' | 'latency' | 'quality';
+
+        /**
+         * The applied maximum credits per generation for this request's modality, or null
+         * if the config sets no ceiling.
+         */
+        priceCeiling: number | null;
+      }
+
+      /**
+       * Present only when the config enables fallback.onCapacity and capacity affected
+       * this request.
+       */
+      export interface CapacityFallback {
+        /**
+         * True when every eligible model was at its concurrency limit, so the best-ranked
+         * model was used and the task will queue.
+         */
+        allExhausted: boolean;
+
+        /**
+         * Eligible models that were considered for this request but not selected because
+         * this account is at its concurrency limit for them.
+         */
+        skipped: Array<string>;
+      }
     }
   }
 }
@@ -128,6 +303,13 @@ export interface AudioCreateParams {
    * options to it.
    */
   input: AudioCreateParams.Input;
+
+  /**
+   * When true, run the full routing pipeline and return the decision and estimated
+   * cost without generating. No task is created, nothing is billed, and no asset is
+   * produced.
+   */
+  dryRun?: boolean;
 }
 
 export namespace AudioCreateParams {
@@ -166,25 +348,16 @@ export namespace AudioCreateParams {
      * support them. Reference each clip in promptText as @Audio1, @Audio2, and @Audio3
      * in order.
      */
-    referenceAudios?: Array<Input.ReferenceAudio>;
+    referenceAudios?: Array<AudioAPI.ReferenceAudio>;
 
     /**
      * The voice to speak with. When omitted, models that support a default voice
      * remain eligible.
      */
-    voice?: Input.Preset | Input.ReferenceAudio;
+    voice?: Input.Preset | AudioAPI.ReferenceVoice;
   }
 
   export namespace Input {
-    export interface ReferenceAudio {
-      /**
-       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
-       * [our docs](/assets/inputs#audio) on audio inputs for more information.
-       */
-      uri: string;
-    }
-
     /**
      * A preset voice.
      */
@@ -246,24 +419,14 @@ export namespace AudioCreateParams {
 
       type: 'preset';
     }
-
-    /**
-     * Clone a voice from a reference audio clip, then speak promptText in that voice.
-     * Routes only to models that support voice cloning.
-     */
-    export interface ReferenceAudio {
-      /**
-       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
-       * [our docs](/assets/inputs#audio) on audio inputs for more information.
-       */
-      audioUri: string;
-
-      type: 'reference-audio';
-    }
   }
 }
 
 export declare namespace Audio {
-  export { type AudioCreateResponse as AudioCreateResponse, type AudioCreateParams as AudioCreateParams };
+  export {
+    type ReferenceVoice as ReferenceVoice,
+    type ReferenceAudio as ReferenceAudio,
+    type AudioCreateResponse as AudioCreateResponse,
+    type AudioCreateParams as AudioCreateParams,
+  };
 }
