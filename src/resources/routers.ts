@@ -56,9 +56,26 @@ export class Routers extends APIResource {
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
+
+  /**
+   * Paginated routing history for live Model Router requests (successful routes and
+   * failures). Playground dry runs are not recorded.
+   */
+  listRequests(
+    id: string,
+    query: RouterListRequestsParams,
+    options?: RequestOptions,
+  ): PagePromise<RouterListRequestsResponsesCursorPage, RouterListRequestsResponse> {
+    return this._client.getAPIList(path`/v1/routers/${id}/requests`, CursorPage<RouterListRequestsResponse>, {
+      query,
+      ...options,
+    });
+  }
 }
 
 export type RouterListResponsesCursorPage = CursorPage<RouterListResponse>;
+
+export type RouterListRequestsResponsesCursorPage = CursorPage<RouterListRequestsResponse>;
 
 export interface RouterCreateResponse {
   /**
@@ -112,6 +129,12 @@ export namespace RouterCreateResponse {
     schemaVersion: 1;
 
     /**
+     * Opt-in behavior for what routing should do when the preferred model cannot start
+     * immediately.
+     */
+    fallback?: Settings.Fallback;
+
+    /**
      * Optional per-modality credit caps, applied per generated output. Models whose
      * estimated per-output cost exceeds the cap are excluded.
      */
@@ -131,6 +154,20 @@ export namespace RouterCreateResponse {
   }
 
   export namespace Settings {
+    /**
+     * Opt-in behavior for what routing should do when the preferred model cannot start
+     * immediately.
+     */
+    export interface Fallback {
+      /**
+       * When true, if the account is at its concurrency limit on the preferred model,
+       * routing skips it and picks the next-best eligible model instead of queueing. If
+       * every eligible model is at its limit, the original best-ranked model is used and
+       * the task queues as usual.
+       */
+      onCapacity?: boolean;
+    }
+
     /**
      * Optional per-modality credit caps, applied per generated output. Models whose
      * estimated per-output cost exceeds the cap are excluded.
@@ -208,6 +245,12 @@ export namespace RouterRetrieveResponse {
     schemaVersion: 1;
 
     /**
+     * Opt-in behavior for what routing should do when the preferred model cannot start
+     * immediately.
+     */
+    fallback?: Settings.Fallback;
+
+    /**
      * Optional per-modality credit caps, applied per generated output. Models whose
      * estimated per-output cost exceeds the cap are excluded.
      */
@@ -227,6 +270,20 @@ export namespace RouterRetrieveResponse {
   }
 
   export namespace Settings {
+    /**
+     * Opt-in behavior for what routing should do when the preferred model cannot start
+     * immediately.
+     */
+    export interface Fallback {
+      /**
+       * When true, if the account is at its concurrency limit on the preferred model,
+       * routing skips it and picks the next-best eligible model instead of queueing. If
+       * every eligible model is at its limit, the original best-ranked model is used and
+       * the task queues as usual.
+       */
+      onCapacity?: boolean;
+    }
+
     /**
      * Optional per-modality credit caps, applied per generated output. Models whose
      * estimated per-output cost exceeds the cap are excluded.
@@ -304,6 +361,12 @@ export namespace RouterUpdateResponse {
     schemaVersion: 1;
 
     /**
+     * Opt-in behavior for what routing should do when the preferred model cannot start
+     * immediately.
+     */
+    fallback?: Settings.Fallback;
+
+    /**
      * Optional per-modality credit caps, applied per generated output. Models whose
      * estimated per-output cost exceeds the cap are excluded.
      */
@@ -323,6 +386,20 @@ export namespace RouterUpdateResponse {
   }
 
   export namespace Settings {
+    /**
+     * Opt-in behavior for what routing should do when the preferred model cannot start
+     * immediately.
+     */
+    export interface Fallback {
+      /**
+       * When true, if the account is at its concurrency limit on the preferred model,
+       * routing skips it and picks the next-best eligible model instead of queueing. If
+       * every eligible model is at its limit, the original best-ranked model is used and
+       * the task queues as usual.
+       */
+      onCapacity?: boolean;
+    }
+
     /**
      * Optional per-modality credit caps, applied per generated output. Models whose
      * estimated per-output cost exceeds the cap are excluded.
@@ -403,6 +480,12 @@ export namespace RouterListResponse {
     schemaVersion: 1;
 
     /**
+     * Opt-in behavior for what routing should do when the preferred model cannot start
+     * immediately.
+     */
+    fallback?: Settings.Fallback;
+
+    /**
      * Optional per-modality credit caps, applied per generated output. Models whose
      * estimated per-output cost exceeds the cap are excluded.
      */
@@ -422,6 +505,20 @@ export namespace RouterListResponse {
   }
 
   export namespace Settings {
+    /**
+     * Opt-in behavior for what routing should do when the preferred model cannot start
+     * immediately.
+     */
+    export interface Fallback {
+      /**
+       * When true, if the account is at its concurrency limit on the preferred model,
+       * routing skips it and picks the next-best eligible model instead of queueing. If
+       * every eligible model is at its limit, the original best-ranked model is used and
+       * the task queues as usual.
+       */
+      onCapacity?: boolean;
+    }
+
     /**
      * Optional per-modality credit caps, applied per generated output. Models whose
      * estimated per-output cost exceeds the cap are excluded.
@@ -444,6 +541,111 @@ export namespace RouterListResponse {
 
       mode: 'allow_new_except' | 'allowlist_only';
     }
+  }
+}
+
+/**
+ * A recorded Model Router routing decision.
+ */
+export interface RouterListRequestsResponse {
+  id: string;
+
+  createdAt: string;
+
+  /**
+   * The filter(s) that reduced the eligible pool to zero.
+   */
+  emptiedBy: Array<'capability' | 'prompt_length' | 'input_support' | 'allow_deny' | 'price'>;
+
+  estimatedCredits: number | null;
+
+  model: string | null;
+
+  /**
+   * Ordered routing story: hard-filter stages with surviving model ids, a capacity
+   * step when concurrency limits affected the pool, then rank step when selection
+   * reached ranking.
+   */
+  pipeline: Array<
+    RouterListRequestsResponse.Filter | RouterListRequestsResponse.Capacity | RouterListRequestsResponse.Rank
+  >;
+
+  provider: string | null;
+
+  /**
+   * Free-text explanation of the pick. Written by the ranker, so treat it as prose
+   * for humans and group on reasonCode instead.
+   */
+  reason: string | null;
+
+  /**
+   * Why the model won: lowest_cost, best_latency, best_quality, only_eligible_model,
+   * or filter_order_fallback (ranking was unavailable, so hard-filter order stood).
+   * Null when the request never reached ranking.
+   */
+  reasonCode:
+    | 'lowest_cost'
+    | 'best_latency'
+    | 'best_quality'
+    | 'only_eligible_model'
+    | 'filter_order_fallback'
+    | null;
+
+  requestId: string;
+
+  /**
+   * How the routing attempt ended: routed (model selected), no_eligible_model (hard
+   * filters emptied the pool), router_config_not_found (same condition as the
+   * generate error of that name), invalid_request, or error.
+   */
+  status: 'routed' | 'no_eligible_model' | 'router_config_not_found' | 'invalid_request' | 'error';
+
+  taskId: string | null;
+}
+
+export namespace RouterListRequestsResponse {
+  export interface Filter {
+    /**
+     * Hard-filter stage that ran: capability (modality/feature fit), prompt_length
+     * (prompt within model limits), input_support (requested inputs/assets),
+     * allow_deny (router model allowlist/denylist), or price (credit ceiling).
+     */
+    filter: 'capability' | 'prompt_length' | 'input_support' | 'allow_deny' | 'price';
+
+    /**
+     * Model IDs of the models that remained eligible after this filter stage.
+     */
+    models: Array<string>;
+
+    type: 'filter';
+  }
+
+  export interface Capacity {
+    /**
+     * True when every eligible model was at its limit, in which case none was skipped
+     * and the selected task queues.
+     */
+    allExhausted: boolean;
+
+    /**
+     * Model IDs that were eligible but passed over because the account was at its
+     * concurrency limit for them.
+     */
+    skipped: Array<string>;
+
+    type: 'capacity';
+  }
+
+  export interface Rank {
+    /**
+     * How the router chose among eligible models: cost (sorted by estimated credits),
+     * selected (preference ranking chose a model), fallback (preference ranking failed
+     * so the eligible models were left in filter order), or single_candidate (only one
+     * model remained).
+     */
+    outcome: 'cost' | 'selected' | 'fallback' | 'single_candidate';
+
+    type: 'rank';
   }
 }
 
@@ -482,6 +684,12 @@ export namespace RouterCreateParams {
    */
   export interface Settings {
     /**
+     * Opt-in behavior for what routing should do when the preferred model cannot start
+     * immediately.
+     */
+    fallback?: Settings.Fallback;
+
+    /**
      * Optional per-modality credit caps, applied per generated output. Models whose
      * estimated per-output cost exceeds the cap are excluded.
      */
@@ -507,6 +715,20 @@ export namespace RouterCreateParams {
   }
 
   export namespace Settings {
+    /**
+     * Opt-in behavior for what routing should do when the preferred model cannot start
+     * immediately.
+     */
+    export interface Fallback {
+      /**
+       * When true, if the account is at its concurrency limit on the preferred model,
+       * routing skips it and picks the next-best eligible model instead of queueing. If
+       * every eligible model is at its limit, the original best-ranked model is used and
+       * the task queues as usual.
+       */
+      onCapacity?: boolean;
+    }
+
     /**
      * Optional per-modality credit caps, applied per generated output. Models whose
      * estimated per-output cost exceeds the cap are excluded.
@@ -556,6 +778,12 @@ export namespace RouterUpdateParams {
    */
   export interface Settings {
     /**
+     * Opt-in behavior for what routing should do when the preferred model cannot start
+     * immediately.
+     */
+    fallback?: Settings.Fallback;
+
+    /**
      * Optional per-modality credit caps, applied per generated output. Models whose
      * estimated per-output cost exceeds the cap are excluded.
      */
@@ -581,6 +809,20 @@ export namespace RouterUpdateParams {
   }
 
   export namespace Settings {
+    /**
+     * Opt-in behavior for what routing should do when the preferred model cannot start
+     * immediately.
+     */
+    export interface Fallback {
+      /**
+       * When true, if the account is at its concurrency limit on the preferred model,
+       * routing skips it and picks the next-best eligible model instead of queueing. If
+       * every eligible model is at its limit, the original best-ranked model is used and
+       * the task queues as usual.
+       */
+      onCapacity?: boolean;
+    }
+
     /**
      * Optional per-modality credit caps, applied per generated output. Models whose
      * estimated per-output cost exceeds the cap are excluded.
@@ -608,15 +850,20 @@ export namespace RouterUpdateParams {
 
 export interface RouterListParams extends CursorPageParams {}
 
+export interface RouterListRequestsParams extends CursorPageParams {}
+
 export declare namespace Routers {
   export {
     type RouterCreateResponse as RouterCreateResponse,
     type RouterRetrieveResponse as RouterRetrieveResponse,
     type RouterUpdateResponse as RouterUpdateResponse,
     type RouterListResponse as RouterListResponse,
+    type RouterListRequestsResponse as RouterListRequestsResponse,
     type RouterListResponsesCursorPage as RouterListResponsesCursorPage,
+    type RouterListRequestsResponsesCursorPage as RouterListRequestsResponsesCursorPage,
     type RouterCreateParams as RouterCreateParams,
     type RouterUpdateParams as RouterUpdateParams,
     type RouterListParams as RouterListParams,
+    type RouterListRequestsParams as RouterListRequestsParams,
   };
 }

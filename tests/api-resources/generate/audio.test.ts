@@ -33,6 +33,7 @@ describe('resource audio', () => {
         // referenceAudios omitted — Input.ReferenceAudio is overloaded with voice clone shape in codegen
         voice: { presetId: 'Maya', type: 'preset' },
       },
+      dryRun: true,
     });
   });
 });

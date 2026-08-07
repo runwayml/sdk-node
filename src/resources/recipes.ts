@@ -101,6 +101,25 @@ export interface RecipeAdLocalizationResponse {
    * The ID of the task that was created. Use this to retrieve the task later.
    */
   id: string;
+
+  /**
+   * The maximum credits this task may charge. The final amount may be lower after
+   * the task completes.
+   */
+  estimatedCost: RecipeAdLocalizationResponse.EstimatedCost;
+}
+
+export namespace RecipeAdLocalizationResponse {
+  /**
+   * The maximum credits this task may charge. The final amount may be lower after
+   * the task completes.
+   */
+  export interface EstimatedCost {
+    /**
+     * Estimated cost of the generation in credits.
+     */
+    credits: number;
+  }
 }
 
 export interface RecipeMarketingStockImageResponse {
@@ -108,6 +127,25 @@ export interface RecipeMarketingStockImageResponse {
    * The ID of the task that was created. Use this to retrieve the task later.
    */
   id: string;
+
+  /**
+   * The maximum credits this task may charge. The final amount may be lower after
+   * the task completes.
+   */
+  estimatedCost: RecipeMarketingStockImageResponse.EstimatedCost;
+}
+
+export namespace RecipeMarketingStockImageResponse {
+  /**
+   * The maximum credits this task may charge. The final amount may be lower after
+   * the task completes.
+   */
+  export interface EstimatedCost {
+    /**
+     * Estimated cost of the generation in credits.
+     */
+    credits: number;
+  }
 }
 
 export interface RecipeMultiShotVideoResponse {
@@ -115,6 +153,25 @@ export interface RecipeMultiShotVideoResponse {
    * The ID of the task that was created. Use this to retrieve the task later.
    */
   id: string;
+
+  /**
+   * The maximum credits this task may charge. The final amount may be lower after
+   * the task completes.
+   */
+  estimatedCost: RecipeMultiShotVideoResponse.EstimatedCost;
+}
+
+export namespace RecipeMultiShotVideoResponse {
+  /**
+   * The maximum credits this task may charge. The final amount may be lower after
+   * the task completes.
+   */
+  export interface EstimatedCost {
+    /**
+     * Estimated cost of the generation in credits.
+     */
+    credits: number;
+  }
 }
 
 export interface RecipeProductAdResponse {
@@ -122,6 +179,25 @@ export interface RecipeProductAdResponse {
    * The ID of the task that was created. Use this to retrieve the task later.
    */
   id: string;
+
+  /**
+   * The maximum credits this task may charge. The final amount may be lower after
+   * the task completes.
+   */
+  estimatedCost: RecipeProductAdResponse.EstimatedCost;
+}
+
+export namespace RecipeProductAdResponse {
+  /**
+   * The maximum credits this task may charge. The final amount may be lower after
+   * the task completes.
+   */
+  export interface EstimatedCost {
+    /**
+     * Estimated cost of the generation in credits.
+     */
+    credits: number;
+  }
 }
 
 export interface RecipeProductCampaignImageResponse {
@@ -129,6 +205,25 @@ export interface RecipeProductCampaignImageResponse {
    * The ID of the task that was created. Use this to retrieve the task later.
    */
   id: string;
+
+  /**
+   * The maximum credits this task may charge. The final amount may be lower after
+   * the task completes.
+   */
+  estimatedCost: RecipeProductCampaignImageResponse.EstimatedCost;
+}
+
+export namespace RecipeProductCampaignImageResponse {
+  /**
+   * The maximum credits this task may charge. The final amount may be lower after
+   * the task completes.
+   */
+  export interface EstimatedCost {
+    /**
+     * Estimated cost of the generation in credits.
+     */
+    credits: number;
+  }
 }
 
 export interface RecipeProductSwapResponse {
@@ -136,6 +231,25 @@ export interface RecipeProductSwapResponse {
    * The ID of the task that was created. Use this to retrieve the task later.
    */
   id: string;
+
+  /**
+   * The maximum credits this task may charge. The final amount may be lower after
+   * the task completes.
+   */
+  estimatedCost: RecipeProductSwapResponse.EstimatedCost;
+}
+
+export namespace RecipeProductSwapResponse {
+  /**
+   * The maximum credits this task may charge. The final amount may be lower after
+   * the task completes.
+   */
+  export interface EstimatedCost {
+    /**
+     * Estimated cost of the generation in credits.
+     */
+    credits: number;
+  }
 }
 
 export interface RecipeProductUgcResponse {
@@ -143,6 +257,25 @@ export interface RecipeProductUgcResponse {
    * The ID of the task that was created. Use this to retrieve the task later.
    */
   id: string;
+
+  /**
+   * The maximum credits this task may charge. The final amount may be lower after
+   * the task completes.
+   */
+  estimatedCost: RecipeProductUgcResponse.EstimatedCost;
+}
+
+export namespace RecipeProductUgcResponse {
+  /**
+   * The maximum credits this task may charge. The final amount may be lower after
+   * the task completes.
+   */
+  export interface EstimatedCost {
+    /**
+     * Estimated cost of the generation in credits.
+     */
+    credits: number;
+  }
 }
 
 export interface RecipeAdLocalizationParams {

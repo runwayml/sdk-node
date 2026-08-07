@@ -33,6 +33,8 @@ describe('resource imageToVideo', () => {
       promptText: 'x',
       ratio: '1280:720',
       contentModeration: { publicFigureThreshold: 'auto' },
+      outputFormat: 'mp4',
+      proresProfile: '422',
       seed: 0,
     });
   });

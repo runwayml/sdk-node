@@ -2,7 +2,7 @@
 
 import { APIResource } from '../../core/resource';
 import * as AudioAPI from './audio';
-import { Audio, AudioCreateParams, AudioCreateResponse } from './audio';
+import { Audio, AudioCreateParams, AudioCreateResponse, ReferenceAudio, ReferenceVoice } from './audio';
 import * as ImageAPI from './image';
 import { Image, ImageCreateParams, ImageCreateResponse } from './image';
 import * as VideoAPI from './video';
@@ -33,6 +33,8 @@ export declare namespace Generate {
 
   export {
     Audio as Audio,
+    type ReferenceVoice as ReferenceVoice,
+    type ReferenceAudio as ReferenceAudio,
     type AudioCreateResponse as AudioCreateResponse,
     type AudioCreateParams as AudioCreateParams,
   };

@@ -26,11 +26,31 @@ export interface TextToSpeechCreateResponse {
    * The ID of the task that was created. Use this to retrieve the task later.
    */
   id: string;
+
+  /**
+   * The maximum credits this task may charge. The final amount may be lower after
+   * the task completes.
+   */
+  estimatedCost: TextToSpeechCreateResponse.EstimatedCost;
+}
+
+export namespace TextToSpeechCreateResponse {
+  /**
+   * The maximum credits this task may charge. The final amount may be lower after
+   * the task completes.
+   */
+  export interface EstimatedCost {
+    /**
+     * Estimated cost of the generation in credits.
+     */
+    credits: number;
+  }
 }
 
 export type TextToSpeechCreateParams =
   | TextToSpeechCreateParams.SeedAudio
-  | TextToSpeechCreateParams.ElevenMultilingualV2;
+  | TextToSpeechCreateParams.ElevenMultilingualV2
+  | TextToSpeechCreateParams.ElevenV3;
 
 export declare namespace TextToSpeechCreateParams {
   export interface SeedAudio {
@@ -69,16 +89,49 @@ export declare namespace TextToSpeechCreateParams {
     speechRate?: number;
 
     /**
-     * Clone from a single reference audio clip, then speak promptText in that voice.
+     * The voice to use for text-to-speech generation. If omitted, a default voice is
+     * used.
      */
-    voice?: SeedAudio.Voice;
+    voice?: SeedAudio.SeedPreset | SeedAudio.ReferenceAudio;
   }
 
   export namespace SeedAudio {
     /**
+     * A preset voice for Seed Audio text-to-speech.
+     */
+    export interface SeedPreset {
+      /**
+       * A Seed Audio preset voice id.
+       */
+      presetId:
+        | 'vivi_mixed_en_zh_ja_es_id'
+        | 'mindy_en_es_id_pt_zh'
+        | 'kian_en_zh'
+        | 'cedric_en_zh'
+        | 'sophie_en_zh'
+        | 'jean_en_zh'
+        | 'magnus_en_zh'
+        | 'mabel_en_zh'
+        | 'nadia_en_zh'
+        | 'opal_en_zh'
+        | 'pearl_en_zh'
+        | 'quentin_en_zh'
+        | 'corinne_mixed_en_zh'
+        | 'esther_mixed_en_zh'
+        | 'lyla_mixed_en_zh'
+        | 'tracy_es_zh'
+        | 'sandy_es_mixed_en_zh'
+        | 'felix_zh'
+        | 'celeste_zh'
+        | 'monkey_king_zh';
+
+      type: 'seed-preset';
+    }
+
+    /**
      * Clone from a single reference audio clip, then speak promptText in that voice.
      */
-    export interface Voice {
+    export interface ReferenceAudio {
       /**
        * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
        * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
@@ -106,6 +159,127 @@ export declare namespace TextToSpeechCreateParams {
   }
 
   export namespace ElevenMultilingualV2 {
+    /**
+     * A voice preset from the RunwayML API.
+     */
+    export interface Voice {
+      /**
+       * The preset voice ID to use for the generated speech.
+       */
+      presetId:
+        | 'Maya'
+        | 'Arjun'
+        | 'Serene'
+        | 'Bernard'
+        | 'Billy'
+        | 'Mark'
+        | 'Clint'
+        | 'Mabel'
+        | 'Chad'
+        | 'Leslie'
+        | 'Eleanor'
+        | 'Elias'
+        | 'Elliot'
+        | 'Grungle'
+        | 'Brodie'
+        | 'Sandra'
+        | 'Kirk'
+        | 'Kylie'
+        | 'Lara'
+        | 'Lisa'
+        | 'Malachi'
+        | 'Marlene'
+        | 'Martin'
+        | 'Miriam'
+        | 'Monster'
+        | 'Paula'
+        | 'Pip'
+        | 'Rusty'
+        | 'Ragnar'
+        | 'Xylar'
+        | 'Maggie'
+        | 'Jack'
+        | 'Katie'
+        | 'Noah'
+        | 'James'
+        | 'Rina'
+        | 'Ella'
+        | 'Mariah'
+        | 'Frank'
+        | 'Claudia'
+        | 'Niki'
+        | 'Vincent'
+        | 'Kendrick'
+        | 'Myrna'
+        | 'Tom'
+        | 'Wanda'
+        | 'Benjamin'
+        | 'Kiana'
+        | 'Rachel';
+
+      type: 'runway-preset';
+    }
+  }
+
+  export interface ElevenV3 {
+    model: 'eleven_v3';
+
+    /**
+     * The text to convert to speech. You can include expressive audio tags like
+     * [laughs] or [whispers] in the script.
+     */
+    promptText: string;
+
+    /**
+     * A voice preset from the RunwayML API.
+     */
+    voice: ElevenV3.Voice;
+
+    /**
+     * Text normalization mode: 'auto', 'on', or 'off' (e.g. spelling out numbers).
+     */
+    applyTextNormalization?: 'auto' | 'on' | 'off';
+
+    /**
+     * ISO 639-1 language code to enforce pronunciation and normalization.
+     */
+    languageCode?: string;
+
+    /**
+     * Optional seed for more deterministic output (0–4294967295). Not guaranteed.
+     */
+    seed?: number;
+
+    /**
+     * How closely the output tracks the original speaker (0–1). Maps to ElevenLabs
+     * similarity_boost.
+     */
+    similarityBoost?: number;
+
+    /**
+     * Speech speed multiplier (0.7–1.2). 1.0 is default; values below slow down and
+     * above speed up.
+     */
+    speed?: number;
+
+    /**
+     * Voice stability (0–1). Lower values allow broader emotional range; higher values
+     * are steadier.
+     */
+    stability?: number;
+
+    /**
+     * Style exaggeration (0–1). Higher values amplify the speaker style.
+     */
+    style?: number;
+
+    /**
+     * Boost similarity to the original speaker at a small latency cost.
+     */
+    useSpeakerBoost?: boolean;
+  }
+
+  export namespace ElevenV3 {
     /**
      * A voice preset from the RunwayML API.
      */
