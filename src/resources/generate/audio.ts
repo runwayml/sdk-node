@@ -40,249 +40,123 @@ export interface ReferenceAudio {
   uri: string;
 }
 
-export type AudioCreateResponse =
-  | AudioCreateResponse.RoutedAudioTaskCreated
-  | AudioCreateResponse.RoutedAudioDryRun;
+export interface AudioCreateResponse {
+  /**
+   * The ID of the created task. Poll GET /v1/tasks/:id for the result.
+   */
+  id: string;
+
+  /**
+   * Metadata describing which model the router selected and why.
+   */
+  routing: AudioCreateResponse.Routing;
+}
 
 export namespace AudioCreateResponse {
-  export interface RoutedAudioTaskCreated {
+  /**
+   * Metadata describing which model the router selected and why.
+   */
+  export interface Routing {
     /**
-     * The ID of the created task. Poll GET /v1/tasks/:id for the result.
+     * The slug of the router config that was applied to this request.
      */
-    id: string;
-
-    dryRun: false;
+    configId: string;
 
     /**
-     * Metadata describing which model the router selected and why.
+     * Estimated cost, computed against current pricing.
      */
-    routing: RoutedAudioTaskCreated.Routing;
+    estimatedCost: Routing.EstimatedCost;
+
+    /**
+     * The public name of the model the router selected.
+     */
+    model: string;
+
+    /**
+     * The provider of the selected model.
+     */
+    provider: string;
+
+    /**
+     * Request-side defaults resolved for the routing response. Not necessarily
+     * identical to prepared model options.
+     */
+    resolvedInput: Routing.ResolvedInput;
+
+    /**
+     * The resolved config settings the router used for this request.
+     */
+    resolvedSettings: Routing.ResolvedSettings;
+
+    /**
+     * Present only when the config enables fallback.onCapacity and capacity affected
+     * this request.
+     */
+    capacityFallback?: Routing.CapacityFallback;
   }
 
-  export namespace RoutedAudioTaskCreated {
+  export namespace Routing {
     /**
-     * Metadata describing which model the router selected and why.
+     * Estimated cost, computed against current pricing.
      */
-    export interface Routing {
+    export interface EstimatedCost {
       /**
-       * The slug of the router config that was applied to this request.
+       * Estimated cost of the generation in credits.
        */
-      configId: string;
-
-      /**
-       * Estimated cost, computed against current pricing.
-       */
-      estimatedCost: Routing.EstimatedCost;
-
-      /**
-       * The public name of the model the router selected.
-       */
-      model: string;
-
-      /**
-       * The provider of the selected model.
-       */
-      provider: string;
-
-      /**
-       * Request-side defaults resolved for the routing response. Not necessarily
-       * identical to prepared model options.
-       */
-      resolvedInput: Routing.ResolvedInput;
-
-      /**
-       * The resolved config settings the router used for this request.
-       */
-      resolvedSettings: Routing.ResolvedSettings;
-
-      /**
-       * Present only when the config enables fallback.onCapacity and capacity affected
-       * this request.
-       */
-      capacityFallback?: Routing.CapacityFallback;
+      credits: number;
     }
 
-    export namespace Routing {
-      /**
-       * Estimated cost, computed against current pricing.
-       */
-      export interface EstimatedCost {
-        /**
-         * Estimated cost of the generation in credits.
-         */
-        credits: number;
-      }
-
-      /**
-       * Request-side defaults resolved for the routing response. Not necessarily
-       * identical to prepared model options.
-       */
-      export interface ResolvedInput {
-        /**
-         * The prompt mode the router routed for.
-         */
-        type: 'speech' | 'audio';
-
-        /**
-         * How the selected model resolves the voice: the requested preset or
-         * reference-audio clone, the model default for voiceless speech, or none for
-         * general audio.
-         */
-        voice: 'preset' | 'reference-audio' | 'default' | 'none';
-      }
-
-      /**
-       * The resolved config settings the router used for this request.
-       */
-      export interface ResolvedSettings {
-        /**
-         * The single optimization preference the config selected, used as the soft
-         * weighting when scoring eligible models.
-         */
-        optimizeFor: 'cost' | 'latency' | 'quality';
-
-        /**
-         * The applied maximum credits per generation for this request's modality, or null
-         * if the config sets no ceiling.
-         */
-        priceCeiling: number | null;
-      }
-
-      /**
-       * Present only when the config enables fallback.onCapacity and capacity affected
-       * this request.
-       */
-      export interface CapacityFallback {
-        /**
-         * True when every eligible model was at its concurrency limit, so the best-ranked
-         * model was used and the task will queue.
-         */
-        allExhausted: boolean;
-
-        /**
-         * Eligible models that were considered for this request but not selected because
-         * this account is at its concurrency limit for them.
-         */
-        skipped: Array<string>;
-      }
-    }
-  }
-
-  export interface RoutedAudioDryRun {
-    dryRun: true;
-
     /**
-     * Metadata describing which model the router selected and why.
+     * Request-side defaults resolved for the routing response. Not necessarily
+     * identical to prepared model options.
      */
-    routing: RoutedAudioDryRun.Routing;
-  }
-
-  export namespace RoutedAudioDryRun {
-    /**
-     * Metadata describing which model the router selected and why.
-     */
-    export interface Routing {
+    export interface ResolvedInput {
       /**
-       * The slug of the router config that was applied to this request.
+       * The prompt mode the router routed for.
        */
-      configId: string;
+      type: 'speech' | 'audio';
 
       /**
-       * Estimated cost, computed against current pricing.
+       * How the selected model resolves the voice: the requested preset or
+       * reference-audio clone, the model default for voiceless speech, or none for
+       * general audio.
        */
-      estimatedCost: Routing.EstimatedCost;
-
-      /**
-       * The public name of the model the router selected.
-       */
-      model: string;
-
-      /**
-       * The provider of the selected model.
-       */
-      provider: string;
-
-      /**
-       * Request-side defaults resolved for the routing response. Not necessarily
-       * identical to prepared model options.
-       */
-      resolvedInput: Routing.ResolvedInput;
-
-      /**
-       * The resolved config settings the router used for this request.
-       */
-      resolvedSettings: Routing.ResolvedSettings;
-
-      /**
-       * Present only when the config enables fallback.onCapacity and capacity affected
-       * this request.
-       */
-      capacityFallback?: Routing.CapacityFallback;
+      voice: 'preset' | 'reference-audio' | 'default' | 'none';
     }
 
-    export namespace Routing {
+    /**
+     * The resolved config settings the router used for this request.
+     */
+    export interface ResolvedSettings {
       /**
-       * Estimated cost, computed against current pricing.
+       * The single optimization preference the config selected, used as the soft
+       * weighting when scoring eligible models.
        */
-      export interface EstimatedCost {
-        /**
-         * Estimated cost of the generation in credits.
-         */
-        credits: number;
-      }
-
-      /**
-       * Request-side defaults resolved for the routing response. Not necessarily
-       * identical to prepared model options.
-       */
-      export interface ResolvedInput {
-        /**
-         * The prompt mode the router routed for.
-         */
-        type: 'speech' | 'audio';
-
-        /**
-         * How the selected model resolves the voice: the requested preset or
-         * reference-audio clone, the model default for voiceless speech, or none for
-         * general audio.
-         */
-        voice: 'preset' | 'reference-audio' | 'default' | 'none';
-      }
+      optimizeFor: 'cost' | 'latency' | 'quality';
 
       /**
-       * The resolved config settings the router used for this request.
+       * The applied maximum credits per generation for this request's modality, or null
+       * if the config sets no ceiling.
        */
-      export interface ResolvedSettings {
-        /**
-         * The single optimization preference the config selected, used as the soft
-         * weighting when scoring eligible models.
-         */
-        optimizeFor: 'cost' | 'latency' | 'quality';
+      priceCeiling: number | null;
+    }
 
-        /**
-         * The applied maximum credits per generation for this request's modality, or null
-         * if the config sets no ceiling.
-         */
-        priceCeiling: number | null;
-      }
+    /**
+     * Present only when the config enables fallback.onCapacity and capacity affected
+     * this request.
+     */
+    export interface CapacityFallback {
+      /**
+       * True when every eligible model was at its concurrency limit, so the best-ranked
+       * model was used and the task will queue.
+       */
+      allExhausted: boolean;
 
       /**
-       * Present only when the config enables fallback.onCapacity and capacity affected
-       * this request.
+       * Eligible models that were considered for this request but not selected because
+       * this account is at its concurrency limit for them.
        */
-      export interface CapacityFallback {
-        /**
-         * True when every eligible model was at its concurrency limit, so the best-ranked
-         * model was used and the task will queue.
-         */
-        allExhausted: boolean;
-
-        /**
-         * Eligible models that were considered for this request but not selected because
-         * this account is at its concurrency limit for them.
-         */
-        skipped: Array<string>;
-      }
+      skipped: Array<string>;
     }
   }
 }
@@ -298,13 +172,6 @@ export interface AudioCreateParams {
    * options to it.
    */
   input: AudioCreateParams.Input;
-
-  /**
-   * When true, run the full routing pipeline and return the decision and estimated
-   * cost without generating. No task is created, nothing is billed, and no asset is
-   * produced.
-   */
-  dryRun?: boolean;
 }
 
 export namespace AudioCreateParams {
