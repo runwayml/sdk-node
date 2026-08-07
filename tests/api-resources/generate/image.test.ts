@@ -34,7 +34,6 @@ describe('resource image', () => {
         resolution: '1k',
         seed: 0,
       },
-      dryRun: true,
     });
   });
 });
