@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.14.0 (2026-08-07)
+
+Full Changelog: [v4.13.2...v4.14.0](https://github.com/runwayml/sdk-node/compare/v4.13.2...v4.14.0)
+
+### Features
+
+* **api:** api update ([fc9fbdf](https://github.com/runwayml/sdk-node/commit/fc9fbdf3757789176250a597021e96d60e943bfe))
+* **api:** manual updates ([329e6cc](https://github.com/runwayml/sdk-node/commit/329e6cc1b562daa715d93f8845bc3d1b9d51723c))
+
 ## 4.13.2 (2026-07-30)
 
 Full Changelog: [v4.13.1...v4.13.2](https://github.com/runwayml/sdk-node/compare/v4.13.1...v4.13.2)
