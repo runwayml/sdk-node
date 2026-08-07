@@ -33,6 +33,7 @@ describe('resource audio', () => {
         referenceAudios: [{ uri: 'https://example.com/audio.mp3' }],
         voice: { presetId: 'Maya', type: 'preset' },
       },
+      dryRun: true,
     });
   });
 });

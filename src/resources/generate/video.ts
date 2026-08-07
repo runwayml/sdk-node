@@ -14,103 +14,257 @@ export class Video extends APIResource {
   }
 }
 
-export interface VideoCreateResponse {
-  /**
-   * The ID of the created task. Poll GET /v1/tasks/:id for the result.
-   */
-  id: string;
-
-  /**
-   * Metadata describing which model the router selected and why.
-   */
-  routing: VideoCreateResponse.Routing;
-}
+export type VideoCreateResponse =
+  | VideoCreateResponse.RoutedVideoTaskCreated
+  | VideoCreateResponse.RoutedVideoDryRun;
 
 export namespace VideoCreateResponse {
-  /**
-   * Metadata describing which model the router selected and why.
-   */
-  export interface Routing {
+  export interface RoutedVideoTaskCreated {
     /**
-     * The slug of the router config that was applied to this request.
+     * The ID of the created task. Poll GET /v1/tasks/:id for the result.
      */
-    configId: string;
+    id: string;
+
+    dryRun: false;
 
     /**
-     * Estimated cost, computed against current pricing.
+     * Metadata describing which model the router selected and why.
      */
-    estimatedCost: Routing.EstimatedCost;
-
-    /**
-     * The public name of the model the router selected.
-     */
-    model: string;
-
-    /**
-     * The provider of the selected model.
-     */
-    provider: string;
-
-    /**
-     * Request-side defaults resolved for the routing response. Not necessarily
-     * identical to prepared model options.
-     */
-    resolvedInput: Routing.ResolvedInput;
-
-    /**
-     * The resolved config settings the router used for this request.
-     */
-    resolvedSettings: Routing.ResolvedSettings;
+    routing: RoutedVideoTaskCreated.Routing;
   }
 
-  export namespace Routing {
+  export namespace RoutedVideoTaskCreated {
     /**
-     * Estimated cost, computed against current pricing.
+     * Metadata describing which model the router selected and why.
      */
-    export interface EstimatedCost {
+    export interface Routing {
       /**
-       * Estimated cost of the generation in credits.
+       * The slug of the router config that was applied to this request.
        */
-      credits: number;
+      configId: string;
+
+      /**
+       * Estimated cost, computed against current pricing.
+       */
+      estimatedCost: Routing.EstimatedCost;
+
+      /**
+       * The public name of the model the router selected.
+       */
+      model: string;
+
+      /**
+       * The provider of the selected model.
+       */
+      provider: string;
+
+      /**
+       * Request-side defaults resolved for the routing response. Not necessarily
+       * identical to prepared model options.
+       */
+      resolvedInput: Routing.ResolvedInput;
+
+      /**
+       * The resolved config settings the router used for this request.
+       */
+      resolvedSettings: Routing.ResolvedSettings;
+
+      /**
+       * Present only when the config enables fallback.onCapacity and capacity affected
+       * this request.
+       */
+      capacityFallback?: Routing.CapacityFallback;
     }
 
+    export namespace Routing {
+      /**
+       * Estimated cost, computed against current pricing.
+       */
+      export interface EstimatedCost {
+        /**
+         * Estimated cost of the generation in credits.
+         */
+        credits: number;
+      }
+
+      /**
+       * Request-side defaults resolved for the routing response. Not necessarily
+       * identical to prepared model options.
+       */
+      export interface ResolvedInput {
+        /**
+         * Duration in seconds used for routing display (request value or router default).
+         */
+        duration: number;
+
+        /**
+         * Concrete output ratio derived from aspectRatio (e.g. "1280:720"), or the router
+         * default.
+         */
+        ratio: string;
+
+        /**
+         * Resolution tier from the request, or the router default when omitted.
+         */
+        resolution: string;
+      }
+
+      /**
+       * The resolved config settings the router used for this request.
+       */
+      export interface ResolvedSettings {
+        /**
+         * The single optimization preference the config selected, used as the soft
+         * weighting when scoring eligible models.
+         */
+        optimizeFor: 'cost' | 'latency' | 'quality';
+
+        /**
+         * The applied maximum credits per generation for this request's modality, or null
+         * if the config sets no ceiling.
+         */
+        priceCeiling: number | null;
+      }
+
+      /**
+       * Present only when the config enables fallback.onCapacity and capacity affected
+       * this request.
+       */
+      export interface CapacityFallback {
+        /**
+         * True when every eligible model was at its concurrency limit, so the best-ranked
+         * model was used and the task will queue.
+         */
+        allExhausted: boolean;
+
+        /**
+         * Eligible models that were considered for this request but not selected because
+         * this account is at its concurrency limit for them.
+         */
+        skipped: Array<string>;
+      }
+    }
+  }
+
+  export interface RoutedVideoDryRun {
+    dryRun: true;
+
     /**
-     * Request-side defaults resolved for the routing response. Not necessarily
-     * identical to prepared model options.
+     * Metadata describing which model the router selected and why.
      */
-    export interface ResolvedInput {
+    routing: RoutedVideoDryRun.Routing;
+  }
+
+  export namespace RoutedVideoDryRun {
+    /**
+     * Metadata describing which model the router selected and why.
+     */
+    export interface Routing {
       /**
-       * Duration in seconds used for routing display (request value or router default).
+       * The slug of the router config that was applied to this request.
        */
-      duration: number;
+      configId: string;
 
       /**
-       * Concrete output ratio derived from aspectRatio (e.g. "1280:720"), or the router
-       * default.
+       * Estimated cost, computed against current pricing.
        */
-      ratio: string;
+      estimatedCost: Routing.EstimatedCost;
 
       /**
-       * Resolution tier from the request, or the router default when omitted.
+       * The public name of the model the router selected.
        */
-      resolution: string;
+      model: string;
+
+      /**
+       * The provider of the selected model.
+       */
+      provider: string;
+
+      /**
+       * Request-side defaults resolved for the routing response. Not necessarily
+       * identical to prepared model options.
+       */
+      resolvedInput: Routing.ResolvedInput;
+
+      /**
+       * The resolved config settings the router used for this request.
+       */
+      resolvedSettings: Routing.ResolvedSettings;
+
+      /**
+       * Present only when the config enables fallback.onCapacity and capacity affected
+       * this request.
+       */
+      capacityFallback?: Routing.CapacityFallback;
     }
 
-    /**
-     * The resolved config settings the router used for this request.
-     */
-    export interface ResolvedSettings {
+    export namespace Routing {
       /**
-       * The single optimization preference the config selected, used as the soft
-       * weighting when scoring eligible models.
+       * Estimated cost, computed against current pricing.
        */
-      optimizeFor: 'cost' | 'latency' | 'quality';
+      export interface EstimatedCost {
+        /**
+         * Estimated cost of the generation in credits.
+         */
+        credits: number;
+      }
 
       /**
-       * The applied maximum credits per generation for this request's modality, or null
-       * if the config sets no ceiling.
+       * Request-side defaults resolved for the routing response. Not necessarily
+       * identical to prepared model options.
        */
-      priceCeiling: number | null;
+      export interface ResolvedInput {
+        /**
+         * Duration in seconds used for routing display (request value or router default).
+         */
+        duration: number;
+
+        /**
+         * Concrete output ratio derived from aspectRatio (e.g. "1280:720"), or the router
+         * default.
+         */
+        ratio: string;
+
+        /**
+         * Resolution tier from the request, or the router default when omitted.
+         */
+        resolution: string;
+      }
+
+      /**
+       * The resolved config settings the router used for this request.
+       */
+      export interface ResolvedSettings {
+        /**
+         * The single optimization preference the config selected, used as the soft
+         * weighting when scoring eligible models.
+         */
+        optimizeFor: 'cost' | 'latency' | 'quality';
+
+        /**
+         * The applied maximum credits per generation for this request's modality, or null
+         * if the config sets no ceiling.
+         */
+        priceCeiling: number | null;
+      }
+
+      /**
+       * Present only when the config enables fallback.onCapacity and capacity affected
+       * this request.
+       */
+      export interface CapacityFallback {
+        /**
+         * True when every eligible model was at its concurrency limit, so the best-ranked
+         * model was used and the task will queue.
+         */
+        allExhausted: boolean;
+
+        /**
+         * Eligible models that were considered for this request but not selected because
+         * this account is at its concurrency limit for them.
+         */
+        skipped: Array<string>;
+      }
     }
   }
 }
@@ -126,6 +280,13 @@ export interface VideoCreateParams {
    * model and maps these options to it.
    */
   input: VideoCreateParams.Input;
+
+  /**
+   * When true, run the full routing pipeline and return the decision and estimated
+   * cost without generating. No task is created, nothing is billed, and no asset is
+   * produced.
+   */
+  dryRun?: boolean;
 }
 
 export namespace VideoCreateParams {

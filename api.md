@@ -155,6 +155,8 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/generate/audio.ts">ReferenceVoice</a></code>
+- <code><a href="./src/resources/generate/audio.ts">ReferenceAudio</a></code>
 - <code><a href="./src/resources/generate/audio.ts">AudioCreateResponse</a></code>
 
 Methods:
@@ -169,6 +171,7 @@ Types:
 - <code><a href="./src/resources/routers.ts">RouterRetrieveResponse</a></code>
 - <code><a href="./src/resources/routers.ts">RouterUpdateResponse</a></code>
 - <code><a href="./src/resources/routers.ts">RouterListResponse</a></code>
+- <code><a href="./src/resources/routers.ts">RouterListRequestsResponse</a></code>
 
 Methods:
 
@@ -177,18 +180,41 @@ Methods:
 - <code title="patch /v1/routers/{id}">client.routers.<a href="./src/resources/routers.ts">update</a>(id, { ...params }) -> RouterUpdateResponse</code>
 - <code title="get /v1/routers">client.routers.<a href="./src/resources/routers.ts">list</a>({ ...params }) -> RouterListResponsesCursorPage</code>
 - <code title="delete /v1/routers/{id}">client.routers.<a href="./src/resources/routers.ts">delete</a>(id) -> void</code>
+- <code title="get /v1/routers/{id}/requests">client.routers.<a href="./src/resources/routers.ts">listRequests</a>(id, { ...params }) -> RouterListRequestsResponsesCursorPage</code>
 
 # Organization
 
 Types:
 
-- <code><a href="./src/resources/organization.ts">OrganizationRetrieveResponse</a></code>
-- <code><a href="./src/resources/organization.ts">OrganizationRetrieveUsageResponse</a></code>
+- <code><a href="./src/resources/organization/organization.ts">OrganizationRetrieveResponse</a></code>
+- <code><a href="./src/resources/organization/organization.ts">OrganizationRetrieveUsageResponse</a></code>
 
 Methods:
 
-- <code title="get /v1/organization">client.organization.<a href="./src/resources/organization.ts">retrieve</a>() -> OrganizationRetrieveResponse</code>
-- <code title="post /v1/organization/usage">client.organization.<a href="./src/resources/organization.ts">retrieveUsage</a>({ ...params }) -> OrganizationRetrieveUsageResponse</code>
+- <code title="get /v1/organization">client.organization.<a href="./src/resources/organization/organization.ts">retrieve</a>() -> OrganizationRetrieveResponse</code>
+- <code title="post /v1/organization/usage">client.organization.<a href="./src/resources/organization/organization.ts">retrieveUsage</a>({ ...params }) -> OrganizationRetrieveUsageResponse</code>
+
+## Webapp
+
+Types:
+
+- <code><a href="./src/resources/organization/webapp/webapp.ts">WebappListUsageResponse</a></code>
+
+Methods:
+
+- <code title="get /v1/organization/webapp/usage">client.organization.webapp.<a href="./src/resources/organization/webapp/webapp.ts">listUsage</a>({ ...params }) -> WebappListUsageResponsesCursorPage</code>
+
+### AuditLogs
+
+Types:
+
+- <code><a href="./src/resources/organization/webapp/audit-logs.ts">AuditLogRetrieveResponse</a></code>
+- <code><a href="./src/resources/organization/webapp/audit-logs.ts">AuditLogListResponse</a></code>
+
+Methods:
+
+- <code title="get /v1/organization/webapp/audit_logs/{eventId}">client.organization.webapp.auditLogs.<a href="./src/resources/organization/webapp/audit-logs.ts">retrieve</a>(eventID, { ...params }) -> AuditLogRetrieveResponse</code>
+- <code title="get /v1/organization/webapp/audit_logs">client.organization.webapp.auditLogs.<a href="./src/resources/organization/webapp/audit-logs.ts">list</a>({ ...params }) -> AuditLogListResponsesCursorPage</code>
 
 # Avatars
 

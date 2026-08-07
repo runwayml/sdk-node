@@ -7,13 +7,12 @@ const client = new RunwayML({
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource textToVideo', () => {
-  test('create: only required params', async () => {
-    const responsePromise = client.textToVideo.create({
-      duration: 2,
-      model: 'gen4.5',
-      promptText: 'x',
-      ratio: '1280:720',
+describe('resource webapp', () => {
+  test('listUsage: only required params', async () => {
+    const responsePromise = client.organization.webapp.listUsage({
+      from: '2019-12-27T18:11:19.117Z',
+      limit: 1,
+      to: '2019-12-27T18:11:19.117Z',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -24,16 +23,14 @@ describe('resource textToVideo', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('create: required and optional params', async () => {
-    const response = await client.textToVideo.create({
-      duration: 2,
-      model: 'gen4.5',
-      promptText: 'x',
-      ratio: '1280:720',
-      contentModeration: { publicFigureThreshold: 'auto' },
-      outputFormat: 'mp4',
-      proresProfile: '422',
-      seed: 0,
+  test('listUsage: required and optional params', async () => {
+    const response = await client.organization.webapp.listUsage({
+      from: '2019-12-27T18:11:19.117Z',
+      limit: 1,
+      to: '2019-12-27T18:11:19.117Z',
+      cursor: 'x',
+      organizationId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      workspaceIds: 'workspaceIds',
     });
   });
 });

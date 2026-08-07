@@ -66,12 +66,6 @@ import {
   ImageUpscaleCreateResponse,
 } from './resources/image-upscale';
 import {
-  Organization,
-  OrganizationRetrieveResponse,
-  OrganizationRetrieveUsageParams,
-  OrganizationRetrieveUsageResponse,
-} from './resources/organization';
-import {
   DeprecatedLivekit,
   RealtimeSessionCreateParams,
   RealtimeSessionCreateResponse,
@@ -99,6 +93,9 @@ import {
   RouterCreateParams,
   RouterCreateResponse,
   RouterListParams,
+  RouterListRequestsParams,
+  RouterListRequestsResponse,
+  RouterListRequestsResponsesCursorPage,
   RouterListResponse,
   RouterListResponsesCursorPage,
   RouterRetrieveResponse,
@@ -162,6 +159,12 @@ import {
   Workflows,
 } from './resources/workflows';
 import { Generate } from './resources/generate/generate';
+import {
+  Organization,
+  OrganizationRetrieveResponse,
+  OrganizationRetrieveUsageParams,
+  OrganizationRetrieveUsageResponse,
+} from './resources/organization/organization';
 import { type Fetch } from './internal/builtin-types';
 import { isRunningInBrowser } from './internal/detect-platform';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
@@ -1102,10 +1105,13 @@ export declare namespace RunwayML {
     type RouterRetrieveResponse as RouterRetrieveResponse,
     type RouterUpdateResponse as RouterUpdateResponse,
     type RouterListResponse as RouterListResponse,
+    type RouterListRequestsResponse as RouterListRequestsResponse,
     type RouterListResponsesCursorPage as RouterListResponsesCursorPage,
+    type RouterListRequestsResponsesCursorPage as RouterListRequestsResponsesCursorPage,
     type RouterCreateParams as RouterCreateParams,
     type RouterUpdateParams as RouterUpdateParams,
     type RouterListParams as RouterListParams,
+    type RouterListRequestsParams as RouterListRequestsParams,
   };
 
   export {

@@ -52,7 +52,7 @@ export {
   type OrganizationRetrieveResponse,
   type OrganizationRetrieveUsageResponse,
   type OrganizationRetrieveUsageParams,
-} from './organization';
+} from './organization/organization';
 export {
   RealtimeSessions,
   type DeprecatedLivekit,
@@ -83,10 +83,13 @@ export {
   type RouterRetrieveResponse,
   type RouterUpdateResponse,
   type RouterListResponse,
+  type RouterListRequestsResponse,
   type RouterCreateParams,
   type RouterUpdateParams,
   type RouterListParams,
+  type RouterListRequestsParams,
   type RouterListResponsesCursorPage,
+  type RouterListRequestsResponsesCursorPage,
 } from './routers';
 export { SoundEffect, type SoundEffectCreateResponse, type SoundEffectCreateParams } from './sound-effect';
 export {

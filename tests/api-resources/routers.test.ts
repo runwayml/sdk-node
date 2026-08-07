@@ -25,6 +25,7 @@ describe('resource routers', () => {
       description: 'description',
       name: 'x',
       settings: {
+        fallback: { onCapacity: true },
         maxCreditsPerGeneration: {
           audio: 1,
           image: 1,
@@ -68,6 +69,7 @@ describe('resource routers', () => {
           description: 'description',
           name: 'x',
           settings: {
+            fallback: { onCapacity: true },
             maxCreditsPerGeneration: {
               audio: 1,
               image: 1,
@@ -107,5 +109,23 @@ describe('resource routers', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('listRequests: only required params', async () => {
+    const responsePromise = client.routers.listRequests('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { limit: 1 });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('listRequests: required and optional params', async () => {
+    const response = await client.routers.listRequests('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      limit: 1,
+      cursor: 'x',
+    });
   });
 });
