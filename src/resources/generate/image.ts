@@ -19,257 +19,127 @@ export class Image extends APIResource {
   }
 }
 
-export type ImageCreateResponse =
-  | ImageCreateResponse.RoutedImageTaskCreated
-  | ImageCreateResponse.RoutedImageDryRun;
+export interface ImageCreateResponse {
+  /**
+   * The ID of the created task. Poll GET /v1/tasks/:id for the result.
+   */
+  id: string;
+
+  /**
+   * Metadata describing which model the router selected and why.
+   */
+  routing: ImageCreateResponse.Routing;
+}
 
 export namespace ImageCreateResponse {
-  export interface RoutedImageTaskCreated {
+  /**
+   * Metadata describing which model the router selected and why.
+   */
+  export interface Routing {
     /**
-     * The ID of the created task. Poll GET /v1/tasks/:id for the result.
+     * The slug of the router config that was applied to this request.
      */
-    id: string;
-
-    dryRun: false;
+    configId: string;
 
     /**
-     * Metadata describing which model the router selected and why.
+     * Estimated cost, computed against current pricing.
      */
-    routing: RoutedImageTaskCreated.Routing;
+    estimatedCost: Routing.EstimatedCost;
+
+    /**
+     * The public name of the model the router selected.
+     */
+    model: string;
+
+    /**
+     * The provider of the selected model.
+     */
+    provider: string;
+
+    /**
+     * Request-side defaults resolved for the routing response. Not necessarily
+     * identical to prepared model options.
+     */
+    resolvedInput: Routing.ResolvedInput;
+
+    /**
+     * The resolved config settings the router used for this request.
+     */
+    resolvedSettings: Routing.ResolvedSettings;
+
+    /**
+     * Present only when the config enables fallback.onCapacity and capacity affected
+     * this request.
+     */
+    capacityFallback?: Routing.CapacityFallback;
   }
 
-  export namespace RoutedImageTaskCreated {
+  export namespace Routing {
     /**
-     * Metadata describing which model the router selected and why.
+     * Estimated cost, computed against current pricing.
      */
-    export interface Routing {
+    export interface EstimatedCost {
       /**
-       * The slug of the router config that was applied to this request.
+       * Estimated cost of the generation in credits.
        */
-      configId: string;
-
-      /**
-       * Estimated cost, computed against current pricing.
-       */
-      estimatedCost: Routing.EstimatedCost;
-
-      /**
-       * The public name of the model the router selected.
-       */
-      model: string;
-
-      /**
-       * The provider of the selected model.
-       */
-      provider: string;
-
-      /**
-       * Request-side defaults resolved for the routing response. Not necessarily
-       * identical to prepared model options.
-       */
-      resolvedInput: Routing.ResolvedInput;
-
-      /**
-       * The resolved config settings the router used for this request.
-       */
-      resolvedSettings: Routing.ResolvedSettings;
-
-      /**
-       * Present only when the config enables fallback.onCapacity and capacity affected
-       * this request.
-       */
-      capacityFallback?: Routing.CapacityFallback;
+      credits: number;
     }
 
-    export namespace Routing {
-      /**
-       * Estimated cost, computed against current pricing.
-       */
-      export interface EstimatedCost {
-        /**
-         * Estimated cost of the generation in credits.
-         */
-        credits: number;
-      }
-
-      /**
-       * Request-side defaults resolved for the routing response. Not necessarily
-       * identical to prepared model options.
-       */
-      export interface ResolvedInput {
-        /**
-         * Aspect ratio used for routing display.
-         */
-        aspectRatio: string;
-
-        /**
-         * Concrete output ratio derived from aspectRatio and resolution for the selected
-         * model.
-         */
-        ratio: string;
-
-        /**
-         * Megapixel tier used for routing display.
-         */
-        resolution: string;
-      }
-
-      /**
-       * The resolved config settings the router used for this request.
-       */
-      export interface ResolvedSettings {
-        /**
-         * The single optimization preference the config selected, used as the soft
-         * weighting when scoring eligible models.
-         */
-        optimizeFor: 'cost' | 'latency' | 'quality';
-
-        /**
-         * The applied maximum credits per generation for this request's modality, or null
-         * if the config sets no ceiling.
-         */
-        priceCeiling: number | null;
-      }
-
-      /**
-       * Present only when the config enables fallback.onCapacity and capacity affected
-       * this request.
-       */
-      export interface CapacityFallback {
-        /**
-         * True when every eligible model was at its concurrency limit, so the best-ranked
-         * model was used and the task will queue.
-         */
-        allExhausted: boolean;
-
-        /**
-         * Eligible models that were considered for this request but not selected because
-         * this account is at its concurrency limit for them.
-         */
-        skipped: Array<string>;
-      }
-    }
-  }
-
-  export interface RoutedImageDryRun {
-    dryRun: true;
-
     /**
-     * Metadata describing which model the router selected and why.
+     * Request-side defaults resolved for the routing response. Not necessarily
+     * identical to prepared model options.
      */
-    routing: RoutedImageDryRun.Routing;
-  }
-
-  export namespace RoutedImageDryRun {
-    /**
-     * Metadata describing which model the router selected and why.
-     */
-    export interface Routing {
+    export interface ResolvedInput {
       /**
-       * The slug of the router config that was applied to this request.
+       * Aspect ratio used for routing display.
        */
-      configId: string;
+      aspectRatio: string;
 
       /**
-       * Estimated cost, computed against current pricing.
+       * Concrete output ratio derived from aspectRatio and resolution for the selected
+       * model.
        */
-      estimatedCost: Routing.EstimatedCost;
+      ratio: string;
 
       /**
-       * The public name of the model the router selected.
+       * Megapixel tier used for routing display.
        */
-      model: string;
-
-      /**
-       * The provider of the selected model.
-       */
-      provider: string;
-
-      /**
-       * Request-side defaults resolved for the routing response. Not necessarily
-       * identical to prepared model options.
-       */
-      resolvedInput: Routing.ResolvedInput;
-
-      /**
-       * The resolved config settings the router used for this request.
-       */
-      resolvedSettings: Routing.ResolvedSettings;
-
-      /**
-       * Present only when the config enables fallback.onCapacity and capacity affected
-       * this request.
-       */
-      capacityFallback?: Routing.CapacityFallback;
+      resolution: string;
     }
 
-    export namespace Routing {
+    /**
+     * The resolved config settings the router used for this request.
+     */
+    export interface ResolvedSettings {
       /**
-       * Estimated cost, computed against current pricing.
+       * The single optimization preference the config selected, used as the soft
+       * weighting when scoring eligible models.
        */
-      export interface EstimatedCost {
-        /**
-         * Estimated cost of the generation in credits.
-         */
-        credits: number;
-      }
-
-      /**
-       * Request-side defaults resolved for the routing response. Not necessarily
-       * identical to prepared model options.
-       */
-      export interface ResolvedInput {
-        /**
-         * Aspect ratio used for routing display.
-         */
-        aspectRatio: string;
-
-        /**
-         * Concrete output ratio derived from aspectRatio and resolution for the selected
-         * model.
-         */
-        ratio: string;
-
-        /**
-         * Megapixel tier used for routing display.
-         */
-        resolution: string;
-      }
+      optimizeFor: 'cost' | 'latency' | 'quality';
 
       /**
-       * The resolved config settings the router used for this request.
+       * The applied maximum credits per generation for this request's modality, or null
+       * if the config sets no ceiling.
        */
-      export interface ResolvedSettings {
-        /**
-         * The single optimization preference the config selected, used as the soft
-         * weighting when scoring eligible models.
-         */
-        optimizeFor: 'cost' | 'latency' | 'quality';
+      priceCeiling: number | null;
+    }
 
-        /**
-         * The applied maximum credits per generation for this request's modality, or null
-         * if the config sets no ceiling.
-         */
-        priceCeiling: number | null;
-      }
+    /**
+     * Present only when the config enables fallback.onCapacity and capacity affected
+     * this request.
+     */
+    export interface CapacityFallback {
+      /**
+       * True when every eligible model was at its concurrency limit, so the best-ranked
+       * model was used and the task will queue.
+       */
+      allExhausted: boolean;
 
       /**
-       * Present only when the config enables fallback.onCapacity and capacity affected
-       * this request.
+       * Eligible models that were considered for this request but not selected because
+       * this account is at its concurrency limit for them.
        */
-      export interface CapacityFallback {
-        /**
-         * True when every eligible model was at its concurrency limit, so the best-ranked
-         * model was used and the task will queue.
-         */
-        allExhausted: boolean;
-
-        /**
-         * Eligible models that were considered for this request but not selected because
-         * this account is at its concurrency limit for them.
-         */
-        skipped: Array<string>;
-      }
+      skipped: Array<string>;
     }
   }
 }
@@ -285,13 +155,6 @@ export interface ImageCreateParams {
    * options to it.
    */
   input: ImageCreateParams.Input;
-
-  /**
-   * When true, run the full routing pipeline and return the decision and estimated
-   * cost without generating. No task is created, nothing is billed, and no asset is
-   * produced.
-   */
-  dryRun?: boolean;
 }
 
 export namespace ImageCreateParams {
