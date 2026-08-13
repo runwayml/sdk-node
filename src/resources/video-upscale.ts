@@ -30,13 +30,34 @@ export interface VideoUpscaleCreateResponse {
    * The ID of the task that was created. Use this to retrieve the task later.
    */
   id: string;
+
+  /**
+   * The maximum credits this task may charge. The final amount may be lower after
+   * the task completes.
+   */
+  estimatedCost: VideoUpscaleCreateResponse.EstimatedCost;
+}
+
+export namespace VideoUpscaleCreateResponse {
+  /**
+   * The maximum credits this task may charge. The final amount may be lower after
+   * the task completes.
+   */
+  export interface EstimatedCost {
+    /**
+     * Estimated cost of the generation in credits.
+     */
+    credits: number;
+  }
 }
 
 export interface VideoUpscaleCreateParams {
   model: 'magnific_video_upscaler_creative';
 
   /**
-   * A HTTPS URL.
+   * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+   * `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+   * [our docs](/assets/inputs#videos) on video inputs for more information.
    */
   videoUri: string;
 

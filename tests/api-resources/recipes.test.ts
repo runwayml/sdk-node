@@ -10,7 +10,7 @@ const client = new RunwayML({
 describe('resource recipes', () => {
   test('adLocalization: only required params', async () => {
     const responsePromise = client.recipes.adLocalization({
-      referenceImage: { uri: 'https://example.com/file' },
+      referenceImage: { uri: 'https://example.com/image.jpg' },
       targetLanguage: 'ar',
       version: '2026-06',
     });
@@ -25,7 +25,7 @@ describe('resource recipes', () => {
 
   test('adLocalization: required and optional params', async () => {
     const response = await client.recipes.adLocalization({
-      referenceImage: { uri: 'https://example.com/file' },
+      referenceImage: { uri: 'https://example.com/image.jpg' },
       targetLanguage: 'ar',
       version: '2026-06',
     });
@@ -48,7 +48,7 @@ describe('resource recipes', () => {
       version: '2026-06',
       outputCount: 1,
       quality: 'low',
-      referenceImage: { uri: 'https://example.com/file' },
+      referenceImage: { uri: 'https://example.com/image.jpg' },
     });
   });
 
@@ -74,14 +74,14 @@ describe('resource recipes', () => {
       version: '2026-06',
       audio: true,
       duration: 5,
-      firstFrame: { uri: 'https://example.com/file' },
+      firstFrame: { uri: 'https://example.com/image.jpg' },
       ratio: '1280:720',
     });
   });
 
   test('productAd: only required params', async () => {
     const responsePromise = client.recipes.productAd({
-      productImages: [{ uri: 'https://example.com/file' }],
+      productImages: [{ uri: 'https://example.com/image.jpg' }],
       version: '2026-06',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -95,20 +95,20 @@ describe('resource recipes', () => {
 
   test('productAd: required and optional params', async () => {
     const response = await client.recipes.productAd({
-      productImages: [{ uri: 'https://example.com/file' }],
+      productImages: [{ uri: 'https://example.com/image.jpg' }],
       version: '2026-06',
       audio: true,
       duration: 4,
       productInfo: 'productInfo',
       ratio: '1280:720',
-      styleImages: [{ uri: 'https://example.com/file' }],
+      styleImages: [{ uri: 'https://example.com/image.jpg' }],
       userConcept: 'userConcept',
     });
   });
 
   test('productCampaignImage: only required params', async () => {
     const responsePromise = client.recipes.productCampaignImage({
-      image: { uri: 'https://example.com/file' },
+      image: { uri: 'https://example.com/image.jpg' },
       prompt: 'x',
       version: '2026-06',
     });
@@ -123,7 +123,7 @@ describe('resource recipes', () => {
 
   test('productCampaignImage: required and optional params', async () => {
     const response = await client.recipes.productCampaignImage({
-      image: { uri: 'https://example.com/file' },
+      image: { uri: 'https://example.com/image.jpg' },
       prompt: 'x',
       version: '2026-06',
     });
@@ -131,9 +131,9 @@ describe('resource recipes', () => {
 
   test('productSwap: only required params', async () => {
     const responsePromise = client.recipes.productSwap({
-      newProductImages: [{ uri: 'https://example.com/file' }],
-      originalProductImage: { uri: 'https://example.com/file' },
-      referenceVideo: { uri: 'https://example.com/file' },
+      newProductImages: [{ uri: 'https://example.com/image.jpg' }],
+      originalProductImage: { uri: 'https://example.com/image.jpg' },
+      referenceVideo: { uri: 'https://example.com/video.mp4' },
       version: '2026-06',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -147,9 +147,9 @@ describe('resource recipes', () => {
 
   test('productSwap: required and optional params', async () => {
     const response = await client.recipes.productSwap({
-      newProductImages: [{ uri: 'https://example.com/file', view: 'front' }],
-      originalProductImage: { uri: 'https://example.com/file' },
-      referenceVideo: { uri: 'https://example.com/file' },
+      newProductImages: [{ uri: 'https://example.com/image.jpg', view: 'front' }],
+      originalProductImage: { uri: 'https://example.com/image.jpg' },
+      referenceVideo: { uri: 'https://example.com/video.mp4' },
       version: '2026-06',
       audio: true,
       duration: 4,
@@ -159,8 +159,8 @@ describe('resource recipes', () => {
 
   test('productUgc: only required params', async () => {
     const responsePromise = client.recipes.productUgc({
-      characterImage: { uri: 'https://example.com/file' },
-      productImage: { uri: 'https://example.com/file' },
+      characterImage: { uri: 'https://example.com/image.jpg' },
+      productImage: { uri: 'https://example.com/image.jpg' },
       version: '2026-06',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -174,8 +174,8 @@ describe('resource recipes', () => {
 
   test('productUgc: required and optional params', async () => {
     const response = await client.recipes.productUgc({
-      characterImage: { uri: 'https://example.com/file' },
-      productImage: { uri: 'https://example.com/file' },
+      characterImage: { uri: 'https://example.com/image.jpg' },
+      productImage: { uri: 'https://example.com/image.jpg' },
       version: '2026-06',
       audio: true,
       duration: 4,

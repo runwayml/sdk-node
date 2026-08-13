@@ -25,6 +25,25 @@ export interface SpeechToSpeechCreateResponse {
    * The ID of the task that was created. Use this to retrieve the task later.
    */
   id: string;
+
+  /**
+   * The maximum credits this task may charge. The final amount may be lower after
+   * the task completes.
+   */
+  estimatedCost: SpeechToSpeechCreateResponse.EstimatedCost;
+}
+
+export namespace SpeechToSpeechCreateResponse {
+  /**
+   * The maximum credits this task may charge. The final amount may be lower after
+   * the task completes.
+   */
+  export interface EstimatedCost {
+    /**
+     * Estimated cost of the generation in credits.
+     */
+    credits: number;
+  }
 }
 
 export interface SpeechToSpeechCreateParams {
@@ -54,7 +73,9 @@ export namespace SpeechToSpeechCreateParams {
     type: 'audio';
 
     /**
-     * A HTTPS URL.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+     * [our docs](/assets/inputs#audio) on audio inputs for more information.
      */
     uri: string;
   }
@@ -66,7 +87,9 @@ export namespace SpeechToSpeechCreateParams {
     type: 'video';
 
     /**
-     * A HTTPS URL.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+     * [our docs](/assets/inputs#videos) on video inputs for more information.
      */
     uri: string;
   }

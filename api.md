@@ -203,6 +203,7 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/realtime-sessions.ts">DeprecatedLivekit</a></code>
 - <code><a href="./src/resources/realtime-sessions.ts">RealtimeSessionCreateResponse</a></code>
 - <code><a href="./src/resources/realtime-sessions.ts">RealtimeSessionRetrieveResponse</a></code>
 
@@ -276,3 +277,12 @@ Types:
 Methods:
 
 - <code title="get /v1/workflow_invocations/{id}">client.workflowInvocations.<a href="./src/resources/workflow-invocations.ts">retrieve</a>(id) -> WorkflowInvocationRetrieveResponse</code>
+
+# Generate
+
+## Audio
+
+Types:
+
+- <code><a href="./src/resources/generate/audio.ts">ReferenceVoice</a></code>
+- <code><a href="./src/resources/generate/audio.ts">ReferenceAudio</a></code>

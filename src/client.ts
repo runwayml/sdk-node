@@ -72,6 +72,7 @@ import {
   OrganizationRetrieveUsageResponse,
 } from './resources/organization';
 import {
+  DeprecatedLivekit,
   RealtimeSessionCreateParams,
   RealtimeSessionCreateResponse,
   RealtimeSessionRetrieveResponse,
@@ -149,6 +150,7 @@ import {
   WorkflowRunResponse,
   Workflows,
 } from './resources/workflows';
+import { Generate } from './resources/generate/generate';
 import { type Fetch } from './internal/builtin-types';
 import { isRunningInBrowser } from './internal/detect-platform';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
@@ -971,6 +973,7 @@ export class RunwayML {
   voices: API.Voices = new API.Voices(this);
   workflows: API.Workflows = new API.Workflows(this);
   workflowInvocations: API.WorkflowInvocations = new API.WorkflowInvocations(this);
+  generate: API.Generate = new API.Generate(this);
 }
 
 RunwayML.Tasks = Tasks;
@@ -996,6 +999,7 @@ RunwayML.Recipes = Recipes;
 RunwayML.Voices = Voices;
 RunwayML.Workflows = Workflows;
 RunwayML.WorkflowInvocations = WorkflowInvocations;
+RunwayML.Generate = Generate;
 
 export declare namespace RunwayML {
   export type RequestOptions = Opts.RequestOptions;
@@ -1125,6 +1129,7 @@ export declare namespace RunwayML {
 
   export {
     RealtimeSessions as RealtimeSessions,
+    type DeprecatedLivekit as DeprecatedLivekit,
     type RealtimeSessionCreateResponse as RealtimeSessionCreateResponse,
     type RealtimeSessionRetrieveResponse as RealtimeSessionRetrieveResponse,
     type RealtimeSessionCreateParams as RealtimeSessionCreateParams,
@@ -1174,4 +1179,6 @@ export declare namespace RunwayML {
     WorkflowInvocations as WorkflowInvocations,
     type WorkflowInvocationRetrieveResponse as WorkflowInvocationRetrieveResponse,
   };
+
+  export { Generate as Generate };
 }

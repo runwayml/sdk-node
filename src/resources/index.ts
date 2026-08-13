@@ -36,6 +36,7 @@ export {
   type DocumentListParams,
   type DocumentListResponsesCursorPage,
 } from './documents';
+export { Generate } from './generate/generate';
 export {
   ImageToVideo,
   type ImageToVideoCreateResponse,
@@ -54,6 +55,7 @@ export {
 } from './organization';
 export {
   RealtimeSessions,
+  type DeprecatedLivekit,
   type RealtimeSessionCreateResponse,
   type RealtimeSessionRetrieveResponse,
   type RealtimeSessionCreateParams,

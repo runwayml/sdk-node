@@ -18,7 +18,7 @@ export class CharacterPerformance extends APIResource {
    *   await client.characterPerformance.create({
    *     character: {
    *       type: 'image',
-   *       uri: 'https://example.com/file',
+   *       uri: 'https://example.com/image.jpg',
    *     },
    *     model: 'act_two',
    *     reference: {
@@ -41,6 +41,25 @@ export interface CharacterPerformanceCreateResponse {
    * The ID of the task that was created. Use this to retrieve the task later.
    */
   id: string;
+
+  /**
+   * The maximum credits this task may charge. The final amount may be lower after
+   * the task completes.
+   */
+  estimatedCost: CharacterPerformanceCreateResponse.EstimatedCost;
+}
+
+export namespace CharacterPerformanceCreateResponse {
+  /**
+   * The maximum credits this task may charge. The final amount may be lower after
+   * the task completes.
+   */
+  export interface EstimatedCost {
+    /**
+     * Estimated cost of the generation in credits.
+     */
+    credits: number;
+  }
 }
 
 export interface CharacterPerformanceCreateParams {
@@ -98,7 +117,9 @@ export namespace CharacterPerformanceCreateParams {
     type: 'image';
 
     /**
-     * A HTTPS URL.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+     * [our docs](/assets/inputs#images) on image inputs for more information.
      */
     uri: string;
   }
@@ -112,7 +133,9 @@ export namespace CharacterPerformanceCreateParams {
     type: 'video';
 
     /**
-     * A HTTPS URL.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+     * [our docs](/assets/inputs#videos) on video inputs for more information.
      */
     uri: string;
   }
@@ -125,7 +148,9 @@ export namespace CharacterPerformanceCreateParams {
     type: 'video';
 
     /**
-     * A HTTPS URL.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+     * [our docs](/assets/inputs#videos) on video inputs for more information.
      */
     uri: string;
   }

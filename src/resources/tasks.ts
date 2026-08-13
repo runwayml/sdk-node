@@ -60,7 +60,24 @@ export namespace TaskRetrieveResponse {
      */
     createdAt: string;
 
+    /**
+     * Estimated cost, computed against current pricing.
+     */
+    estimatedCost: Pending.EstimatedCost;
+
     status: 'PENDING';
+  }
+
+  export namespace Pending {
+    /**
+     * Estimated cost, computed against current pricing.
+     */
+    export interface EstimatedCost {
+      /**
+       * Estimated cost of the generation in credits.
+       */
+      credits: number;
+    }
   }
 
   /**
@@ -77,7 +94,24 @@ export namespace TaskRetrieveResponse {
      */
     createdAt: string;
 
+    /**
+     * Estimated cost, computed against current pricing.
+     */
+    estimatedCost: Throttled.EstimatedCost;
+
     status: 'THROTTLED';
+  }
+
+  export namespace Throttled {
+    /**
+     * Estimated cost, computed against current pricing.
+     */
+    export interface EstimatedCost {
+      /**
+       * Estimated cost of the generation in credits.
+       */
+      credits: number;
+    }
   }
 
   /**
@@ -90,11 +124,28 @@ export namespace TaskRetrieveResponse {
     id: string;
 
     /**
+     * Final cost in credits for a terminal task. A refunded task reports 0.
+     */
+    cost: Cancelled.Cost;
+
+    /**
      * The timestamp that the task was submitted at.
      */
     createdAt: string;
 
     status: 'CANCELLED';
+  }
+
+  export namespace Cancelled {
+    /**
+     * Final cost in credits for a terminal task. A refunded task reports 0.
+     */
+    export interface Cost {
+      /**
+       * Credits charged for this task.
+       */
+      credits: number;
+    }
   }
 
   /**
@@ -111,9 +162,26 @@ export namespace TaskRetrieveResponse {
      */
     createdAt: string;
 
+    /**
+     * Estimated cost, computed against current pricing.
+     */
+    estimatedCost: Running.EstimatedCost;
+
     progress: number;
 
     status: 'RUNNING';
+  }
+
+  export namespace Running {
+    /**
+     * Estimated cost, computed against current pricing.
+     */
+    export interface EstimatedCost {
+      /**
+       * Estimated cost of the generation in credits.
+       */
+      credits: number;
+    }
   }
 
   /**
@@ -124,6 +192,11 @@ export namespace TaskRetrieveResponse {
      * The ID of the task being returned.
      */
     id: string;
+
+    /**
+     * Final cost in credits for a terminal task. A refunded task reports 0.
+     */
+    cost: Failed.Cost;
 
     /**
      * The timestamp that the task was submitted at.
@@ -145,6 +218,18 @@ export namespace TaskRetrieveResponse {
     failureCode?: string;
   }
 
+  export namespace Failed {
+    /**
+     * Final cost in credits for a terminal task. A refunded task reports 0.
+     */
+    export interface Cost {
+      /**
+       * Credits charged for this task.
+       */
+      credits: number;
+    }
+  }
+
   /**
    * A succeeded task
    */
@@ -153,6 +238,11 @@ export namespace TaskRetrieveResponse {
      * The ID of the task being returned.
      */
     id: string;
+
+    /**
+     * Final cost in credits for a terminal task. A refunded task reports 0.
+     */
+    cost: Succeeded.Cost;
 
     /**
      * The timestamp that the task was submitted at.
@@ -167,6 +257,18 @@ export namespace TaskRetrieveResponse {
     output: Array<string>;
 
     status: 'SUCCEEDED';
+  }
+
+  export namespace Succeeded {
+    /**
+     * Final cost in credits for a terminal task. A refunded task reports 0.
+     */
+    export interface Cost {
+      /**
+       * Credits charged for this task.
+       */
+      credits: number;
+    }
   }
 }
 

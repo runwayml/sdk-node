@@ -21,6 +21,25 @@ export interface TextToVideoCreateResponse {
    * The ID of the task that was created. Use this to retrieve the task later.
    */
   id: string;
+
+  /**
+   * The maximum credits this task may charge. The final amount may be lower after
+   * the task completes.
+   */
+  estimatedCost: TextToVideoCreateResponse.EstimatedCost;
+}
+
+export namespace TextToVideoCreateResponse {
+  /**
+   * The maximum credits this task may charge. The final amount may be lower after
+   * the task completes.
+   */
+  export interface EstimatedCost {
+    /**
+     * Estimated cost of the generation in credits.
+     */
+    credits: number;
+  }
 }
 
 export type TextToVideoCreateParams =
@@ -31,8 +50,7 @@ export type TextToVideoCreateParams =
   | TextToVideoCreateParams.Seedance2
   | TextToVideoCreateParams.Seedance2Fast
   | TextToVideoCreateParams.Seedance2Mini
-  | TextToVideoCreateParams.GeminiOmniFlash
-  | TextToVideoCreateParams.Veo3;
+  | TextToVideoCreateParams.GeminiOmniFlash;
 
 export declare namespace TextToVideoCreateParams {
   export interface Gen4_5 {
@@ -248,14 +266,18 @@ export declare namespace TextToVideoCreateParams {
       type: 'audio';
 
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+       * [our docs](/assets/inputs#audio) on audio inputs for more information.
        */
       uri: string;
     }
 
     export interface Reference {
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
     }
@@ -268,7 +290,9 @@ export declare namespace TextToVideoCreateParams {
       type: 'video';
 
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+       * [our docs](/assets/inputs#videos) on video inputs for more information.
        */
       uri: string;
     }
@@ -340,14 +364,18 @@ export declare namespace TextToVideoCreateParams {
       type: 'audio';
 
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+       * [our docs](/assets/inputs#audio) on audio inputs for more information.
        */
       uri: string;
     }
 
     export interface Reference {
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
     }
@@ -360,7 +388,9 @@ export declare namespace TextToVideoCreateParams {
       type: 'video';
 
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+       * [our docs](/assets/inputs#videos) on video inputs for more information.
        */
       uri: string;
     }
@@ -432,14 +462,18 @@ export declare namespace TextToVideoCreateParams {
       type: 'audio';
 
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+       * [our docs](/assets/inputs#audio) on audio inputs for more information.
        */
       uri: string;
     }
 
     export interface Reference {
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
     }
@@ -452,7 +486,9 @@ export declare namespace TextToVideoCreateParams {
       type: 'video';
 
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+       * [our docs](/assets/inputs#videos) on video inputs for more information.
        */
       uri: string;
     }
@@ -476,31 +512,6 @@ export declare namespace TextToVideoCreateParams {
      * (portrait).
      */
     ratio?: '1280:720' | '720:1280';
-  }
-
-  export interface Veo3 {
-    /**
-     * The number of seconds of duration for the output video.
-     */
-    duration: 8;
-
-    model: 'veo3';
-
-    /**
-     * A non-empty string up to 1000 characters (measured in UTF-16 code units). This
-     * should describe in detail what should appear in the output.
-     */
-    promptText: string;
-
-    /**
-     * The resolution of the output video.
-     */
-    ratio: '1280:720' | '720:1280' | '1080:1920' | '1920:1080';
-
-    /**
-     * Text describing what should not appear in the output video.
-     */
-    negativePrompt?: string;
   }
 }
 

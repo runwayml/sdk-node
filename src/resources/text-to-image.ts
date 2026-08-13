@@ -21,6 +21,25 @@ export interface TextToImageCreateResponse {
    * The ID of the task that was created. Use this to retrieve the task later.
    */
   id: string;
+
+  /**
+   * The maximum credits this task may charge. The final amount may be lower after
+   * the task completes.
+   */
+  estimatedCost: TextToImageCreateResponse.EstimatedCost;
+}
+
+export namespace TextToImageCreateResponse {
+  /**
+   * The maximum credits this task may charge. The final amount may be lower after
+   * the task completes.
+   */
+  export interface EstimatedCost {
+    /**
+     * Estimated cost of the generation in credits.
+     */
+    credits: number;
+  }
 }
 
 export type TextToImageCreateParams =
@@ -86,13 +105,16 @@ export declare namespace TextToImageCreateParams {
   export namespace Gen4ImageTurbo {
     export interface ReferenceImage {
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
 
       /**
        * A tag to identify the reference image. This is used to reference the image in
-       * prompt text.
+       * prompt text. Must be 3-16 characters, start with a letter, and use only letters,
+       * digits, and underscores (no hyphens or other punctuation).
        */
       tag?: string;
     }
@@ -172,13 +194,16 @@ export declare namespace TextToImageCreateParams {
 
     export interface ReferenceImage {
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
 
       /**
        * A tag to identify the reference image. This is used to reference the image in
-       * prompt text.
+       * prompt text. Must be 3-16 characters, start with a letter, and use only letters,
+       * digits, and underscores (no hyphens or other punctuation).
        */
       tag?: string;
     }
@@ -256,13 +281,16 @@ export declare namespace TextToImageCreateParams {
   export namespace GptImage2 {
     export interface ReferenceImage {
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
 
       /**
        * A tag to identify the reference image. This may be used to reference the image
-       * in prompt text.
+       * in prompt text. Must be 3-16 characters, start with a letter, and use only
+       * letters, digits, and underscores (no hyphens or other punctuation).
        */
       tag?: string;
     }
@@ -331,7 +359,9 @@ export declare namespace TextToImageCreateParams {
   export namespace GeminiImage3Pro {
     export interface ReferenceImage {
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
 
@@ -343,7 +373,8 @@ export declare namespace TextToImageCreateParams {
 
       /**
        * A tag to identify the reference image. This is used to reference the image in
-       * prompt text.
+       * prompt text. Must be 3-16 characters, start with a letter, and use only letters,
+       * digits, and underscores (no hyphens or other punctuation).
        */
       tag?: string;
     }
@@ -438,7 +469,9 @@ export declare namespace TextToImageCreateParams {
   export namespace GeminiImage3_1Flash {
     export interface ReferenceImage {
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
 
@@ -450,7 +483,8 @@ export declare namespace TextToImageCreateParams {
 
       /**
        * A tag to identify the reference image. This is used to reference the image in
-       * prompt text.
+       * prompt text. Must be 3-16 characters, start with a letter, and use only letters,
+       * digits, and underscores (no hyphens or other punctuation).
        */
       tag?: string;
     }
@@ -488,6 +522,12 @@ export declare namespace TextToImageCreateParams {
       | 'auto_2k';
 
     /**
+     * When true, enable live web search so the model can use current brand, trend, or
+     * event context. Default false for deterministic output.
+     */
+    grounding?: boolean;
+
+    /**
      * The number of images to generate. Increasing this number will affect the number
      * of credits consumed by the generation.
      */
@@ -508,7 +548,9 @@ export declare namespace TextToImageCreateParams {
   export namespace Seedream5Pro {
     export interface ReferenceImage {
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
     }
@@ -564,7 +606,9 @@ export declare namespace TextToImageCreateParams {
   export namespace Seedream5Lite {
     export interface ReferenceImage {
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
     }
@@ -603,13 +647,16 @@ export declare namespace TextToImageCreateParams {
   export namespace Gemini2_5Flash {
     export interface ReferenceImage {
       /**
-       * A HTTPS URL.
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
 
       /**
        * A tag to identify the reference image. This is used to reference the image in
-       * prompt text.
+       * prompt text. Must be 3-16 characters, start with a letter, and use only letters,
+       * digits, and underscores (no hyphens or other punctuation).
        */
       tag?: string;
     }

@@ -116,6 +116,7 @@ export interface OrganizationRetrieveUsageResponse {
     | 'gemini_image3_pro'
     | 'gemini_image3.1_flash'
     | 'seedream5_pro'
+    | 'seedream5_lite'
     | 'gemini_omni_flash'
     | 'eleven_multilingual_v2'
     | 'seed_audio'
@@ -153,6 +154,16 @@ export interface OrganizationRetrieveUsageResponse {
   >;
 
   results: Array<OrganizationRetrieveUsageResponse.Result>;
+
+  /**
+   * Reserved for future use.
+   */
+  apiKeys?: Array<string>;
+
+  /**
+   * Reserved for future use.
+   */
+  resultsByApiKey?: Array<OrganizationRetrieveUsageResponse.ResultsByAPIKey>;
 }
 
 export namespace OrganizationRetrieveUsageResponse {
@@ -196,6 +207,7 @@ export namespace OrganizationRetrieveUsageResponse {
         | 'gemini_image3_pro'
         | 'gemini_image3.1_flash'
         | 'seedream5_pro'
+        | 'seedream5_lite'
         | 'gemini_omni_flash'
         | 'eleven_multilingual_v2'
         | 'seed_audio'
@@ -230,6 +242,20 @@ export namespace OrganizationRetrieveUsageResponse {
         | 'marketing_stock_image'
         | 'product_campaign_image'
         | 'ad_localization';
+    }
+  }
+
+  export interface ResultsByAPIKey {
+    date: string;
+
+    usedCredits: Array<ResultsByAPIKey.UsedCredit>;
+  }
+
+  export namespace ResultsByAPIKey {
+    export interface UsedCredit {
+      amount: number;
+
+      apiKeyId: string;
     }
   }
 }

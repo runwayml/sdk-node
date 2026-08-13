@@ -28,7 +28,7 @@ describe('resource textToSpeech', () => {
       pitchRate: -12,
       sampleRate: 8000,
       speechRate: -50,
-      voice: { audioUri: 'https://example.com/file', type: 'reference-audio' },
+      voice: { audioUri: 'https://example.com/audio.mp3', type: 'reference-audio' },
     });
   });
 });
