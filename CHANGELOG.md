@@ -6,8 +6,12 @@ Full Changelog: [v4.13.2...v4.14.0](https://github.com/runwayml/sdk-node/compare
 
 ### Features
 
-* **api:** api update ([fc9fbdf](https://github.com/runwayml/sdk-node/commit/fc9fbdf3757789176250a597021e96d60e943bfe))
-* **api:** manual updates ([329e6cc](https://github.com/runwayml/sdk-node/commit/329e6cc1b562daa715d93f8845bc3d1b9d51723c))
+* **api:** add hailuo3 and seedance2_5 (text/image/video-to-video) ([fc9fbdf](https://github.com/runwayml/sdk-node/commit/fc9fbdf3757789176250a597021e96d60e943bfe))
+* **api:** add eleven_v3 text-to-speech ([329e6cc](https://github.com/runwayml/sdk-node/commit/329e6cc1b562daa715d93f8845bc3d1b9d51723c))
+* **api:** add Model Router request history and capacity fallback ([fc9fbdf](https://github.com/runwayml/sdk-node/commit/fc9fbdf3757789176250a597021e96d60e943bfe))
+* **api:** add organization webapp usage and audit logs ([fc9fbdf](https://github.com/runwayml/sdk-node/commit/fc9fbdf3757789176250a597021e96d60e943bfe))
+* **api:** expose task cost / estimatedCost on retrieve ([fc9fbdf](https://github.com/runwayml/sdk-node/commit/fc9fbdf3757789176250a597021e96d60e943bfe))
+* **api:** add text-to-image grounding ([fc9fbdf](https://github.com/runwayml/sdk-node/commit/fc9fbdf3757789176250a597021e96d60e943bfe))
 
 ## 4.13.2 (2026-07-30)
 
