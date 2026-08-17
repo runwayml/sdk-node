@@ -7,14 +7,11 @@ const client = new RunwayML({
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource imageToVideo', () => {
+describe('resource image', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.imageToVideo.create({
-      duration: 2,
-      model: 'gen4.5',
-      promptImage: 'https://example.com/image.jpg',
-      promptText: 'x',
-      ratio: '1280:720',
+    const responsePromise = client.generate.image.create({
+      configId: 'n6_',
+      input: { promptText: 'x' },
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -26,16 +23,18 @@ describe('resource imageToVideo', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await client.imageToVideo.create({
-      duration: 2,
-      model: 'gen4.5',
-      promptImage: 'https://example.com/image.jpg',
-      promptText: 'x',
-      ratio: '1280:720',
-      contentModeration: { publicFigureThreshold: 'auto' },
-      outputFormat: 'mp4',
-      proresProfile: '422',
-      seed: 0,
+    const response = await client.generate.image.create({
+      configId: 'n6_',
+      input: {
+        promptText: 'x',
+        aspectRatio: '16:9',
+        contentModeration: { publicFigureThreshold: 'auto' },
+        outputCount: 1,
+        referenceImages: [{ uri: 'https://example.com/image.jpg' }],
+        resolution: '1k',
+        seed: 0,
+      },
+      dryRun: true,
     });
   });
 });

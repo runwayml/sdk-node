@@ -1,51 +1,25 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
-import * as AudioAPI from './audio';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 
-export class Audio extends APIResource {
+export class Image extends APIResource {
   /**
-   * Start an audio generation task using a saved Model Router config instead of
-   * naming a model. Set input.type to speech to speak promptText verbatim, or audio
-   * to generate audio described by promptText.
+   * Start an image generation task using a saved Model Router config instead of
+   * naming a model.
    */
-  create(body: AudioCreateParams, options?: RequestOptions): APIPromise<AudioCreateResponse> {
-    return this._client.post('/v1/generate/audio', { body, ...options });
+  create(body: ImageCreateParams, options?: RequestOptions): APIPromise<ImageCreateResponse> {
+    return this._client.post('/v1/generate/image', { body, ...options });
   }
 }
 
-/**
- * Clone a voice from a reference audio clip, then speak promptText in that voice.
- * Routes only to models that support voice cloning.
- */
-export interface ReferenceVoice {
-  /**
-   * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-   * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
-   * [our docs](/assets/inputs#audio) on audio inputs for more information.
-   */
-  audioUri: string;
+export type ImageCreateResponse =
+  | ImageCreateResponse.RoutedImageTaskCreated
+  | ImageCreateResponse.RoutedImageDryRun;
 
-  type: 'reference-audio';
-}
-
-export interface ReferenceAudio {
-  /**
-   * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-   * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
-   * [our docs](/assets/inputs#audio) on audio inputs for more information.
-   */
-  uri: string;
-}
-
-export type AudioCreateResponse =
-  | AudioCreateResponse.RoutedAudioTaskCreated
-  | AudioCreateResponse.RoutedAudioDryRun;
-
-export namespace AudioCreateResponse {
-  export interface RoutedAudioTaskCreated {
+export namespace ImageCreateResponse {
+  export interface RoutedImageTaskCreated {
     /**
      * The ID of the created task. Poll GET /v1/tasks/:id for the result.
      */
@@ -56,10 +30,10 @@ export namespace AudioCreateResponse {
     /**
      * Metadata describing which model the router selected and why.
      */
-    routing: RoutedAudioTaskCreated.Routing;
+    routing: RoutedImageTaskCreated.Routing;
   }
 
-  export namespace RoutedAudioTaskCreated {
+  export namespace RoutedImageTaskCreated {
     /**
      * Metadata describing which model the router selected and why.
      */
@@ -119,16 +93,20 @@ export namespace AudioCreateResponse {
        */
       export interface ResolvedInput {
         /**
-         * The prompt mode the router routed for.
+         * Aspect ratio used for routing display.
          */
-        type: 'speech' | 'audio';
+        aspectRatio: string;
 
         /**
-         * How the selected model resolves the voice: the requested preset or
-         * reference-audio clone, the model default for voiceless speech, or none for
-         * general audio.
+         * Concrete output ratio derived from aspectRatio and resolution for the selected
+         * model.
          */
-        voice: 'preset' | 'reference-audio' | 'default' | 'none';
+        ratio: string;
+
+        /**
+         * Megapixel tier used for routing display.
+         */
+        resolution: string;
       }
 
       /**
@@ -168,16 +146,16 @@ export namespace AudioCreateResponse {
     }
   }
 
-  export interface RoutedAudioDryRun {
+  export interface RoutedImageDryRun {
     dryRun: true;
 
     /**
      * Metadata describing which model the router selected and why.
      */
-    routing: RoutedAudioDryRun.Routing;
+    routing: RoutedImageDryRun.Routing;
   }
 
-  export namespace RoutedAudioDryRun {
+  export namespace RoutedImageDryRun {
     /**
      * Metadata describing which model the router selected and why.
      */
@@ -237,16 +215,20 @@ export namespace AudioCreateResponse {
        */
       export interface ResolvedInput {
         /**
-         * The prompt mode the router routed for.
+         * Aspect ratio used for routing display.
          */
-        type: 'speech' | 'audio';
+        aspectRatio: string;
 
         /**
-         * How the selected model resolves the voice: the requested preset or
-         * reference-audio clone, the model default for voiceless speech, or none for
-         * general audio.
+         * Concrete output ratio derived from aspectRatio and resolution for the selected
+         * model.
          */
-        voice: 'preset' | 'reference-audio' | 'default' | 'none';
+        ratio: string;
+
+        /**
+         * Megapixel tier used for routing display.
+         */
+        resolution: string;
       }
 
       /**
@@ -287,17 +269,17 @@ export namespace AudioCreateResponse {
   }
 }
 
-export interface AudioCreateParams {
+export interface ImageCreateParams {
   /**
    * The slug of a saved Model Router config to route this request with.
    */
   configId: string;
 
   /**
-   * Model-agnostic audio generation input. The router selects a model and maps these
+   * Model-agnostic image generation input. The router selects a model and maps these
    * options to it.
    */
-  input: AudioCreateParams.Input;
+  input: ImageCreateParams.Input;
 
   /**
    * When true, run the full routing pipeline and return the decision and estimated
@@ -307,121 +289,76 @@ export interface AudioCreateParams {
   dryRun?: boolean;
 }
 
-export namespace AudioCreateParams {
+export namespace ImageCreateParams {
   /**
-   * Model-agnostic audio generation input. The router selects a model and maps these
+   * Model-agnostic image generation input. The router selects a model and maps these
    * options to it.
    */
   export interface Input {
     /**
-     * For `speech`, the words to speak. For `audio`, a description of the desired
-     * output.
+     * A text prompt describing the desired image.
      */
     promptText: string;
 
     /**
-     * How promptText is interpreted: `speech` speaks it verbatim as a script; `audio`
-     * treats it as a description of the desired audio, which may combine speech,
-     * music, ambience, and sound effects.
+     * Desired aspect ratio. Models that do not support the requested aspect are
+     * excluded.
      */
-    type: 'speech' | 'audio';
+    aspectRatio?: '16:9' | '9:16' | '1:1' | '4:3' | '3:4' | '21:9' | '2:3' | '3:2' | '4:5' | '5:4';
 
     /**
-     * Desired output duration in seconds for `audio` generation. Models that cannot
-     * honor an explicit duration are excluded.
+     * Settings that affect the behavior of the content moderation system.
      */
-    duration?: number;
+    contentModeration?: Input.ContentModeration;
 
     /**
-     * When true, the `audio` output is designed to loop seamlessly. Models without
-     * loop support are excluded.
+     * Number of images to generate (1-10). Models that cannot produce the exact count
+     * are excluded and cost scales with this value.
      */
-    loop?: boolean;
+    outputCount?: number;
 
     /**
-     * Optional reference audio clips guiding `audio` generation, for models that
-     * support them. Reference each clip in promptText as @Audio1, @Audio2, and @Audio3
-     * in order.
+     * Optional reference images for models that support them. Tags are assigned per
+     * model when omitted.
      */
-    referenceAudios?: Array<AudioAPI.ReferenceAudio>;
+    referenceImages?: Array<Input.ReferenceImage>;
 
     /**
-     * The voice to speak with. When omitted, models that support a default voice
-     * remain eligible.
+     * Desired megapixel tier. Models that do not support the requested tier are
+     * excluded.
      */
-    voice?: Input.Preset | AudioAPI.ReferenceVoice;
+    resolution?: '1k' | '2k' | '4k';
+
+    /**
+     * A seed for reproducible generation. Only gen4_image and gen4_image_turbo accept
+     * this field.
+     */
+    seed?: number;
   }
 
   export namespace Input {
     /**
-     * A preset voice.
+     * Settings that affect the behavior of the content moderation system.
      */
-    export interface Preset {
+    export interface ContentModeration {
       /**
-       * A Runway preset voice id. Choosing a preset routes only to models that support
-       * preset voices.
+       * When set to `low`, the content moderation system will be less strict about
+       * preventing generations that include recognizable public figures.
        */
-      presetId:
-        | 'Maya'
-        | 'Arjun'
-        | 'Serene'
-        | 'Bernard'
-        | 'Billy'
-        | 'Mark'
-        | 'Clint'
-        | 'Mabel'
-        | 'Chad'
-        | 'Leslie'
-        | 'Eleanor'
-        | 'Elias'
-        | 'Elliot'
-        | 'Grungle'
-        | 'Brodie'
-        | 'Sandra'
-        | 'Kirk'
-        | 'Kylie'
-        | 'Lara'
-        | 'Lisa'
-        | 'Malachi'
-        | 'Marlene'
-        | 'Martin'
-        | 'Miriam'
-        | 'Monster'
-        | 'Paula'
-        | 'Pip'
-        | 'Rusty'
-        | 'Ragnar'
-        | 'Xylar'
-        | 'Maggie'
-        | 'Jack'
-        | 'Katie'
-        | 'Noah'
-        | 'James'
-        | 'Rina'
-        | 'Ella'
-        | 'Mariah'
-        | 'Frank'
-        | 'Claudia'
-        | 'Niki'
-        | 'Vincent'
-        | 'Kendrick'
-        | 'Myrna'
-        | 'Tom'
-        | 'Wanda'
-        | 'Benjamin'
-        | 'Kiana'
-        | 'Rachel';
+      publicFigureThreshold?: 'auto' | 'low';
+    }
 
-      type: 'preset';
+    export interface ReferenceImage {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
     }
   }
 }
 
-export declare namespace Audio {
-  export {
-    type ReferenceVoice as ReferenceVoice,
-    type ReferenceAudio as ReferenceAudio,
-    type AudioCreateResponse as AudioCreateResponse,
-    type AudioCreateParams as AudioCreateParams,
-  };
+export declare namespace Image {
+  export { type ImageCreateResponse as ImageCreateResponse, type ImageCreateParams as ImageCreateParams };
 }

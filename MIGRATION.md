@@ -72,6 +72,7 @@ This affects the following methods:
 - `client.documents.update()`
 - `client.voices.update()`
 - `client.workflows.run()`
+- `client.routers.update()`
 
 ### Removed `httpAgent` in favor of `fetchOptions`
 

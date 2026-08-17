@@ -95,6 +95,20 @@ import {
   RecipeProductUgcResponse,
   Recipes,
 } from './resources/recipes';
+import {
+  RouterCreateParams,
+  RouterCreateResponse,
+  RouterListParams,
+  RouterListRequestsParams,
+  RouterListRequestsResponse,
+  RouterListRequestsResponsesCursorPage,
+  RouterListResponse,
+  RouterListResponsesCursorPage,
+  RouterRetrieveResponse,
+  RouterUpdateParams,
+  RouterUpdateResponse,
+  Routers,
+} from './resources/routers';
 import { SoundEffect, SoundEffectCreateParams, SoundEffectCreateResponse } from './resources/sound-effect';
 import {
   SpeechToSpeech,
@@ -974,6 +988,7 @@ export class RunwayML {
   workflows: API.Workflows = new API.Workflows(this);
   workflowInvocations: API.WorkflowInvocations = new API.WorkflowInvocations(this);
   generate: API.Generate = new API.Generate(this);
+  routers: API.Routers = new API.Routers(this);
 }
 
 RunwayML.Tasks = Tasks;
@@ -1000,6 +1015,7 @@ RunwayML.Voices = Voices;
 RunwayML.Workflows = Workflows;
 RunwayML.WorkflowInvocations = WorkflowInvocations;
 RunwayML.Generate = Generate;
+RunwayML.Routers = Routers;
 
 export declare namespace RunwayML {
   export type RequestOptions = Opts.RequestOptions;
@@ -1181,4 +1197,19 @@ export declare namespace RunwayML {
   };
 
   export { Generate as Generate };
+
+  export {
+    Routers as Routers,
+    type RouterCreateResponse as RouterCreateResponse,
+    type RouterRetrieveResponse as RouterRetrieveResponse,
+    type RouterUpdateResponse as RouterUpdateResponse,
+    type RouterListResponse as RouterListResponse,
+    type RouterListRequestsResponse as RouterListRequestsResponse,
+    type RouterListResponsesCursorPage as RouterListResponsesCursorPage,
+    type RouterListRequestsResponsesCursorPage as RouterListRequestsResponsesCursorPage,
+    type RouterCreateParams as RouterCreateParams,
+    type RouterUpdateParams as RouterUpdateParams,
+    type RouterListParams as RouterListParams,
+    type RouterListRequestsParams as RouterListRequestsParams,
+  };
 }
