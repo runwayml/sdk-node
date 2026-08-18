@@ -706,7 +706,7 @@ export declare namespace VideoToVideoCreateParams {
     promptText?: string;
 
     /**
-     * The resolution of the output video. Seedance 2.5 supports 480p and 720p only.
+     * The resolution of the output video. Seedance 2.5 supports 480p, 720p, and 1080p.
      */
     ratio?:
       | '992:432'
@@ -720,7 +720,13 @@ export declare namespace VideoToVideoCreateParams {
       | '1112:834'
       | '960:960'
       | '834:1112'
-      | '720:1280';
+      | '720:1280'
+      | '2206:946'
+      | '1920:1080'
+      | '1664:1248'
+      | '1440:1440'
+      | '1248:1664'
+      | '1080:1920';
 
     /**
      * An optional array of audio references. The total combined duration must be less
