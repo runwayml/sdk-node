@@ -53,7 +53,8 @@ export type ImageToVideoCreateParams =
   | ImageToVideoCreateParams.Seedance2Fast
   | ImageToVideoCreateParams.Seedance2Mini
   | ImageToVideoCreateParams.GeminiOmniFlash
-  | ImageToVideoCreateParams.Seedance2_5;
+  | ImageToVideoCreateParams.Seedance2_5
+  | ImageToVideoCreateParams.GrokImagine1_5;
 
 export declare namespace ImageToVideoCreateParams {
   export interface Gen4_5 {
@@ -740,7 +741,7 @@ export declare namespace ImageToVideoCreateParams {
     promptText?: string;
 
     /**
-     * The resolution of the output video. Seedance 2.5 supports 480p and 720p only.
+     * The resolution of the output video. Seedance 2.5 supports 480p, 720p, and 1080p.
      */
     ratio?:
       | '992:432'
@@ -754,7 +755,13 @@ export declare namespace ImageToVideoCreateParams {
       | '1112:834'
       | '960:960'
       | '834:1112'
-      | '720:1280';
+      | '720:1280'
+      | '2206:946'
+      | '1920:1080'
+      | '1664:1248'
+      | '1440:1440'
+      | '1248:1664'
+      | '1080:1920';
 
     /**
      * An optional array of audio references. The total combined duration must not
@@ -790,6 +797,49 @@ export declare namespace ImageToVideoCreateParams {
        * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
        * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
        * [our docs](/assets/inputs#audio) on audio inputs for more information.
+       */
+      uri: string;
+    }
+  }
+
+  export interface GrokImagine1_5 {
+    model: 'grok_imagine_1_5';
+
+    /**
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+     * [our docs](/assets/inputs#images) on image inputs for more information.
+     */
+    promptImage: string | Array<GrokImagine1_5.PromptImage>;
+
+    /**
+     * The number of seconds of duration for the output video.
+     */
+    duration?: number;
+
+    /**
+     * An optional text prompt describing motion or changes in the output video.
+     */
+    promptText?: string;
+
+    /**
+     * The output resolution. Output aspect ratio follows the input image.
+     */
+    resolution?: '480p' | '720p' | '1080p';
+  }
+
+  export namespace GrokImagine1_5 {
+    export interface PromptImage {
+      /**
+       * The position of the image in the output video. "first" will use the image as the
+       * first frame of the video.
+       */
+      position: 'first';
+
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
     }

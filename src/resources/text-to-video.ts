@@ -52,7 +52,8 @@ export type TextToVideoCreateParams =
   | TextToVideoCreateParams.Seedance2Fast
   | TextToVideoCreateParams.Seedance2Mini
   | TextToVideoCreateParams.GeminiOmniFlash
-  | TextToVideoCreateParams.Seedance2_5;
+  | TextToVideoCreateParams.Seedance2_5
+  | TextToVideoCreateParams.GrokImagine1_5;
 
 export declare namespace TextToVideoCreateParams {
   export interface Gen4_5 {
@@ -635,7 +636,7 @@ export declare namespace TextToVideoCreateParams {
     promptText?: string;
 
     /**
-     * The resolution of the output video. Seedance 2.5 supports 480p and 720p only.
+     * The resolution of the output video. Seedance 2.5 supports 480p, 720p, and 1080p.
      */
     ratio?:
       | '992:432'
@@ -649,7 +650,13 @@ export declare namespace TextToVideoCreateParams {
       | '1112:834'
       | '960:960'
       | '834:1112'
-      | '720:1280';
+      | '720:1280'
+      | '2206:946'
+      | '1920:1080'
+      | '1664:1248'
+      | '1440:1440'
+      | '1248:1664'
+      | '1080:1920';
 
     /**
      * An optional array of audio references. The total combined duration must be less
@@ -707,6 +714,68 @@ export declare namespace TextToVideoCreateParams {
        * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
        * `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
        * [our docs](/assets/inputs#videos) on video inputs for more information.
+       */
+      uri: string;
+    }
+  }
+
+  export interface GrokImagine1_5 {
+    model: 'grok_imagine_1_5';
+
+    /**
+     * A non-empty text prompt describing what should appear in the output.
+     */
+    promptText: string;
+
+    /**
+     * The number of seconds of duration for the output video.
+     */
+    duration?: number;
+
+    /**
+     * The aspect ratio of the output video.
+     */
+    ratio?: '1:1' | '16:9' | '9:16' | '4:3' | '3:4' | '3:2' | '2:3';
+
+    /**
+     * An optional array of audio references. Audio references require at least one
+     * image reference, and each clip must be between 3 and 15 seconds.
+     */
+    referenceAudio?: Array<GrokImagine1_5.ReferenceAudio>;
+
+    /**
+     * An optional array of image references. Referenced images can be addressed in the
+     * prompt as [Image 1], [Image 2], and so on. See [our docs](/assets/inputs#images)
+     * on image inputs for more information.
+     */
+    references?: Array<GrokImagine1_5.Reference>;
+
+    /**
+     * The output resolution. Requests with image references are capped at 720p.
+     */
+    resolution?: '480p' | '720p' | '1080p';
+  }
+
+  export namespace GrokImagine1_5 {
+    /**
+     * An audio reference allows the model to drive the output with the supplied audio.
+     */
+    export interface ReferenceAudio {
+      type: 'audio';
+
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+       * [our docs](/assets/inputs#audio) on audio inputs for more information.
+       */
+      uri: string;
+    }
+
+    export interface Reference {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
     }
