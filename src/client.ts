@@ -16,7 +16,7 @@ import { VERSION } from './version';
 import * as Errors from './core/error';
 import * as Pagination from './core/pagination';
 import { AbstractPage, type CursorPageParams, CursorPageResponse } from './core/pagination';
-import * as Uploads from './core/uploads';
+import * as UploadsCore from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
 import {
@@ -150,6 +150,7 @@ import {
   VoiceUpdateResponse,
   Voices,
 } from './resources/voices';
+import { Uploads, UploadsCreateEphemeralParams, UploadCreateEphemeralResponse } from './resources/uploads';
 import { WorkflowInvocationRetrieveResponse, WorkflowInvocations } from './resources/workflow-invocations';
 import {
   WorkflowListResponse,
@@ -923,7 +924,7 @@ export class RunwayML {
   static PermissionDeniedError = Errors.PermissionDeniedError;
   static UnprocessableEntityError = Errors.UnprocessableEntityError;
 
-  static toFile = Uploads.toFile;
+  static toFile = UploadsCore.toFile;
 
   /**
    * Endpoints for managing tasks that have been submitted.
@@ -985,6 +986,7 @@ export class RunwayML {
   realtimeSessions: API.RealtimeSessions = new API.RealtimeSessions(this);
   recipes: API.Recipes = new API.Recipes(this);
   voices: API.Voices = new API.Voices(this);
+  uploads: API.Uploads = new API.Uploads(this);
   workflows: API.Workflows = new API.Workflows(this);
   workflowInvocations: API.WorkflowInvocations = new API.WorkflowInvocations(this);
   generate: API.Generate = new API.Generate(this);
@@ -1012,6 +1014,7 @@ RunwayML.Documents = Documents;
 RunwayML.RealtimeSessions = RealtimeSessions;
 RunwayML.Recipes = Recipes;
 RunwayML.Voices = Voices;
+RunwayML.Uploads = Uploads;
 RunwayML.Workflows = Workflows;
 RunwayML.WorkflowInvocations = WorkflowInvocations;
 RunwayML.Generate = Generate;
@@ -1181,6 +1184,12 @@ export declare namespace RunwayML {
     type VoiceUpdateParams as VoiceUpdateParams,
     type VoiceListParams as VoiceListParams,
     type VoicePreviewParams as VoicePreviewParams,
+  };
+
+  export {
+    Uploads as Uploads,
+    type UploadCreateEphemeralResponse as UploadCreateEphemeralResponse,
+    type UploadsCreateEphemeralParams as UploadsCreateEphemeralParams,
   };
 
   export {
