@@ -156,22 +156,30 @@ List methods in the RunwayML API are paginated.
 You can use the `for await … of` syntax to iterate through items across all pages:
 
 ```ts
-async function fetchAllAvatarListResponses(params) {
-  const allAvatarListResponses = [];
+async function fetchAllWebappListUsageResponses(params) {
+  const allWebappListUsageResponses = [];
   // Automatically fetches more pages as needed.
-  for await (const avatarListResponse of client.avatars.list({ limit: 1 })) {
-    allAvatarListResponses.push(avatarListResponse);
+  for await (const webappListUsageResponse of client.organization.webapp.listUsage({
+    from: '2019-12-27T18:11:19.117Z',
+    limit: 1,
+    to: '2019-12-27T18:11:19.117Z',
+  })) {
+    allWebappListUsageResponses.push(webappListUsageResponse);
   }
-  return allAvatarListResponses;
+  return allWebappListUsageResponses;
 }
 ```
 
 Alternatively, you can request a single page at a time:
 
 ```ts
-let page = await client.avatars.list({ limit: 1 });
-for (const avatarListResponse of page.data) {
-  console.log(avatarListResponse);
+let page = await client.organization.webapp.listUsage({
+  from: '2019-12-27T18:11:19.117Z',
+  limit: 1,
+  to: '2019-12-27T18:11:19.117Z',
+});
+for (const webappListUsageResponse of page.data) {
+  console.log(webappListUsageResponse);
 }
 
 // Convenience methods are provided for manually paginating:

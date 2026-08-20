@@ -66,12 +66,6 @@ import {
   ImageUpscaleCreateResponse,
 } from './resources/image-upscale';
 import {
-  Organization,
-  OrganizationRetrieveResponse,
-  OrganizationRetrieveUsageParams,
-  OrganizationRetrieveUsageResponse,
-} from './resources/organization';
-import {
   DeprecatedLivekit,
   RealtimeSessionCreateParams,
   RealtimeSessionCreateResponse,
@@ -165,6 +159,12 @@ import {
   Workflows,
 } from './resources/workflows';
 import { Generate } from './resources/generate/generate';
+import {
+  Organization,
+  OrganizationRetrieveResponse,
+  OrganizationRetrieveUsageParams,
+  OrganizationRetrieveUsageResponse,
+} from './resources/organization/organization';
 import { type Fetch } from './internal/builtin-types';
 import { isRunningInBrowser } from './internal/detect-platform';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';

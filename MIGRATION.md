@@ -68,6 +68,7 @@ client.example.list(undefined, { headers: { ... } });
 This affects the following methods:
 
 - `client.organization.retrieveUsage()`
+- `client.organization.webapp.auditLogs.retrieve()`
 - `client.avatars.update()`
 - `client.documents.update()`
 - `client.voices.update()`
@@ -216,8 +217,12 @@ The `for await` syntax **is not affected**. This still works as-is:
 
 ```ts
 // Automatically fetches more pages as needed.
-for await (const avatarListResponse of client.avatars.list({ limit: 1 })) {
-  console.log(avatarListResponse);
+for await (const webappListUsageResponse of client.organization.webapp.listUsage({
+  from: '2019-12-27T18:11:19.117Z',
+  limit: 1,
+  to: '2019-12-27T18:11:19.117Z',
+})) {
+  console.log(webappListUsageResponse);
 }
 ```
 
@@ -239,10 +244,10 @@ Page classes for individual methods are now type aliases:
 
 ```ts
 // Before
-export class AvatarListResponsesCursorPage extends CursorPage<AvatarListResponse> {}
+export class WebappListUsageResponsesCursorPage extends CursorPage<WebappListUsageResponse> {}
 
 // After
-export type AvatarListResponsesCursorPage = CursorPage<AvatarListResponse>;
+export type WebappListUsageResponsesCursorPage = CursorPage<WebappListUsageResponse>;
 ```
 
 If you were importing these classes at runtime, you'll need to switch to importing the base class or only import them at the type-level.

@@ -133,13 +133,35 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/organization.ts">OrganizationRetrieveResponse</a></code>
-- <code><a href="./src/resources/organization.ts">OrganizationRetrieveUsageResponse</a></code>
+- <code><a href="./src/resources/organization/organization.ts">OrganizationRetrieveResponse</a></code>
+- <code><a href="./src/resources/organization/organization.ts">OrganizationRetrieveUsageResponse</a></code>
 
 Methods:
 
-- <code title="get /v1/organization">client.organization.<a href="./src/resources/organization.ts">retrieve</a>() -> OrganizationRetrieveResponse</code>
-- <code title="post /v1/organization/usage">client.organization.<a href="./src/resources/organization.ts">retrieveUsage</a>({ ...params }) -> OrganizationRetrieveUsageResponse</code>
+- <code title="get /v1/organization">client.organization.<a href="./src/resources/organization/organization.ts">retrieve</a>() -> OrganizationRetrieveResponse</code>
+- <code title="post /v1/organization/usage">client.organization.<a href="./src/resources/organization/organization.ts">retrieveUsage</a>({ ...params }) -> OrganizationRetrieveUsageResponse</code>
+
+## Webapp
+
+Types:
+
+- <code><a href="./src/resources/organization/webapp/webapp.ts">WebappListUsageResponse</a></code>
+
+Methods:
+
+- <code title="get /v1/organization/webapp/usage">client.organization.webapp.<a href="./src/resources/organization/webapp/webapp.ts">listUsage</a>({ ...params }) -> WebappListUsageResponsesCursorPage</code>
+
+### AuditLogs
+
+Types:
+
+- <code><a href="./src/resources/organization/webapp/audit-logs.ts">AuditLogRetrieveResponse</a></code>
+- <code><a href="./src/resources/organization/webapp/audit-logs.ts">AuditLogListResponse</a></code>
+
+Methods:
+
+- <code title="get /v1/organization/webapp/audit_logs/{eventId}">client.organization.webapp.auditLogs.<a href="./src/resources/organization/webapp/audit-logs.ts">retrieve</a>(eventID, { ...params }) -> AuditLogRetrieveResponse</code>
+- <code title="get /v1/organization/webapp/audit_logs">client.organization.webapp.auditLogs.<a href="./src/resources/organization/webapp/audit-logs.ts">list</a>({ ...params }) -> AuditLogListResponsesCursorPage</code>
 
 # Avatars
 

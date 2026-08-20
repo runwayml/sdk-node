@@ -52,7 +52,7 @@ export {
   type OrganizationRetrieveResponse,
   type OrganizationRetrieveUsageResponse,
   type OrganizationRetrieveUsageParams,
-} from './organization';
+} from './organization/organization';
 export {
   RealtimeSessions,
   type DeprecatedLivekit,
