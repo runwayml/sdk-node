@@ -262,7 +262,7 @@ export declare namespace VideoToVideoCreateParams {
     referenceVideos?: Array<Hailuo3.ReferenceVideo>;
 
     /**
-     * The output resolution. Hailuo 3.0 supports 768P and 2K.
+     * The output resolution. MiniMax H3 supports 768P and 2K.
      */
     resolution?: '2K' | '768P';
   }

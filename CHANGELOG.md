@@ -1,5 +1,15 @@
 # Changelog
 
+## 4.15.0 (2026-08-18)
+
+Full Changelog: [v4.14.0...v4.15.0](https://github.com/runwayml/sdk-node/compare/v4.14.0...v4.15.0)
+
+### Features
+
+* **api:** add 1080p on seedance2_5 (text/image/video-to-video) ([f91bbd2](https://github.com/runwayml/sdk-node/commit/f91bbd2c713b51406ac0c67d223dcff25cc68d55))
+* **api:** add grok_imagine_1_5 (text/image-to-video) ([f91bbd2](https://github.com/runwayml/sdk-node/commit/f91bbd2c713b51406ac0c67d223dcff25cc68d55))
+* **api:** add grok_imagine_image_2 (text-to-image) ([f91bbd2](https://github.com/runwayml/sdk-node/commit/f91bbd2c713b51406ac0c67d223dcff25cc68d55))
+
 ## 4.14.0 (2026-08-07)
 
 Full Changelog: [v4.13.2...v4.14.0](https://github.com/runwayml/sdk-node/compare/v4.13.2...v4.14.0)
