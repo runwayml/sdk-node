@@ -352,3 +352,56 @@ Types:
 Methods:
 
 - <code title="get /v1/workflow_invocations/{id}">client.workflowInvocations.<a href="./src/resources/workflow-invocations.ts">retrieve</a>(id) -> WorkflowInvocationRetrieveResponse</code>
+
+# Generate
+
+## Video
+
+Types:
+
+- <code><a href="./src/resources/generate/video.ts">VideoCreateResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/generate/video">client.generate.video.<a href="./src/resources/generate/video.ts">create</a>({ ...params }) -> VideoCreateResponse</code>
+
+## Image
+
+Types:
+
+- <code><a href="./src/resources/generate/image.ts">ImageCreateResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/generate/image">client.generate.image.<a href="./src/resources/generate/image.ts">create</a>({ ...params }) -> ImageCreateResponse</code>
+
+## Audio
+
+Types:
+
+- <code><a href="./src/resources/generate/audio.ts">ReferenceVoice</a></code>
+- <code><a href="./src/resources/generate/audio.ts">ReferenceAudio</a></code>
+- <code><a href="./src/resources/generate/audio.ts">AudioCreateResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/generate/audio">client.generate.audio.<a href="./src/resources/generate/audio.ts">create</a>({ ...params }) -> AudioCreateResponse</code>
+
+# Routers
+
+Types:
+
+- <code><a href="./src/resources/routers.ts">RouterCreateResponse</a></code>
+- <code><a href="./src/resources/routers.ts">RouterRetrieveResponse</a></code>
+- <code><a href="./src/resources/routers.ts">RouterUpdateResponse</a></code>
+- <code><a href="./src/resources/routers.ts">RouterListResponse</a></code>
+- <code><a href="./src/resources/routers.ts">RouterListRequestsResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/routers">client.routers.<a href="./src/resources/routers.ts">create</a>({ ...params }) -> RouterCreateResponse</code>
+- <code title="get /v1/routers/{id}">client.routers.<a href="./src/resources/routers.ts">retrieve</a>(id) -> RouterRetrieveResponse</code>
+- <code title="patch /v1/routers/{id}">client.routers.<a href="./src/resources/routers.ts">update</a>(id, { ...params }) -> RouterUpdateResponse</code>
+- <code title="get /v1/routers">client.routers.<a href="./src/resources/routers.ts">list</a>({ ...params }) -> RouterListResponsesCursorPage</code>
+- <code title="delete /v1/routers/{id}">client.routers.<a href="./src/resources/routers.ts">delete</a>(id) -> void</code>
+- <code title="get /v1/routers/{id}/requests">client.routers.<a href="./src/resources/routers.ts">listRequests</a>(id, { ...params }) -> RouterListRequestsResponsesCursorPage</code>

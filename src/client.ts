@@ -16,7 +16,7 @@ import { VERSION } from './version';
 import * as Errors from './core/error';
 import * as Pagination from './core/pagination';
 import { AbstractPage, type CursorPageParams, CursorPageResponse } from './core/pagination';
-import * as UploadsCore from './core/uploads';
+import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
 import {
@@ -137,7 +137,6 @@ import {
   VoiceIsolationCreateParams,
   VoiceIsolationCreateResponse,
 } from './resources/voice-isolation';
-import { Uploads, UploadsCreateEphemeralParams, UploadCreateEphemeralResponse } from './resources/uploads';
 import {
   VoiceCreateParams,
   VoiceCreateResponse,
@@ -924,7 +923,7 @@ export class RunwayML {
   static PermissionDeniedError = Errors.PermissionDeniedError;
   static UnprocessableEntityError = Errors.UnprocessableEntityError;
 
-  static toFile = UploadsCore.toFile;
+  static toFile = Uploads.toFile;
 
   /**
    * Endpoints for managing tasks that have been submitted.
@@ -978,8 +977,6 @@ export class RunwayML {
    * These endpoints all kick off tasks to create generations.
    */
   videoUpscale: API.VideoUpscale = new API.VideoUpscale(this);
-  generate: API.Generate = new API.Generate(this);
-  routers: API.Routers = new API.Routers(this);
   organization: API.Organization = new API.Organization(this);
   avatars: API.Avatars = new API.Avatars(this);
   avatarConversations: API.AvatarConversations = new API.AvatarConversations(this);
@@ -988,9 +985,10 @@ export class RunwayML {
   realtimeSessions: API.RealtimeSessions = new API.RealtimeSessions(this);
   recipes: API.Recipes = new API.Recipes(this);
   voices: API.Voices = new API.Voices(this);
-  uploads: API.Uploads = new API.Uploads(this);
   workflows: API.Workflows = new API.Workflows(this);
   workflowInvocations: API.WorkflowInvocations = new API.WorkflowInvocations(this);
+  generate: API.Generate = new API.Generate(this);
+  routers: API.Routers = new API.Routers(this);
 }
 
 RunwayML.Tasks = Tasks;
@@ -1006,8 +1004,6 @@ RunwayML.VoiceDubbing = VoiceDubbing;
 RunwayML.SpeechToSpeech = SpeechToSpeech;
 RunwayML.ImageUpscale = ImageUpscale;
 RunwayML.VideoUpscale = VideoUpscale;
-RunwayML.Generate = Generate;
-RunwayML.Routers = Routers;
 RunwayML.Organization = Organization;
 RunwayML.Avatars = Avatars;
 RunwayML.AvatarConversations = AvatarConversations;
@@ -1016,9 +1012,10 @@ RunwayML.Documents = Documents;
 RunwayML.RealtimeSessions = RealtimeSessions;
 RunwayML.Recipes = Recipes;
 RunwayML.Voices = Voices;
-RunwayML.Uploads = Uploads;
 RunwayML.Workflows = Workflows;
 RunwayML.WorkflowInvocations = WorkflowInvocations;
+RunwayML.Generate = Generate;
+RunwayML.Routers = Routers;
 
 export declare namespace RunwayML {
   export type RequestOptions = Opts.RequestOptions;
@@ -1098,23 +1095,6 @@ export declare namespace RunwayML {
     VideoUpscale as VideoUpscale,
     type VideoUpscaleCreateResponse as VideoUpscaleCreateResponse,
     type VideoUpscaleCreateParams as VideoUpscaleCreateParams,
-  };
-
-  export { Generate as Generate };
-
-  export {
-    Routers as Routers,
-    type RouterCreateResponse as RouterCreateResponse,
-    type RouterRetrieveResponse as RouterRetrieveResponse,
-    type RouterUpdateResponse as RouterUpdateResponse,
-    type RouterListResponse as RouterListResponse,
-    type RouterListRequestsResponse as RouterListRequestsResponse,
-    type RouterListResponsesCursorPage as RouterListResponsesCursorPage,
-    type RouterListRequestsResponsesCursorPage as RouterListRequestsResponsesCursorPage,
-    type RouterCreateParams as RouterCreateParams,
-    type RouterUpdateParams as RouterUpdateParams,
-    type RouterListParams as RouterListParams,
-    type RouterListRequestsParams as RouterListRequestsParams,
   };
 
   export {
@@ -1204,12 +1184,6 @@ export declare namespace RunwayML {
   };
 
   export {
-    Uploads as Uploads,
-    type UploadCreateEphemeralResponse as UploadCreateEphemeralResponse,
-    type UploadsCreateEphemeralParams as UploadsCreateEphemeralParams,
-  };
-
-  export {
     Workflows as Workflows,
     type WorkflowRetrieveResponse as WorkflowRetrieveResponse,
     type WorkflowListResponse as WorkflowListResponse,
@@ -1220,5 +1194,22 @@ export declare namespace RunwayML {
   export {
     WorkflowInvocations as WorkflowInvocations,
     type WorkflowInvocationRetrieveResponse as WorkflowInvocationRetrieveResponse,
+  };
+
+  export { Generate as Generate };
+
+  export {
+    Routers as Routers,
+    type RouterCreateResponse as RouterCreateResponse,
+    type RouterRetrieveResponse as RouterRetrieveResponse,
+    type RouterUpdateResponse as RouterUpdateResponse,
+    type RouterListResponse as RouterListResponse,
+    type RouterListRequestsResponse as RouterListRequestsResponse,
+    type RouterListResponsesCursorPage as RouterListResponsesCursorPage,
+    type RouterListRequestsResponsesCursorPage as RouterListRequestsResponsesCursorPage,
+    type RouterCreateParams as RouterCreateParams,
+    type RouterUpdateParams as RouterUpdateParams,
+    type RouterListParams as RouterListParams,
+    type RouterListRequestsParams as RouterListRequestsParams,
   };
 }
