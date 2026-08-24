@@ -8,14 +8,6 @@ export class Video extends APIResource {
   /**
    * Start a video generation task using a saved Model Router config instead of
    * naming a model.
-   *
-   * @example
-   * ```ts
-   * const video = await client.videoUpscale.video.create({
-   *   configId: 'n6_',
-   *   input: {},
-   * });
-   * ```
    */
   create(
     body: VideoCreateParams,
