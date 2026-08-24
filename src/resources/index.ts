@@ -115,7 +115,7 @@ export {
   VideoUpscale,
   type VideoUpscaleCreateResponse,
   type VideoUpscaleCreateParams,
-} from './video-upscale/video-upscale';
+} from './video-upscale';
 export {
   VoiceDubbing,
   type VoiceDubbingCreateResponse,

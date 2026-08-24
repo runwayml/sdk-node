@@ -124,6 +124,11 @@ import {
   VideoToVideoCreateResponse,
 } from './resources/video-to-video';
 import {
+  VideoUpscale,
+  VideoUpscaleCreateParams,
+  VideoUpscaleCreateResponse,
+} from './resources/video-upscale';
+import {
   VoiceDubbing,
   VoiceDubbingCreateParams,
   VoiceDubbingCreateResponse,
@@ -161,11 +166,6 @@ import {
   OrganizationRetrieveUsageParams,
   OrganizationRetrieveUsageResponse,
 } from './resources/organization/organization';
-import {
-  VideoUpscale,
-  VideoUpscaleCreateParams,
-  VideoUpscaleCreateResponse,
-} from './resources/video-upscale/video-upscale';
 import { type Fetch } from './internal/builtin-types';
 import { isRunningInBrowser } from './internal/detect-platform';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
@@ -982,6 +982,7 @@ export class RunwayML {
    * These endpoints all kick off tasks to create generations.
    */
   videoUpscale: API.VideoUpscale = new API.VideoUpscale(this);
+  generate: API.Generate = new API.Generate(this);
   routers: API.Routers = new API.Routers(this);
   organization: API.Organization = new API.Organization(this);
   avatars: API.Avatars = new API.Avatars(this);
@@ -993,7 +994,6 @@ export class RunwayML {
   voices: API.Voices = new API.Voices(this);
   workflows: API.Workflows = new API.Workflows(this);
   workflowInvocations: API.WorkflowInvocations = new API.WorkflowInvocations(this);
-  generate: API.Generate = new API.Generate(this);
 }
 
 RunwayML.Tasks = Tasks;
@@ -1010,6 +1010,7 @@ RunwayML.VoiceDubbing = VoiceDubbing;
 RunwayML.SpeechToSpeech = SpeechToSpeech;
 RunwayML.ImageUpscale = ImageUpscale;
 RunwayML.VideoUpscale = VideoUpscale;
+RunwayML.Generate = Generate;
 RunwayML.Routers = Routers;
 RunwayML.Organization = Organization;
 RunwayML.Avatars = Avatars;
@@ -1021,7 +1022,6 @@ RunwayML.Recipes = Recipes;
 RunwayML.Voices = Voices;
 RunwayML.Workflows = Workflows;
 RunwayML.WorkflowInvocations = WorkflowInvocations;
-RunwayML.Generate = Generate;
 
 export declare namespace RunwayML {
   export type RequestOptions = Opts.RequestOptions;
@@ -1108,6 +1108,8 @@ export declare namespace RunwayML {
     type VideoUpscaleCreateResponse as VideoUpscaleCreateResponse,
     type VideoUpscaleCreateParams as VideoUpscaleCreateParams,
   };
+
+  export { Generate as Generate };
 
   export {
     Routers as Routers,
@@ -1222,6 +1224,4 @@ export declare namespace RunwayML {
     WorkflowInvocations as WorkflowInvocations,
     type WorkflowInvocationRetrieveResponse as WorkflowInvocationRetrieveResponse,
   };
-
-  export { Generate as Generate };
 }

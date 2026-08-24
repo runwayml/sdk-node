@@ -7,11 +7,11 @@ const client = new RunwayML({
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource video', () => {
+describe('resource image', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.videoUpscale.video.create({
+    const responsePromise = client.generate.image.create({
       configId: 'n6_',
-      input: {},
+      input: { promptText: 'x' },
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -23,26 +23,15 @@ describe('resource video', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await client.videoUpscale.video.create({
+    const response = await client.generate.image.create({
       configId: 'n6_',
       input: {
-        aspectRatio: '16:9',
-        audio: true,
-        contentModeration: { publicFigureThreshold: 'auto' },
-        duration: 2,
-        keyframes: [
-          {
-            seconds: 0,
-            uri: 'https://example.com/image.jpg',
-            range: { end_seconds: 1, start_seconds: 0 },
-          },
-        ],
-        negativePrompt: 'negativePrompt',
         promptText: 'x',
-        referenceAudio: [{ uri: 'https://example.com/audio.mp3' }],
-        referenceImages: [{ role: 'first', uri: 'https://example.com/image.jpg' }],
-        referenceVideos: [{ role: 'source', uri: 'https://example.com/video.mp4' }],
-        resolution: '480p',
+        aspectRatio: '16:9',
+        contentModeration: { publicFigureThreshold: 'auto' },
+        outputCount: 1,
+        referenceImages: [{ uri: 'https://example.com/image.jpg' }],
+        resolution: '1k',
         seed: 0,
       },
     });
