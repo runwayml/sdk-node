@@ -105,6 +105,7 @@ export {
   type TextToSpeechCreateParams,
 } from './text-to-speech';
 export { TextToVideo, type TextToVideoCreateResponse, type TextToVideoCreateParams } from './text-to-video';
+export { VideoToHdr, type VideoToHdrCreateResponse, type VideoToHdrCreateParams } from './video-to-hdr';
 export {
   VideoToVideo,
   type VideoToVideoCreateResponse,
@@ -114,7 +115,7 @@ export {
   VideoUpscale,
   type VideoUpscaleCreateResponse,
   type VideoUpscaleCreateParams,
-} from './video-upscale';
+} from './video-upscale/video-upscale';
 export {
   VoiceDubbing,
   type VoiceDubbingCreateResponse,

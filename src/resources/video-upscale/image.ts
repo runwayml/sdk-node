@@ -8,6 +8,14 @@ export class Image extends APIResource {
   /**
    * Start an image generation task using a saved Model Router config instead of
    * naming a model.
+   *
+   * @example
+   * ```ts
+   * const image = await client.videoUpscale.image.create({
+   *   configId: 'n6_',
+   *   input: { promptText: 'x' },
+   * });
+   * ```
    */
   create(
     body: ImageCreateParams,
