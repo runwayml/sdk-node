@@ -29,6 +29,16 @@ Methods:
 
 - <code title="post /v1/video_to_video">client.videoToVideo.<a href="./src/resources/video-to-video.ts">create</a>({ ...params }) -> VideoToVideoCreateResponse</code>
 
+# VideoToHdr
+
+Types:
+
+- <code><a href="./src/resources/video-to-hdr.ts">VideoToHdrCreateResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/video_to_hdr">client.videoToHdr.<a href="./src/resources/video-to-hdr.ts">create</a>({ ...params }) -> VideoToHdrCreateResponse</code>
+
 # TextToVideo
 
 Types:
@@ -123,45 +133,41 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/video-upscale.ts">VideoUpscaleCreateResponse</a></code>
+- <code><a href="./src/resources/video-upscale/video-upscale.ts">VideoUpscaleCreateResponse</a></code>
 
 Methods:
 
-- <code title="post /v1/video_upscale">client.videoUpscale.<a href="./src/resources/video-upscale.ts">create</a>({ ...params }) -> VideoUpscaleCreateResponse</code>
-
-# Generate
+- <code title="post /v1/video_upscale">client.videoUpscale.<a href="./src/resources/video-upscale/video-upscale.ts">create</a>({ ...params }) -> VideoUpscaleCreateResponse</code>
 
 ## Video
 
 Types:
 
-- <code><a href="./src/resources/generate/video.ts">VideoCreateResponse</a></code>
+- <code><a href="./src/resources/video-upscale/video.ts">VideoCreateResponse</a></code>
 
 Methods:
 
-- <code title="post /v1/generate/video">client.generate.video.<a href="./src/resources/generate/video.ts">create</a>({ ...params }) -> VideoCreateResponse</code>
+- <code title="post /v1/generate/video">client.videoUpscale.video.<a href="./src/resources/video-upscale/video.ts">create</a>({ ...params }) -> VideoCreateResponse</code>
 
 ## Image
 
 Types:
 
-- <code><a href="./src/resources/generate/image.ts">ImageCreateResponse</a></code>
+- <code><a href="./src/resources/video-upscale/image.ts">ImageCreateResponse</a></code>
 
 Methods:
 
-- <code title="post /v1/generate/image">client.generate.image.<a href="./src/resources/generate/image.ts">create</a>({ ...params }) -> ImageCreateResponse</code>
+- <code title="post /v1/generate/image">client.videoUpscale.image.<a href="./src/resources/video-upscale/image.ts">create</a>({ ...params }) -> ImageCreateResponse</code>
 
 ## Audio
 
 Types:
 
-- <code><a href="./src/resources/generate/audio.ts">ReferenceVoice</a></code>
-- <code><a href="./src/resources/generate/audio.ts">ReferenceAudio</a></code>
-- <code><a href="./src/resources/generate/audio.ts">AudioCreateResponse</a></code>
+- <code><a href="./src/resources/video-upscale/audio.ts">AudioCreateResponse</a></code>
 
 Methods:
 
-- <code title="post /v1/generate/audio">client.generate.audio.<a href="./src/resources/generate/audio.ts">create</a>({ ...params }) -> AudioCreateResponse</code>
+- <code title="post /v1/generate/audio">client.videoUpscale.audio.<a href="./src/resources/video-upscale/audio.ts">create</a>({ ...params }) -> AudioCreateResponse</code>
 
 # Routers
 
@@ -352,3 +358,12 @@ Types:
 Methods:
 
 - <code title="get /v1/workflow_invocations/{id}">client.workflowInvocations.<a href="./src/resources/workflow-invocations.ts">retrieve</a>(id) -> WorkflowInvocationRetrieveResponse</code>
+
+# Generate
+
+## Audio
+
+Types:
+
+- <code><a href="./src/resources/generate/audio.ts">ReferenceVoice</a></code>
+- <code><a href="./src/resources/generate/audio.ts">ReferenceAudio</a></code>

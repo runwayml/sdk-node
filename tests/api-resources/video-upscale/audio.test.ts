@@ -9,7 +9,7 @@ const client = new RunwayML({
 
 describe('resource audio', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.generate.audio.create({
+    const responsePromise = client.videoUpscale.audio.create({
       configId: 'n6_',
       input: { promptText: 'x', type: 'speech' },
     });
@@ -23,7 +23,7 @@ describe('resource audio', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await client.generate.audio.create({
+    const response = await client.videoUpscale.audio.create({
       configId: 'n6_',
       input: {
         promptText: 'x',

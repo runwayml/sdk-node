@@ -83,11 +83,13 @@ export declare namespace VideoToVideoCreateParams {
 
     /**
      * The container/encoding of the output. `mp4` (default) returns an H.264 .mp4.
-     * `prores` returns a ProRes .mov. `png_sequence` returns a .zip of PNG frames
-     * (plus a separate .wav artifact when the output has audio). Non-mp4 formats incur
-     * an additional surcharge of 5 credits per second of output.
+     * `prores` returns a ProRes .mov. `png_sequence` returns a .zip of PNG frames.
+     * `sdr_rec709_10bit` returns a 10-bit Rec.709 HEVC .mp4 for SDR grading pipelines.
+     * Non-mp4 formats incur an additional surcharge: 5 credits per second for `prores`
+     * and `png_sequence`, and 20 credits per second for `sdr_rec709_10bit` — 40
+     * credits per second when the output is larger than 4 megapixels (roughly 4K).
      */
-    outputFormat?: 'mp4' | 'prores' | 'png_sequence';
+    outputFormat?: 'mp4' | 'prores' | 'png_sequence' | 'sdr_rec709_10bit';
 
     /**
      * A non-empty and optional string describing what should appear in the output.
@@ -262,7 +264,7 @@ export declare namespace VideoToVideoCreateParams {
     referenceVideos?: Array<Hailuo3.ReferenceVideo>;
 
     /**
-     * The output resolution. Hailuo 3.0 supports 768P and 2K.
+     * The output resolution. MiniMax H3 supports 768P and 2K.
      */
     resolution?: '2K' | '768P';
   }
