@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
+import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/polling';
 
 /**
  * These endpoints all kick off tasks to create generations.
@@ -28,8 +28,13 @@ export class VideoToHdr extends APIResource {
    * });
    * ```
    */
-  create(body: VideoToHdrCreateParams, options?: RequestOptions): APIPromise<VideoToHdrCreateResponse> {
-    return this._client.post('/v1/video_to_hdr', { body, ...options });
+  create(
+    body: VideoToHdrCreateParams,
+    options?: RequestOptions,
+  ): APIPromiseWithAwaitableTask<VideoToHdrCreateResponse> {
+    return wrapAsWaitableResource<VideoToHdrCreateResponse>(this._client)(
+      this._client.post('/v1/video_to_hdr', { body, ...options }),
+    );
   }
 }
 
