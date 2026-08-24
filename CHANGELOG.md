@@ -1,5 +1,32 @@
 # Changelog
 
+## 4.16.0 (2026-08-24)
+
+Full Changelog: [v4.15.0...v4.16.0](https://github.com/runwayml/sdk-node/compare/v4.15.0...v4.16.0)
+
+### Features
+
+* **api:** add Video to HDR ([d9f546a](https://github.com/runwayml/sdk-node/commit/d9f546a458dae9a59498ae77fd847043dbd150a4))
+* **api:** add Video to HDR ([e43d39f](https://github.com/runwayml/sdk-node/commit/e43d39fed425e84fa6a654c281260094a7a2d596))
+* **api:** stlc build onto staging next ([1eccef9](https://github.com/runwayml/sdk-node/commit/1eccef91a9814fb3b9476cc202746bc01e5f2411))
+* **client:** make video to hdr waitable ([95aee4a](https://github.com/runwayml/sdk-node/commit/95aee4a8e2d042f3ee972838bc171bd8ff59ae91))
+
+
+### Bug Fixes
+
+* **client:** restore uploads on RunwayML ([083a07d](https://github.com/runwayml/sdk-node/commit/083a07d0d6713aaad39d8505464c431d59e1af6e))
+
+
+### Chores
+
+* **internal:** allow the mock server port to be set with STAINLESS_MOCK_PORT ([7f5ca95](https://github.com/runwayml/sdk-node/commit/7f5ca95feb336b007be5e0e8ee1cdf7ad85b7759))
+* local reseal after client.uploads + generate/routers fix ([afa2949](https://github.com/runwayml/sdk-node/commit/afa294944324bd4c9fd1d2387727715f5cb04e6d))
+
+
+### Documentation
+
+* expand 4.15.0 changelog with customer-facing API surface ([177eae4](https://github.com/runwayml/sdk-node/commit/177eae4cff21ec7cb746a6f118ddce21573686b8))
+
 ## 4.15.0 (2026-08-18)
 
 Full Changelog: [v4.14.0...v4.15.0](https://github.com/runwayml/sdk-node/compare/v4.14.0...v4.15.0)
