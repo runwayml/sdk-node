@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.16.1 (2026-08-25)
+
+Full Changelog: [v4.16.0...v4.16.1](https://github.com/runwayml/sdk-node/compare/v4.16.0...v4.16.1)
+
 ## 4.16.0 (2026-08-24)
 
 Full Changelog: [v4.15.0...v4.16.0](https://github.com/runwayml/sdk-node/compare/v4.15.0...v4.16.0)
