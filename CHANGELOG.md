@@ -1,5 +1,20 @@
 # Changelog
 
+## 4.16.0 (2026-08-24)
+
+Full Changelog: [v4.15.0...v4.16.0](https://github.com/runwayml/sdk-node/compare/v4.15.0...v4.16.0)
+
+### Features
+
+* **api:** add videoToHdr (ruby) ([d9f546a](https://github.com/runwayml/sdk-node/commit/d9f546a458dae9a59498ae77fd847043dbd150a4))
+* **api:** add HDR outputFormat on gen4.5 (text/image-to-video) and sdr_rec709_10bit on aleph2 ([d9f546a](https://github.com/runwayml/sdk-node/commit/d9f546a458dae9a59498ae77fd847043dbd150a4))
+* **client:** make videoToHdr waitable ([95aee4a](https://github.com/runwayml/sdk-node/commit/95aee4a8e2d042f3ee972838bc171bd8ff59ae91))
+
+
+### Bug Fixes
+
+* **client:** restore uploads on RunwayML ([083a07d](https://github.com/runwayml/sdk-node/commit/083a07d0d6713aaad39d8505464c431d59e1af6e))
+
 ## 4.15.0 (2026-08-18)
 
 Full Changelog: [v4.14.0...v4.15.0](https://github.com/runwayml/sdk-node/compare/v4.14.0...v4.15.0)
