@@ -67,13 +67,13 @@ client.example.list(undefined, { headers: { ... } });
 
 This affects the following methods:
 
+- `client.routers.update()`
 - `client.organization.retrieveUsage()`
 - `client.organization.webapp.auditLogs.retrieve()`
 - `client.avatars.update()`
 - `client.documents.update()`
 - `client.voices.update()`
 - `client.workflows.run()`
-- `client.routers.update()`
 
 ### Removed `httpAgent` in favor of `fetchOptions`
 
@@ -217,12 +217,8 @@ The `for await` syntax **is not affected**. This still works as-is:
 
 ```ts
 // Automatically fetches more pages as needed.
-for await (const webappListUsageResponse of client.organization.webapp.listUsage({
-  from: '2019-12-27T18:11:19.117Z',
-  limit: 1,
-  to: '2019-12-27T18:11:19.117Z',
-})) {
-  console.log(webappListUsageResponse);
+for await (const routerListResponse of client.routers.list({ limit: 1 })) {
+  console.log(routerListResponse);
 }
 ```
 
@@ -244,10 +240,10 @@ Page classes for individual methods are now type aliases:
 
 ```ts
 // Before
-export class WebappListUsageResponsesCursorPage extends CursorPage<WebappListUsageResponse> {}
+export class RouterListResponsesCursorPage extends CursorPage<RouterListResponse> {}
 
 // After
-export type WebappListUsageResponsesCursorPage = CursorPage<WebappListUsageResponse>;
+export type RouterListResponsesCursorPage = CursorPage<RouterListResponse>;
 ```
 
 If you were importing these classes at runtime, you'll need to switch to importing the base class or only import them at the type-level.
