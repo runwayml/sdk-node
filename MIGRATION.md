@@ -38,6 +38,20 @@ Readable.fromWeb(res.body).pipe(process.stdout);
 
 Additionally, the `headers` property on `APIError` objects is now an instance of the Web [Headers](https://developer.mozilla.org/en-US/docs/Web/API/Headers) class. It was previously defined as `Record<string, string | null | undefined>`.
 
+### URI encoded path parameters
+
+Path params are now properly encoded by default. If you were manually encoding path parameters before giving them to the SDK, you must now stop doing that and pass the
+param without any encoding applied.
+
+For example:
+
+```diff
+- client.example.retrieve(encodeURIComponent('string/with/slash'))
++ client.example.retrieve('string/with/slash') // retrieves /example/string%2Fwith%2Fslash
+```
+
+Previously without the `encodeURIComponent()` call we would have used the path `/example/string/with/slash`; now we'll use `/example/string%2Fwith%2Fslash`.
+
 ### Removed request options overloads
 
 When making requests with no required body, query or header parameters, you must now explicitly pass `null`, `undefined` or an empty object `{}` to the params argument in order to customise request options.
@@ -53,13 +67,13 @@ client.example.list(undefined, { headers: { ... } });
 
 This affects the following methods:
 
-- `client.routers.update()`
 - `client.organization.retrieveUsage()`
 - `client.organization.webapp.auditLogs.retrieve()`
 - `client.avatars.update()`
 - `client.documents.update()`
 - `client.voices.update()`
 - `client.workflows.run()`
+- `client.routers.update()`
 
 ### Removed `httpAgent` in favor of `fetchOptions`
 
@@ -133,6 +147,31 @@ const { RunwayML } = require('@runwayml/sdk');
 RunwayML.Tasks; // or import directly from @runwayml/sdk/resources/tasks
 ```
 
+#### Cleaned up `uploads` exports
+
+As part of the `core` refactor, `@runwayml/sdk/uploads` was moved to `@runwayml/sdk/core/uploads`
+and the following exports were removed, as they were not intended to be a part of the public API:
+
+- `fileFromPath`
+- `BlobPart`
+- `BlobLike`
+- `FileLike`
+- `ResponseLike`
+- `isResponseLike`
+- `isBlobLike`
+- `isFileLike`
+- `isUploadable`
+- `isMultipartBody`
+- `maybeMultipartFormRequestOptions`
+- `multipartFormRequestOptions`
+- `createForm`
+
+Note that `Uploadable` & `toFile` **are** still exported:
+
+```typescript
+import { type Uploadable, toFile } from '@runwayml/sdk/core/uploads';
+```
+
 #### `APIClient`
 
 The `APIClient` base client class has been removed as it is no longer needed. If you were importing this class then you must now import the main client class:
@@ -144,6 +183,21 @@ import { APIClient } from '@runwayml/sdk/core';
 // After
 import { RunwayML } from '@runwayml/sdk';
 ```
+
+### File handling
+
+The deprecated `fileFromPath` helper has been removed in favor of native Node.js streams:
+
+```ts
+// Before
+RunwayML.fileFromPath('path/to/file');
+
+// After
+import fs from 'fs';
+fs.createReadStream('path/to/file');
+```
+
+Note that this function previously only worked on Node.js. If you're using Bun, you can use [`Bun.file`](https://bun.sh/docs/api/file-io) instead.
 
 ### Shims removal
 
@@ -163,8 +217,12 @@ The `for await` syntax **is not affected**. This still works as-is:
 
 ```ts
 // Automatically fetches more pages as needed.
-for await (const routerListResponse of client.routers.list({ limit: 1 })) {
-  console.log(routerListResponse);
+for await (const webappListUsageResponse of client.organization.webapp.listUsage({
+  from: '2019-12-27T18:11:19.117Z',
+  limit: 1,
+  to: '2019-12-27T18:11:19.117Z',
+})) {
+  console.log(webappListUsageResponse);
 }
 ```
 
@@ -186,10 +244,10 @@ Page classes for individual methods are now type aliases:
 
 ```ts
 // Before
-export class RouterListResponsesCursorPage extends CursorPage<RouterListResponse> {}
+export class WebappListUsageResponsesCursorPage extends CursorPage<WebappListUsageResponse> {}
 
 // After
-export type RouterListResponsesCursorPage = CursorPage<RouterListResponse>;
+export type WebappListUsageResponsesCursorPage = CursorPage<WebappListUsageResponse>;
 ```
 
 If you were importing these classes at runtime, you'll need to switch to importing the base class or only import them at the type-level.

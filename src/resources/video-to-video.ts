@@ -88,11 +88,13 @@ export declare namespace VideoToVideoCreateParams {
 
     /**
      * The container/encoding of the output. `mp4` (default) returns an H.264 .mp4.
-     * `prores` returns a ProRes .mov. `png_sequence` returns a .zip of PNG frames
-     * (plus a separate .wav artifact when the output has audio). Non-mp4 formats incur
-     * an additional surcharge of 5 credits per second of output.
+     * `prores` returns a ProRes .mov. `png_sequence` returns a .zip of PNG frames.
+     * `sdr_rec709_10bit` returns a 10-bit Rec.709 HEVC .mp4 for SDR grading pipelines.
+     * Non-mp4 formats incur an additional surcharge: 5 credits per second for `prores`
+     * and `png_sequence`, and 20 credits per second for `sdr_rec709_10bit` — 40
+     * credits per second when the output is larger than 4 megapixels (roughly 4K).
      */
-    outputFormat?: 'mp4' | 'prores' | 'png_sequence';
+    outputFormat?: 'mp4' | 'prores' | 'png_sequence' | 'sdr_rec709_10bit';
 
     /**
      * A non-empty and optional string describing what should appear in the output.
@@ -267,7 +269,7 @@ export declare namespace VideoToVideoCreateParams {
     referenceVideos?: Array<Hailuo3.ReferenceVideo>;
 
     /**
-     * The output resolution. Hailuo 3.0 supports 768P and 2K.
+     * The output resolution. MiniMax H3 supports 768P and 2K.
      */
     resolution?: '2K' | '768P';
   }
@@ -706,7 +708,7 @@ export declare namespace VideoToVideoCreateParams {
     promptText?: string;
 
     /**
-     * The resolution of the output video. Seedance 2.5 supports 480p, 720p, and 1080p.
+     * The resolution of the output video. Seedance 2.5 supports 480p and 720p only.
      */
     ratio?:
       | '992:432'
@@ -720,13 +722,7 @@ export declare namespace VideoToVideoCreateParams {
       | '1112:834'
       | '960:960'
       | '834:1112'
-      | '720:1280'
-      | '2206:946'
-      | '1920:1080'
-      | '1664:1248'
-      | '1440:1440'
-      | '1248:1664'
-      | '1080:1920';
+      | '720:1280';
 
     /**
      * An optional array of audio references. The total combined duration must be less

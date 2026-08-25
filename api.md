@@ -29,6 +29,16 @@ Methods:
 
 - <code title="post /v1/video_to_video">client.videoToVideo.<a href="./src/resources/video-to-video.ts">create</a>({ ...params }) -> VideoToVideoCreateResponse</code>
 
+# VideoToHdr
+
+Types:
+
+- <code><a href="./src/resources/video-to-hdr.ts">VideoToHdrCreateResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/video_to_hdr">client.videoToHdr.<a href="./src/resources/video-to-hdr.ts">create</a>({ ...params }) -> VideoToHdrCreateResponse</code>
+
 # TextToVideo
 
 Types:
