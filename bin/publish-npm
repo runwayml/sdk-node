@@ -42,6 +42,12 @@ else
   LAST_VERSION=$(echo "$NPM_INFO" | jq -r '.') # strip quotes
 fi
 
+# Tag + release events can both fire. Skip if this version is already on npm.
+if npm view "$PACKAGE_NAME@$VERSION" version >/dev/null 2>&1; then
+  echo "already published $PACKAGE_NAME@$VERSION — skip"
+  exit 0
+fi
+
 # Check if current version is pre-release (e.g. alpha / beta / rc)
 CURRENT_IS_PRERELEASE=false
 if [[ "$VERSION" =~ -([a-zA-Z]+) ]]; then
