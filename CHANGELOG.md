@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.16.2 (2026-08-26)
+
+Full Changelog: [v4.16.1...v4.16.2](https://github.com/runwayml/sdk-node/compare/v4.16.1...v4.16.2)
+
+### Bug Fixes
+
+* **ci:** also publish on v* tag push ([3189089](https://github.com/runwayml/sdk-node/commit/3189089642114d256a359020b7958a67f46d639a))
+
 ## 4.16.1 (2026-08-25)
 
 Full Changelog: [v4.16.0...v4.16.1](https://github.com/runwayml/sdk-node/compare/v4.16.0...v4.16.1)
