@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.16.3 (2026-08-27)
+
+Full Changelog: [v4.16.2...v4.16.3](https://github.com/runwayml/sdk-node/compare/v4.16.2...v4.16.3)
+
+### Bug Fixes
+
+* format stlc workflows ([#5](https://github.com/runwayml/sdk-node/issues/5)) ([0c5ce92](https://github.com/runwayml/sdk-node/commit/0c5ce92f9e4fa10de4a2a4747df556771f791fb9))
+
+
+### Chores
+
+* **stlc:** add SDK repo workflows ([#4](https://github.com/runwayml/sdk-node/issues/4)) ([7ea0b39](https://github.com/runwayml/sdk-node/commit/7ea0b39ad753ca1b600d4e38bd124ad3bff552de))
+
 ## 4.16.2 (2026-08-26)
 
 Full Changelog: [v4.16.1...v4.16.2](https://github.com/runwayml/sdk-node/compare/v4.16.1...v4.16.2)
