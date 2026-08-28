@@ -53,6 +53,7 @@ export type TextToImageCreateParams =
   | TextToImageCreateParams.GptImage2
   | TextToImageCreateParams.GeminiImage3Pro
   | TextToImageCreateParams.GeminiImage3_1Flash
+  | TextToImageCreateParams.MuseImage
   | TextToImageCreateParams.Seedream5Pro
   | TextToImageCreateParams.Seedream5Lite
   | TextToImageCreateParams.GrokImagineImage2
@@ -493,6 +494,53 @@ export declare namespace TextToImageCreateParams {
        * digits, and underscores (no hyphens or other punctuation).
        */
       tag?: string;
+    }
+  }
+
+  export interface MuseImage {
+    model: 'muse_image';
+
+    /**
+     * A non-empty text prompt describing what should appear in the output image.
+     */
+    promptText: string;
+
+    /**
+     * The resolution of the output image, expressed as `<width>:<height>`. Use `auto`
+     * to let the model choose the framing from the prompt.
+     */
+    ratio:
+      | '2352:1008'
+      | '2016:1152'
+      | '1920:1280'
+      | '1792:1344'
+      | '1600:1600'
+      | '1344:1792'
+      | '1280:1920'
+      | '1152:2016'
+      | 'auto';
+
+    /**
+     * The number of images to generate. Each image costs 1 credit.
+     */
+    outputCount?: number;
+
+    /**
+     * Up to 10 images to guide the generation. When provided, the model edits and
+     * combines them as your prompt describes instead of generating from the prompt
+     * alone.
+     */
+    referenceImages?: Array<MuseImage.ReferenceImage>;
+  }
+
+  export namespace MuseImage {
+    export interface ReferenceImage {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
     }
   }
 
