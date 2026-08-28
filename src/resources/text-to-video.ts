@@ -58,7 +58,8 @@ export type TextToVideoCreateParams =
   | TextToVideoCreateParams.Seedance2Mini
   | TextToVideoCreateParams.GeminiOmniFlash
   | TextToVideoCreateParams.Seedance2_5
-  | TextToVideoCreateParams.GrokImagine1_5;
+  | TextToVideoCreateParams.GrokImagine1_5
+  | TextToVideoCreateParams.Wan3;
 
 export declare namespace TextToVideoCreateParams {
   export interface Gen4_5 {
@@ -809,6 +810,109 @@ export declare namespace TextToVideoCreateParams {
        * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
        * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
        * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+    }
+  }
+
+  export interface Wan3 {
+    model: 'wan3';
+
+    /**
+     * A non-empty text prompt describing what should appear in the output.
+     */
+    promptText: string;
+
+    /**
+     * Whether to generate audio with the video.
+     */
+    audio?: boolean;
+
+    /**
+     * The number of seconds of duration for the output video.
+     */
+    duration?: number;
+
+    /**
+     * The resolution of the output video, as `<width>:<height>`. Use `auto_480p`,
+     * `auto_720p`, or `auto_1080p` to let the model pick framing at that quality tier.
+     */
+    ratio?:
+      | '832:480'
+      | '640:480'
+      | '480:480'
+      | '480:640'
+      | '480:832'
+      | '1280:720'
+      | '960:720'
+      | '720:720'
+      | '720:960'
+      | '720:1280'
+      | '1920:1080'
+      | '1440:1080'
+      | '1080:1080'
+      | '1080:1440'
+      | '1080:1920'
+      | 'auto_480p'
+      | 'auto_720p'
+      | 'auto_1080p';
+
+    /**
+     * An optional array of audio references. The total combined duration must not
+     * exceed 15 seconds.
+     */
+    referenceAudio?: Array<Wan3.ReferenceAudio>;
+
+    /**
+     * An optional array of image references (up to 10). See
+     * [our docs](/assets/inputs#images) on image inputs for more information.
+     */
+    references?: Array<Wan3.Reference>;
+
+    /**
+     * An optional array of video references. The combined duration across all video
+     * references must not exceed 15 seconds. See [our docs](/assets/inputs#videos) on
+     * video inputs for more information.
+     */
+    referenceVideos?: Array<Wan3.ReferenceVideo>;
+  }
+
+  export namespace Wan3 {
+    /**
+     * An audio reference allows the model to use the audio as additional context for
+     * the output.
+     */
+    export interface ReferenceAudio {
+      type: 'audio';
+
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:audio/mp3;base64,...`, up to 5MB) containing an encoded audio. See
+       * [our docs](/assets/inputs#audio) on audio inputs for more information.
+       */
+      uri: string;
+    }
+
+    export interface Reference {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+    }
+
+    /**
+     * A video reference allows the model to use the video as additional context for
+     * the output.
+     */
+    export interface ReferenceVideo {
+      type: 'video';
+
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+       * [our docs](/assets/inputs#videos) on video inputs for more information.
        */
       uri: string;
     }
