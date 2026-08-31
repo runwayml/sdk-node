@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.17.1](https://github.com/runwayml/sdk-node/compare/v4.17.0...v4.17.1) (2026-08-31)
+
+
+### Bug Fixes
+
+* cap media data URIs at 5MB ([7e69a65](https://github.com/runwayml/sdk-node/commit/7e69a65fec9c031b5dde2415827abc948ce59adb))
+
 ## [4.17.0](https://github.com/runwayml/sdk-node/compare/v4.16.2...v4.17.0) (2026-08-28)
 
 
