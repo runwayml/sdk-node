@@ -275,6 +275,13 @@ export declare namespace ImageToVideoCreateParams {
      * should describe in detail what should appear in the output.
      */
     promptText?: string;
+
+    /**
+     * If unspecified, a random number is chosen. Varying the seed integer is a way to
+     * get different results for the same other request parameters. Using the same seed
+     * integer for an identical request will produce similar results.
+     */
+    seed?: number;
   }
 
   export namespace Veo3_1 {
@@ -330,6 +337,13 @@ export declare namespace ImageToVideoCreateParams {
      * should describe in detail what should appear in the output.
      */
     promptText?: string;
+
+    /**
+     * If unspecified, a random number is chosen. Varying the seed integer is a way to
+     * get different results for the same other request parameters. Using the same seed
+     * integer for an identical request will produce similar results.
+     */
+    seed?: number;
   }
 
   export namespace Veo3_1Fast {
@@ -463,9 +477,11 @@ export declare namespace ImageToVideoCreateParams {
     audio?: boolean;
 
     /**
-     * The number of seconds of duration for the output video.
+     * Seconds of video to generate, or `auto` to let the model choose. `auto` is
+     * billed at the variant maximum up front; unused credits are refunded after the
+     * generation finishes.
      */
-    duration?: number;
+    duration?: number | 'auto';
 
     /**
      * An optional text prompt up to 3500 characters describing what should appear in
@@ -507,6 +523,13 @@ export declare namespace ImageToVideoCreateParams {
      * exceed 15 seconds.
      */
     referenceAudio?: Array<Seedance2.ReferenceAudio>;
+
+    /**
+     * If unspecified, a random number is chosen. Varying the seed integer is a way to
+     * get different results for the same other request parameters. Using the same seed
+     * integer for an identical request will produce similar results.
+     */
+    seed?: number;
   }
 
   export namespace Seedance2 {
@@ -556,9 +579,11 @@ export declare namespace ImageToVideoCreateParams {
     audio?: boolean;
 
     /**
-     * The number of seconds of duration for the output video.
+     * Seconds of video to generate, or `auto` to let the model choose. `auto` is
+     * billed at the variant maximum up front; unused credits are refunded after the
+     * generation finishes.
      */
-    duration?: number;
+    duration?: number | 'auto';
 
     /**
      * An optional text prompt up to 3500 characters describing what should appear in
@@ -589,6 +614,13 @@ export declare namespace ImageToVideoCreateParams {
      * exceed 15 seconds.
      */
     referenceAudio?: Array<Seedance2Fast.ReferenceAudio>;
+
+    /**
+     * If unspecified, a random number is chosen. Varying the seed integer is a way to
+     * get different results for the same other request parameters. Using the same seed
+     * integer for an identical request will produce similar results.
+     */
+    seed?: number;
   }
 
   export namespace Seedance2Fast {
@@ -638,9 +670,11 @@ export declare namespace ImageToVideoCreateParams {
     audio?: boolean;
 
     /**
-     * The number of seconds of duration for the output video.
+     * Seconds of video to generate, or `auto` to let the model choose. `auto` is
+     * billed at the variant maximum up front; unused credits are refunded after the
+     * generation finishes.
      */
-    duration?: number;
+    duration?: number | 'auto';
 
     /**
      * An optional text prompt up to 3500 characters describing what should appear in
@@ -671,6 +705,13 @@ export declare namespace ImageToVideoCreateParams {
      * exceed 15 seconds.
      */
     referenceAudio?: Array<Seedance2Mini.ReferenceAudio>;
+
+    /**
+     * If unspecified, a random number is chosen. Varying the seed integer is a way to
+     * get different results for the same other request parameters. Using the same seed
+     * integer for an identical request will produce similar results.
+     */
+    seed?: number;
   }
 
   export namespace Seedance2Mini {
@@ -764,9 +805,11 @@ export declare namespace ImageToVideoCreateParams {
     audio?: boolean;
 
     /**
-     * The number of seconds of duration for the output video.
+     * Seconds of video to generate, or `auto` to let the model choose. `auto` is
+     * billed at the variant maximum up front; unused credits are refunded after the
+     * generation finishes.
      */
-    duration?: number;
+    duration?: number | 'auto';
 
     /**
      * An optional text prompt up to 15000 characters describing what should appear in
@@ -802,6 +845,13 @@ export declare namespace ImageToVideoCreateParams {
      * exceed 30 seconds.
      */
     referenceAudio?: Array<Seedance2_5.ReferenceAudio>;
+
+    /**
+     * If unspecified, a random number is chosen. Varying the seed integer is a way to
+     * get different results for the same other request parameters. Using the same seed
+     * integer for an identical request will produce similar results.
+     */
+    seed?: number;
   }
 
   export namespace Seedance2_5 {
