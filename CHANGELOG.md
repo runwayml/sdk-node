@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.19.0](https://github.com/runwayml/sdk-node/compare/v4.18.0...v4.19.0) (2026-09-02)
+
+
+### Features
+
+* add image generation options ([d66571c](https://github.com/runwayml/sdk-node/commit/d66571c3fb80b05ca0bae1d1347ae667c9fbdae0))
+
 ## [4.18.0](https://github.com/runwayml/sdk-node/compare/v4.17.1...v4.18.0) (2026-09-01)
 
 
