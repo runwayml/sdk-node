@@ -262,10 +262,10 @@ export declare namespace TextToImageCreateParams {
       | 'auto';
 
     /**
-     * Background treatment. Defaults to `auto`, which lets the model pick.
-     * `transparent` is not supported by this model.
+     * Background treatment. Defaults to `auto`, which lets the model pick. Use
+     * `transparent` to generate a PNG with an alpha-channel background.
      */
-    background?: 'opaque' | 'auto';
+    background?: 'transparent' | 'opaque' | 'auto';
 
     /**
      * The number of images to generate (1-10). Increasing this number will affect the
@@ -280,7 +280,7 @@ export declare namespace TextToImageCreateParams {
 
     /**
      * An array of up to 16 images to be used as references for the generated image
-     * output.
+     * output. No two images may share the same tag.
      */
     referenceImages?: Array<GptImage2.ReferenceImage>;
   }
@@ -526,6 +526,11 @@ export declare namespace TextToImageCreateParams {
     outputCount?: number;
 
     /**
+     * The file format of the output image. Defaults to png.
+     */
+    outputFormat?: 'webp' | 'png' | 'jpeg';
+
+    /**
      * Up to 10 images to guide the generation. When provided, the model edits and
      * combines them as your prompt describes instead of generating from the prompt
      * alone.
@@ -619,7 +624,9 @@ export declare namespace TextToImageCreateParams {
     promptText: string;
 
     /**
-     * The resolution of the output image, expressed as `<width>:<height>`.
+     * The resolution of the output image, expressed as `<width>:<height>`. Also
+     * accepts freeform sizes whose width\*height is between 3686400 and 16777216
+     * pixels.
      */
     ratio:
       | '2048:2048'
@@ -637,7 +644,8 @@ export declare namespace TextToImageCreateParams {
       | '2304:4096'
       | '3744:2496'
       | '2496:3744'
-      | '4704:2016';
+      | '4704:2016'
+      | (string & {});
 
     /**
      * When true, enable live web search so the model can use current brand, trend, or
