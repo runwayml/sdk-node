@@ -58,7 +58,10 @@ export interface AuditLogRetrieveResponse {
     | 'TeamSettingsUpdated'
     | 'InviteLinkToggled'
     | 'UserGroupCreated'
+    | 'UserGroupUpdated'
     | 'UserGroupDeleted'
+    | 'UserGroupArchived'
+    | 'UserGroupRestored'
     | 'UserGroupMemberAdded'
     | 'UserGroupMemberRemoved'
     | 'SSOLogin'
@@ -72,11 +75,19 @@ export interface AuditLogRetrieveResponse {
     | 'AssetDownloaded'
     | 'AssetShared'
     | 'AssetUnshared'
+    | 'CommentCreated'
+    | 'CommentEdited'
+    | 'CommentDeleted'
+    | 'CommentAgentCallRun'
+    | 'CommentRemovedByModerator'
+    | 'CommentRestoredByModerator'
+    | 'CommentRemovalReasonChanged'
     | 'PermissionGranted'
     | 'PermissionUpdated'
     | 'PermissionRevoked'
     | 'PermissionAccepted'
     | 'SubscriptionCancelled'
+    | 'SubscriptionReactivatedWithOffer'
     | 'SubscriptionPlanSwitched'
     | 'CreditsTransferred'
     | 'SeatsTransferred'
@@ -103,6 +114,10 @@ export interface AuditLogRetrieveResponse {
     | 'AccountLinkDeleted'
     | 'OrganizationSettingsUpdated'
     | 'OrganizationDisabledModelsUpdated'
+    | 'OrganizationApiAccountReleased'
+    | 'OrganizationApiAccountMemberInvited'
+    | 'OrganizationApiAccountMemberRoleChanged'
+    | 'OrganizationApiAccountMemberRemoved'
     | 'WorkspaceCountryLockUpdated'
     | 'WorkspaceTagCreated'
     | 'WorkspaceTagUpdated'
@@ -190,13 +205,33 @@ export namespace AuditLogRetrieveResponse {
    * Action-specific details.
    */
   export interface Metadata {
+    'Agent session ID'?: unknown;
+
+    'Agent tagged'?: unknown;
+
     Amount?: unknown;
+
+    'Amount received'?: unknown;
+
+    'API account'?: unknown;
+
+    'API project ID'?: unknown;
 
     Application?: unknown;
 
     'Asset name'?: unknown;
 
+    'Comment ID'?: unknown;
+
+    'Comment target ID'?: unknown;
+
+    'Comment target type'?: unknown;
+
     'Default task name template'?: unknown;
+
+    Direction?: unknown;
+
+    'Error code'?: unknown;
 
     'Group name'?: unknown;
 
@@ -208,13 +243,19 @@ export namespace AuditLogRetrieveResponse {
 
     'Member email'?: unknown;
 
+    Mentions?: unknown;
+
     Model?: unknown;
 
     'New role'?: unknown;
 
     'New User'?: unknown;
 
+    'New value'?: unknown;
+
     Operation?: unknown;
+
+    Outcome?: unknown;
 
     Plan?: unknown;
 
@@ -222,9 +263,15 @@ export namespace AuditLogRetrieveResponse {
 
     'Previous role'?: unknown;
 
+    'Previous value'?: unknown;
+
+    Reason?: unknown;
+
     'Removed member'?: unknown;
 
     Role?: unknown;
+
+    Setting?: unknown;
 
     'Shared with projects'?: unknown;
 
@@ -270,7 +317,10 @@ export interface AuditLogListResponse {
     | 'TeamSettingsUpdated'
     | 'InviteLinkToggled'
     | 'UserGroupCreated'
+    | 'UserGroupUpdated'
     | 'UserGroupDeleted'
+    | 'UserGroupArchived'
+    | 'UserGroupRestored'
     | 'UserGroupMemberAdded'
     | 'UserGroupMemberRemoved'
     | 'SSOLogin'
@@ -284,11 +334,19 @@ export interface AuditLogListResponse {
     | 'AssetDownloaded'
     | 'AssetShared'
     | 'AssetUnshared'
+    | 'CommentCreated'
+    | 'CommentEdited'
+    | 'CommentDeleted'
+    | 'CommentAgentCallRun'
+    | 'CommentRemovedByModerator'
+    | 'CommentRestoredByModerator'
+    | 'CommentRemovalReasonChanged'
     | 'PermissionGranted'
     | 'PermissionUpdated'
     | 'PermissionRevoked'
     | 'PermissionAccepted'
     | 'SubscriptionCancelled'
+    | 'SubscriptionReactivatedWithOffer'
     | 'SubscriptionPlanSwitched'
     | 'CreditsTransferred'
     | 'SeatsTransferred'
@@ -315,6 +373,10 @@ export interface AuditLogListResponse {
     | 'AccountLinkDeleted'
     | 'OrganizationSettingsUpdated'
     | 'OrganizationDisabledModelsUpdated'
+    | 'OrganizationApiAccountReleased'
+    | 'OrganizationApiAccountMemberInvited'
+    | 'OrganizationApiAccountMemberRoleChanged'
+    | 'OrganizationApiAccountMemberRemoved'
     | 'WorkspaceCountryLockUpdated'
     | 'WorkspaceTagCreated'
     | 'WorkspaceTagUpdated'
@@ -377,26 +439,34 @@ export interface AuditLogListParams extends CursorPageParams {
    * `EmailChangeRequested`, `EmailChanged`, `UserRegistered`, `UserAccountDeleted`,
    * `WorkspaceCreated`, `WorkspaceDeleted`, `MemberInvited`, `MemberRemoved`,
    * `MemberRoleChanged`, `InviteAccepted`, `TeamSettingsUpdated`,
-   * `InviteLinkToggled`, `UserGroupCreated`, `UserGroupDeleted`,
-   * `UserGroupMemberAdded`, `UserGroupMemberRemoved`, `SSOLogin`,
-   * `SSOUserProvisioned`, `SSOConfigCreated`, `SSOUserAutoAddedToTeam`,
-   * `SSODomainRegistrationCloned`, `AssetCreated`, `AssetUpdated`, `AssetDeleted`,
-   * `AssetDownloaded`, `AssetShared`, `AssetUnshared`, `PermissionGranted`,
-   * `PermissionUpdated`, `PermissionRevoked`, `PermissionAccepted`,
-   * `SubscriptionCancelled`, `SubscriptionPlanSwitched`, `CreditsTransferred`,
-   * `SeatsTransferred`, `SessionShared`, `SessionUnshared`, `VideoProjectShared`,
-   * `VideoProjectUnshared`, `BrandKitShared`, `BrandKitUnshared`,
-   * `AgentCustomSkillCreated`, `AgentCustomSkillDeleted`, `AgentCustomSkillShared`,
-   * `AgentCustomSkillUnshared`, `AgentSessionShared`, `AgentSessionUnshared`,
-   * `AgentConnectorLinkTokenCreated`, `AgentConnectorConnected`,
-   * `AgentConnectorDisconnected`, `AgentConnectorAssetExported`,
-   * `AgentConnectorSessionEnabled`, `AgentConnectorSessionDisabled`,
-   * `GenerationCreated`, `AccountLinkCreated`, `AccountLinkDeleted`,
-   * `OrganizationSettingsUpdated`, `OrganizationDisabledModelsUpdated`,
-   * `WorkspaceCountryLockUpdated`, `WorkspaceTagCreated`, `WorkspaceTagUpdated`,
-   * `WorkspaceTagDeleted`, `WorkspaceTagAssigned`, `WorkspaceTagUnassigned`,
-   * `MeteredBillingConfigUpdated`, `MeteredBillingRefillTriggered`,
-   * `MeteredBillingRetryTriggered`, `EnterpriseSpendCapEnforcementUpdated`.
+   * `InviteLinkToggled`, `UserGroupCreated`, `UserGroupUpdated`, `UserGroupDeleted`,
+   * `UserGroupArchived`, `UserGroupRestored`, `UserGroupMemberAdded`,
+   * `UserGroupMemberRemoved`, `SSOLogin`, `SSOUserProvisioned`, `SSOConfigCreated`,
+   * `SSOUserAutoAddedToTeam`, `SSODomainRegistrationCloned`, `AssetCreated`,
+   * `AssetUpdated`, `AssetDeleted`, `AssetDownloaded`, `AssetShared`,
+   * `AssetUnshared`, `CommentCreated`, `CommentEdited`, `CommentDeleted`,
+   * `CommentAgentCallRun`, `CommentRemovedByModerator`,
+   * `CommentRestoredByModerator`, `CommentRemovalReasonChanged`,
+   * `PermissionGranted`, `PermissionUpdated`, `PermissionRevoked`,
+   * `PermissionAccepted`, `SubscriptionCancelled`,
+   * `SubscriptionReactivatedWithOffer`, `SubscriptionPlanSwitched`,
+   * `CreditsTransferred`, `SeatsTransferred`, `SessionShared`, `SessionUnshared`,
+   * `VideoProjectShared`, `VideoProjectUnshared`, `BrandKitShared`,
+   * `BrandKitUnshared`, `AgentCustomSkillCreated`, `AgentCustomSkillDeleted`,
+   * `AgentCustomSkillShared`, `AgentCustomSkillUnshared`, `AgentSessionShared`,
+   * `AgentSessionUnshared`, `AgentConnectorLinkTokenCreated`,
+   * `AgentConnectorConnected`, `AgentConnectorDisconnected`,
+   * `AgentConnectorAssetExported`, `AgentConnectorSessionEnabled`,
+   * `AgentConnectorSessionDisabled`, `GenerationCreated`, `AccountLinkCreated`,
+   * `AccountLinkDeleted`, `OrganizationSettingsUpdated`,
+   * `OrganizationDisabledModelsUpdated`, `OrganizationApiAccountReleased`,
+   * `OrganizationApiAccountMemberInvited`,
+   * `OrganizationApiAccountMemberRoleChanged`,
+   * `OrganizationApiAccountMemberRemoved`, `WorkspaceCountryLockUpdated`,
+   * `WorkspaceTagCreated`, `WorkspaceTagUpdated`, `WorkspaceTagDeleted`,
+   * `WorkspaceTagAssigned`, `WorkspaceTagUnassigned`, `MeteredBillingConfigUpdated`,
+   * `MeteredBillingRefillTriggered`, `MeteredBillingRetryTriggered`,
+   * `EnterpriseSpendCapEnforcementUpdated`.
    */
   actions?: string;
 

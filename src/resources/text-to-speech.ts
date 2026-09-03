@@ -89,19 +89,21 @@ export declare namespace TextToSpeechCreateParams {
     speechRate?: number;
 
     /**
-     * Clone from a single reference audio clip, then speak promptText in that voice.
+     * The voice to use for text-to-speech generation. If omitted, a default voice is
+     * used.
      */
     voice?: SeedAudio.Voice;
   }
 
   export namespace SeedAudio {
     /**
-     * Clone from a single reference audio clip, then speak promptText in that voice.
+     * The voice to use for text-to-speech generation. If omitted, a default voice is
+     * used.
      */
     export interface Voice {
       /**
        * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+       * `data:audio/mp3;base64,...`, up to 5MB) containing an encoded audio. See
        * [our docs](/assets/inputs#audio) on audio inputs for more information.
        */
       audioUri: string;

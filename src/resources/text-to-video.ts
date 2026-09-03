@@ -10,6 +10,14 @@ import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/poll
 export class TextToVideo extends APIResource {
   /**
    * This endpoint will start a new task to generate a video from a text prompt.
+   *
+   * @example
+   * ```ts
+   * const textToVideo = await client.textToVideo.create({
+   *   model: 'hailuo3',
+   *   promptText: 'x',
+   * });
+   * ```
    */
   create(
     body: TextToVideoCreateParams,
@@ -59,7 +67,10 @@ export type TextToVideoCreateParams =
   | TextToVideoCreateParams.GeminiOmniFlash
   | TextToVideoCreateParams.Seedance2_5
   | TextToVideoCreateParams.GrokImagine1_5
-  | TextToVideoCreateParams.Wan3;
+  | TextToVideoCreateParams.Wan3
+  | TextToVideoCreateParams.GeminiOmniFlash1_1
+  | TextToVideoCreateParams.Wan3Prime
+  | TextToVideoCreateParams.H3Max;
 
 export declare namespace TextToVideoCreateParams {
   export interface Gen4_5 {
@@ -101,11 +112,16 @@ export declare namespace TextToVideoCreateParams {
      * losslessly (plus a colorimetry.json sidecar and a separate .wav when the output
      * has audio); `hdr_exr_sequence` returns a .zip of half-float OpenEXR frames
      * carrying the HDR signal as linear BT.2020 display light, 1.0 = 100 nits (plus a
-     * colorimetry.json sidecar and a separate .wav when the output has audio). Non-mp4
-     * formats incur an additional per-second credit surcharge: 5 credits per second
-     * for `prores` and `png_sequence`, and 20 credits per second for every 10-bit and
-     * deeper profile (including the 12-bit, 16-bit, and EXR ones), rising to 40
-     * credits per second when the output is larger than 4 megapixels (roughly 4K).
+     * colorimetry.json sidecar and a separate .wav when the output has audio);
+     * `hdr_exr_acescg_sequence_1_3` returns the same delivery as scene-referred ACEScg
+     * (inverted through the ACES 1.3 Output Transform), reading correctly with the
+     * stock `ACES - ACEScg` input transform in ACES-configured pipelines, with VFX
+     * sequence frame naming (frame.0001.exr). Non-mp4 formats incur an additional
+     * per-second credit surcharge: 5 credits per second for `prores` and
+     * `png_sequence`, and 20 credits per second for every 10-bit and deeper profile
+     * (including the 12-bit, 16-bit, and EXR ones), rising to 40 credits per second
+     * when the output is larger than 4 megapixels — that includes 1440p (2560x1440 is
+     * under the line, but anything larger crosses it) up through 4K.
      */
     outputFormat?:
       | 'mp4'
@@ -117,7 +133,9 @@ export declare namespace TextToVideoCreateParams {
       | 'hdr_pq_12bit_master'
       | 'hdr_prores'
       | 'hdr_png_sequence'
-      | 'hdr_exr_sequence';
+      | 'hdr_exr_sequence'
+      | 'hdr_exr_acescg_sequence_1_3'
+      | 'hdr_exr_acescg_sequence_2_0';
 
     /**
      * The ProRes profile to use. Only valid when `outputFormat` is `prores` or
@@ -263,9 +281,12 @@ export declare namespace TextToVideoCreateParams {
     referenceVideos?: Array<Hailuo3.ReferenceVideo>;
 
     /**
-     * The output resolution. MiniMax H3 supports 768P and 2K.
+     * The output resolution. Hailuo 3.0 supports 768p and 2k.
+     *
+     * - `768P` - Deprecated: Use "768p" instead.
+     * - `2K` - Deprecated: Use "2k" instead.
      */
-    resolution?: '2K' | '768P';
+    resolution?: '768p' | '2k' | '768P' | '2K';
   }
 
   export namespace Hailuo3 {
@@ -278,7 +299,7 @@ export declare namespace TextToVideoCreateParams {
 
       /**
        * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+       * `data:audio/mp3;base64,...`, up to 5MB) containing an encoded audio. See
        * [our docs](/assets/inputs#audio) on audio inputs for more information.
        */
       uri: string;
@@ -302,7 +323,7 @@ export declare namespace TextToVideoCreateParams {
 
       /**
        * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+       * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
        * [our docs](/assets/inputs#videos) on video inputs for more information.
        */
       uri: string;
@@ -426,7 +447,7 @@ export declare namespace TextToVideoCreateParams {
 
       /**
        * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+       * `data:audio/mp3;base64,...`, up to 5MB) containing an encoded audio. See
        * [our docs](/assets/inputs#audio) on audio inputs for more information.
        */
       uri: string;
@@ -450,7 +471,7 @@ export declare namespace TextToVideoCreateParams {
 
       /**
        * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+       * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
        * [our docs](/assets/inputs#videos) on video inputs for more information.
        */
       uri: string;
@@ -533,7 +554,7 @@ export declare namespace TextToVideoCreateParams {
 
       /**
        * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+       * `data:audio/mp3;base64,...`, up to 5MB) containing an encoded audio. See
        * [our docs](/assets/inputs#audio) on audio inputs for more information.
        */
       uri: string;
@@ -557,7 +578,7 @@ export declare namespace TextToVideoCreateParams {
 
       /**
        * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+       * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
        * [our docs](/assets/inputs#videos) on video inputs for more information.
        */
       uri: string;
@@ -640,7 +661,7 @@ export declare namespace TextToVideoCreateParams {
 
       /**
        * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+       * `data:audio/mp3;base64,...`, up to 5MB) containing an encoded audio. See
        * [our docs](/assets/inputs#audio) on audio inputs for more information.
        */
       uri: string;
@@ -664,7 +685,7 @@ export declare namespace TextToVideoCreateParams {
 
       /**
        * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+       * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
        * [our docs](/assets/inputs#videos) on video inputs for more information.
        */
       uri: string;
@@ -772,7 +793,7 @@ export declare namespace TextToVideoCreateParams {
 
       /**
        * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+       * `data:audio/mp3;base64,...`, up to 5MB) containing an encoded audio. See
        * [our docs](/assets/inputs#audio) on audio inputs for more information.
        */
       uri: string;
@@ -796,7 +817,7 @@ export declare namespace TextToVideoCreateParams {
 
       /**
        * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+       * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
        * [our docs](/assets/inputs#videos) on video inputs for more information.
        */
       uri: string;
@@ -849,7 +870,7 @@ export declare namespace TextToVideoCreateParams {
 
       /**
        * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+       * `data:audio/mp3;base64,...`, up to 5MB) containing an encoded audio. See
        * [our docs](/assets/inputs#audio) on audio inputs for more information.
        */
       uri: string;
@@ -884,24 +905,25 @@ export declare namespace TextToVideoCreateParams {
     duration?: number;
 
     /**
-     * The resolution of the output video, as `<width>:<height>`. Use `auto_480p`,
-     * `auto_720p`, or `auto_1080p` to let the model pick framing at that quality tier.
+     * The resolution of the output video, as `<width>:<height>`. Keyframe
+     * image-to-video requests must use `auto_480p`, `auto_720p`, or `auto_1080p`
+     * because their aspect ratio follows the first frame.
      */
     ratio?:
       | '832:480'
-      | '640:480'
-      | '480:480'
-      | '480:640'
+      | '720:544'
+      | '624:624'
+      | '544:720'
       | '480:832'
       | '1280:720'
-      | '960:720'
-      | '720:720'
-      | '720:960'
+      | '1104:832'
+      | '960:960'
+      | '832:1104'
       | '720:1280'
       | '1920:1080'
-      | '1440:1080'
-      | '1080:1080'
-      | '1080:1440'
+      | '1648:1248'
+      | '1440:1440'
+      | '1248:1648'
       | '1080:1920'
       | 'auto_480p'
       | 'auto_720p'
@@ -966,6 +988,195 @@ export declare namespace TextToVideoCreateParams {
        */
       uri: string;
     }
+  }
+
+  export interface GeminiOmniFlash1_1 {
+    model: 'gemini_omni_flash_1.1';
+
+    /**
+     * A non-empty text prompt describing the video to generate.
+     */
+    promptText: string;
+
+    /**
+     * The duration of the output video in seconds. Use "auto" to let the model choose
+     * a duration. Numeric durations must be between 3 and 10 seconds.
+     */
+    duration?: 'auto' | number;
+
+    /**
+     * The resolution and aspect ratio of the output video.
+     */
+    ratio?:
+      | '640:360'
+      | '360:640'
+      | '1280:720'
+      | '720:1280'
+      | '1920:1080'
+      | '1080:1920'
+      | '3840:2160'
+      | '2160:3840';
+
+    references?: Array<GeminiOmniFlash1_1.Reference>;
+
+    referenceVideos?: Array<GeminiOmniFlash1_1.ReferenceVideo>;
+  }
+
+  export namespace GeminiOmniFlash1_1 {
+    export interface Reference {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+    }
+
+    export interface ReferenceVideo {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+       * [our docs](/assets/inputs#videos) on video inputs for more information.
+       */
+      uri: string;
+    }
+  }
+
+  export interface Wan3Prime {
+    model: 'wan3_prime';
+
+    /**
+     * A non-empty text prompt describing what should appear in the output.
+     */
+    promptText: string;
+
+    /**
+     * Whether to generate audio with the video.
+     */
+    audio?: boolean;
+
+    /**
+     * The number of seconds of duration for the output video.
+     */
+    duration?: number;
+
+    /**
+     * The resolution of the output video, as `<width>:<height>`. Keyframe
+     * image-to-video requests must use `auto_480p`, `auto_720p`, or `auto_1080p`
+     * because their aspect ratio follows the first frame.
+     */
+    ratio?:
+      | '832:480'
+      | '720:544'
+      | '624:624'
+      | '544:720'
+      | '480:832'
+      | '1280:720'
+      | '1104:832'
+      | '960:960'
+      | '832:1104'
+      | '720:1280'
+      | '1920:1080'
+      | '1648:1248'
+      | '1440:1440'
+      | '1248:1648'
+      | '1080:1920'
+      | 'auto_480p'
+      | 'auto_720p'
+      | 'auto_1080p';
+
+    /**
+     * An optional array of audio references. The total combined duration must not
+     * exceed 15 seconds.
+     */
+    referenceAudio?: Array<Wan3Prime.ReferenceAudio>;
+
+    /**
+     * An optional array of image references (up to 10). See
+     * [our docs](/assets/inputs#images) on image inputs for more information.
+     */
+    references?: Array<Wan3Prime.Reference>;
+
+    /**
+     * An optional array of video references. The combined duration across all video
+     * references must not exceed 15 seconds. See [our docs](/assets/inputs#videos) on
+     * video inputs for more information.
+     */
+    referenceVideos?: Array<Wan3Prime.ReferenceVideo>;
+  }
+
+  export namespace Wan3Prime {
+    /**
+     * An audio reference allows the model to use the audio as additional context for
+     * the output.
+     */
+    export interface ReferenceAudio {
+      type: 'audio';
+
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:audio/mp3;base64,...`, up to 5MB) containing an encoded audio. See
+       * [our docs](/assets/inputs#audio) on audio inputs for more information.
+       */
+      uri: string;
+    }
+
+    export interface Reference {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+    }
+
+    /**
+     * A video reference allows the model to use the video as additional context for
+     * the output.
+     */
+    export interface ReferenceVideo {
+      type: 'video';
+
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+       * [our docs](/assets/inputs#videos) on video inputs for more information.
+       */
+      uri: string;
+    }
+  }
+
+  export interface H3Max {
+    model: 'h3_max';
+
+    /**
+     * A non-empty text prompt describing what should appear in the output.
+     */
+    promptText: string;
+
+    /**
+     * The number of seconds of duration for the output video.
+     */
+    duration?: number;
+
+    /**
+     * How the model rewrites the prompt before generating. disabled keeps the prompt
+     * as written. balanced (the default) does a short rewrite. quality spends extra
+     * time rewriting for a stronger result.
+     */
+    promptExpansionMode?: 'disabled' | 'balanced' | 'quality';
+
+    /**
+     * The output resolution. MiniMax H3 Max supports 480p and 768p.
+     */
+    resolution?: '480p' | '768p';
+
+    /**
+     * If unspecified, a random number is chosen. Identical results also need
+     * promptExpansionMode set to disabled; balanced and quality rewrite the prompt and
+     * will not repeat.
+     */
+    seed?: number;
   }
 }
 

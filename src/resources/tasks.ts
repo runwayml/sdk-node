@@ -128,7 +128,8 @@ export namespace TaskRetrieveResponse {
     id: string;
 
     /**
-     * Final cost in credits for a terminal task. A refunded task reports 0.
+     * Final cost in credits for a terminal task. Fully refunded tasks report 0; tasks
+     * that later returned unused prepaid credits report what remains charged.
      */
     cost: Cancelled.Cost;
 
@@ -142,7 +143,8 @@ export namespace TaskRetrieveResponse {
 
   export namespace Cancelled {
     /**
-     * Final cost in credits for a terminal task. A refunded task reports 0.
+     * Final cost in credits for a terminal task. Fully refunded tasks report 0; tasks
+     * that later returned unused prepaid credits report what remains charged.
      */
     export interface Cost {
       /**
@@ -198,7 +200,8 @@ export namespace TaskRetrieveResponse {
     id: string;
 
     /**
-     * Final cost in credits for a terminal task. A refunded task reports 0.
+     * Final cost in credits for a terminal task. Fully refunded tasks report 0; tasks
+     * that later returned unused prepaid credits report what remains charged.
      */
     cost: Failed.Cost;
 
@@ -224,7 +227,8 @@ export namespace TaskRetrieveResponse {
 
   export namespace Failed {
     /**
-     * Final cost in credits for a terminal task. A refunded task reports 0.
+     * Final cost in credits for a terminal task. Fully refunded tasks report 0; tasks
+     * that later returned unused prepaid credits report what remains charged.
      */
     export interface Cost {
       /**
@@ -244,7 +248,8 @@ export namespace TaskRetrieveResponse {
     id: string;
 
     /**
-     * Final cost in credits for a terminal task. A refunded task reports 0.
+     * Final cost in credits for a terminal task. Fully refunded tasks report 0; tasks
+     * that later returned unused prepaid credits report what remains charged.
      */
     cost: Succeeded.Cost;
 
@@ -265,7 +270,8 @@ export namespace TaskRetrieveResponse {
 
   export namespace Succeeded {
     /**
-     * Final cost in credits for a terminal task. A refunded task reports 0.
+     * Final cost in credits for a terminal task. Fully refunded tasks report 0; tasks
+     * that later returned unused prepaid credits report what remains charged.
      */
     export interface Cost {
       /**

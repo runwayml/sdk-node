@@ -54,7 +54,8 @@ export interface DeprecatedLivekit {
   roomName: string;
 
   /**
-   * WebSocket URL of the external LiveKit server the avatar worker should join.
+   * WebSocket URL of the external LiveKit server the avatar worker should join. Must
+   * be a wss:// or https:// URL that resolves to a public host.
    */
   url: string;
 
@@ -311,7 +312,8 @@ export namespace RealtimeSessionCreateParams {
    */
   export interface Elevenlabs {
     /**
-     * ConvAI signed WebSocket URL (~15 min lifetime).
+     * ConvAI signed WebSocket URL (~15 min lifetime). Must be a wss:// or https:// URL
+     * that resolves to a public host.
      */
     signedUrl: string;
 
@@ -337,7 +339,8 @@ export namespace RealtimeSessionCreateParams {
     type: 'livekit';
 
     /**
-     * WebSocket URL of the external LiveKit server the avatar worker should join.
+     * WebSocket URL of the external LiveKit server the avatar worker should join. Must
+     * be a wss:// or https:// URL that resolves to a public host.
      */
     url: string;
 
