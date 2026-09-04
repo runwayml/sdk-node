@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.20.0](https://github.com/runwayml/sdk-node/compare/v4.19.1...v4.20.0) (2026-09-03)
+
+
+### Features
+
+* add new models, image options, and audit-log actions ([60b27dc](https://github.com/runwayml/sdk-node/commit/60b27dc1aa9bdd6d5c78b600088ec9acefc4dc32))
+
 ## [4.19.1](https://github.com/runwayml/sdk-node/compare/v4.19.0...v4.19.1) (2026-09-02)
 
 
