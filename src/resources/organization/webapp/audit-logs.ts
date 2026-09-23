@@ -127,7 +127,8 @@ export interface AuditLogRetrieveResponse {
     | 'MeteredBillingConfigUpdated'
     | 'MeteredBillingRefillTriggered'
     | 'MeteredBillingRetryTriggered'
-    | 'EnterpriseSpendCapEnforcementUpdated';
+    | 'EnterpriseSpendCapEnforcementUpdated'
+    | 'AwsMarketplaceEnterpriseSubscriptionLinked';
 
   /**
    * Whether the acting user has since been deleted.
@@ -221,13 +222,21 @@ export namespace AuditLogRetrieveResponse {
 
     'Asset name'?: unknown;
 
+    'AWS license'?: unknown;
+
+    'Brand kit ID'?: unknown;
+
     'Comment ID'?: unknown;
 
     'Comment target ID'?: unknown;
 
     'Comment target type'?: unknown;
 
+    'Comment text'?: unknown;
+
     'Default task name template'?: unknown;
+
+    'Destination category ID'?: unknown;
 
     Direction?: unknown;
 
@@ -241,6 +250,8 @@ export namespace AuditLogRetrieveResponse {
 
     'Login method'?: unknown;
 
+    'Media included'?: unknown;
+
     'Member email'?: unknown;
 
     Mentions?: unknown;
@@ -249,11 +260,15 @@ export namespace AuditLogRetrieveResponse {
 
     'New role'?: unknown;
 
+    'New text'?: unknown;
+
     'New User'?: unknown;
 
     'New value'?: unknown;
 
     Operation?: unknown;
+
+    Organization?: unknown;
 
     Outcome?: unknown;
 
@@ -263,6 +278,8 @@ export namespace AuditLogRetrieveResponse {
 
     'Previous role'?: unknown;
 
+    'Previous text'?: unknown;
+
     'Previous value'?: unknown;
 
     Reason?: unknown;
@@ -271,19 +288,27 @@ export namespace AuditLogRetrieveResponse {
 
     Role?: unknown;
 
+    'Root asset ID'?: unknown;
+
     Setting?: unknown;
 
     'Shared with projects'?: unknown;
 
     'Shared with workspace'?: unknown;
 
+    'Source category ID'?: unknown;
+
     'Spend cap'?: unknown;
+
+    'Spend cap change'?: unknown;
 
     'Tag color'?: unknown;
 
     'Tag name'?: unknown;
 
     'Target member'?: unknown;
+
+    'Via public API'?: unknown;
 
     Workspace?: unknown;
 
@@ -386,7 +411,8 @@ export interface AuditLogListResponse {
     | 'MeteredBillingConfigUpdated'
     | 'MeteredBillingRefillTriggered'
     | 'MeteredBillingRetryTriggered'
-    | 'EnterpriseSpendCapEnforcementUpdated';
+    | 'EnterpriseSpendCapEnforcementUpdated'
+    | 'AwsMarketplaceEnterpriseSubscriptionLinked';
 
   /**
    * Whether the acting user has since been deleted.
@@ -466,7 +492,8 @@ export interface AuditLogListParams extends CursorPageParams {
    * `WorkspaceTagCreated`, `WorkspaceTagUpdated`, `WorkspaceTagDeleted`,
    * `WorkspaceTagAssigned`, `WorkspaceTagUnassigned`, `MeteredBillingConfigUpdated`,
    * `MeteredBillingRefillTriggered`, `MeteredBillingRetryTriggered`,
-   * `EnterpriseSpendCapEnforcementUpdated`.
+   * `EnterpriseSpendCapEnforcementUpdated`,
+   * `AwsMarketplaceEnterpriseSubscriptionLinked`.
    */
   actions?: string;
 

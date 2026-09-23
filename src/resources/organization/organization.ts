@@ -75,13 +75,15 @@ export namespace OrganizationRetrieveResponse {
     export interface Models {
       /**
        * The maximum number of generations that can be run concurrently for this model.
+       * null means no limit.
        */
-      maxConcurrentGenerations: number;
+      maxConcurrentGenerations: number | null;
 
       /**
        * The maximum number of generations that can be created each day for this model.
+       * null means no limit.
        */
-      maxDailyGenerations: number;
+      maxDailyGenerations: number | null;
     }
   }
 
@@ -116,6 +118,8 @@ export interface OrganizationRetrieveUsageResponse {
     | 'gen4_image'
     | 'gen4_image_turbo'
     | 'gpt_image_2'
+    | 'gpt_image_2_5_flare'
+    | 'gpt_image_2_5_sunburst'
     | 'act_two'
     | 'gen4_aleph'
     | 'veo3'
@@ -154,6 +158,7 @@ export interface OrganizationRetrieveUsageResponse {
     | 'magnific_precision_upscaler_v2'
     | 'magnific_video_upscaler_creative'
     | 'ruby'
+    | 'enhance_frame_rate'
     | 'kling2.5_turbo_pro'
     | 'kling3.0_pro'
     | 'kling3.0_4k'
@@ -217,6 +222,8 @@ export namespace OrganizationRetrieveUsageResponse {
         | 'gen4_image'
         | 'gen4_image_turbo'
         | 'gpt_image_2'
+        | 'gpt_image_2_5_flare'
+        | 'gpt_image_2_5_sunburst'
         | 'act_two'
         | 'gen4_aleph'
         | 'veo3'
@@ -255,6 +262,7 @@ export namespace OrganizationRetrieveUsageResponse {
         | 'magnific_precision_upscaler_v2'
         | 'magnific_video_upscaler_creative'
         | 'ruby'
+        | 'enhance_frame_rate'
         | 'kling2.5_turbo_pro'
         | 'kling3.0_pro'
         | 'kling3.0_4k'
