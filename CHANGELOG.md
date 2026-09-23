@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.20.1](https://github.com/runwayml/sdk-node/compare/v4.20.0...v4.20.1) (2026-09-23)
+
+
+### Chores
+
+* regenerate SDKs from dev-docs main ([435fcf9](https://github.com/runwayml/sdk-node/commit/435fcf9c7d3b6da1ef5ba81e48bafcb53e536b31))
+
 ## [4.20.0](https://github.com/runwayml/sdk-node/compare/v4.19.1...v4.20.0) (2026-09-03)
 
 
