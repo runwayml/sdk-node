@@ -53,46 +53,68 @@ export namespace VideoUpscaleCreateResponse {
   }
 }
 
-export interface VideoUpscaleCreateParams {
-  model: 'magnific_video_upscaler_creative';
+export type VideoUpscaleCreateParams =
+  | VideoUpscaleCreateParams.MagnificVideoUpscalerCreative
+  | VideoUpscaleCreateParams.EnhanceFrameRate;
 
-  /**
-   * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-   * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
-   * [our docs](/assets/inputs#videos) on video inputs for more information.
-   */
-  videoUri: string;
+export declare namespace VideoUpscaleCreateParams {
+  export interface MagnificVideoUpscalerCreative {
+    model: 'magnific_video_upscaler_creative';
 
-  /**
-   * How much AI-generated detail to add during upscaling, from 0 (faithful) to 100.
-   */
-  creativity?: number;
+    /**
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+     * [our docs](/assets/inputs#videos) on video inputs for more information.
+     */
+    videoUri: string;
 
-  /**
-   * Processing style: `vivid` for enhanced color and detail, `natural` for faithful
-   * reproduction.
-   */
-  flavor?: 'vivid' | 'natural';
+    /**
+     * How much AI-generated detail to add during upscaling, from 0 (faithful) to 100.
+     */
+    creativity?: number;
 
-  /**
-   * Whether to increase the output frame rate.
-   */
-  fpsBoost?: boolean;
+    /**
+     * Processing style: `vivid` for enhanced color and detail, `natural` for faithful
+     * reproduction.
+     */
+    flavor?: 'vivid' | 'natural';
 
-  /**
-   * Target output resolution from 720p to 4k. Defaults to `2k`.
-   */
-  resolution?: '720p' | '1k' | '2k' | '4k';
+    /**
+     * Whether to increase the output frame rate.
+     */
+    fpsBoost?: boolean;
 
-  /**
-   * Sharpness intensity from 0 (none) to 100.
-   */
-  sharpen?: number;
+    /**
+     * Target output resolution from 720p to 4k. Defaults to `2k`.
+     */
+    resolution?: '720p' | '1k' | '2k' | '4k';
 
-  /**
-   * Grain and texture enhancement from 0 to 100.
-   */
-  smartGrain?: number;
+    /**
+     * Sharpness intensity from 0 (none) to 100.
+     */
+    sharpen?: number;
+
+    /**
+     * Grain and texture enhancement from 0 to 100.
+     */
+    smartGrain?: number;
+  }
+
+  export interface EnhanceFrameRate {
+    model: 'enhance_frame_rate';
+
+    /**
+     * The output frame rate.
+     */
+    targetFramerate: '24' | '25' | '30' | '48' | '50' | '60' | '120' | '23_98' | '29_97' | '59_94';
+
+    /**
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+     * [our docs](/assets/inputs#videos) on video inputs for more information.
+     */
+    videoUri: string;
+  }
 }
 
 export declare namespace VideoUpscale {

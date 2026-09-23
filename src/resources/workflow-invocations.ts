@@ -9,7 +9,9 @@ export class WorkflowInvocations extends APIResource {
   /**
    * Return details about a workflow invocation. Consumers of this API should not
    * expect updates more frequent than once every five seconds for a given workflow
-   * invocation.
+   * invocation. A `SUCCEEDED` invocation may still have had individual nodes fail,
+   * so check `nodeErrors` to detect a partial run rather than relying on `status`
+   * alone.
    */
   retrieve(
     id: string,
@@ -128,6 +130,14 @@ export namespace WorkflowInvocationRetrieveResponse {
       message: string;
 
       /**
+       * A machine-readable error code for the node failure. See
+       * https://docs.dev.runwayml.com/errors/task-failures/ for more information. Absent
+       * for nodes that failed before generation began, such as an input validation
+       * error.
+       */
+      failureCode?: string;
+
+      /**
        * The human-readable name of the node that errored.
        */
       nodeName?: string;
@@ -177,6 +187,14 @@ export namespace WorkflowInvocationRetrieveResponse {
       message: string;
 
       /**
+       * A machine-readable error code for the node failure. See
+       * https://docs.dev.runwayml.com/errors/task-failures/ for more information. Absent
+       * for nodes that failed before generation began, such as an input validation
+       * error.
+       */
+      failureCode?: string;
+
+      /**
        * The human-readable name of the node that errored.
        */
       nodeName?: string;
@@ -209,9 +227,11 @@ export namespace WorkflowInvocationRetrieveResponse {
     status: 'SUCCEEDED';
 
     /**
-     * A record mapping workflow node IDs to their error details. Even when the overall
-     * workflow succeeds, individual nodes may have encountered non-fatal errors. Only
-     * present when one or more nodes have errored.
+     * A record mapping workflow node IDs to their error details. A workflow invocation
+     * succeeds as long as every node reached a terminal state, so individual nodes may
+     * still have failed — for example a moderated prompt or an upstream provider
+     * outage — leaving their output missing from `output`. Check this field to detect
+     * a partial run. Only present when one or more nodes have errored.
      */
     nodeErrors?: { [key: string]: Succeeded.NodeErrors };
   }
@@ -222,6 +242,14 @@ export namespace WorkflowInvocationRetrieveResponse {
        * A human-readable description of the node error.
        */
       message: string;
+
+      /**
+       * A machine-readable error code for the node failure. See
+       * https://docs.dev.runwayml.com/errors/task-failures/ for more information. Absent
+       * for nodes that failed before generation began, such as an input validation
+       * error.
+       */
+      failureCode?: string;
 
       /**
        * The human-readable name of the node that errored.
