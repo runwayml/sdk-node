@@ -1,5 +1,20 @@
 # Changelog
 
+## [4.20.1](https://github.com/runwayml/sdk-node/compare/v4.20.0...v4.20.1) (2026-09-23)
+
+
+### Features
+
+* add GPT Image 2.5 Flare and Sunburst, including background, quality, output count, and tagged reference-image options
+* add frame-rate enhancement with selectable target frame rates
+
+### Improvements
+
+* expose workflow node failure codes and document how to detect partial workflow runs
+* represent unlimited organization model limits as `null`
+* include AWS Marketplace subscription-linking events and additional audit-log metadata
+* clarify HDR alpha-channel and ACEScg delivery behavior
+
 ## [4.20.0](https://github.com/runwayml/sdk-node/compare/v4.19.1...v4.20.0) (2026-09-03)
 
 
