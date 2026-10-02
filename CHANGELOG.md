@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.21.0](https://github.com/runwayml/sdk-node/compare/v4.20.1...v4.21.0) (2026-10-02)
+
+
+### Features
+
+* add Grok Imagine Video 1.5 Lite and Eleven v4 text-to-speech models ([2c2b936](https://github.com/runwayml/sdk-node/commit/2c2b9365d8499a9c5cabf75b9860ff4aa508c8d7))
+
 ## [4.20.1](https://github.com/runwayml/sdk-node/compare/v4.20.0...v4.20.1) (2026-09-23)
 
 
