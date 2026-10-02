@@ -49,6 +49,7 @@ export namespace TextToSpeechCreateResponse {
 
 export type TextToSpeechCreateParams =
   | TextToSpeechCreateParams.SeedAudio
+  | TextToSpeechCreateParams.ElevenV4
   | TextToSpeechCreateParams.ElevenMultilingualV2
   | TextToSpeechCreateParams.ElevenV3;
 
@@ -109,6 +110,135 @@ export declare namespace TextToSpeechCreateParams {
       audioUri: string;
 
       type: 'reference-audio';
+    }
+  }
+
+  export interface ElevenV4 {
+    model: 'eleven_v4';
+
+    /**
+     * The text to convert to speech. You can include expressive audio tags like
+     * [laughs], [whispers], or [pause] in the script.
+     */
+    promptText: string;
+
+    /**
+     * A voice preset from the RunwayML API.
+     */
+    voice: ElevenV4.Voice;
+
+    /**
+     * Language code to enforce pronunciation, such as "en" or "pt". A regional code
+     * such as "pt-BR" is read as its language.
+     */
+    languageCode?: string;
+
+    /**
+     * Text that comes after this request, so the speech can lead into a later
+     * generation.
+     */
+    nextText?: string;
+
+    /**
+     * Text that comes before this request, so the speech can continue from an earlier
+     * generation.
+     */
+    previousText?: string;
+
+    /**
+     * Optional seed for more consistent output. The same seed and settings tend to
+     * sound alike, but it is not guaranteed.
+     */
+    seed?: number;
+
+    /**
+     * How closely the output tracks the original speaker.
+     */
+    similarityBoost?: number;
+
+    /**
+     * Speech speed multiplier. Values below 1 slow the speech down, and values above 1
+     * speed it up.
+     */
+    speed?: number;
+
+    /**
+     * Voice stability. Lower values allow broader emotional range; higher values are
+     * steadier.
+     */
+    stability?: number;
+
+    /**
+     * Style exaggeration. Higher values amplify the speaker style.
+     */
+    style?: number;
+
+    /**
+     * Boost similarity to the original speaker at a small latency cost.
+     */
+    useSpeakerBoost?: boolean;
+  }
+
+  export namespace ElevenV4 {
+    /**
+     * A voice preset from the RunwayML API.
+     */
+    export interface Voice {
+      /**
+       * The preset voice ID to use for the generated speech.
+       */
+      presetId:
+        | 'Maya'
+        | 'Arjun'
+        | 'Serene'
+        | 'Bernard'
+        | 'Billy'
+        | 'Mark'
+        | 'Clint'
+        | 'Mabel'
+        | 'Chad'
+        | 'Leslie'
+        | 'Eleanor'
+        | 'Elias'
+        | 'Elliot'
+        | 'Grungle'
+        | 'Brodie'
+        | 'Sandra'
+        | 'Kirk'
+        | 'Kylie'
+        | 'Lara'
+        | 'Lisa'
+        | 'Malachi'
+        | 'Marlene'
+        | 'Martin'
+        | 'Miriam'
+        | 'Monster'
+        | 'Paula'
+        | 'Pip'
+        | 'Rusty'
+        | 'Ragnar'
+        | 'Xylar'
+        | 'Maggie'
+        | 'Jack'
+        | 'Katie'
+        | 'Noah'
+        | 'James'
+        | 'Rina'
+        | 'Ella'
+        | 'Mariah'
+        | 'Frank'
+        | 'Claudia'
+        | 'Niki'
+        | 'Vincent'
+        | 'Kendrick'
+        | 'Myrna'
+        | 'Tom'
+        | 'Wanda'
+        | 'Benjamin'
+        | 'Kiana'
+        | 'Rachel';
+
+      type: 'runway-preset';
     }
   }
 

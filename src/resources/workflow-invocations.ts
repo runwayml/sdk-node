@@ -167,6 +167,12 @@ export namespace WorkflowInvocationRetrieveResponse {
     status: 'FAILED';
 
     /**
+     * Omitted until every descendant task is terminal, so a later GET cannot return a
+     * larger value.
+     */
+    cost?: Failed.Cost;
+
+    /**
      * A machine-readable error code for the failure. See
      * https://docs.dev.runwayml.com/errors/task-failures/ for more information.
      */
@@ -180,6 +186,17 @@ export namespace WorkflowInvocationRetrieveResponse {
   }
 
   export namespace Failed {
+    /**
+     * Omitted until every descendant task is terminal, so a later GET cannot return a
+     * larger value.
+     */
+    export interface Cost {
+      /**
+       * Credits charged for this task.
+       */
+      credits: number;
+    }
+
     export interface NodeErrors {
       /**
        * A human-readable description of the node error.
@@ -227,16 +244,30 @@ export namespace WorkflowInvocationRetrieveResponse {
     status: 'SUCCEEDED';
 
     /**
-     * A record mapping workflow node IDs to their error details. A workflow invocation
-     * succeeds as long as every node reached a terminal state, so individual nodes may
-     * still have failed — for example a moderated prompt or an upstream provider
-     * outage — leaving their output missing from `output`. Check this field to detect
-     * a partial run. Only present when one or more nodes have errored.
+     * Omitted until every descendant task is terminal, so a later GET cannot return a
+     * larger value.
+     */
+    cost?: Succeeded.Cost;
+
+    /**
+     * A record mapping workflow node IDs to their error details. Only present when one
+     * or more nodes have errored.
      */
     nodeErrors?: { [key: string]: Succeeded.NodeErrors };
   }
 
   export namespace Succeeded {
+    /**
+     * Omitted until every descendant task is terminal, so a later GET cannot return a
+     * larger value.
+     */
+    export interface Cost {
+      /**
+       * Credits charged for this task.
+       */
+      credits: number;
+    }
+
     export interface NodeErrors {
       /**
        * A human-readable description of the node error.

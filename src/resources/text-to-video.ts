@@ -70,7 +70,8 @@ export type TextToVideoCreateParams =
   | TextToVideoCreateParams.Wan3
   | TextToVideoCreateParams.GeminiOmniFlash1_1
   | TextToVideoCreateParams.Wan3Prime
-  | TextToVideoCreateParams.H3Max;
+  | TextToVideoCreateParams.H3Max
+  | TextToVideoCreateParams.GrokImagine1_5Lite;
 
 export declare namespace TextToVideoCreateParams {
   export interface Gen4_5 {
@@ -1177,6 +1178,47 @@ export declare namespace TextToVideoCreateParams {
      * will not repeat.
      */
     seed?: number;
+  }
+
+  export interface GrokImagine1_5Lite {
+    model: 'grok_imagine_1_5_lite';
+
+    /**
+     * A non-empty text prompt describing what should appear in the output.
+     */
+    promptText: string;
+
+    /**
+     * The number of seconds of duration for the output video.
+     */
+    duration?: number;
+
+    /**
+     * The resolution of the output video. The 1080p sizes are rendered at 720p and
+     * upscaled.
+     */
+    ratio?:
+      | '848:480'
+      | '480:848'
+      | '480:480'
+      | '640:480'
+      | '480:640'
+      | '720:480'
+      | '480:720'
+      | '1280:720'
+      | '720:1280'
+      | '720:720'
+      | '960:720'
+      | '720:960'
+      | '1088:720'
+      | '720:1088'
+      | '1904:1072'
+      | '1072:1904'
+      | '1424:1424'
+      | '1648:1232'
+      | '1232:1648'
+      | '1744:1152'
+      | '1152:1744';
   }
 }
 
