@@ -72,7 +72,8 @@ export type ImageToVideoCreateParams =
   | ImageToVideoCreateParams.Wan3
   | ImageToVideoCreateParams.GeminiOmniFlash1_1
   | ImageToVideoCreateParams.Wan3Prime
-  | ImageToVideoCreateParams.H3Max;
+  | ImageToVideoCreateParams.H3Max
+  | ImageToVideoCreateParams.GrokImagine1_5Lite;
 
 export declare namespace ImageToVideoCreateParams {
   export interface Gen4_5 {
@@ -1245,6 +1246,50 @@ export declare namespace ImageToVideoCreateParams {
        * video.
        */
       position: 'first' | 'last';
+
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+    }
+  }
+
+  export interface GrokImagine1_5Lite {
+    model: 'grok_imagine_1_5_lite';
+
+    /**
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+     * [our docs](/assets/inputs#images) on image inputs for more information.
+     */
+    promptImage: string | Array<GrokImagine1_5Lite.PromptImage>;
+
+    /**
+     * The number of seconds of duration for the output video.
+     */
+    duration?: number;
+
+    /**
+     * An optional text prompt describing motion or changes in the output video.
+     */
+    promptText?: string;
+
+    /**
+     * The resolution of the output video. The output keeps the input image's aspect
+     * ratio. `auto_1080p` is rendered at 720p and upscaled.
+     */
+    ratio?: 'auto_480p' | 'auto_720p' | 'auto_1080p';
+  }
+
+  export namespace GrokImagine1_5Lite {
+    export interface PromptImage {
+      /**
+       * The position of the image in the output video. "first" will use the image as the
+       * first frame of the video.
+       */
+      position: 'first';
 
       /**
        * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.

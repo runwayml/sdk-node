@@ -55,6 +55,7 @@ export interface AuditLogRetrieveResponse {
     | 'MemberRemoved'
     | 'MemberRoleChanged'
     | 'InviteAccepted'
+    | 'MemberJoinedViaDomain'
     | 'TeamSettingsUpdated'
     | 'InviteLinkToggled'
     | 'UserGroupCreated'
@@ -64,6 +65,7 @@ export interface AuditLogRetrieveResponse {
     | 'UserGroupRestored'
     | 'UserGroupMemberAdded'
     | 'UserGroupMemberRemoved'
+    | 'UserGroupCreditCapUpdated'
     | 'SSOLogin'
     | 'SSOUserProvisioned'
     | 'SSOConfigCreated'
@@ -110,10 +112,17 @@ export interface AuditLogRetrieveResponse {
     | 'AgentConnectorSessionEnabled'
     | 'AgentConnectorSessionDisabled'
     | 'GenerationCreated'
+    | 'StudioSessionOpened'
     | 'AccountLinkCreated'
     | 'AccountLinkDeleted'
+    | 'AdConnectionAuthorizationStarted'
+    | 'AdConnectionConnected'
+    | 'AdAccountSelectionUpdated'
+    | 'AdAccountSyncRequested'
+    | 'AdConnectionDisconnected'
     | 'OrganizationSettingsUpdated'
     | 'OrganizationDisabledModelsUpdated'
+    | 'OrganizationAgentSandboxUpdated'
     | 'OrganizationApiAccountReleased'
     | 'OrganizationApiAccountMemberInvited'
     | 'OrganizationApiAccountMemberRoleChanged'
@@ -206,6 +215,14 @@ export namespace AuditLogRetrieveResponse {
    * Action-specific details.
    */
   export interface Metadata {
+    'Ad account ID'?: unknown;
+
+    'Ad sync end date'?: unknown;
+
+    'Ad sync run ID'?: unknown;
+
+    'Ad sync start date'?: unknown;
+
     'Agent session ID'?: unknown;
 
     'Agent tagged'?: unknown;
@@ -217,6 +234,10 @@ export namespace AuditLogRetrieveResponse {
     'API account'?: unknown;
 
     'API project ID'?: unknown;
+
+    'App Studio app'?: unknown;
+
+    'App Studio session'?: unknown;
 
     Application?: unknown;
 
@@ -239,6 +260,8 @@ export namespace AuditLogRetrieveResponse {
     'Destination category ID'?: unknown;
 
     Direction?: unknown;
+
+    'Email domain'?: unknown;
 
     'Error code'?: unknown;
 
@@ -276,11 +299,17 @@ export namespace AuditLogRetrieveResponse {
 
     Platform?: unknown;
 
+    'Previous project credit cap'?: unknown;
+
     'Previous role'?: unknown;
 
     'Previous text'?: unknown;
 
     'Previous value'?: unknown;
+
+    'Project credit cap'?: unknown;
+
+    Provider?: unknown;
 
     Reason?: unknown;
 
@@ -289,6 +318,8 @@ export namespace AuditLogRetrieveResponse {
     Role?: unknown;
 
     'Root asset ID'?: unknown;
+
+    Selected?: unknown;
 
     Setting?: unknown;
 
@@ -339,6 +370,7 @@ export interface AuditLogListResponse {
     | 'MemberRemoved'
     | 'MemberRoleChanged'
     | 'InviteAccepted'
+    | 'MemberJoinedViaDomain'
     | 'TeamSettingsUpdated'
     | 'InviteLinkToggled'
     | 'UserGroupCreated'
@@ -348,6 +380,7 @@ export interface AuditLogListResponse {
     | 'UserGroupRestored'
     | 'UserGroupMemberAdded'
     | 'UserGroupMemberRemoved'
+    | 'UserGroupCreditCapUpdated'
     | 'SSOLogin'
     | 'SSOUserProvisioned'
     | 'SSOConfigCreated'
@@ -394,10 +427,17 @@ export interface AuditLogListResponse {
     | 'AgentConnectorSessionEnabled'
     | 'AgentConnectorSessionDisabled'
     | 'GenerationCreated'
+    | 'StudioSessionOpened'
     | 'AccountLinkCreated'
     | 'AccountLinkDeleted'
+    | 'AdConnectionAuthorizationStarted'
+    | 'AdConnectionConnected'
+    | 'AdAccountSelectionUpdated'
+    | 'AdAccountSyncRequested'
+    | 'AdConnectionDisconnected'
     | 'OrganizationSettingsUpdated'
     | 'OrganizationDisabledModelsUpdated'
+    | 'OrganizationAgentSandboxUpdated'
     | 'OrganizationApiAccountReleased'
     | 'OrganizationApiAccountMemberInvited'
     | 'OrganizationApiAccountMemberRoleChanged'
@@ -464,14 +504,15 @@ export interface AuditLogListParams extends CursorPageParams {
    * 50 actions. Allowed values: `UserLogin`, `PasswordChanged`,
    * `EmailChangeRequested`, `EmailChanged`, `UserRegistered`, `UserAccountDeleted`,
    * `WorkspaceCreated`, `WorkspaceDeleted`, `MemberInvited`, `MemberRemoved`,
-   * `MemberRoleChanged`, `InviteAccepted`, `TeamSettingsUpdated`,
-   * `InviteLinkToggled`, `UserGroupCreated`, `UserGroupUpdated`, `UserGroupDeleted`,
-   * `UserGroupArchived`, `UserGroupRestored`, `UserGroupMemberAdded`,
-   * `UserGroupMemberRemoved`, `SSOLogin`, `SSOUserProvisioned`, `SSOConfigCreated`,
-   * `SSOUserAutoAddedToTeam`, `SSODomainRegistrationCloned`, `AssetCreated`,
-   * `AssetUpdated`, `AssetDeleted`, `AssetDownloaded`, `AssetShared`,
-   * `AssetUnshared`, `CommentCreated`, `CommentEdited`, `CommentDeleted`,
-   * `CommentAgentCallRun`, `CommentRemovedByModerator`,
+   * `MemberRoleChanged`, `InviteAccepted`, `MemberJoinedViaDomain`,
+   * `TeamSettingsUpdated`, `InviteLinkToggled`, `UserGroupCreated`,
+   * `UserGroupUpdated`, `UserGroupDeleted`, `UserGroupArchived`,
+   * `UserGroupRestored`, `UserGroupMemberAdded`, `UserGroupMemberRemoved`,
+   * `UserGroupCreditCapUpdated`, `SSOLogin`, `SSOUserProvisioned`,
+   * `SSOConfigCreated`, `SSOUserAutoAddedToTeam`, `SSODomainRegistrationCloned`,
+   * `AssetCreated`, `AssetUpdated`, `AssetDeleted`, `AssetDownloaded`,
+   * `AssetShared`, `AssetUnshared`, `CommentCreated`, `CommentEdited`,
+   * `CommentDeleted`, `CommentAgentCallRun`, `CommentRemovedByModerator`,
    * `CommentRestoredByModerator`, `CommentRemovalReasonChanged`,
    * `PermissionGranted`, `PermissionUpdated`, `PermissionRevoked`,
    * `PermissionAccepted`, `SubscriptionCancelled`,
@@ -483,10 +524,12 @@ export interface AuditLogListParams extends CursorPageParams {
    * `AgentSessionUnshared`, `AgentConnectorLinkTokenCreated`,
    * `AgentConnectorConnected`, `AgentConnectorDisconnected`,
    * `AgentConnectorAssetExported`, `AgentConnectorSessionEnabled`,
-   * `AgentConnectorSessionDisabled`, `GenerationCreated`, `AccountLinkCreated`,
-   * `AccountLinkDeleted`, `OrganizationSettingsUpdated`,
-   * `OrganizationDisabledModelsUpdated`, `OrganizationApiAccountReleased`,
-   * `OrganizationApiAccountMemberInvited`,
+   * `AgentConnectorSessionDisabled`, `GenerationCreated`, `StudioSessionOpened`,
+   * `AccountLinkCreated`, `AccountLinkDeleted`, `AdConnectionAuthorizationStarted`,
+   * `AdConnectionConnected`, `AdAccountSelectionUpdated`, `AdAccountSyncRequested`,
+   * `AdConnectionDisconnected`, `OrganizationSettingsUpdated`,
+   * `OrganizationDisabledModelsUpdated`, `OrganizationAgentSandboxUpdated`,
+   * `OrganizationApiAccountReleased`, `OrganizationApiAccountMemberInvited`,
    * `OrganizationApiAccountMemberRoleChanged`,
    * `OrganizationApiAccountMemberRemoved`, `WorkspaceCountryLockUpdated`,
    * `WorkspaceTagCreated`, `WorkspaceTagUpdated`, `WorkspaceTagDeleted`,
