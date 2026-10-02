@@ -5,7 +5,14 @@
 
 ### Features
 
-* add Grok Imagine Video 1.5 Lite and Eleven v4 text-to-speech models ([2c2b936](https://github.com/runwayml/sdk-node/commit/2c2b9365d8499a9c5cabf75b9860ff4aa508c8d7))
+* add Grok Imagine Video 1.5 Lite (`grok_imagine_1_5_lite`) to text-to-video and image-to-video
+* add Eleven v4 (`eleven_v4`) text-to-speech
+
+### Improvements
+
+* add new audit-log event types (including `MemberJoinedViaDomain`, `UserGroupCreditCapUpdated`, `StudioSessionOpened`, `OrganizationAgentSandboxUpdated`, and ad-connection events) and their metadata fields
+* add optional `cost` to workflow invocations, reported once every task in the run is terminal
+* include `grok_imagine_1_5_lite` and `eleven_v4` in organization usage results
 
 ## [4.20.1](https://github.com/runwayml/sdk-node/compare/v4.20.0...v4.20.1) (2026-09-23)
 
