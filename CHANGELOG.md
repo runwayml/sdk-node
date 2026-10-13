@@ -1,5 +1,18 @@
 # Changelog
 
+## [4.22.0](https://github.com/runwayml/sdk-node/compare/v4.21.0...v4.22.0) (2026-10-13)
+
+
+### Features
+
+* add Ideogram 4.0 and 4.5 text-to-image models ([a211ede](https://github.com/runwayml/sdk-node/commit/a211ede66dd95a0c36ac8f470e6df8f16195c2f1))
+
+
+### Bug Fixes
+
+* **ci:** publish npm only on release event ([1edbb30](https://github.com/runwayml/sdk-node/commit/1edbb300db15abed2d47db566e05ded6048b3b18))
+* **ci:** publish npm only on release event ([d978bb3](https://github.com/runwayml/sdk-node/commit/d978bb3724855a00d87f54e52e0e1b4dfbb3e9e2))
+
 ## [4.21.0](https://github.com/runwayml/sdk-node/compare/v4.20.1...v4.21.0) (2026-10-02)
 
 
