@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.22.0](https://github.com/runwayml/sdk-node/compare/v4.21.0...v4.22.0) (2026-10-13)
+
+
+### Features
+
+* add Ideogram 4.0 (`ideogram_4_0`) and Ideogram 4.5 (`ideogram_4_5`) to text-to-image
+
 ## [4.21.0](https://github.com/runwayml/sdk-node/compare/v4.20.1...v4.21.0) (2026-10-02)
 
 
