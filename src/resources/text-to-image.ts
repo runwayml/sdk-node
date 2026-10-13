@@ -10,6 +10,14 @@ import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/poll
 export class TextToImage extends APIResource {
   /**
    * This endpoint will start a new task to generate images from text and/or image(s)
+   *
+   * @example
+   * ```ts
+   * const textToImage = await client.textToImage.create({
+   *   model: 'ideogram_4_5',
+   *   promptText: 'x',
+   * });
+   * ```
    */
   create(
     body: TextToImageCreateParams,
@@ -59,6 +67,8 @@ export type TextToImageCreateParams =
   | TextToImageCreateParams.GeminiImage3Pro
   | TextToImageCreateParams.GptImage2_5Flare
   | TextToImageCreateParams.GptImage2_5Sunburst
+  | TextToImageCreateParams.Ideogram4_0
+  | TextToImageCreateParams.Ideogram4_5
   | TextToImageCreateParams.Gemini2_5Flash;
 
 export declare namespace TextToImageCreateParams {
@@ -937,6 +947,147 @@ export declare namespace TextToImageCreateParams {
        * letters, digits, and underscores (no hyphens or other punctuation).
        */
       tag?: string;
+    }
+  }
+
+  export interface Ideogram4_0 {
+    model: 'ideogram_4_0';
+
+    /**
+     * Describe the image to generate, or how to remix the reference image.
+     */
+    promptText: string;
+
+    /**
+     * The number of images to generate. Increasing this number will affect the number
+     * of credits consumed by the generation.
+     */
+    outputCount?: number;
+
+    /**
+     * How much rendering effort the model spends on each image. `low` costs 4 credits
+     * per image, `medium` 7 and `high` 11.
+     */
+    quality?: 'low' | 'medium' | 'high';
+
+    /**
+     * The resolution of the output image, expressed as `<width>:<height>`.
+     */
+    ratio?:
+      | '2048:2048'
+      | '2560:1440'
+      | '1440:2560'
+      | '2304:1728'
+      | '1728:2304'
+      | '2496:1664'
+      | '1664:2496'
+      | '3072:1280'
+      | '1280:3072';
+
+    /**
+     * An image to remix. The prompt describes how the output should differ from it.
+     */
+    referenceImages?: Array<Ideogram4_0.ReferenceImage>;
+  }
+
+  export namespace Ideogram4_0 {
+    export interface ReferenceImage {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+    }
+  }
+
+  export interface Ideogram4_5 {
+    model: 'ideogram_4_5';
+
+    /**
+     * Describe the image to generate, or the changes to make to the reference images.
+     */
+    promptText: string;
+
+    /**
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+     * [our docs](/assets/inputs#images) on image inputs for more information.
+     */
+    maskUri?: string;
+
+    /**
+     * The number of images to generate. Increasing this number will affect the number
+     * of credits consumed by the generation.
+     */
+    outputCount?: number;
+
+    /**
+     * When true, edit the first reference image while preserving its composition and
+     * dimensions. Requires at least one reference image.
+     */
+    preciseEdit?: boolean;
+
+    /**
+     * How much rendering effort the model spends on each image. Defaults to `medium`
+     * (8 credits per image) when generating from reference images and `high` (25
+     * credits) otherwise, including `preciseEdit`. `low` costs 4 credits and
+     * `very_low` 1; `very_low` requires reference images and is not available with
+     * `preciseEdit`.
+     */
+    quality?: 'very_low' | 'low' | 'medium' | 'high';
+
+    /**
+     * The resolution of the output image, expressed as `<width>:<height>`. Omit it or
+     * use `auto` to let the model choose. With reference images, widescreen 1K sizes
+     * are `1024:576`, `576:1024`, `1408:704`, `704:1408` instead of `1280:720`,
+     * `720:1280`, `1440:720`, `720:1440`. Not available with `maskUri` or
+     * `preciseEdit`, which keep the size of the first reference image.
+     */
+    ratio?:
+      | '1024:1024'
+      | '1280:720'
+      | '720:1280'
+      | '1152:864'
+      | '864:1152'
+      | '1248:832'
+      | '832:1248'
+      | '1120:896'
+      | '896:1120'
+      | '1440:720'
+      | '720:1440'
+      | '2048:2048'
+      | '2560:1440'
+      | '1440:2560'
+      | '2304:1728'
+      | '1728:2304'
+      | '2496:1664'
+      | '1664:2496'
+      | '2240:1792'
+      | '1792:2240'
+      | '2880:1440'
+      | '1440:2880'
+      | '1024:576'
+      | '576:1024'
+      | '1408:704'
+      | '704:1408'
+      | 'auto';
+
+    /**
+     * Up to 5 images to guide the generation. With `maskUri` or `preciseEdit`, the
+     * first image is the one being edited and the rest are references.
+     */
+    referenceImages?: Array<Ideogram4_5.ReferenceImage>;
+  }
+
+  export namespace Ideogram4_5 {
+    export interface ReferenceImage {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
     }
   }
 
