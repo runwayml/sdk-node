@@ -1,8 +1,8 @@
-# RunwayML TypeScript API Library
+# Runway Dev TypeScript API Library
 
 [![NPM version](<https://img.shields.io/npm/v/@runwayml/sdk.svg?label=npm%20(stable)>)](https://npmjs.org/package/@runwayml/sdk) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@runwayml/sdk)
 
-This library provides convenient access to the RunwayML REST API from server-side TypeScript or JavaScript.
+The official Node.js and TypeScript SDK for [Runway Dev](https://dev.runway.com), Runway's API for video, image and audio generation and real-time conversational avatars. One API key calls Runway's own models and models from other labs, listed in the [model catalog](https://dev.runway.com/models/catalog), along with Model Routers, Recipes and published Workflows. Use it from server-side TypeScript or JavaScript.
 
 The REST API documentation can be found on [docs.dev.runwayml.com](https://docs.dev.runwayml.com). The full API of this library can be found in [api.md](api.md).
 
@@ -14,27 +14,45 @@ It is generated with [Stainless](https://www.stainless.com/).
 npm install @runwayml/sdk
 ```
 
+Create an API key in [Runway Dev](https://dev.runway.com) and set it as `RUNWAYML_API_SECRET` in your server environment.
+
 ## Usage
 
 The full API of this library can be found in [api.md](api.md).
 
+Generation is asynchronous: a create call starts a task, and `waitForTaskOutput()` polls it until the output is ready.
+
 <!-- prettier-ignore -->
 ```js
-import RunwayML from '@runwayml/sdk';
+import RunwayML, { TaskFailedError } from '@runwayml/sdk';
 
 const client = new RunwayML({
   apiKey: process.env['RUNWAYML_API_SECRET'], // This is the default and can be omitted
 });
 
-const imageToVideo = await client.imageToVideo.create({
-  model: 'gen4_turbo',
-  promptImage: 'https://example.com/assets/bunny.jpg',
-  ratio: '1280:720',
-  promptText: 'The bunny is eating a carrot',
-});
+try {
+  const task = await client.imageToVideo
+    .create({
+      model: 'gen4.5',
+      promptImage: 'https://example.com/assets/bunny.jpg',
+      promptText: 'The bunny is eating a carrot',
+      ratio: '1280:720',
+      duration: 5,
+    })
+    .waitForTaskOutput();
 
-console.log(imageToVideo.id);
+  // Output URLs are temporary, so download anything you want to keep.
+  console.log(task.output[0]);
+} catch (error) {
+  if (error instanceof TaskFailedError) {
+    console.error(error.taskDetails);
+  } else {
+    throw error;
+  }
+}
 ```
+
+To start a task without waiting, drop `.waitForTaskOutput()`, keep the returned `id` and check it later with `client.tasks.retrieve(id)`.
 
 ### Request & Response types
 
@@ -58,6 +76,16 @@ const imageToVideo: RunwayML.ImageToVideoCreateResponse = await client.imageToVi
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
+
+## Build with a coding agent
+
+Runway Dev MCP gives Claude Code, Codex or Cursor live access to your Runway Dev account while it writes code with this SDK: the models, prices and limits available to your project, your Model Routers, and the cause of a failed task. To add it to Claude Code:
+
+```sh
+claude mcp add --transport http --scope user runway-dev-mcp https://dev.runwayml.com/mcp
+```
+
+Sign-in is OAuth, so no API key goes into the configuration. Setup for other agents, and the Runway Dev skills that show your agent how to use this SDK, are in [runwayml/skills](https://github.com/runwayml/skills) and the [MCP guide](https://docs.dev.runwayml.com/guides/mcp/).
 
 ## Handling errors
 
