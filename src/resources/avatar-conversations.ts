@@ -34,7 +34,7 @@ export class AvatarConversations extends APIResource {
   }
 
   /**
-   * Delete a conversation and its associated data.
+   * Permanently delete a conversation, including its transcript and recording.
    */
   delete(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/v1/avatar_conversations/${id}`, {

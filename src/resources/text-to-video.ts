@@ -59,18 +59,25 @@ export type TextToVideoCreateParams =
   | TextToVideoCreateParams.Gen4_5
   | TextToVideoCreateParams.Veo3_1
   | TextToVideoCreateParams.Veo3_1Fast
+  | TextToVideoCreateParams.KlingO3_4k
   | TextToVideoCreateParams.Hailuo3
+  | TextToVideoCreateParams.Kling3_0_4k
   | TextToVideoCreateParams.Happyhorse1_0
+  | TextToVideoCreateParams.Kling2_5TurboPro
+  | TextToVideoCreateParams.Kling3_0Pro
+  | TextToVideoCreateParams.Kling3_0Standard
+  | TextToVideoCreateParams.KlingO3Pro
+  | TextToVideoCreateParams.KlingO3Standard
   | TextToVideoCreateParams.Seedance2
   | TextToVideoCreateParams.Seedance2Fast
   | TextToVideoCreateParams.Seedance2Mini
   | TextToVideoCreateParams.GeminiOmniFlash
-  | TextToVideoCreateParams.Seedance2_5
   | TextToVideoCreateParams.GrokImagine1_5
   | TextToVideoCreateParams.Wan3
   | TextToVideoCreateParams.GeminiOmniFlash1_1
   | TextToVideoCreateParams.Wan3Prime
   | TextToVideoCreateParams.H3Max
+  | TextToVideoCreateParams.Seedance2_5
   | TextToVideoCreateParams.GrokImagine1_5Lite;
 
 export declare namespace TextToVideoCreateParams {
@@ -243,6 +250,70 @@ export declare namespace TextToVideoCreateParams {
     seed?: number;
   }
 
+  export interface KlingO3_4k {
+    model: 'klingO3_4k';
+
+    /**
+     * The resolution of the output video.
+     */
+    ratio: '3840:2160' | '2160:3840' | '2880:2880';
+
+    /**
+     * Whether to generate audio for the video.
+     */
+    audio?: boolean;
+
+    /**
+     * The number of seconds of duration for the output video.
+     */
+    duration?: number;
+
+    /**
+     * A text prompt describing what should appear in the output video.
+     */
+    promptText?: string;
+
+    /**
+     * Provider-specific settings for multishot video generation.
+     */
+    providerSettings?: KlingO3_4k.ProviderSettings;
+  }
+
+  export namespace KlingO3_4k {
+    /**
+     * Provider-specific settings for multishot video generation.
+     */
+    export interface ProviderSettings {
+      /**
+       * An array of prompt segments for multishot video generation. Each segment has its
+       * own prompt and duration. Total duration across all segments must be between 3
+       * and 15 seconds. `promptText` is still required when `shotType` is
+       * `"intelligence"`.
+       */
+      multiPrompt?: Array<ProviderSettings.MultiPrompt>;
+
+      /**
+       * Shot transition type for multishot videos. Defaults to "customize" when
+       * multiPrompt is provided.
+       */
+      shotType?: 'intelligence' | 'customize';
+    }
+
+    export namespace ProviderSettings {
+      export interface MultiPrompt {
+        /**
+         * Duration in seconds for this segment.
+         */
+        duration: number;
+
+        /**
+         * The text prompt for this segment.
+         */
+        prompt: string;
+      }
+    }
+  }
+
   export interface Hailuo3 {
     model: 'hailuo3';
 
@@ -331,6 +402,76 @@ export declare namespace TextToVideoCreateParams {
     }
   }
 
+  export interface Kling3_0_4k {
+    model: 'kling3.0_4k';
+
+    /**
+     * The resolution of the output video.
+     */
+    ratio: '3840:2160' | '2160:3840' | '2880:2880';
+
+    /**
+     * Whether to generate audio for the video.
+     */
+    audio?: boolean;
+
+    /**
+     * Creativity/freedom scale for generation. 0 gives the model maximum creative
+     * freedom, 1 makes it follow the prompt most strictly. Defaults to 0.5.
+     */
+    cfgScale?: number;
+
+    /**
+     * The number of seconds of duration for the output video.
+     */
+    duration?: number;
+
+    /**
+     * A text prompt describing what should appear in the output video.
+     */
+    promptText?: string;
+
+    /**
+     * Provider-specific settings for multishot video generation.
+     */
+    providerSettings?: Kling3_0_4k.ProviderSettings;
+  }
+
+  export namespace Kling3_0_4k {
+    /**
+     * Provider-specific settings for multishot video generation.
+     */
+    export interface ProviderSettings {
+      /**
+       * An array of prompt segments for multishot video generation. Each segment has its
+       * own prompt and duration. Total duration across all segments must be between 3
+       * and 15 seconds. `promptText` is still required when `shotType` is
+       * `"intelligence"`.
+       */
+      multiPrompt?: Array<ProviderSettings.MultiPrompt>;
+
+      /**
+       * Shot transition type for multishot videos. Defaults to "customize" when
+       * multiPrompt is provided.
+       */
+      shotType?: 'intelligence' | 'customize';
+    }
+
+    export namespace ProviderSettings {
+      export interface MultiPrompt {
+        /**
+         * Duration in seconds for this segment.
+         */
+        duration: number;
+
+        /**
+         * The text prompt for this segment.
+         */
+        prompt: string;
+      }
+    }
+  }
+
   export interface Happyhorse1_0 {
     model: 'happyhorse_1_0';
 
@@ -359,6 +500,296 @@ export declare namespace TextToVideoCreateParams {
       | '1440:1440'
       | '1662:1248'
       | '1248:1662';
+  }
+
+  export interface Kling2_5TurboPro {
+    model: 'kling2.5_turbo_pro';
+
+    /**
+     * A text prompt describing what should appear in the output video.
+     */
+    promptText: string;
+
+    /**
+     * Creativity/freedom scale for generation. 0 gives the model maximum creative
+     * freedom, 1 makes it follow the prompt most strictly. Defaults to 0.5.
+     */
+    cfgScale?: number;
+
+    /**
+     * The duration of the output video in seconds. Defaults to 5.
+     */
+    duration?: 5 | 10;
+
+    ratio?: '1920:1080' | '1440:1440' | '1080:1920' | '1280:720' | '720:720' | '720:1280';
+  }
+
+  export interface Kling3_0Pro {
+    model: 'kling3.0_pro';
+
+    /**
+     * The resolution of the output video.
+     */
+    ratio: '1920:1080' | '1080:1920' | '1440:1440';
+
+    /**
+     * Whether to generate audio for the video.
+     */
+    audio?: boolean;
+
+    /**
+     * Creativity/freedom scale for generation. 0 gives the model maximum creative
+     * freedom, 1 makes it follow the prompt most strictly. Defaults to 0.5.
+     */
+    cfgScale?: number;
+
+    /**
+     * The number of seconds of duration for the output video.
+     */
+    duration?: number;
+
+    /**
+     * A text prompt describing what should appear in the output video.
+     */
+    promptText?: string;
+
+    /**
+     * Provider-specific settings for multishot video generation.
+     */
+    providerSettings?: Kling3_0Pro.ProviderSettings;
+  }
+
+  export namespace Kling3_0Pro {
+    /**
+     * Provider-specific settings for multishot video generation.
+     */
+    export interface ProviderSettings {
+      /**
+       * An array of prompt segments for multishot video generation. Each segment has its
+       * own prompt and duration. Total duration across all segments must be between 3
+       * and 15 seconds. `promptText` is still required when `shotType` is
+       * `"intelligence"`.
+       */
+      multiPrompt?: Array<ProviderSettings.MultiPrompt>;
+
+      /**
+       * Shot transition type for multishot videos. Defaults to "customize" when
+       * multiPrompt is provided.
+       */
+      shotType?: 'intelligence' | 'customize';
+    }
+
+    export namespace ProviderSettings {
+      export interface MultiPrompt {
+        /**
+         * Duration in seconds for this segment.
+         */
+        duration: number;
+
+        /**
+         * The text prompt for this segment.
+         */
+        prompt: string;
+      }
+    }
+  }
+
+  export interface Kling3_0Standard {
+    model: 'kling3.0_standard';
+
+    /**
+     * The resolution of the output video.
+     */
+    ratio: '1280:720' | '720:1280' | '960:960';
+
+    /**
+     * Whether to generate audio for the video.
+     */
+    audio?: boolean;
+
+    /**
+     * Creativity/freedom scale for generation. 0 gives the model maximum creative
+     * freedom, 1 makes it follow the prompt most strictly. Defaults to 0.5.
+     */
+    cfgScale?: number;
+
+    /**
+     * The number of seconds of duration for the output video.
+     */
+    duration?: number;
+
+    /**
+     * A text prompt describing what should appear in the output video.
+     */
+    promptText?: string;
+
+    /**
+     * Provider-specific settings for multishot video generation.
+     */
+    providerSettings?: Kling3_0Standard.ProviderSettings;
+  }
+
+  export namespace Kling3_0Standard {
+    /**
+     * Provider-specific settings for multishot video generation.
+     */
+    export interface ProviderSettings {
+      /**
+       * An array of prompt segments for multishot video generation. Each segment has its
+       * own prompt and duration. Total duration across all segments must be between 3
+       * and 15 seconds. `promptText` is still required when `shotType` is
+       * `"intelligence"`.
+       */
+      multiPrompt?: Array<ProviderSettings.MultiPrompt>;
+
+      /**
+       * Shot transition type for multishot videos. Defaults to "customize" when
+       * multiPrompt is provided.
+       */
+      shotType?: 'intelligence' | 'customize';
+    }
+
+    export namespace ProviderSettings {
+      export interface MultiPrompt {
+        /**
+         * Duration in seconds for this segment.
+         */
+        duration: number;
+
+        /**
+         * The text prompt for this segment.
+         */
+        prompt: string;
+      }
+    }
+  }
+
+  export interface KlingO3Pro {
+    model: 'klingO3_pro';
+
+    /**
+     * The resolution of the output video.
+     */
+    ratio: '1920:1080' | '1080:1920' | '1440:1440';
+
+    /**
+     * Whether to generate audio for the video.
+     */
+    audio?: boolean;
+
+    /**
+     * The number of seconds of duration for the output video.
+     */
+    duration?: number;
+
+    /**
+     * A text prompt describing what should appear in the output video.
+     */
+    promptText?: string;
+
+    /**
+     * Provider-specific settings for multishot video generation.
+     */
+    providerSettings?: KlingO3Pro.ProviderSettings;
+  }
+
+  export namespace KlingO3Pro {
+    /**
+     * Provider-specific settings for multishot video generation.
+     */
+    export interface ProviderSettings {
+      /**
+       * An array of prompt segments for multishot video generation. Each segment has its
+       * own prompt and duration. Total duration across all segments must be between 3
+       * and 15 seconds. `promptText` is still required when `shotType` is
+       * `"intelligence"`.
+       */
+      multiPrompt?: Array<ProviderSettings.MultiPrompt>;
+
+      /**
+       * Shot transition type for multishot videos. Defaults to "customize" when
+       * multiPrompt is provided.
+       */
+      shotType?: 'intelligence' | 'customize';
+    }
+
+    export namespace ProviderSettings {
+      export interface MultiPrompt {
+        /**
+         * Duration in seconds for this segment.
+         */
+        duration: number;
+
+        /**
+         * The text prompt for this segment.
+         */
+        prompt: string;
+      }
+    }
+  }
+
+  export interface KlingO3Standard {
+    model: 'klingO3_standard';
+
+    /**
+     * The resolution of the output video.
+     */
+    ratio: '1280:720' | '720:1280' | '960:960';
+
+    /**
+     * Whether to generate audio for the video.
+     */
+    audio?: boolean;
+
+    /**
+     * The number of seconds of duration for the output video.
+     */
+    duration?: number;
+
+    /**
+     * A text prompt describing what should appear in the output video.
+     */
+    promptText?: string;
+
+    /**
+     * Provider-specific settings for multishot video generation.
+     */
+    providerSettings?: KlingO3Standard.ProviderSettings;
+  }
+
+  export namespace KlingO3Standard {
+    /**
+     * Provider-specific settings for multishot video generation.
+     */
+    export interface ProviderSettings {
+      /**
+       * An array of prompt segments for multishot video generation. Each segment has its
+       * own prompt and duration. Total duration across all segments must be between 3
+       * and 15 seconds. `promptText` is still required when `shotType` is
+       * `"intelligence"`.
+       */
+      multiPrompt?: Array<ProviderSettings.MultiPrompt>;
+
+      /**
+       * Shot transition type for multishot videos. Defaults to "customize" when
+       * multiPrompt is provided.
+       */
+      shotType?: 'intelligence' | 'customize';
+    }
+
+    export namespace ProviderSettings {
+      export interface MultiPrompt {
+        /**
+         * Duration in seconds for this segment.
+         */
+        duration: number;
+
+        /**
+         * The text prompt for this segment.
+         */
+        prompt: string;
+      }
+    }
   }
 
   export interface Seedance2 {
@@ -711,118 +1142,6 @@ export declare namespace TextToVideoCreateParams {
      * (portrait).
      */
     ratio?: '1280:720' | '720:1280';
-  }
-
-  export interface Seedance2_5 {
-    model: 'seedance2_5';
-
-    /**
-     * Whether to generate audio for the video.
-     */
-    audio?: boolean;
-
-    /**
-     * Seconds of video to generate, or `auto` to let the model choose. `auto` is
-     * billed at the variant maximum up front; unused credits are refunded after the
-     * generation finishes.
-     */
-    duration?: number | 'auto';
-
-    /**
-     * An optional text prompt up to 15000 characters describing what should appear in
-     * the output.
-     */
-    promptText?: string;
-
-    /**
-     * The resolution of the output video. Seedance 2.5 supports 480p, 720p, and 1080p.
-     */
-    ratio?:
-      | '992:432'
-      | '854:480'
-      | '752:560'
-      | '640:640'
-      | '560:752'
-      | '480:854'
-      | '1470:630'
-      | '1280:720'
-      | '1112:834'
-      | '960:960'
-      | '834:1112'
-      | '720:1280'
-      | '2206:946'
-      | '1920:1080'
-      | '1664:1248'
-      | '1440:1440'
-      | '1248:1664'
-      | '1080:1920';
-
-    /**
-     * An optional array of audio references. The total combined duration must be less
-     * than 30 seconds.
-     */
-    referenceAudio?: Array<Seedance2_5.ReferenceAudio>;
-
-    /**
-     * An optional array of image references (up to 30). See
-     * [our docs](/assets/inputs#images) on image inputs for more information.
-     */
-    references?: Array<Seedance2_5.Reference>;
-
-    /**
-     * An optional array of video references. The combined duration across all video
-     * references must not exceed 30 seconds. See [our docs](/assets/inputs#videos) on
-     * video inputs for more information.
-     */
-    referenceVideos?: Array<Seedance2_5.ReferenceVideo>;
-
-    /**
-     * If unspecified, a random number is chosen. Varying the seed integer is a way to
-     * get different results for the same other request parameters. Using the same seed
-     * integer for an identical request will produce similar results.
-     */
-    seed?: number;
-  }
-
-  export namespace Seedance2_5 {
-    /**
-     * An audio reference allows the model to use the audio as additional context for
-     * the output.
-     */
-    export interface ReferenceAudio {
-      type: 'audio';
-
-      /**
-       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:audio/mp3;base64,...`, up to 5MB) containing an encoded audio. See
-       * [our docs](/assets/inputs#audio) on audio inputs for more information.
-       */
-      uri: string;
-    }
-
-    export interface Reference {
-      /**
-       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-       * [our docs](/assets/inputs#images) on image inputs for more information.
-       */
-      uri: string;
-    }
-
-    /**
-     * A video reference allows the model to use the video as additional context for
-     * the output.
-     */
-    export interface ReferenceVideo {
-      type: 'video';
-
-      /**
-       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
-       * [our docs](/assets/inputs#videos) on video inputs for more information.
-       */
-      uri: string;
-    }
   }
 
   export interface GrokImagine1_5 {
@@ -1178,6 +1497,140 @@ export declare namespace TextToVideoCreateParams {
      * will not repeat.
      */
     seed?: number;
+  }
+
+  export interface Seedance2_5 {
+    model: 'seedance2_5';
+
+    /**
+     * Whether to generate audio for the video. Defaults to `true`.
+     */
+    audio?: boolean;
+
+    /**
+     * Generate a cheap 480p preview instead of a full-quality video. The returned task
+     * ID can later be enhanced to a 1080p video with the same content by passing it as
+     * `draftTaskId` to `text_to_video`. Drafts can be enhanced within 7 days of
+     * creation. Defaults to false.
+     */
+    draft?: boolean;
+
+    /**
+     * The ID of a succeeded draft task to enhance to 1080p. The draft is regenerated
+     * with its original prompt, references, and settings, so no other generation
+     * fields may be provided.
+     */
+    draftTaskId?: string;
+
+    /**
+     * Seconds of video to generate, or `auto` to let the model choose. `auto` is
+     * billed at the variant maximum up front; unused credits are refunded after the
+     * generation finishes. Defaults to 5.
+     */
+    duration?: number | 'auto';
+
+    /**
+     * Container for the output video. `mov` keeps high colour precision for grading
+     * and compositing. Defaults to `mp4`. Draft mode only supports `mp4`.
+     */
+    outputFormat?: 'mp4' | 'mov';
+
+    /**
+     * An optional text prompt up to 15000 characters describing what should appear in
+     * the output.
+     */
+    promptText?: string;
+
+    /**
+     * The resolution of the output video. Seedance 2.5 supports 480p, 720p, and 1080p.
+     * Defaults to `1280:720`.
+     */
+    ratio?:
+      | '992:432'
+      | '854:480'
+      | '752:560'
+      | '640:640'
+      | '560:752'
+      | '480:854'
+      | '1470:630'
+      | '1280:720'
+      | '1112:834'
+      | '960:960'
+      | '834:1112'
+      | '720:1280'
+      | '2206:946'
+      | '1920:1080'
+      | '1664:1248'
+      | '1440:1440'
+      | '1248:1664'
+      | '1080:1920';
+
+    /**
+     * An optional array of audio references. The total combined duration must be less
+     * than 30 seconds.
+     */
+    referenceAudio?: Array<Seedance2_5.ReferenceAudio>;
+
+    /**
+     * An optional array of image references (up to 30). See
+     * [our docs](/assets/inputs#images) on image inputs for more information.
+     */
+    references?: Array<Seedance2_5.Reference>;
+
+    /**
+     * An optional array of video references. The combined duration across all video
+     * references must not exceed 30 seconds. See [our docs](/assets/inputs#videos) on
+     * video inputs for more information.
+     */
+    referenceVideos?: Array<Seedance2_5.ReferenceVideo>;
+
+    /**
+     * If unspecified, a random number is chosen. Varying the seed integer is a way to
+     * get different results for the same other request parameters. Using the same seed
+     * integer for an identical request will produce similar results.
+     */
+    seed?: number;
+  }
+
+  export namespace Seedance2_5 {
+    /**
+     * An audio reference allows the model to use the audio as additional context for
+     * the output.
+     */
+    export interface ReferenceAudio {
+      type: 'audio';
+
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:audio/mp3;base64,...`, up to 5MB) containing an encoded audio. See
+       * [our docs](/assets/inputs#audio) on audio inputs for more information.
+       */
+      uri: string;
+    }
+
+    export interface Reference {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+    }
+
+    /**
+     * A video reference allows the model to use the video as additional context for
+     * the output.
+     */
+    export interface ReferenceVideo {
+      type: 'video';
+
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+       * [our docs](/assets/inputs#videos) on video inputs for more information.
+       */
+      uri: string;
+    }
   }
 
   export interface GrokImagine1_5Lite {

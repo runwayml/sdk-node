@@ -91,20 +91,20 @@ export namespace ImageCreateResponse {
      */
     export interface ResolvedInput {
       /**
-       * Aspect ratio used for routing display.
-       */
-      aspectRatio: string;
-
-      /**
-       * Concrete output ratio derived from aspectRatio and resolution for the selected
-       * model.
+       * Output ratio for the selected model, as `<width>:<height>`. `auto` means the
+       * output keeps the source image's framing, so no pixel size was chosen.
        */
       ratio: string;
 
       /**
-       * Megapixel tier used for routing display.
+       * Aspect ratio the output will use. Omitted when `ratio` is `auto`.
        */
-      resolution: string;
+      aspectRatio?: string;
+
+      /**
+       * Megapixel tier the output will use. Omitted when `ratio` is `auto`.
+       */
+      resolution?: string;
     }
 
     /**

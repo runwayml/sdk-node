@@ -52,6 +52,7 @@ export interface AuditLogRetrieveResponse {
     | 'WorkspaceCreated'
     | 'WorkspaceDeleted'
     | 'MemberInvited'
+    | 'MemberInviteReminderSent'
     | 'MemberRemoved'
     | 'MemberRoleChanged'
     | 'InviteAccepted'
@@ -66,6 +67,7 @@ export interface AuditLogRetrieveResponse {
     | 'UserGroupMemberAdded'
     | 'UserGroupMemberRemoved'
     | 'UserGroupCreditCapUpdated'
+    | 'UserGroupVisibilityUpdated'
     | 'SSOLogin'
     | 'SSOUserProvisioned'
     | 'SSOConfigCreated'
@@ -120,6 +122,13 @@ export interface AuditLogRetrieveResponse {
     | 'AdAccountSelectionUpdated'
     | 'AdAccountSyncRequested'
     | 'AdConnectionDisconnected'
+    | 'AdWorkspaceOnboardingUpdated'
+    | 'AdCreativeReviewSubmitted'
+    | 'AdCreativeReviewCancelled'
+    | 'AdCreativeReviewDecided'
+    | 'AdCreativeApprovalRevoked'
+    | 'AdCreativeArchived'
+    | 'AdCreativeUnarchived'
     | 'OrganizationSettingsUpdated'
     | 'OrganizationDisabledModelsUpdated'
     | 'OrganizationAgentSandboxUpdated'
@@ -137,6 +146,7 @@ export interface AuditLogRetrieveResponse {
     | 'MeteredBillingRefillTriggered'
     | 'MeteredBillingRetryTriggered'
     | 'EnterpriseSpendCapEnforcementUpdated'
+    | 'OnboardingBonusGranted'
     | 'AwsMarketplaceEnterpriseSubscriptionLinked';
 
   /**
@@ -215,141 +225,159 @@ export namespace AuditLogRetrieveResponse {
    * Action-specific details.
    */
   export interface Metadata {
-    'Ad account ID'?: unknown;
+    'Ad account ID'?: string;
 
-    'Ad sync end date'?: unknown;
+    'Ad creative ID'?: string;
 
-    'Ad sync run ID'?: unknown;
+    'Ad review batch ID'?: string;
 
-    'Ad sync start date'?: unknown;
+    'Ad review request ID'?: string;
 
-    'Agent session ID'?: unknown;
+    'Ad sync end date'?: string;
 
-    'Agent tagged'?: unknown;
+    'Ad sync run ID'?: string;
 
-    Amount?: unknown;
+    'Ad sync start date'?: string;
 
-    'Amount received'?: unknown;
+    'Ads onboarding answers'?: Array<string>;
 
-    'API account'?: unknown;
+    'Ads onboarding completed'?: boolean;
 
-    'API project ID'?: unknown;
+    'Agent session ID'?: string;
 
-    'App Studio app'?: unknown;
+    'Agent tagged'?: boolean;
 
-    'App Studio session'?: unknown;
+    Amount?: number;
 
-    Application?: unknown;
+    'Amount received'?: number;
 
-    'Asset name'?: unknown;
+    'API account'?: string;
 
-    'AWS license'?: unknown;
+    'API project ID'?: string;
 
-    'Brand kit ID'?: unknown;
+    'App Studio app'?: string;
 
-    'Comment ID'?: unknown;
+    'App Studio session'?: string;
 
-    'Comment target ID'?: unknown;
+    Application?: string;
 
-    'Comment target type'?: unknown;
+    'Asset name'?: string;
 
-    'Comment text'?: unknown;
+    'AWS license'?: string;
 
-    'Default task name template'?: unknown;
+    'Brand kit ID'?: string;
 
-    'Destination category ID'?: unknown;
+    'Comment ID'?: string;
 
-    Direction?: unknown;
+    'Comment target ID'?: string;
 
-    'Email domain'?: unknown;
+    'Comment target type'?: string;
 
-    'Error code'?: unknown;
+    'Comment text'?: string;
 
-    'Group name'?: unknown;
+    'Default project discoverability'?: string;
 
-    'Hard spend cap'?: unknown;
+    'Default task name template'?: string | null;
 
-    'Invited member'?: unknown;
+    'Destination category ID'?: string;
 
-    'Login method'?: unknown;
+    Direction?: string;
 
-    'Media included'?: unknown;
+    'Email domain'?: string;
 
-    'Member email'?: unknown;
+    'Error code'?: string;
 
-    Mentions?: unknown;
+    'Group name'?: string;
 
-    Model?: unknown;
+    'Hard spend cap'?: boolean;
 
-    'New role'?: unknown;
+    'Invited member'?: string;
 
-    'New text'?: unknown;
+    'Language model or provider'?: string;
 
-    'New User'?: unknown;
+    'Login method'?: string;
 
-    'New value'?: unknown;
+    'Media included'?: boolean;
 
-    Operation?: unknown;
+    'Member email'?: string;
 
-    Organization?: unknown;
+    Mentions?: number;
 
-    Outcome?: unknown;
+    Model?: string;
 
-    Plan?: unknown;
+    'New role'?: string;
 
-    Platform?: unknown;
+    'New text'?: string;
 
-    'Previous project credit cap'?: unknown;
+    'New User'?: boolean;
 
-    'Previous role'?: unknown;
+    'New value'?: string | number | boolean | { [key: string]: boolean } | null;
 
-    'Previous text'?: unknown;
+    Operation?: string;
 
-    'Previous value'?: unknown;
+    Organization?: string;
 
-    'Project credit cap'?: unknown;
+    Outcome?: string;
 
-    Provider?: unknown;
+    Plan?: string;
 
-    Reason?: unknown;
+    Platform?: string;
 
-    'Removed member'?: unknown;
+    'Previous project credit cap'?: number | null;
 
-    Role?: unknown;
+    'Previous role'?: string | null;
 
-    'Root asset ID'?: unknown;
+    'Previous text'?: string;
 
-    Selected?: unknown;
+    'Previous value'?: string | number | boolean | { [key: string]: boolean } | null;
 
-    Setting?: unknown;
+    'Project credit cap'?: number | null;
 
-    'Shared with projects'?: unknown;
+    Provider?: string;
 
-    'Shared with workspace'?: unknown;
+    Reason?: string | null;
 
-    'Source category ID'?: unknown;
+    'Removed member'?: string;
 
-    'Spend cap'?: unknown;
+    'Review decision'?: string;
 
-    'Spend cap change'?: unknown;
+    Role?: string;
 
-    'Tag color'?: unknown;
+    'Root asset ID'?: string;
 
-    'Tag name'?: unknown;
+    Selected?: boolean;
 
-    'Target member'?: unknown;
+    Setting?: string;
 
-    'Via public API'?: unknown;
+    'Shared with projects'?: Array<string>;
 
-    Workspace?: unknown;
+    'Shared with workspace'?: boolean;
 
-    'Workspace description'?: unknown;
+    'Source category ID'?: string;
 
-    'Workspace ID'?: unknown;
+    'Spend cap'?: number;
 
-    'Workspace name'?: unknown;
+    'Spend cap change'?: number;
 
-    'Workspace picture'?: unknown;
+    'Submitted via'?: string;
+
+    'Tag color'?: string;
+
+    'Tag name'?: string;
+
+    'Target member'?: string | null;
+
+    'Via public API'?: boolean;
+
+    Workspace?: string | null;
+
+    'Workspace description'?: string | null;
+
+    'Workspace ID'?: number;
+
+    'Workspace name'?: string | null;
+
+    'Workspace picture'?: string | null;
   }
 }
 
@@ -367,6 +395,7 @@ export interface AuditLogListResponse {
     | 'WorkspaceCreated'
     | 'WorkspaceDeleted'
     | 'MemberInvited'
+    | 'MemberInviteReminderSent'
     | 'MemberRemoved'
     | 'MemberRoleChanged'
     | 'InviteAccepted'
@@ -381,6 +410,7 @@ export interface AuditLogListResponse {
     | 'UserGroupMemberAdded'
     | 'UserGroupMemberRemoved'
     | 'UserGroupCreditCapUpdated'
+    | 'UserGroupVisibilityUpdated'
     | 'SSOLogin'
     | 'SSOUserProvisioned'
     | 'SSOConfigCreated'
@@ -435,6 +465,13 @@ export interface AuditLogListResponse {
     | 'AdAccountSelectionUpdated'
     | 'AdAccountSyncRequested'
     | 'AdConnectionDisconnected'
+    | 'AdWorkspaceOnboardingUpdated'
+    | 'AdCreativeReviewSubmitted'
+    | 'AdCreativeReviewCancelled'
+    | 'AdCreativeReviewDecided'
+    | 'AdCreativeApprovalRevoked'
+    | 'AdCreativeArchived'
+    | 'AdCreativeUnarchived'
     | 'OrganizationSettingsUpdated'
     | 'OrganizationDisabledModelsUpdated'
     | 'OrganizationAgentSandboxUpdated'
@@ -452,6 +489,7 @@ export interface AuditLogListResponse {
     | 'MeteredBillingRefillTriggered'
     | 'MeteredBillingRetryTriggered'
     | 'EnterpriseSpendCapEnforcementUpdated'
+    | 'OnboardingBonusGranted'
     | 'AwsMarketplaceEnterpriseSubscriptionLinked';
 
   /**
@@ -503,12 +541,13 @@ export interface AuditLogListParams extends CursorPageParams {
    * Restrict results to these audit log actions, as a comma-separated list of up to
    * 50 actions. Allowed values: `UserLogin`, `PasswordChanged`,
    * `EmailChangeRequested`, `EmailChanged`, `UserRegistered`, `UserAccountDeleted`,
-   * `WorkspaceCreated`, `WorkspaceDeleted`, `MemberInvited`, `MemberRemoved`,
-   * `MemberRoleChanged`, `InviteAccepted`, `MemberJoinedViaDomain`,
-   * `TeamSettingsUpdated`, `InviteLinkToggled`, `UserGroupCreated`,
-   * `UserGroupUpdated`, `UserGroupDeleted`, `UserGroupArchived`,
-   * `UserGroupRestored`, `UserGroupMemberAdded`, `UserGroupMemberRemoved`,
-   * `UserGroupCreditCapUpdated`, `SSOLogin`, `SSOUserProvisioned`,
+   * `WorkspaceCreated`, `WorkspaceDeleted`, `MemberInvited`,
+   * `MemberInviteReminderSent`, `MemberRemoved`, `MemberRoleChanged`,
+   * `InviteAccepted`, `MemberJoinedViaDomain`, `TeamSettingsUpdated`,
+   * `InviteLinkToggled`, `UserGroupCreated`, `UserGroupUpdated`, `UserGroupDeleted`,
+   * `UserGroupArchived`, `UserGroupRestored`, `UserGroupMemberAdded`,
+   * `UserGroupMemberRemoved`, `UserGroupCreditCapUpdated`,
+   * `UserGroupVisibilityUpdated`, `SSOLogin`, `SSOUserProvisioned`,
    * `SSOConfigCreated`, `SSOUserAutoAddedToTeam`, `SSODomainRegistrationCloned`,
    * `AssetCreated`, `AssetUpdated`, `AssetDeleted`, `AssetDownloaded`,
    * `AssetShared`, `AssetUnshared`, `CommentCreated`, `CommentEdited`,
@@ -527,7 +566,10 @@ export interface AuditLogListParams extends CursorPageParams {
    * `AgentConnectorSessionDisabled`, `GenerationCreated`, `StudioSessionOpened`,
    * `AccountLinkCreated`, `AccountLinkDeleted`, `AdConnectionAuthorizationStarted`,
    * `AdConnectionConnected`, `AdAccountSelectionUpdated`, `AdAccountSyncRequested`,
-   * `AdConnectionDisconnected`, `OrganizationSettingsUpdated`,
+   * `AdConnectionDisconnected`, `AdWorkspaceOnboardingUpdated`,
+   * `AdCreativeReviewSubmitted`, `AdCreativeReviewCancelled`,
+   * `AdCreativeReviewDecided`, `AdCreativeApprovalRevoked`, `AdCreativeArchived`,
+   * `AdCreativeUnarchived`, `OrganizationSettingsUpdated`,
    * `OrganizationDisabledModelsUpdated`, `OrganizationAgentSandboxUpdated`,
    * `OrganizationApiAccountReleased`, `OrganizationApiAccountMemberInvited`,
    * `OrganizationApiAccountMemberRoleChanged`,
@@ -535,7 +577,7 @@ export interface AuditLogListParams extends CursorPageParams {
    * `WorkspaceTagCreated`, `WorkspaceTagUpdated`, `WorkspaceTagDeleted`,
    * `WorkspaceTagAssigned`, `WorkspaceTagUnassigned`, `MeteredBillingConfigUpdated`,
    * `MeteredBillingRefillTriggered`, `MeteredBillingRetryTriggered`,
-   * `EnterpriseSpendCapEnforcementUpdated`,
+   * `EnterpriseSpendCapEnforcementUpdated`, `OnboardingBonusGranted`,
    * `AwsMarketplaceEnterpriseSubscriptionLinked`.
    */
   actions?: string;

@@ -765,7 +765,9 @@ export interface RouterUpdateParams {
   /**
    * Nested merge: omitted settings fields keep their current values. When models is
    * present, omitted models.mode or models.ids are preserved (sending only
-   * optimizeFor does not clear the model allowlist or credit ceiling).
+   * optimizeFor does not clear the model allowlist or credit ceiling). Set
+   * maxCreditsPerGeneration, or one of its modalities, to null to remove those
+   * credit caps.
    */
   settings?: RouterUpdateParams.Settings;
 }
@@ -774,7 +776,9 @@ export namespace RouterUpdateParams {
   /**
    * Nested merge: omitted settings fields keep their current values. When models is
    * present, omitted models.mode or models.ids are preserved (sending only
-   * optimizeFor does not clear the model allowlist or credit ceiling).
+   * optimizeFor does not clear the model allowlist or credit ceiling). Set
+   * maxCreditsPerGeneration, or one of its modalities, to null to remove those
+   * credit caps.
    */
   export interface Settings {
     /**
@@ -784,10 +788,10 @@ export namespace RouterUpdateParams {
     fallback?: Settings.Fallback;
 
     /**
-     * Optional per-modality credit caps, applied per generated output. Models whose
-     * estimated per-output cost exceeds the cap are excluded.
+     * Per-modality credit caps to change, applied per generated output. Omitted
+     * modalities keep their current cap; null removes that cap.
      */
-    maxCreditsPerGeneration?: Settings.MaxCreditsPerGeneration;
+    maxCreditsPerGeneration?: Settings.MaxCreditsPerGeneration | null;
 
     /**
      * When mode is allow_new_except, ids are excluded; when allowlist_only, ids are
@@ -824,15 +828,15 @@ export namespace RouterUpdateParams {
     }
 
     /**
-     * Optional per-modality credit caps, applied per generated output. Models whose
-     * estimated per-output cost exceeds the cap are excluded.
+     * Per-modality credit caps to change, applied per generated output. Omitted
+     * modalities keep their current cap; null removes that cap.
      */
     export interface MaxCreditsPerGeneration {
-      audio?: number;
+      audio?: number | null;
 
-      image?: number;
+      image?: number | null;
 
-      video?: number;
+      video?: number | null;
     }
 
     /**

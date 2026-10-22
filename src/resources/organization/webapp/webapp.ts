@@ -75,15 +75,17 @@ export interface WebappListUsageResponse {
 
 export interface WebappListUsageParams extends CursorPageParams {
   /**
-   * Start of the time window (inclusive), ISO-8601 datetime.
+   * Start of the time window (inclusive), ISO-8601 datetime or date. A date means
+   * midnight UTC.
    */
-  from: string;
+  from: (string & {}) | (string & {});
 
   /**
-   * End of the time window (exclusive), ISO-8601 datetime. A `cursor` can only
+   * End of the time window (exclusive), ISO-8601 datetime or date. A date means
+   * midnight UTC, so `to=2026-08-01` covers all of July 31. A `cursor` can only
    * narrow this window, never extend it past `to`.
    */
-  to: string;
+  to: (string & {}) | (string & {});
 
   /**
    * Organization to report on. Optional when this API project is linked to a single

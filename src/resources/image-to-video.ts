@@ -61,18 +61,25 @@ export type ImageToVideoCreateParams =
   | ImageToVideoCreateParams.Gen4Turbo
   | ImageToVideoCreateParams.Veo3_1
   | ImageToVideoCreateParams.Veo3_1Fast
+  | ImageToVideoCreateParams.KlingO3_4k
   | ImageToVideoCreateParams.Hailuo3
+  | ImageToVideoCreateParams.Kling3_0_4k
   | ImageToVideoCreateParams.Happyhorse1_0
+  | ImageToVideoCreateParams.Kling2_5TurboPro
+  | ImageToVideoCreateParams.Kling3_0Pro
+  | ImageToVideoCreateParams.Kling3_0Standard
+  | ImageToVideoCreateParams.KlingO3Pro
+  | ImageToVideoCreateParams.KlingO3Standard
   | ImageToVideoCreateParams.Seedance2
   | ImageToVideoCreateParams.Seedance2Fast
   | ImageToVideoCreateParams.Seedance2Mini
   | ImageToVideoCreateParams.GeminiOmniFlash
-  | ImageToVideoCreateParams.Seedance2_5
   | ImageToVideoCreateParams.GrokImagine1_5
   | ImageToVideoCreateParams.Wan3
   | ImageToVideoCreateParams.GeminiOmniFlash1_1
   | ImageToVideoCreateParams.Wan3Prime
   | ImageToVideoCreateParams.H3Max
+  | ImageToVideoCreateParams.Seedance2_5
   | ImageToVideoCreateParams.GrokImagine1_5Lite;
 
 export declare namespace ImageToVideoCreateParams {
@@ -384,6 +391,115 @@ export declare namespace ImageToVideoCreateParams {
     }
   }
 
+  export interface KlingO3_4k {
+    model: 'klingO3_4k';
+
+    /**
+     * You may specify an image to use as the first frame of the output video, or an
+     * array with a first frame and optionally a last frame. When both keyframes are
+     * provided, output aspect ratio follows the first frame. See
+     * [image inputs](/assets/inputs#images) for file size limits.
+     */
+    promptImage: string | Array<KlingO3_4k.PromptImage>;
+
+    /**
+     * Whether to generate audio for the video.
+     */
+    audio?: boolean;
+
+    /**
+     * The number of seconds of duration for the output video.
+     */
+    duration?: number;
+
+    /**
+     * A text prompt describing what should appear in the output video.
+     */
+    promptText?: string;
+
+    /**
+     * Provider-specific settings for multishot video generation.
+     */
+    providerSettings?: KlingO3_4k.ProviderSettings;
+
+    /**
+     * The resolution of the output video.
+     */
+    ratio?: '3840:2160' | '2160:3840' | '2880:2880';
+
+    /**
+     * An optional array of reference images (up to 7). See
+     * [our docs](/assets/inputs#images) on image inputs for more information.
+     */
+    references?: string | Array<KlingO3_4k.ReferenceImage>;
+  }
+
+  export namespace KlingO3_4k {
+    export interface PromptImage {
+      /**
+       * The position of the image in the output video. "first" will use the image as the
+       * first frame of the video, "last" will use the image as the last frame of the
+       * video.
+       */
+      position: 'first' | 'last';
+
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+    }
+
+    /**
+     * Provider-specific settings for multishot video generation.
+     */
+    export interface ProviderSettings {
+      /**
+       * An array of prompt segments for multishot video generation. Each segment has its
+       * own prompt and duration. Total duration across all segments must be between 3
+       * and 15 seconds. `promptText` is still required when `shotType` is
+       * `"intelligence"`.
+       */
+      multiPrompt?: Array<ProviderSettings.MultiPrompt>;
+
+      /**
+       * Shot transition type for multishot videos. Defaults to "customize" when
+       * multiPrompt is provided.
+       */
+      shotType?: 'intelligence' | 'customize';
+    }
+
+    export namespace ProviderSettings {
+      export interface MultiPrompt {
+        /**
+         * Duration in seconds for this segment.
+         */
+        duration: number;
+
+        /**
+         * The text prompt for this segment.
+         */
+        prompt: string;
+      }
+    }
+
+    export interface ReferenceImage {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+
+      /**
+       * The position of the image in the output video. "first" will use the image as the
+       * first frame, "last" as the last frame. Omit for a reference image.
+       */
+      position?: 'first' | 'last';
+    }
+  }
+
   export interface Hailuo3 {
     model: 'hailuo3';
 
@@ -391,7 +507,7 @@ export declare namespace ImageToVideoCreateParams {
      * An image or array of images. Use position `first`/`last` for keyframe mode, or
      * omit position for reference images. The two modes cannot be mixed.
      */
-    promptImage: string | Array<unknown>;
+    promptImage: string | Array<Hailuo3.PromptImage>;
 
     /**
      * A non-empty text prompt describing what should appear in the output.
@@ -425,6 +541,21 @@ export declare namespace ImageToVideoCreateParams {
   }
 
   export namespace Hailuo3 {
+    export interface PromptImage {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+
+      /**
+       * The position of the image in the output video. "first" will use the image as the
+       * first frame, "last" as the last frame. Omit for a reference image.
+       */
+      position?: 'first' | 'last';
+    }
+
     /**
      * An audio reference allows the model to use the audio as additional context for
      * the output.
@@ -438,6 +569,100 @@ export declare namespace ImageToVideoCreateParams {
        * [our docs](/assets/inputs#audio) on audio inputs for more information.
        */
       uri: string;
+    }
+  }
+
+  export interface Kling3_0_4k {
+    model: 'kling3.0_4k';
+
+    /**
+     * You may specify an image to use as the first frame of the output video, or an
+     * array with a first frame and optionally a last frame. When both keyframes are
+     * provided, output aspect ratio follows the first frame. See
+     * [image inputs](/assets/inputs#images) for file size limits.
+     */
+    promptImage: string | Array<Kling3_0_4k.PromptImage>;
+
+    /**
+     * Whether to generate audio for the video.
+     */
+    audio?: boolean;
+
+    /**
+     * Creativity/freedom scale for generation. 0 gives the model maximum creative
+     * freedom, 1 makes it follow the prompt most strictly. Defaults to 0.5.
+     */
+    cfgScale?: number;
+
+    /**
+     * The number of seconds of duration for the output video.
+     */
+    duration?: number;
+
+    /**
+     * A text prompt describing what should appear in the output video.
+     */
+    promptText?: string;
+
+    /**
+     * Provider-specific settings for multishot video generation.
+     */
+    providerSettings?: Kling3_0_4k.ProviderSettings;
+
+    /**
+     * The resolution of the output video.
+     */
+    ratio?: '3840:2160' | '2160:3840' | '2880:2880';
+  }
+
+  export namespace Kling3_0_4k {
+    export interface PromptImage {
+      /**
+       * The position of the image in the output video. "first" will use the image as the
+       * first frame of the video, "last" will use the image as the last frame of the
+       * video.
+       */
+      position: 'first' | 'last';
+
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+    }
+
+    /**
+     * Provider-specific settings for multishot video generation.
+     */
+    export interface ProviderSettings {
+      /**
+       * An array of prompt segments for multishot video generation. Each segment has its
+       * own prompt and duration. Total duration across all segments must be between 3
+       * and 15 seconds. `promptText` is still required when `shotType` is
+       * `"intelligence"`.
+       */
+      multiPrompt?: Array<ProviderSettings.MultiPrompt>;
+
+      /**
+       * Shot transition type for multishot videos. Defaults to "customize" when
+       * multiPrompt is provided.
+       */
+      shotType?: 'intelligence' | 'customize';
+    }
+
+    export namespace ProviderSettings {
+      export interface MultiPrompt {
+        /**
+         * Duration in seconds for this segment.
+         */
+        duration: number;
+
+        /**
+         * The text prompt for this segment.
+         */
+        prompt: string;
+      }
     }
   }
 
@@ -485,6 +710,458 @@ export declare namespace ImageToVideoCreateParams {
        * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
+    }
+  }
+
+  export interface Kling2_5TurboPro {
+    model: 'kling2.5_turbo_pro';
+
+    /**
+     * Image for the first frame of the output video, or an array with first and
+     * optionally last frames. Output aspect ratio follows the input image; `ratio` is
+     * not supported on image-to-video. See [image inputs](/assets/inputs#images) for
+     * file size limits.
+     */
+    promptImage: string | Array<Kling2_5TurboPro.PromptImage>;
+
+    /**
+     * A text prompt describing what should appear in the output video.
+     */
+    promptText: string;
+
+    /**
+     * Creativity/freedom scale for generation. 0 gives the model maximum creative
+     * freedom, 1 makes it follow the prompt most strictly. Defaults to 0.5.
+     */
+    cfgScale?: number;
+
+    /**
+     * The duration of the output video in seconds. Defaults to 5.
+     */
+    duration?: 5 | 10;
+  }
+
+  export namespace Kling2_5TurboPro {
+    export interface PromptImage {
+      /**
+       * The position of the image in the output video. "first" will use the image as the
+       * first frame of the video, "last" will use the image as the last frame of the
+       * video.
+       */
+      position: 'first' | 'last';
+
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+    }
+  }
+
+  export interface Kling3_0Pro {
+    model: 'kling3.0_pro';
+
+    /**
+     * You may specify an image to use as the first frame of the output video, or an
+     * array with a first frame and optionally a last frame. When both keyframes are
+     * provided, output aspect ratio follows the first frame. See
+     * [image inputs](/assets/inputs#images) for file size limits.
+     */
+    promptImage: string | Array<Kling3_0Pro.PromptImage>;
+
+    /**
+     * Whether to generate audio for the video.
+     */
+    audio?: boolean;
+
+    /**
+     * Creativity/freedom scale for generation. 0 gives the model maximum creative
+     * freedom, 1 makes it follow the prompt most strictly. Defaults to 0.5.
+     */
+    cfgScale?: number;
+
+    /**
+     * The number of seconds of duration for the output video.
+     */
+    duration?: number;
+
+    /**
+     * A text prompt describing what should appear in the output video.
+     */
+    promptText?: string;
+
+    /**
+     * Provider-specific settings for multishot video generation.
+     */
+    providerSettings?: Kling3_0Pro.ProviderSettings;
+
+    /**
+     * The resolution of the output video.
+     */
+    ratio?: '1920:1080' | '1080:1920' | '1440:1440';
+  }
+
+  export namespace Kling3_0Pro {
+    export interface PromptImage {
+      /**
+       * The position of the image in the output video. "first" will use the image as the
+       * first frame of the video, "last" will use the image as the last frame of the
+       * video.
+       */
+      position: 'first' | 'last';
+
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+    }
+
+    /**
+     * Provider-specific settings for multishot video generation.
+     */
+    export interface ProviderSettings {
+      /**
+       * An array of prompt segments for multishot video generation. Each segment has its
+       * own prompt and duration. Total duration across all segments must be between 3
+       * and 15 seconds. `promptText` is still required when `shotType` is
+       * `"intelligence"`.
+       */
+      multiPrompt?: Array<ProviderSettings.MultiPrompt>;
+
+      /**
+       * Shot transition type for multishot videos. Defaults to "customize" when
+       * multiPrompt is provided.
+       */
+      shotType?: 'intelligence' | 'customize';
+    }
+
+    export namespace ProviderSettings {
+      export interface MultiPrompt {
+        /**
+         * Duration in seconds for this segment.
+         */
+        duration: number;
+
+        /**
+         * The text prompt for this segment.
+         */
+        prompt: string;
+      }
+    }
+  }
+
+  export interface Kling3_0Standard {
+    model: 'kling3.0_standard';
+
+    /**
+     * You may specify an image to use as the first frame of the output video, or an
+     * array with a first frame and optionally a last frame. When both keyframes are
+     * provided, output aspect ratio follows the first frame. See
+     * [image inputs](/assets/inputs#images) for file size limits.
+     */
+    promptImage: string | Array<Kling3_0Standard.PromptImage>;
+
+    /**
+     * Whether to generate audio for the video.
+     */
+    audio?: boolean;
+
+    /**
+     * Creativity/freedom scale for generation. 0 gives the model maximum creative
+     * freedom, 1 makes it follow the prompt most strictly. Defaults to 0.5.
+     */
+    cfgScale?: number;
+
+    /**
+     * The number of seconds of duration for the output video.
+     */
+    duration?: number;
+
+    /**
+     * A text prompt describing what should appear in the output video.
+     */
+    promptText?: string;
+
+    /**
+     * Provider-specific settings for multishot video generation.
+     */
+    providerSettings?: Kling3_0Standard.ProviderSettings;
+
+    /**
+     * The resolution of the output video.
+     */
+    ratio?: '1280:720' | '720:1280' | '960:960';
+  }
+
+  export namespace Kling3_0Standard {
+    export interface PromptImage {
+      /**
+       * The position of the image in the output video. "first" will use the image as the
+       * first frame of the video, "last" will use the image as the last frame of the
+       * video.
+       */
+      position: 'first' | 'last';
+
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+    }
+
+    /**
+     * Provider-specific settings for multishot video generation.
+     */
+    export interface ProviderSettings {
+      /**
+       * An array of prompt segments for multishot video generation. Each segment has its
+       * own prompt and duration. Total duration across all segments must be between 3
+       * and 15 seconds. `promptText` is still required when `shotType` is
+       * `"intelligence"`.
+       */
+      multiPrompt?: Array<ProviderSettings.MultiPrompt>;
+
+      /**
+       * Shot transition type for multishot videos. Defaults to "customize" when
+       * multiPrompt is provided.
+       */
+      shotType?: 'intelligence' | 'customize';
+    }
+
+    export namespace ProviderSettings {
+      export interface MultiPrompt {
+        /**
+         * Duration in seconds for this segment.
+         */
+        duration: number;
+
+        /**
+         * The text prompt for this segment.
+         */
+        prompt: string;
+      }
+    }
+  }
+
+  export interface KlingO3Pro {
+    model: 'klingO3_pro';
+
+    /**
+     * You may specify an image to use as the first frame of the output video, or an
+     * array with a first frame and optionally a last frame. When both keyframes are
+     * provided, output aspect ratio follows the first frame. See
+     * [image inputs](/assets/inputs#images) for file size limits.
+     */
+    promptImage: string | Array<KlingO3Pro.PromptImage>;
+
+    /**
+     * Whether to generate audio for the video.
+     */
+    audio?: boolean;
+
+    /**
+     * The number of seconds of duration for the output video.
+     */
+    duration?: number;
+
+    /**
+     * A text prompt describing what should appear in the output video.
+     */
+    promptText?: string;
+
+    /**
+     * Provider-specific settings for multishot video generation.
+     */
+    providerSettings?: KlingO3Pro.ProviderSettings;
+
+    /**
+     * The resolution of the output video.
+     */
+    ratio?: '1920:1080' | '1080:1920' | '1440:1440';
+
+    /**
+     * An optional array of reference images (up to 7). See
+     * [our docs](/assets/inputs#images) on image inputs for more information.
+     */
+    references?: string | Array<KlingO3Pro.ReferenceImage>;
+  }
+
+  export namespace KlingO3Pro {
+    export interface PromptImage {
+      /**
+       * The position of the image in the output video. "first" will use the image as the
+       * first frame of the video, "last" will use the image as the last frame of the
+       * video.
+       */
+      position: 'first' | 'last';
+
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+    }
+
+    /**
+     * Provider-specific settings for multishot video generation.
+     */
+    export interface ProviderSettings {
+      /**
+       * An array of prompt segments for multishot video generation. Each segment has its
+       * own prompt and duration. Total duration across all segments must be between 3
+       * and 15 seconds. `promptText` is still required when `shotType` is
+       * `"intelligence"`.
+       */
+      multiPrompt?: Array<ProviderSettings.MultiPrompt>;
+
+      /**
+       * Shot transition type for multishot videos. Defaults to "customize" when
+       * multiPrompt is provided.
+       */
+      shotType?: 'intelligence' | 'customize';
+    }
+
+    export namespace ProviderSettings {
+      export interface MultiPrompt {
+        /**
+         * Duration in seconds for this segment.
+         */
+        duration: number;
+
+        /**
+         * The text prompt for this segment.
+         */
+        prompt: string;
+      }
+    }
+
+    export interface ReferenceImage {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+
+      /**
+       * The position of the image in the output video. "first" will use the image as the
+       * first frame, "last" as the last frame. Omit for a reference image.
+       */
+      position?: 'first' | 'last';
+    }
+  }
+
+  export interface KlingO3Standard {
+    model: 'klingO3_standard';
+
+    /**
+     * You may specify an image to use as the first frame of the output video, or an
+     * array with a first frame and optionally a last frame. When both keyframes are
+     * provided, output aspect ratio follows the first frame. See
+     * [image inputs](/assets/inputs#images) for file size limits.
+     */
+    promptImage: string | Array<KlingO3Standard.PromptImage>;
+
+    /**
+     * Whether to generate audio for the video.
+     */
+    audio?: boolean;
+
+    /**
+     * The number of seconds of duration for the output video.
+     */
+    duration?: number;
+
+    /**
+     * A text prompt describing what should appear in the output video.
+     */
+    promptText?: string;
+
+    /**
+     * Provider-specific settings for multishot video generation.
+     */
+    providerSettings?: KlingO3Standard.ProviderSettings;
+
+    /**
+     * The resolution of the output video.
+     */
+    ratio?: '1280:720' | '720:1280' | '960:960';
+
+    /**
+     * An optional array of reference images (up to 7). See
+     * [our docs](/assets/inputs#images) on image inputs for more information.
+     */
+    references?: string | Array<KlingO3Standard.ReferenceImage>;
+  }
+
+  export namespace KlingO3Standard {
+    export interface PromptImage {
+      /**
+       * The position of the image in the output video. "first" will use the image as the
+       * first frame of the video, "last" will use the image as the last frame of the
+       * video.
+       */
+      position: 'first' | 'last';
+
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+    }
+
+    /**
+     * Provider-specific settings for multishot video generation.
+     */
+    export interface ProviderSettings {
+      /**
+       * An array of prompt segments for multishot video generation. Each segment has its
+       * own prompt and duration. Total duration across all segments must be between 3
+       * and 15 seconds. `promptText` is still required when `shotType` is
+       * `"intelligence"`.
+       */
+      multiPrompt?: Array<ProviderSettings.MultiPrompt>;
+
+      /**
+       * Shot transition type for multishot videos. Defaults to "customize" when
+       * multiPrompt is provided.
+       */
+      shotType?: 'intelligence' | 'customize';
+    }
+
+    export namespace ProviderSettings {
+      export interface MultiPrompt {
+        /**
+         * Duration in seconds for this segment.
+         */
+        duration: number;
+
+        /**
+         * The text prompt for this segment.
+         */
+        prompt: string;
+      }
+    }
+
+    export interface ReferenceImage {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+
+      /**
+       * The position of the image in the output video. "first" will use the image as the
+       * first frame, "last" as the last frame. Omit for a reference image.
+       */
+      position?: 'first' | 'last';
     }
   }
 
@@ -816,109 +1493,13 @@ export declare namespace ImageToVideoCreateParams {
     }
   }
 
-  export interface Seedance2_5 {
-    model: 'seedance2_5';
-
-    /**
-     * An image or array of images. Use position `first`/`last` for keyframe mode, or
-     * omit position for reference images. The two modes cannot be mixed.
-     */
-    promptImage: string | Array<Seedance2_5.PromptImage>;
-
-    /**
-     * Whether to generate audio for the video.
-     */
-    audio?: boolean;
-
-    /**
-     * Seconds of video to generate, or `auto` to let the model choose. `auto` is
-     * billed at the variant maximum up front; unused credits are refunded after the
-     * generation finishes.
-     */
-    duration?: number | 'auto';
-
-    /**
-     * An optional text prompt up to 15000 characters describing what should appear in
-     * the output.
-     */
-    promptText?: string;
-
-    /**
-     * The resolution of the output video. Seedance 2.5 supports 480p, 720p, and 1080p.
-     */
-    ratio?:
-      | '992:432'
-      | '854:480'
-      | '752:560'
-      | '640:640'
-      | '560:752'
-      | '480:854'
-      | '1470:630'
-      | '1280:720'
-      | '1112:834'
-      | '960:960'
-      | '834:1112'
-      | '720:1280'
-      | '2206:946'
-      | '1920:1080'
-      | '1664:1248'
-      | '1440:1440'
-      | '1248:1664'
-      | '1080:1920';
-
-    /**
-     * An optional array of audio references. The total combined duration must not
-     * exceed 30 seconds.
-     */
-    referenceAudio?: Array<Seedance2_5.ReferenceAudio>;
-
-    /**
-     * If unspecified, a random number is chosen. Varying the seed integer is a way to
-     * get different results for the same other request parameters. Using the same seed
-     * integer for an identical request will produce similar results.
-     */
-    seed?: number;
-  }
-
-  export namespace Seedance2_5 {
-    export interface PromptImage {
-      /**
-       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-       * [our docs](/assets/inputs#images) on image inputs for more information.
-       */
-      uri: string;
-
-      /**
-       * The position of the image in the output video. "first" will use the image as the
-       * first frame, "last" as the last frame. Omit for a reference image.
-       */
-      position?: 'first' | 'last';
-    }
-
-    /**
-     * An audio reference allows the model to use the audio as additional context for
-     * the output.
-     */
-    export interface ReferenceAudio {
-      type: 'audio';
-
-      /**
-       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:audio/mp3;base64,...`, up to 5MB) containing an encoded audio. See
-       * [our docs](/assets/inputs#audio) on audio inputs for more information.
-       */
-      uri: string;
-    }
-  }
-
   export interface GrokImagine1_5 {
     model: 'grok_imagine_1_5';
 
     /**
-     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-     * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-     * [our docs](/assets/inputs#images) on image inputs for more information.
+     * The start frame of the output video. The output keeps its aspect ratio, which
+     * (width / height) must be between 0.4 and 2.5. See
+     * [our docs](/assets/inputs#images) for image input requirements.
      */
     promptImage: string | Array<GrokImagine1_5.PromptImage>;
 
@@ -962,7 +1543,7 @@ export declare namespace ImageToVideoCreateParams {
      * An image or array of images. Use position `first`/`last` for keyframe mode, or
      * omit position for reference images. The two modes cannot be mixed.
      */
-    promptImage: string | Array<unknown>;
+    promptImage: string | Array<Wan3.PromptImage>;
 
     /**
      * A non-empty text prompt describing what should appear in the output.
@@ -1019,6 +1600,21 @@ export declare namespace ImageToVideoCreateParams {
   }
 
   export namespace Wan3 {
+    export interface PromptImage {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+
+      /**
+       * The position of the image in the output video. "first" will use the image as the
+       * first frame, "last" as the last frame. Omit for a reference image.
+       */
+      position?: 'first' | 'last';
+    }
+
     /**
      * An audio reference allows the model to use the audio as additional context for
      * the output.
@@ -1110,7 +1706,7 @@ export declare namespace ImageToVideoCreateParams {
      * An image or array of images. Use position `first`/`last` for keyframe mode, or
      * omit position for reference images. The two modes cannot be mixed.
      */
-    promptImage: string | Array<unknown>;
+    promptImage: string | Array<Wan3Prime.PromptImage>;
 
     /**
      * A non-empty text prompt describing what should appear in the output.
@@ -1167,6 +1763,21 @@ export declare namespace ImageToVideoCreateParams {
   }
 
   export namespace Wan3Prime {
+    export interface PromptImage {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+
+      /**
+       * The position of the image in the output video. "first" will use the image as the
+       * first frame, "last" as the last frame. Omit for a reference image.
+       */
+      position?: 'first' | 'last';
+    }
+
     /**
      * An audio reference allows the model to use the audio as additional context for
      * the output.
@@ -1256,13 +1867,123 @@ export declare namespace ImageToVideoCreateParams {
     }
   }
 
+  export interface Seedance2_5 {
+    model: 'seedance2_5';
+
+    /**
+     * An image or array of images. Use position `first`/`last` for keyframe mode, or
+     * omit position for reference images. The two modes cannot be mixed.
+     */
+    promptImage: string | Array<Seedance2_5.PromptImage>;
+
+    /**
+     * Whether to generate audio for the video.
+     */
+    audio?: boolean;
+
+    /**
+     * Generate a cheap 480p preview instead of a full-quality video. The returned task
+     * ID can later be enhanced to a 1080p video with the same content by passing it as
+     * `draftTaskId` to `text_to_video`. Drafts can be enhanced within 7 days of
+     * creation. Defaults to false.
+     */
+    draft?: boolean;
+
+    /**
+     * Seconds of video to generate, or `auto` to let the model choose. `auto` is
+     * billed at the variant maximum up front; unused credits are refunded after the
+     * generation finishes.
+     */
+    duration?: number | 'auto';
+
+    /**
+     * Container for the output video. `mov` keeps high colour precision for grading
+     * and compositing. Defaults to `mp4`. Draft mode only supports `mp4`.
+     */
+    outputFormat?: 'mp4' | 'mov';
+
+    /**
+     * An optional text prompt up to 15000 characters describing what should appear in
+     * the output.
+     */
+    promptText?: string;
+
+    /**
+     * The resolution of the output video. Seedance 2.5 supports 480p, 720p, and 1080p.
+     */
+    ratio?:
+      | '992:432'
+      | '854:480'
+      | '752:560'
+      | '640:640'
+      | '560:752'
+      | '480:854'
+      | '1470:630'
+      | '1280:720'
+      | '1112:834'
+      | '960:960'
+      | '834:1112'
+      | '720:1280'
+      | '2206:946'
+      | '1920:1080'
+      | '1664:1248'
+      | '1440:1440'
+      | '1248:1664'
+      | '1080:1920';
+
+    /**
+     * An optional array of audio references. The total combined duration must not
+     * exceed 30 seconds.
+     */
+    referenceAudio?: Array<Seedance2_5.ReferenceAudio>;
+
+    /**
+     * If unspecified, a random number is chosen. Varying the seed integer is a way to
+     * get different results for the same other request parameters. Using the same seed
+     * integer for an identical request will produce similar results.
+     */
+    seed?: number;
+  }
+
+  export namespace Seedance2_5 {
+    export interface PromptImage {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+
+      /**
+       * The position of the image in the output video. "first" will use the image as the
+       * first frame, "last" as the last frame. Omit for a reference image.
+       */
+      position?: 'first' | 'last';
+    }
+
+    /**
+     * An audio reference allows the model to use the audio as additional context for
+     * the output.
+     */
+    export interface ReferenceAudio {
+      type: 'audio';
+
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:audio/mp3;base64,...`, up to 5MB) containing an encoded audio. See
+       * [our docs](/assets/inputs#audio) on audio inputs for more information.
+       */
+      uri: string;
+    }
+  }
+
   export interface GrokImagine1_5Lite {
     model: 'grok_imagine_1_5_lite';
 
     /**
-     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-     * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-     * [our docs](/assets/inputs#images) on image inputs for more information.
+     * The start frame of the output video. The output keeps its aspect ratio, which
+     * (width / height) must be between 0.4 and 2.5. See
+     * [our docs](/assets/inputs#images) for image input requirements.
      */
     promptImage: string | Array<GrokImagine1_5Lite.PromptImage>;
 
