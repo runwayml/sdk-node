@@ -2,15 +2,10 @@
 
 ## [4.24.0](https://github.com/runwayml/sdk-node/compare/v4.23.0...v4.24.0) (2026-10-23)
 
-
 ### Features
 
-* add Kling 4.0 video generation ([bec4e23](https://github.com/runwayml/sdk-node/commit/bec4e2324aa988d1848140a51df18cda393d3f05))
-
-
-### Bug Fixes
-
-* use pixel output ratios for Kling 4 ([26f5ff3](https://github.com/runwayml/sdk-node/commit/26f5ff3771b4606d3a5841ec06ea63204dd78227))
+* Add Kling 4.0 text-to-video, image-to-video, and video-to-video generation.
+* Support pixel output ratios for text-to-video and automatic 720p or 1080p sizing across Kling 4.0 endpoints.
 
 ## [4.23.0](https://github.com/runwayml/sdk-node/compare/v4.22.0...v4.23.0) (2026-10-23)
 
