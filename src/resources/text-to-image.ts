@@ -74,6 +74,8 @@ export type TextToImageCreateParams =
   | TextToImageCreateParams.Ideogram4_5
   | TextToImageCreateParams.Seedream5Flash
   | TextToImageCreateParams.NanoBanana2_1
+  | TextToImageCreateParams.RecraftV4_1Flash
+  | TextToImageCreateParams.RecraftV4_1Vector
   | TextToImageCreateParams.Gemini2_5Flash;
 
 export declare namespace TextToImageCreateParams {
@@ -1416,6 +1418,83 @@ export declare namespace TextToImageCreateParams {
        */
       tag?: string;
     }
+  }
+
+  export interface RecraftV4_1Flash {
+    model: 'recraft_v4_1_flash';
+
+    /**
+     * A description of the image you want to generate.
+     */
+    promptText: string;
+
+    /**
+     * The output dimensions, expressed as `<width>:<height>`.
+     */
+    ratio:
+      | '1024:1024'
+      | '1536:768'
+      | '768:1536'
+      | '1280:832'
+      | '832:1280'
+      | '1216:896'
+      | '896:1216'
+      | '1152:896'
+      | '896:1152'
+      | '832:1344'
+      | '1280:896'
+      | '896:1280'
+      | '1344:768'
+      | '768:1344';
+
+    /**
+     * A preferred background color as a six-digit hex string.
+     */
+    backgroundColor?: string;
+
+    /**
+     * Preferred colors as six-digit hex strings.
+     */
+    colors?: Array<string>;
+
+    /**
+     * The number of images to generate. Each image is billed separately.
+     */
+    outputCount?: number;
+
+    /**
+     * The output file format. Defaults to webp.
+     */
+    outputFormat?: 'webp' | 'png';
+
+    seed?: number;
+  }
+
+  export interface RecraftV4_1Vector {
+    model: 'recraft_v4_1_vector';
+
+    /**
+     * Describe the vector illustration you want to generate.
+     */
+    promptText: string;
+
+    /**
+     * The preferred background color as a six-digit hex value. This is a generation
+     * hint, not an exact color constraint; the generated background may use a
+     * different shade.
+     */
+    backgroundColor?: string;
+
+    /**
+     * Preferred colors as six-digit hex values, such as #FF8800.
+     */
+    colors?: Array<string>;
+
+    /**
+     * The width and height declared by the output SVG. Vector artwork can be scaled
+     * after generation.
+     */
+    ratio?: '1024:1024' | '1216:896' | '896:1216' | '1344:768' | '768:1344';
   }
 
   export interface Gemini2_5Flash {
