@@ -115,6 +115,7 @@ export interface AuditLogRetrieveResponse {
     | 'AgentConnectorSessionDisabled'
     | 'GenerationCreated'
     | 'StudioSessionOpened'
+    | 'AppStudioAiRunOpened'
     | 'AccountLinkCreated'
     | 'AccountLinkDeleted'
     | 'AdConnectionAuthorizationStarted'
@@ -129,6 +130,9 @@ export interface AuditLogRetrieveResponse {
     | 'AdCreativeApprovalRevoked'
     | 'AdCreativeArchived'
     | 'AdCreativeUnarchived'
+    | 'AdPublishBatchQueued'
+    | 'AdPublishBatchCancelled'
+    | 'AdPublishBatchRetried'
     | 'OrganizationSettingsUpdated'
     | 'OrganizationDisabledModelsUpdated'
     | 'OrganizationAgentSandboxUpdated'
@@ -229,6 +233,8 @@ export namespace AuditLogRetrieveResponse {
 
     'Ad creative ID'?: string;
 
+    'Ad publish batch ID'?: string;
+
     'Ad review batch ID'?: string;
 
     'Ad review request ID'?: string;
@@ -275,6 +281,12 @@ export namespace AuditLogRetrieveResponse {
 
     'Comment text'?: string;
 
+    'Creatives cancelled'?: number;
+
+    'Creatives queued'?: number;
+
+    'Creatives retried'?: number;
+
     'Default project discoverability'?: string;
 
     'Default task name template'?: string | null;
@@ -290,6 +302,8 @@ export namespace AuditLogRetrieveResponse {
     'Group name'?: string;
 
     'Hard spend cap'?: boolean;
+
+    'Into a new test ad set'?: boolean;
 
     'Invited member'?: string;
 
@@ -322,6 +336,8 @@ export namespace AuditLogRetrieveResponse {
     Plan?: string;
 
     Platform?: string;
+
+    'Platform ad account ID'?: string;
 
     'Previous project credit cap'?: number | null;
 
@@ -458,6 +474,7 @@ export interface AuditLogListResponse {
     | 'AgentConnectorSessionDisabled'
     | 'GenerationCreated'
     | 'StudioSessionOpened'
+    | 'AppStudioAiRunOpened'
     | 'AccountLinkCreated'
     | 'AccountLinkDeleted'
     | 'AdConnectionAuthorizationStarted'
@@ -472,6 +489,9 @@ export interface AuditLogListResponse {
     | 'AdCreativeApprovalRevoked'
     | 'AdCreativeArchived'
     | 'AdCreativeUnarchived'
+    | 'AdPublishBatchQueued'
+    | 'AdPublishBatchCancelled'
+    | 'AdPublishBatchRetried'
     | 'OrganizationSettingsUpdated'
     | 'OrganizationDisabledModelsUpdated'
     | 'OrganizationAgentSandboxUpdated'
@@ -564,12 +584,14 @@ export interface AuditLogListParams extends CursorPageParams {
    * `AgentConnectorConnected`, `AgentConnectorDisconnected`,
    * `AgentConnectorAssetExported`, `AgentConnectorSessionEnabled`,
    * `AgentConnectorSessionDisabled`, `GenerationCreated`, `StudioSessionOpened`,
-   * `AccountLinkCreated`, `AccountLinkDeleted`, `AdConnectionAuthorizationStarted`,
-   * `AdConnectionConnected`, `AdAccountSelectionUpdated`, `AdAccountSyncRequested`,
+   * `AppStudioAiRunOpened`, `AccountLinkCreated`, `AccountLinkDeleted`,
+   * `AdConnectionAuthorizationStarted`, `AdConnectionConnected`,
+   * `AdAccountSelectionUpdated`, `AdAccountSyncRequested`,
    * `AdConnectionDisconnected`, `AdWorkspaceOnboardingUpdated`,
    * `AdCreativeReviewSubmitted`, `AdCreativeReviewCancelled`,
    * `AdCreativeReviewDecided`, `AdCreativeApprovalRevoked`, `AdCreativeArchived`,
-   * `AdCreativeUnarchived`, `OrganizationSettingsUpdated`,
+   * `AdCreativeUnarchived`, `AdPublishBatchQueued`, `AdPublishBatchCancelled`,
+   * `AdPublishBatchRetried`, `OrganizationSettingsUpdated`,
    * `OrganizationDisabledModelsUpdated`, `OrganizationAgentSandboxUpdated`,
    * `OrganizationApiAccountReleased`, `OrganizationApiAccountMemberInvited`,
    * `OrganizationApiAccountMemberRoleChanged`,

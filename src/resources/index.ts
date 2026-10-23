@@ -105,6 +105,11 @@ export {
   type TextToSpeechCreateParams,
 } from './text-to-speech';
 export { TextToVideo, type TextToVideoCreateResponse, type TextToVideoCreateParams } from './text-to-video';
+export {
+  VideoToAudio,
+  type VideoToAudioCreateResponse,
+  type VideoToAudioCreateParams,
+} from './video-to-audio';
 export { VideoToHdr, type VideoToHdrCreateResponse, type VideoToHdrCreateParams } from './video-to-hdr';
 export {
   VideoToVideo,

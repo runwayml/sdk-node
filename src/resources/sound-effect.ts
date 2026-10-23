@@ -50,6 +50,7 @@ export namespace SoundEffectCreateResponse {
 
 export type SoundEffectCreateParams =
   | SoundEffectCreateParams.SeedAudio
+  | SoundEffectCreateParams.MireloSfx2_0
   | SoundEffectCreateParams.ElevenTextToSoundV2;
 
 export declare namespace SoundEffectCreateParams {
@@ -93,6 +94,40 @@ export declare namespace SoundEffectCreateParams {
      * Relative speech speed. Negative is slower, positive is faster; 0 is normal.
      */
     speechRate?: number;
+  }
+
+  export interface MireloSfx2_0 {
+    /**
+     * The duration of the generated audio in seconds.
+     */
+    duration: number;
+
+    model: 'mirelo_sfx_2_0';
+
+    /**
+     * A description of the sound effects to generate.
+     */
+    promptText: string;
+
+    /**
+     * The format of the generated audio.
+     */
+    format?: 'mp3' | 'wav' | 'flac';
+
+    /**
+     * Sounds to avoid in the generated audio.
+     */
+    negativePrompt?: string;
+
+    /**
+     * The number of audio variations to generate.
+     */
+    numVariants?: number;
+
+    /**
+     * A seed for reproducible generation.
+     */
+    seed?: number;
   }
 
   export interface ElevenTextToSoundV2 {

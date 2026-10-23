@@ -507,7 +507,7 @@ export declare namespace ImageToVideoCreateParams {
      * An image or array of images. Use position `first`/`last` for keyframe mode, or
      * omit position for reference images. The two modes cannot be mixed.
      */
-    promptImage: string | Array<Hailuo3.PromptImage>;
+    promptImage: string | Array<unknown>;
 
     /**
      * A non-empty text prompt describing what should appear in the output.
@@ -541,21 +541,6 @@ export declare namespace ImageToVideoCreateParams {
   }
 
   export namespace Hailuo3 {
-    export interface PromptImage {
-      /**
-       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-       * [our docs](/assets/inputs#images) on image inputs for more information.
-       */
-      uri: string;
-
-      /**
-       * The position of the image in the output video. "first" will use the image as the
-       * first frame, "last" as the last frame. Omit for a reference image.
-       */
-      position?: 'first' | 'last';
-    }
-
     /**
      * An audio reference allows the model to use the audio as additional context for
      * the output.
@@ -1543,7 +1528,7 @@ export declare namespace ImageToVideoCreateParams {
      * An image or array of images. Use position `first`/`last` for keyframe mode, or
      * omit position for reference images. The two modes cannot be mixed.
      */
-    promptImage: string | Array<Wan3.PromptImage>;
+    promptImage: string | Array<unknown>;
 
     /**
      * A non-empty text prompt describing what should appear in the output.
@@ -1600,21 +1585,6 @@ export declare namespace ImageToVideoCreateParams {
   }
 
   export namespace Wan3 {
-    export interface PromptImage {
-      /**
-       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-       * [our docs](/assets/inputs#images) on image inputs for more information.
-       */
-      uri: string;
-
-      /**
-       * The position of the image in the output video. "first" will use the image as the
-       * first frame, "last" as the last frame. Omit for a reference image.
-       */
-      position?: 'first' | 'last';
-    }
-
     /**
      * An audio reference allows the model to use the audio as additional context for
      * the output.
@@ -1706,7 +1676,7 @@ export declare namespace ImageToVideoCreateParams {
      * An image or array of images. Use position `first`/`last` for keyframe mode, or
      * omit position for reference images. The two modes cannot be mixed.
      */
-    promptImage: string | Array<Wan3Prime.PromptImage>;
+    promptImage: string | Array<unknown>;
 
     /**
      * A non-empty text prompt describing what should appear in the output.
@@ -1763,21 +1733,6 @@ export declare namespace ImageToVideoCreateParams {
   }
 
   export namespace Wan3Prime {
-    export interface PromptImage {
-      /**
-       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-       * [our docs](/assets/inputs#images) on image inputs for more information.
-       */
-      uri: string;
-
-      /**
-       * The position of the image in the output video. "first" will use the image as the
-       * first frame, "last" as the last frame. Omit for a reference image.
-       */
-      position?: 'first' | 'last';
-    }
-
     /**
      * An audio reference allows the model to use the audio as additional context for
      * the output.

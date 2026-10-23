@@ -88,7 +88,7 @@ export declare namespace VideoToVideoCreateParams {
      * Timed guidance images placed at specific points in the input video. Up to 5
      * keyframes.
      */
-    keyframes?: Array<Variant0.KeyframeWithSeconds | Variant0.KeyframeWithAt>;
+    keyframes?: Array<Variant0.UnionMember0 | Variant0.UnionMember1>;
 
     /**
      * The container/encoding of the output. `mp4` (default) returns an H.264 .mp4.
@@ -145,7 +145,7 @@ export declare namespace VideoToVideoCreateParams {
       publicFigureThreshold?: 'auto' | 'low';
     }
 
-    export interface KeyframeWithSeconds {
+    export interface UnionMember0 {
       /**
        * Absolute timestamp in seconds from the start of the input video when this
        * guidance image should apply.
@@ -164,10 +164,10 @@ export declare namespace VideoToVideoCreateParams {
        * keyframe timestamp must fall within it. All keyframes must either set a range or
        * none may.
        */
-      range?: KeyframeWithSeconds.Range;
+      range?: UnionMember0.Range;
     }
 
-    export namespace KeyframeWithSeconds {
+    export namespace UnionMember0 {
       /**
        * Optional edit window. When set, the edit applies only to this time range and the
        * keyframe timestamp must fall within it. All keyframes must either set a range or
@@ -187,7 +187,7 @@ export declare namespace VideoToVideoCreateParams {
       }
     }
 
-    export interface KeyframeWithAt {
+    export interface UnionMember1 {
       /**
        * Position as a fraction [0.0, 1.0] of the input video duration when this guidance
        * image should apply.
@@ -206,10 +206,10 @@ export declare namespace VideoToVideoCreateParams {
        * keyframe timestamp must fall within it. All keyframes must either set a range or
        * none may.
        */
-      range?: KeyframeWithAt.Range;
+      range?: UnionMember1.Range;
     }
 
-    export namespace KeyframeWithAt {
+    export namespace UnionMember1 {
       /**
        * Optional edit window. When set, the edit applies only to this time range and the
        * keyframe timestamp must fall within it. All keyframes must either set a range or

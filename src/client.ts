@@ -117,6 +117,11 @@ import {
   TextToSpeechCreateResponse,
 } from './resources/text-to-speech';
 import { TextToVideo, TextToVideoCreateParams, TextToVideoCreateResponse } from './resources/text-to-video';
+import {
+  VideoToAudio,
+  VideoToAudioCreateParams,
+  VideoToAudioCreateResponse,
+} from './resources/video-to-audio';
 import { VideoToHdr, VideoToHdrCreateParams, VideoToHdrCreateResponse } from './resources/video-to-hdr';
 import {
   VideoToVideo,
@@ -942,6 +947,10 @@ export class RunwayML {
   /**
    * These endpoints all kick off tasks to create generations.
    */
+  videoToAudio: API.VideoToAudio = new API.VideoToAudio(this);
+  /**
+   * These endpoints all kick off tasks to create generations.
+   */
   videoToHdr: API.VideoToHdr = new API.VideoToHdr(this);
   /**
    * These endpoints all kick off tasks to create generations.
@@ -1001,6 +1010,7 @@ export class RunwayML {
 RunwayML.Tasks = Tasks;
 RunwayML.ImageToVideo = ImageToVideo;
 RunwayML.VideoToVideo = VideoToVideo;
+RunwayML.VideoToAudio = VideoToAudio;
 RunwayML.VideoToHdr = VideoToHdr;
 RunwayML.TextToVideo = TextToVideo;
 RunwayML.TextToImage = TextToImage;
@@ -1044,6 +1054,12 @@ export declare namespace RunwayML {
     VideoToVideo as VideoToVideo,
     type VideoToVideoCreateResponse as VideoToVideoCreateResponse,
     type VideoToVideoCreateParams as VideoToVideoCreateParams,
+  };
+
+  export {
+    VideoToAudio as VideoToAudio,
+    type VideoToAudioCreateResponse as VideoToAudioCreateResponse,
+    type VideoToAudioCreateParams as VideoToAudioCreateParams,
   };
 
   export {
