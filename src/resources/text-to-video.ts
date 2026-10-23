@@ -1689,10 +1689,20 @@ export declare namespace TextToVideoCreateParams {
     duration?: number;
 
     /**
-     * The aspect ratio of the output video. `adaptive` lets Kling pick one that suits
-     * the prompt and references.
+     * The target output size. Use a pixel ratio such as `1280:720` or `auto_720p` /
+     * `auto_1080p` for adaptive framing.
      */
-    ratio?: '21:9' | '16:9' | '9:16' | '1:1' | 'adaptive';
+    ratio?:
+      | '1280:720'
+      | '720:1280'
+      | '940:940'
+      | '1460:624'
+      | '1920:1080'
+      | '1080:1920'
+      | '1440:1440'
+      | '2200:940'
+      | 'auto_720p'
+      | 'auto_1080p';
 
     /**
      * Images of characters, objects or styles to use in the video. Up to 10 images in
@@ -1705,11 +1715,6 @@ export declare namespace TextToVideoCreateParams {
      * together at most 30 seconds long.
      */
     referenceVideos?: Array<unknown>;
-
-    /**
-     * The resolution of the output video.
-     */
-    resolution?: '720p' | '1080p';
   }
 
   export namespace Kling4 {

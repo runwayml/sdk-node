@@ -1176,15 +1176,15 @@ export declare namespace VideoToVideoCreateParams {
     videoUri: string;
 
     /**
+     * Output quality tier. The video keeps the input media framing.
+     */
+    ratio?: 'auto_720p' | 'auto_1080p';
+
+    /**
      * Images of characters, objects or styles to use in the video. Up to 10 images in
      * total, frames included.
      */
     references?: Array<Kling4.Reference>;
-
-    /**
-     * The resolution of the output video.
-     */
-    resolution?: '720p' | '1080p';
   }
 
   export namespace Kling4 {

@@ -1997,6 +1997,11 @@ export declare namespace ImageToVideoCreateParams {
     promptText?: string;
 
     /**
+     * Output quality tier. The video keeps the input media framing.
+     */
+    ratio?: 'auto_720p' | 'auto_1080p';
+
+    /**
      * Images of characters, objects or styles to use in the video. Up to 10 images in
      * total, frames included.
      */
@@ -2007,11 +2012,6 @@ export declare namespace ImageToVideoCreateParams {
      * together at most 30 seconds long.
      */
     referenceVideos?: Array<unknown>;
-
-    /**
-     * The resolution of the output video.
-     */
-    resolution?: '720p' | '1080p';
   }
 
   export namespace Kling4 {
