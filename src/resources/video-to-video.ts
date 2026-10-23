@@ -66,7 +66,8 @@ export type VideoToVideoCreateParams =
   | VideoToVideoCreateParams.Seedance2Mini
   | VideoToVideoCreateParams.GeminiOmniFlash
   | VideoToVideoCreateParams.GeminiOmniFlash1_1
-  | VideoToVideoCreateParams.Seedance2_5;
+  | VideoToVideoCreateParams.Seedance2_5
+  | VideoToVideoCreateParams.Kling4;
 
 export declare namespace VideoToVideoCreateParams {
   export interface Variant0 {
@@ -1154,6 +1155,44 @@ export declare namespace VideoToVideoCreateParams {
        * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
        * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
        * [our docs](/assets/inputs#videos) on video inputs for more information.
+       */
+      uri: string;
+    }
+  }
+
+  export interface Kling4 {
+    model: 'kling_4';
+
+    /**
+     * A text prompt describing how to edit the video.
+     */
+    promptText: string;
+
+    /**
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+     * [our docs](/assets/inputs#videos) on video inputs for more information.
+     */
+    videoUri: string;
+
+    /**
+     * Output quality tier. The video keeps the input media framing.
+     */
+    ratio?: 'auto_720p' | 'auto_1080p';
+
+    /**
+     * Images of characters, objects or styles to use in the video. Up to 10 images in
+     * total, frames included.
+     */
+    references?: Array<Kling4.Reference>;
+  }
+
+  export namespace Kling4 {
+    export interface Reference {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
     }

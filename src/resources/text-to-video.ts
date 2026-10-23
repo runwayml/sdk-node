@@ -78,7 +78,8 @@ export type TextToVideoCreateParams =
   | TextToVideoCreateParams.Wan3Prime
   | TextToVideoCreateParams.H3Max
   | TextToVideoCreateParams.Seedance2_5
-  | TextToVideoCreateParams.GrokImagine1_5Lite;
+  | TextToVideoCreateParams.GrokImagine1_5Lite
+  | TextToVideoCreateParams.Kling4;
 
 export declare namespace TextToVideoCreateParams {
   export interface Gen4_5 {
@@ -1672,6 +1673,59 @@ export declare namespace TextToVideoCreateParams {
       | '1232:1648'
       | '1744:1152'
       | '1152:1744';
+  }
+
+  export interface Kling4 {
+    model: 'kling_4';
+
+    /**
+     * A text prompt describing what should happen in the video.
+     */
+    promptText: string;
+
+    /**
+     * The duration of the output video in seconds.
+     */
+    duration?: number;
+
+    /**
+     * The target output size. Use a pixel ratio such as `1280:720` or `auto_720p` /
+     * `auto_1080p` for adaptive framing.
+     */
+    ratio?:
+      | '1280:720'
+      | '720:1280'
+      | '940:940'
+      | '1460:624'
+      | '1920:1080'
+      | '1080:1920'
+      | '1440:1440'
+      | '2200:940'
+      | 'auto_720p'
+      | 'auto_1080p';
+
+    /**
+     * Images of characters, objects or styles to use in the video. Up to 10 images in
+     * total, frames included.
+     */
+    references?: Array<Kling4.Reference>;
+
+    /**
+     * Up to 5 videos whose style, motion or camera work should guide the output,
+     * together at most 30 seconds long.
+     */
+    referenceVideos?: Array<unknown>;
+  }
+
+  export namespace Kling4 {
+    export interface Reference {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+    }
   }
 }
 
