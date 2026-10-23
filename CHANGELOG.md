@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.23.0](https://github.com/runwayml/sdk-node/compare/v4.22.0...v4.23.0) (2026-10-23)
+
+
+### Features
+
+* add Nano Banana 2 Lite and expand image and video model support ([1f9d4c5](https://github.com/runwayml/sdk-node/commit/1f9d4c5cfe6d83a09a8e71d025d1ba05cd2bd5cd))
+* add video-to-audio and newly released image and audio models ([7b94923](https://github.com/runwayml/sdk-node/commit/7b949238ec5fa221ea7dfe12b9088a28d01cb6ef))
+
 ## [4.22.0](https://github.com/runwayml/sdk-node/compare/v4.21.0...v4.22.0) (2026-10-13)
 
 
