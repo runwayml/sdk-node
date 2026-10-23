@@ -57,13 +57,16 @@ export namespace VideoToVideoCreateResponse {
 
 export type VideoToVideoCreateParams =
   | VideoToVideoCreateParams.Variant0
+  | VideoToVideoCreateParams.KlingO3_4k
   | VideoToVideoCreateParams.Hailuo3
+  | VideoToVideoCreateParams.KlingO3Pro
+  | VideoToVideoCreateParams.KlingO3Standard
   | VideoToVideoCreateParams.Seedance2
   | VideoToVideoCreateParams.Seedance2Fast
   | VideoToVideoCreateParams.Seedance2Mini
   | VideoToVideoCreateParams.GeminiOmniFlash
-  | VideoToVideoCreateParams.Seedance2_5
-  | VideoToVideoCreateParams.GeminiOmniFlash1_1;
+  | VideoToVideoCreateParams.GeminiOmniFlash1_1
+  | VideoToVideoCreateParams.Seedance2_5;
 
 export declare namespace VideoToVideoCreateParams {
   export interface Variant0 {
@@ -227,6 +230,89 @@ export declare namespace VideoToVideoCreateParams {
     }
   }
 
+  export interface KlingO3_4k {
+    model: 'klingO3_4k';
+
+    /**
+     * A text prompt describing what should appear in the output video.
+     */
+    promptText: string;
+
+    /**
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+     * [our docs](/assets/inputs#videos) on video inputs for more information.
+     */
+    promptVideo: string;
+
+    /**
+     * Provider-specific settings for multishot video generation and video editing.
+     */
+    providerSettings?: KlingO3_4k.ProviderSettings;
+
+    /**
+     * An optional array of reference images (up to 4). See
+     * [our docs](/assets/inputs#images) on image inputs for more information.
+     */
+    references?: string | Array<KlingO3_4k.PromptImage>;
+  }
+
+  export namespace KlingO3_4k {
+    /**
+     * Provider-specific settings for multishot video generation and video editing.
+     */
+    export interface ProviderSettings {
+      /**
+       * Whether to preserve the original audio when editing a video. Only applicable for
+       * video-to-video. Defaults to true.
+       */
+      keepOriginalSound?: boolean;
+
+      /**
+       * An array of prompt segments for multishot video generation. Each segment has its
+       * own prompt and duration. Total duration across all segments must be between 3
+       * and 15 seconds. `promptText` is still required when `shotType` is
+       * `"intelligence"`.
+       */
+      multiPrompt?: Array<ProviderSettings.MultiPrompt>;
+
+      /**
+       * Shot transition type for multishot videos. Defaults to "customize" when
+       * multiPrompt is provided.
+       */
+      shotType?: 'intelligence' | 'customize';
+    }
+
+    export namespace ProviderSettings {
+      export interface MultiPrompt {
+        /**
+         * Duration in seconds for this segment.
+         */
+        duration: number;
+
+        /**
+         * The text prompt for this segment.
+         */
+        prompt: string;
+      }
+    }
+
+    export interface PromptImage {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+
+      /**
+       * The position of the image in the output video. "first" will use the image as the
+       * first frame, "last" as the last frame. Omit for a reference image.
+       */
+      position?: 'first' | 'last';
+    }
+  }
+
   export interface Hailuo3 {
     model: 'hailuo3';
 
@@ -319,6 +405,172 @@ export declare namespace VideoToVideoCreateParams {
        * [our docs](/assets/inputs#videos) on video inputs for more information.
        */
       uri: string;
+    }
+  }
+
+  export interface KlingO3Pro {
+    model: 'klingO3_pro';
+
+    /**
+     * A text prompt describing what should appear in the output video.
+     */
+    promptText: string;
+
+    /**
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+     * [our docs](/assets/inputs#videos) on video inputs for more information.
+     */
+    promptVideo: string;
+
+    /**
+     * Provider-specific settings for multishot video generation and video editing.
+     */
+    providerSettings?: KlingO3Pro.ProviderSettings;
+
+    /**
+     * An optional array of reference images (up to 4). See
+     * [our docs](/assets/inputs#images) on image inputs for more information.
+     */
+    references?: string | Array<KlingO3Pro.PromptImage>;
+  }
+
+  export namespace KlingO3Pro {
+    /**
+     * Provider-specific settings for multishot video generation and video editing.
+     */
+    export interface ProviderSettings {
+      /**
+       * Whether to preserve the original audio when editing a video. Only applicable for
+       * video-to-video. Defaults to true.
+       */
+      keepOriginalSound?: boolean;
+
+      /**
+       * An array of prompt segments for multishot video generation. Each segment has its
+       * own prompt and duration. Total duration across all segments must be between 3
+       * and 15 seconds. `promptText` is still required when `shotType` is
+       * `"intelligence"`.
+       */
+      multiPrompt?: Array<ProviderSettings.MultiPrompt>;
+
+      /**
+       * Shot transition type for multishot videos. Defaults to "customize" when
+       * multiPrompt is provided.
+       */
+      shotType?: 'intelligence' | 'customize';
+    }
+
+    export namespace ProviderSettings {
+      export interface MultiPrompt {
+        /**
+         * Duration in seconds for this segment.
+         */
+        duration: number;
+
+        /**
+         * The text prompt for this segment.
+         */
+        prompt: string;
+      }
+    }
+
+    export interface PromptImage {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+
+      /**
+       * The position of the image in the output video. "first" will use the image as the
+       * first frame, "last" as the last frame. Omit for a reference image.
+       */
+      position?: 'first' | 'last';
+    }
+  }
+
+  export interface KlingO3Standard {
+    model: 'klingO3_standard';
+
+    /**
+     * A text prompt describing what should appear in the output video.
+     */
+    promptText: string;
+
+    /**
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+     * [our docs](/assets/inputs#videos) on video inputs for more information.
+     */
+    promptVideo: string;
+
+    /**
+     * Provider-specific settings for multishot video generation and video editing.
+     */
+    providerSettings?: KlingO3Standard.ProviderSettings;
+
+    /**
+     * An optional array of reference images (up to 4). See
+     * [our docs](/assets/inputs#images) on image inputs for more information.
+     */
+    references?: string | Array<KlingO3Standard.PromptImage>;
+  }
+
+  export namespace KlingO3Standard {
+    /**
+     * Provider-specific settings for multishot video generation and video editing.
+     */
+    export interface ProviderSettings {
+      /**
+       * Whether to preserve the original audio when editing a video. Only applicable for
+       * video-to-video. Defaults to true.
+       */
+      keepOriginalSound?: boolean;
+
+      /**
+       * An array of prompt segments for multishot video generation. Each segment has its
+       * own prompt and duration. Total duration across all segments must be between 3
+       * and 15 seconds. `promptText` is still required when `shotType` is
+       * `"intelligence"`.
+       */
+      multiPrompt?: Array<ProviderSettings.MultiPrompt>;
+
+      /**
+       * Shot transition type for multishot videos. Defaults to "customize" when
+       * multiPrompt is provided.
+       */
+      shotType?: 'intelligence' | 'customize';
+    }
+
+    export namespace ProviderSettings {
+      export interface MultiPrompt {
+        /**
+         * Duration in seconds for this segment.
+         */
+        duration: number;
+
+        /**
+         * The text prompt for this segment.
+         */
+        prompt: string;
+      }
+    }
+
+    export interface PromptImage {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+
+      /**
+       * The position of the image in the output video. "first" will use the image as the
+       * first frame, "last" as the last frame. Omit for a reference image.
+       */
+      position?: 'first' | 'last';
     }
   }
 
@@ -707,6 +959,64 @@ export declare namespace VideoToVideoCreateParams {
     }
   }
 
+  export interface GeminiOmniFlash1_1 {
+    model: 'gemini_omni_flash_1.1';
+
+    /**
+     * A non-empty prompt describing the output or extension.
+     */
+    promptText: string;
+
+    /**
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+     * [our docs](/assets/inputs#videos) on video inputs for more information.
+     */
+    videoUri: string;
+
+    /**
+     * The duration in seconds. In reference mode, this is the output video length. In
+     * extend mode, this is the amount of footage added to the input video. Use "auto"
+     * to let the model choose a duration.
+     */
+    duration?: 'auto' | number;
+
+    /**
+     * How the input video is used. `reference` generates a new video guided by the
+     * input, `extend` continues it, and `edit` transforms it according to the prompt.
+     */
+    mode?: 'reference' | 'extend' | 'edit';
+
+    /**
+     * The resolution and aspect ratio of the output video.
+     */
+    ratio?:
+      | '640:360'
+      | '360:640'
+      | '1280:720'
+      | '720:1280'
+      | '1920:1080'
+      | '1080:1920'
+      | '3840:2160'
+      | '2160:3840';
+
+    /**
+     * An optional array of image references to guide the output.
+     */
+    references?: Array<GeminiOmniFlash1_1.Reference>;
+  }
+
+  export namespace GeminiOmniFlash1_1 {
+    export interface Reference {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+    }
+  }
+
   export interface Seedance2_5 {
     model: 'seedance2_5';
 
@@ -723,6 +1033,14 @@ export declare namespace VideoToVideoCreateParams {
     audio?: boolean;
 
     /**
+     * Generate a cheap 480p preview instead of a full-quality video. The returned task
+     * ID can later be enhanced to a 1080p video with the same content by passing it as
+     * `draftTaskId` to `text_to_video`. Drafts can be enhanced within 7 days of
+     * creation. Defaults to false.
+     */
+    draft?: boolean;
+
+    /**
      * Seconds of video to generate, or `auto` to let the model choose. `auto` is
      * billed at the variant maximum up front; unused credits are refunded after the
      * generation finishes. Defaults to 5.
@@ -737,6 +1055,12 @@ export declare namespace VideoToVideoCreateParams {
      * requires `promptText`, requires `duration: "auto"`, and does not accept `ratio`.
      */
     mode?: 'reference' | 'extend' | 'edit';
+
+    /**
+     * Container for the output video. `mov` keeps high colour precision for grading
+     * and compositing. Defaults to `mp4`. Draft mode only supports `mp4`.
+     */
+    outputFormat?: 'mp4' | 'mov';
 
     /**
      * An optional text prompt up to 15000 characters describing what should appear in
@@ -830,64 +1154,6 @@ export declare namespace VideoToVideoCreateParams {
        * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
        * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
        * [our docs](/assets/inputs#videos) on video inputs for more information.
-       */
-      uri: string;
-    }
-  }
-
-  export interface GeminiOmniFlash1_1 {
-    model: 'gemini_omni_flash_1.1';
-
-    /**
-     * A non-empty prompt describing the output or extension.
-     */
-    promptText: string;
-
-    /**
-     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-     * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
-     * [our docs](/assets/inputs#videos) on video inputs for more information.
-     */
-    videoUri: string;
-
-    /**
-     * The duration in seconds. In reference mode, this is the output video length. In
-     * extend mode, this is the amount of footage added to the input video. Use "auto"
-     * to let the model choose a duration.
-     */
-    duration?: 'auto' | number;
-
-    /**
-     * How the input video is used. `reference` generates a new video guided by the
-     * input, `extend` continues it, and `edit` transforms it according to the prompt.
-     */
-    mode?: 'reference' | 'extend' | 'edit';
-
-    /**
-     * The resolution and aspect ratio of the output video.
-     */
-    ratio?:
-      | '640:360'
-      | '360:640'
-      | '1280:720'
-      | '720:1280'
-      | '1920:1080'
-      | '1080:1920'
-      | '3840:2160'
-      | '2160:3840';
-
-    /**
-     * An optional array of image references to guide the output.
-     */
-    references?: Array<GeminiOmniFlash1_1.Reference>;
-  }
-
-  export namespace GeminiOmniFlash1_1 {
-    export interface Reference {
-      /**
-       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-       * [our docs](/assets/inputs#images) on image inputs for more information.
        */
       uri: string;
     }

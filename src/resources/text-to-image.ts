@@ -64,11 +64,18 @@ export type TextToImageCreateParams =
   | TextToImageCreateParams.Seedream5Pro
   | TextToImageCreateParams.Seedream5Lite
   | TextToImageCreateParams.GrokImagineImage2
+  | TextToImageCreateParams.GeminiImage3_1FlashLite
   | TextToImageCreateParams.GeminiImage3Pro
   | TextToImageCreateParams.GptImage2_5Flare
   | TextToImageCreateParams.GptImage2_5Sunburst
+  | TextToImageCreateParams.BriaFibo1_5
+  | TextToImageCreateParams.BriaFiboEdit1_5
   | TextToImageCreateParams.Ideogram4_0
   | TextToImageCreateParams.Ideogram4_5
+  | TextToImageCreateParams.Seedream5Flash
+  | TextToImageCreateParams.NanoBanana2_1
+  | TextToImageCreateParams.RecraftV4_1Flash
+  | TextToImageCreateParams.RecraftV4_1Vector
   | TextToImageCreateParams.Gemini2_5Flash;
 
 export declare namespace TextToImageCreateParams {
@@ -691,6 +698,59 @@ export declare namespace TextToImageCreateParams {
     }
   }
 
+  export interface GeminiImage3_1FlashLite {
+    model: 'gemini_image3.1_flash_lite';
+
+    /**
+     * This should describe in detail what should appear in the output.
+     */
+    promptText: string;
+
+    /**
+     * The resolution of the output image.
+     */
+    ratio:
+      | '1024:1024'
+      | '848:1264'
+      | '1264:848'
+      | '896:1200'
+      | '1200:896'
+      | '928:1152'
+      | '1152:928'
+      | '768:1376'
+      | '1376:768'
+      | '1584:672';
+
+    /**
+     * The number of images to generate. Increasing this number will affect the number
+     * of credits consumed by the generation. Up to four images can be generated at
+     * once.
+     */
+    outputCount?: 1 | 4;
+
+    /**
+     * An array of up to 14 images to be used as references for the generated image
+     * output. Up to five can pass `subject: "human"` and up to nine can pass
+     * `subject: "object"`.
+     */
+    referenceImages?: Array<GeminiImage3_1FlashLite.ReferenceImage>;
+  }
+
+  export namespace GeminiImage3_1FlashLite {
+    export interface ReferenceImage {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+
+      subject?: 'object' | 'human';
+
+      tag?: string;
+    }
+  }
+
   export interface GeminiImage3Pro {
     model: 'gemini_image3_pro';
 
@@ -950,6 +1010,122 @@ export declare namespace TextToImageCreateParams {
     }
   }
 
+  export interface BriaFibo1_5 {
+    model: 'bria_fibo_1_5';
+
+    /**
+     * A non-empty text prompt describing what should appear in the output image.
+     */
+    promptText: string;
+
+    /**
+     * The resolution of the output image, expressed as `<width>:<height>`. 1MP sizes
+     * cost 5 credits per image and 4MP sizes 10.
+     */
+    ratio:
+      | '1024:1024'
+      | '768:1152'
+      | '1152:768'
+      | '768:1024'
+      | '1024:768'
+      | '768:960'
+      | '960:768'
+      | '576:1024'
+      | '1024:576'
+      | '2048:2048'
+      | '1536:2304'
+      | '2304:1536'
+      | '1536:2048'
+      | '2048:1536'
+      | '1536:1920'
+      | '1920:1536'
+      | '1152:2048'
+      | '2048:1152';
+
+    /**
+     * The file format of the output image. Defaults to png.
+     */
+    outputFormat?: 'png' | 'jpeg';
+
+    /**
+     * Up to 1 image to guide the generation. The prompt describes how the output
+     * should build on it.
+     */
+    referenceImages?: Array<BriaFibo1_5.ReferenceImage>;
+
+    /**
+     * If unspecified, a random number is chosen. Using the same seed with an identical
+     * request reproduces the same image.
+     */
+    seed?: number;
+  }
+
+  export namespace BriaFibo1_5 {
+    export interface ReferenceImage {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+    }
+  }
+
+  export interface BriaFiboEdit1_5 {
+    model: 'bria_fibo_edit_1_5';
+
+    /**
+     * An instruction describing how to edit the reference images.
+     */
+    promptText: string;
+
+    /**
+     * The file format of the output image. Defaults to png.
+     */
+    outputFormat?: 'png' | 'jpeg';
+
+    /**
+     * The resolution of the output image, expressed as `<width>:<height>`. Omit it or
+     * use `auto` to keep the framing of the first reference image. Choosing a size
+     * requires at least 2 reference images; a single image always keeps its own
+     * framing.
+     */
+    ratio?:
+      | '1024:1024'
+      | '768:1152'
+      | '1152:768'
+      | '768:1024'
+      | '1024:768'
+      | '768:960'
+      | '960:768'
+      | '576:1024'
+      | '1024:576'
+      | 'auto';
+
+    /**
+     * 1 to 4 images to edit. With several, the instruction describes how to combine
+     * them.
+     */
+    referenceImages?: Array<BriaFiboEdit1_5.ReferenceImage>;
+
+    /**
+     * If unspecified, a random number is chosen. Using the same seed with an identical
+     * request reproduces the same image.
+     */
+    seed?: number;
+  }
+
+  export namespace BriaFiboEdit1_5 {
+    export interface ReferenceImage {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+    }
+  }
+
   export interface Ideogram4_0 {
     model: 'ideogram_4_0';
 
@@ -1089,6 +1265,236 @@ export declare namespace TextToImageCreateParams {
        */
       uri: string;
     }
+  }
+
+  export interface Seedream5Flash {
+    model: 'seedream5_flash';
+
+    /**
+     * A description of the image you want to generate.
+     */
+    promptText: string;
+
+    /**
+     * The resolution of the output image, expressed as `<width>:<height>`. Use
+     * `auto_1k` or `auto_2k` to let the model pick the aspect ratio at a fixed
+     * resolution tier.
+     */
+    ratio:
+      | '1024:1024'
+      | '1184:896'
+      | '896:1184'
+      | '1376:768'
+      | '768:1376'
+      | '1248:832'
+      | '832:1248'
+      | '1568:672'
+      | '2048:2048'
+      | '2304:1728'
+      | '1728:2304'
+      | '2848:1600'
+      | '1600:2848'
+      | '2496:1664'
+      | '1664:2496'
+      | '3136:1344'
+      | 'auto_1k'
+      | 'auto_2k';
+
+    /**
+     * The number of images to generate. Increasing this number will affect the number
+     * of credits consumed by the generation.
+     */
+    outputCount?: number;
+
+    /**
+     * The file format of the output image. Defaults to png.
+     */
+    outputFormat?: 'png' | 'jpeg';
+
+    /**
+     * Images to edit or combine. Refer to them in the prompt by upload order (Figure
+     * 1, Figure 2, and so on).
+     */
+    referenceImages?: Array<Seedream5Flash.ReferenceImage>;
+  }
+
+  export namespace Seedream5Flash {
+    export interface ReferenceImage {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+    }
+  }
+
+  export interface NanoBanana2_1 {
+    model: 'nano_banana_2.1';
+
+    /**
+     * A description of the image you want to generate.
+     */
+    promptText: string;
+
+    /**
+     * The resolution of the output image.
+     */
+    ratio:
+      | '1024:1024'
+      | '848:1264'
+      | '1264:848'
+      | '896:1200'
+      | '1200:896'
+      | '928:1152'
+      | '1152:928'
+      | '768:1376'
+      | '1376:768'
+      | '1584:672'
+      | '512:2064'
+      | '2064:512'
+      | '352:2928'
+      | '2928:352'
+      | '2048:2048'
+      | '1696:2528'
+      | '2528:1696'
+      | '1792:2400'
+      | '2400:1792'
+      | '1856:2304'
+      | '2304:1856'
+      | '1536:2752'
+      | '2752:1536'
+      | '3168:1344'
+      | '1024:4128'
+      | '4128:1024'
+      | '704:5856'
+      | '5856:704'
+      | '4096:4096'
+      | '3392:5056'
+      | '5056:3392'
+      | '3584:4800'
+      | '4800:3584'
+      | '3712:4608'
+      | '4608:3712'
+      | '3072:5504'
+      | '5504:3072'
+      | '6336:2688'
+      | '2048:8256'
+      | '8256:2048'
+      | '1408:11712'
+      | '11712:1408';
+
+    /**
+     * The number of images to generate. Increasing this number will affect the number
+     * of credits consumed by the generation.
+     */
+    outputCount?: number;
+
+    /**
+     * Up to 14 images to edit, combine, or use as references for the output.
+     */
+    referenceImages?: Array<NanoBanana2_1.ReferenceImage>;
+
+    /**
+     * How much the model reasons about the prompt before generating. Defaults to
+     * medium.
+     */
+    thinkingLevel?: 'minimal' | 'medium' | 'high';
+  }
+
+  export namespace NanoBanana2_1 {
+    export interface ReferenceImage {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+
+      /**
+       * A tag to identify the reference image. This is used to reference the image in
+       * prompt text. Must be 3-16 characters, start with a letter, and use only letters,
+       * digits, and underscores.
+       */
+      tag?: string;
+    }
+  }
+
+  export interface RecraftV4_1Flash {
+    model: 'recraft_v4_1_flash';
+
+    /**
+     * A description of the image you want to generate.
+     */
+    promptText: string;
+
+    /**
+     * The output dimensions, expressed as `<width>:<height>`.
+     */
+    ratio:
+      | '1024:1024'
+      | '1536:768'
+      | '768:1536'
+      | '1280:832'
+      | '832:1280'
+      | '1216:896'
+      | '896:1216'
+      | '1152:896'
+      | '896:1152'
+      | '832:1344'
+      | '1280:896'
+      | '896:1280'
+      | '1344:768'
+      | '768:1344';
+
+    /**
+     * A preferred background color as a six-digit hex string.
+     */
+    backgroundColor?: string;
+
+    /**
+     * Preferred colors as six-digit hex strings.
+     */
+    colors?: Array<string>;
+
+    /**
+     * The number of images to generate. Each image is billed separately.
+     */
+    outputCount?: number;
+
+    /**
+     * The output file format. Defaults to webp.
+     */
+    outputFormat?: 'webp' | 'png';
+
+    seed?: number;
+  }
+
+  export interface RecraftV4_1Vector {
+    model: 'recraft_v4_1_vector';
+
+    /**
+     * Describe the vector illustration you want to generate.
+     */
+    promptText: string;
+
+    /**
+     * The preferred background color as a six-digit hex value. This is a generation
+     * hint, not an exact color constraint; the generated background may use a
+     * different shade.
+     */
+    backgroundColor?: string;
+
+    /**
+     * Preferred colors as six-digit hex values, such as #FF8800.
+     */
+    colors?: Array<string>;
+
+    /**
+     * The width and height declared by the output SVG. Vector artwork can be scaled
+     * after generation.
+     */
+    ratio?: '1024:1024' | '1216:896' | '896:1216' | '1344:768' | '768:1344';
   }
 
   export interface Gemini2_5Flash {
