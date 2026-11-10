@@ -116,6 +116,15 @@ export interface AuditLogRetrieveResponse {
     | 'GenerationCreated'
     | 'StudioSessionOpened'
     | 'AppStudioAiRunOpened'
+    | 'AppStudioAppCreated'
+    | 'AppStudioAppPublished'
+    | 'AppStudioAppVisibilityChanged'
+    | 'AppStudioAppRenamed'
+    | 'AppStudioAppDeleted'
+    | 'AppStudioAppCoOwnerChanged'
+    | 'AppStudioAppSecretChanged'
+    | 'AppStudioAppRunwayAccessGranted'
+    | 'AppStudioAppRunwayAccessRevoked'
     | 'AccountLinkCreated'
     | 'AccountLinkDeleted'
     | 'AdConnectionAuthorizationStarted'
@@ -133,6 +142,7 @@ export interface AuditLogRetrieveResponse {
     | 'AdPublishBatchQueued'
     | 'AdPublishBatchCancelled'
     | 'AdPublishBatchRetried'
+    | 'AdStatusChanged'
     | 'OrganizationSettingsUpdated'
     | 'OrganizationDisabledModelsUpdated'
     | 'OrganizationAgentSandboxUpdated'
@@ -233,6 +243,8 @@ export namespace AuditLogRetrieveResponse {
 
     'Ad creative ID'?: string;
 
+    'Ad level'?: string;
+
     'Ad publish batch ID'?: string;
 
     'Ad review batch ID'?: string;
@@ -244,6 +256,8 @@ export namespace AuditLogRetrieveResponse {
     'Ad sync run ID'?: string;
 
     'Ad sync start date'?: string;
+
+    'Ads created as'?: string;
 
     'Ads onboarding answers'?: Array<string>;
 
@@ -261,7 +275,11 @@ export namespace AuditLogRetrieveResponse {
 
     'API project ID'?: string;
 
-    'App Studio app'?: string;
+    'App Studio app'?: string | null;
+
+    'App Studio app ID'?: string;
+
+    'App Studio deploy'?: string;
 
     'App Studio session'?: string;
 
@@ -339,6 +357,8 @@ export namespace AuditLogRetrieveResponse {
 
     'Platform ad account ID'?: string;
 
+    'Platform object ID'?: string;
+
     'Previous project credit cap'?: number | null;
 
     'Previous role'?: string | null;
@@ -361,6 +381,8 @@ export namespace AuditLogRetrieveResponse {
 
     'Root asset ID'?: string;
 
+    'Secret name'?: string;
+
     Selected?: boolean;
 
     Setting?: string;
@@ -374,6 +396,10 @@ export namespace AuditLogRetrieveResponse {
     'Spend cap'?: number;
 
     'Spend cap change'?: number;
+
+    'Status after'?: string;
+
+    'Status before'?: string;
 
     'Submitted via'?: string;
 
@@ -475,6 +501,15 @@ export interface AuditLogListResponse {
     | 'GenerationCreated'
     | 'StudioSessionOpened'
     | 'AppStudioAiRunOpened'
+    | 'AppStudioAppCreated'
+    | 'AppStudioAppPublished'
+    | 'AppStudioAppVisibilityChanged'
+    | 'AppStudioAppRenamed'
+    | 'AppStudioAppDeleted'
+    | 'AppStudioAppCoOwnerChanged'
+    | 'AppStudioAppSecretChanged'
+    | 'AppStudioAppRunwayAccessGranted'
+    | 'AppStudioAppRunwayAccessRevoked'
     | 'AccountLinkCreated'
     | 'AccountLinkDeleted'
     | 'AdConnectionAuthorizationStarted'
@@ -492,6 +527,7 @@ export interface AuditLogListResponse {
     | 'AdPublishBatchQueued'
     | 'AdPublishBatchCancelled'
     | 'AdPublishBatchRetried'
+    | 'AdStatusChanged'
     | 'OrganizationSettingsUpdated'
     | 'OrganizationDisabledModelsUpdated'
     | 'OrganizationAgentSandboxUpdated'
@@ -533,6 +569,11 @@ export interface AuditLogListResponse {
   eventId: string;
 
   /**
+   * Action-specific details.
+   */
+  metadata: AuditLogListResponse.Metadata;
+
+  /**
    * When the action occurred.
    */
   timestamp: string;
@@ -546,6 +587,195 @@ export interface AuditLogListResponse {
    * Name of the owning workspace.
    */
   workspaceName: string;
+}
+
+export namespace AuditLogListResponse {
+  /**
+   * Action-specific details.
+   */
+  export interface Metadata {
+    'Ad account ID'?: string;
+
+    'Ad creative ID'?: string;
+
+    'Ad level'?: string;
+
+    'Ad publish batch ID'?: string;
+
+    'Ad review batch ID'?: string;
+
+    'Ad review request ID'?: string;
+
+    'Ad sync end date'?: string;
+
+    'Ad sync run ID'?: string;
+
+    'Ad sync start date'?: string;
+
+    'Ads created as'?: string;
+
+    'Ads onboarding answers'?: Array<string>;
+
+    'Ads onboarding completed'?: boolean;
+
+    'Agent session ID'?: string;
+
+    'Agent tagged'?: boolean;
+
+    Amount?: number;
+
+    'Amount received'?: number;
+
+    'API account'?: string;
+
+    'API project ID'?: string;
+
+    'App Studio app'?: string | null;
+
+    'App Studio app ID'?: string;
+
+    'App Studio deploy'?: string;
+
+    'App Studio session'?: string;
+
+    Application?: string;
+
+    'Asset name'?: string;
+
+    'AWS license'?: string;
+
+    'Brand kit ID'?: string;
+
+    'Comment ID'?: string;
+
+    'Comment target ID'?: string;
+
+    'Comment target type'?: string;
+
+    'Comment text'?: string;
+
+    'Creatives cancelled'?: number;
+
+    'Creatives queued'?: number;
+
+    'Creatives retried'?: number;
+
+    'Default project discoverability'?: string;
+
+    'Default task name template'?: string | null;
+
+    'Destination category ID'?: string;
+
+    Direction?: string;
+
+    'Email domain'?: string;
+
+    'Error code'?: string;
+
+    'Group name'?: string;
+
+    'Hard spend cap'?: boolean;
+
+    'Into a new test ad set'?: boolean;
+
+    'Invited member'?: string;
+
+    'Language model or provider'?: string;
+
+    'Login method'?: string;
+
+    'Media included'?: boolean;
+
+    'Member email'?: string;
+
+    Mentions?: number;
+
+    Model?: string;
+
+    'New role'?: string;
+
+    'New text'?: string;
+
+    'New User'?: boolean;
+
+    'New value'?: string | number | boolean | { [key: string]: boolean } | null;
+
+    Operation?: string;
+
+    Organization?: string;
+
+    Outcome?: string;
+
+    Plan?: string;
+
+    Platform?: string;
+
+    'Platform ad account ID'?: string;
+
+    'Platform object ID'?: string;
+
+    'Previous project credit cap'?: number | null;
+
+    'Previous role'?: string | null;
+
+    'Previous text'?: string;
+
+    'Previous value'?: string | number | boolean | { [key: string]: boolean } | null;
+
+    'Project credit cap'?: number | null;
+
+    Provider?: string;
+
+    Reason?: string | null;
+
+    'Removed member'?: string;
+
+    'Review decision'?: string;
+
+    Role?: string;
+
+    'Root asset ID'?: string;
+
+    'Secret name'?: string;
+
+    Selected?: boolean;
+
+    Setting?: string;
+
+    'Shared with projects'?: Array<string>;
+
+    'Shared with workspace'?: boolean;
+
+    'Source category ID'?: string;
+
+    'Spend cap'?: number;
+
+    'Spend cap change'?: number;
+
+    'Status after'?: string;
+
+    'Status before'?: string;
+
+    'Submitted via'?: string;
+
+    'Tag color'?: string;
+
+    'Tag name'?: string;
+
+    'Target member'?: string | null;
+
+    'Via public API'?: boolean;
+
+    Workspace?: string | null;
+
+    'Workspace description'?: string | null;
+
+    'Workspace ID'?: number;
+
+    'Workspace name'?: string | null;
+
+    'Workspace picture'?: string | null;
+  }
 }
 
 export interface AuditLogRetrieveParams {
@@ -584,14 +814,17 @@ export interface AuditLogListParams extends CursorPageParams {
    * `AgentConnectorConnected`, `AgentConnectorDisconnected`,
    * `AgentConnectorAssetExported`, `AgentConnectorSessionEnabled`,
    * `AgentConnectorSessionDisabled`, `GenerationCreated`, `StudioSessionOpened`,
-   * `AppStudioAiRunOpened`, `AccountLinkCreated`, `AccountLinkDeleted`,
-   * `AdConnectionAuthorizationStarted`, `AdConnectionConnected`,
-   * `AdAccountSelectionUpdated`, `AdAccountSyncRequested`,
+   * `AppStudioAiRunOpened`, `AppStudioAppCreated`, `AppStudioAppPublished`,
+   * `AppStudioAppVisibilityChanged`, `AppStudioAppRenamed`, `AppStudioAppDeleted`,
+   * `AppStudioAppCoOwnerChanged`, `AppStudioAppSecretChanged`,
+   * `AppStudioAppRunwayAccessGranted`, `AppStudioAppRunwayAccessRevoked`,
+   * `AccountLinkCreated`, `AccountLinkDeleted`, `AdConnectionAuthorizationStarted`,
+   * `AdConnectionConnected`, `AdAccountSelectionUpdated`, `AdAccountSyncRequested`,
    * `AdConnectionDisconnected`, `AdWorkspaceOnboardingUpdated`,
    * `AdCreativeReviewSubmitted`, `AdCreativeReviewCancelled`,
    * `AdCreativeReviewDecided`, `AdCreativeApprovalRevoked`, `AdCreativeArchived`,
    * `AdCreativeUnarchived`, `AdPublishBatchQueued`, `AdPublishBatchCancelled`,
-   * `AdPublishBatchRetried`, `OrganizationSettingsUpdated`,
+   * `AdPublishBatchRetried`, `AdStatusChanged`, `OrganizationSettingsUpdated`,
    * `OrganizationDisabledModelsUpdated`, `OrganizationAgentSandboxUpdated`,
    * `OrganizationApiAccountReleased`, `OrganizationApiAccountMemberInvited`,
    * `OrganizationApiAccountMemberRoleChanged`,
