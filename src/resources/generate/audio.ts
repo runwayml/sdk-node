@@ -8,8 +8,9 @@ import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../../lib/p
 export class Audio extends APIResource {
   /**
    * Start an audio generation task using a saved Model Router config instead of
-   * naming a model. Set input.type to speech to speak promptText verbatim, or audio
-   * to generate audio described by promptText.
+   * naming a model. Set input.type to speech to speak promptText verbatim, audio to
+   * generate audio described by promptText, or music to generate a song or
+   * instrumental track described by promptText.
    */
   create(
     body: AudioCreateParams,
@@ -119,12 +120,12 @@ export namespace AudioCreateResponse {
       /**
        * The prompt mode the router routed for.
        */
-      type: 'speech' | 'audio';
+      type: 'speech' | 'audio' | 'music';
 
       /**
        * How the selected model resolves the voice: the requested preset or
        * reference-audio clone, the model default for voiceless speech, or none for
-       * general audio.
+       * general audio and music.
        */
       voice: 'preset' | 'reference-audio' | 'default' | 'none';
     }
@@ -186,21 +187,22 @@ export namespace AudioCreateParams {
    */
   export interface Input {
     /**
-     * For `speech`, the words to speak. For `audio`, a description of the desired
-     * output.
+     * For `speech`, the words to speak. For `audio` and `music`, a description of the
+     * desired output.
      */
     promptText: string;
 
     /**
      * How promptText is interpreted: `speech` speaks it verbatim as a script; `audio`
      * treats it as a description of the desired audio, which may combine speech,
-     * music, ambience, and sound effects.
+     * music, ambience, and sound effects; `music` treats it as a description of a song
+     * or instrumental track.
      */
-    type: 'speech' | 'audio';
+    type: 'speech' | 'audio' | 'music';
 
     /**
-     * Desired output duration in seconds for `audio` generation. Models that cannot
-     * honor an explicit duration are excluded.
+     * Desired output duration in seconds: 0.5–30 for `audio`, or whole seconds from 3
+     * to 600 for `music`. Models that cannot honor an explicit duration are excluded.
      */
     duration?: number;
 

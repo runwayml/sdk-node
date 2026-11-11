@@ -47,6 +47,12 @@ export interface WebappListUsageResponse {
   email: string;
 
   /**
+   * ID of the generation this row belongs to. A charge and its refunds share it.
+   * `null` for App Studio usage, which has no generation.
+   */
+  taskId: string | null;
+
+  /**
    * When the generation was charged.
    */
   timestamp: string;
@@ -57,10 +63,26 @@ export interface WebappListUsageResponse {
   tool: string;
 
   /**
+   * Unique ID of the credit transaction behind this row. Stable across requests, so
+   * use it to deduplicate overlapping pulls.
+   */
+  transactionId: string;
+
+  /**
    * Whether the row is a credit charge for a generation or a task refund (negative
    * credits).
    */
   type: 'charge' | 'refund';
+
+  /**
+   * Unit of `credits`. Always `credits`.
+   */
+  unit: 'credits';
+
+  /**
+   * ID of the user who generated.
+   */
+  userId: number;
 
   /**
    * ID of the owning workspace.

@@ -273,6 +273,12 @@ export namespace TaskRetrieveResponse {
     output: Array<string>;
 
     status: 'SUCCEEDED';
+
+    /**
+     * Layer details for successful Seedream 5 Pro Layers tasks. Each URI matches the
+     * output URL at the same index.
+     */
+    layers?: Array<Succeeded.Layer>;
   }
 
   export namespace Succeeded {
@@ -285,6 +291,41 @@ export namespace TaskRetrieveResponse {
        * Credits charged for this task.
        */
       credits: number;
+    }
+
+    export interface Layer {
+      /**
+       * An ephemeral URL for this layer, matching output at the same index.
+       */
+      uri: string;
+
+      /**
+       * The layer bounds in absolute and normalized coordinates, when returned by the
+       * model provider.
+       */
+      boundingBox?: Layer.BoundingBox;
+
+      /**
+       * The layer filename.
+       */
+      name?: string;
+
+      /**
+       * The layer stacking order returned by the model provider.
+       */
+      zIndex?: number;
+    }
+
+    export namespace Layer {
+      /**
+       * The layer bounds in absolute and normalized coordinates, when returned by the
+       * model provider.
+       */
+      export interface BoundingBox {
+        absolute: Array<number>;
+
+        normalized: Array<number>;
+      }
     }
   }
 }

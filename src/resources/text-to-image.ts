@@ -76,6 +76,10 @@ export type TextToImageCreateParams =
   | TextToImageCreateParams.NanoBanana2_1
   | TextToImageCreateParams.RecraftV4_1Flash
   | TextToImageCreateParams.RecraftV4_1Vector
+  | TextToImageCreateParams.IdeogramVector
+  | TextToImageCreateParams.GptImage2_6Sunburst
+  | TextToImageCreateParams.GptImage2_6Flare
+  | TextToImageCreateParams.Seedream5ProLayers
   | TextToImageCreateParams.Gemini2_5Flash;
 
 export declare namespace TextToImageCreateParams {
@@ -314,9 +318,11 @@ export declare namespace TextToImageCreateParams {
       uri: string;
 
       /**
-       * A tag to identify the reference image. This may be used to reference the image
-       * in prompt text. Must be 3-16 characters, start with a letter, and use only
-       * letters, digits, and underscores (no hyphens or other punctuation).
+       * An optional label for the reference image. Tags are not sent to the model and
+       * cannot be used to reference images in prompt text. Instead, refer to images by
+       * their order in this array (for example, "the first image" or "the second
+       * image"). Must be 3-16 characters, start with a letter, and use only letters,
+       * digits, and underscores (no hyphens or other punctuation).
        */
       tag?: string;
     }
@@ -914,9 +920,11 @@ export declare namespace TextToImageCreateParams {
       uri: string;
 
       /**
-       * A tag to identify the reference image. This may be used to reference the image
-       * in prompt text. Must be 3-16 characters, start with a letter, and use only
-       * letters, digits, and underscores (no hyphens or other punctuation).
+       * An optional label for the reference image. Tags are not sent to the model and
+       * cannot be used to reference images in prompt text. Instead, refer to images by
+       * their order in this array (for example, "the first image" or "the second
+       * image"). Must be 3-16 characters, start with a letter, and use only letters,
+       * digits, and underscores (no hyphens or other punctuation).
        */
       tag?: string;
     }
@@ -1002,9 +1010,11 @@ export declare namespace TextToImageCreateParams {
       uri: string;
 
       /**
-       * A tag to identify the reference image. This may be used to reference the image
-       * in prompt text. Must be 3-16 characters, start with a letter, and use only
-       * letters, digits, and underscores (no hyphens or other punctuation).
+       * An optional label for the reference image. Tags are not sent to the model and
+       * cannot be used to reference images in prompt text. Instead, refer to images by
+       * their order in this array (for example, "the first image" or "the second
+       * image"). Must be 3-16 characters, start with a letter, and use only letters,
+       * digits, and underscores (no hyphens or other punctuation).
        */
       tag?: string;
     }
@@ -1186,6 +1196,15 @@ export declare namespace TextToImageCreateParams {
     promptText: string;
 
     /**
+     * Precise-edit region: none, auto (requires maskUri), or top,left,bottom,right in
+     * original-image pixels, with exclusive maximum edges. A manual region preserves
+     * full resolution and all pixels outside it. All masked edit pixels must lie
+     * inside a manual region. Auto-fit may fall back to downscaling if the mask is too
+     * large. Requires edit-window access.
+     */
+    contextWindow?: string;
+
+    /**
      * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
      * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
      * [our docs](/assets/inputs#images) on image inputs for more information.
@@ -1199,8 +1218,10 @@ export declare namespace TextToImageCreateParams {
     outputCount?: number;
 
     /**
-     * When true, edit the first reference image while preserving its composition and
-     * dimensions. Requires at least one reference image.
+     * When true, edit the first reference image. Requires at least one reference
+     * image. Whole-image edits above 4,194,304 pixels are scaled down. Set
+     * contextWindow to edit a region at full source resolution; auto-fit may still
+     * scale down if the mask cannot fit.
      */
     preciseEdit?: boolean;
 
@@ -1218,7 +1239,7 @@ export declare namespace TextToImageCreateParams {
      * use `auto` to let the model choose. With reference images, widescreen 1K sizes
      * are `1024:576`, `576:1024`, `1408:704`, `704:1408` instead of `1280:720`,
      * `720:1280`, `1440:720`, `720:1440`. Not available with `maskUri` or
-     * `preciseEdit`, which keep the size of the first reference image.
+     * `preciseEdit`, where the source and edit window determine output dimensions.
      */
     ratio?:
       | '1024:1024'
@@ -1495,6 +1516,315 @@ export declare namespace TextToImageCreateParams {
      * after generation.
      */
     ratio?: '1024:1024' | '1216:896' | '896:1216' | '1344:768' | '768:1344';
+  }
+
+  export interface IdeogramVector {
+    model: 'ideogram_vector';
+
+    /**
+     * Describe the vector illustration you want to generate.
+     */
+    promptText: string;
+
+    /**
+     * Rendering quality. Higher quality costs more credits.
+     */
+    quality?: 'low' | 'medium' | 'high';
+
+    /**
+     * Let the model choose the framing of the SVG.
+     */
+    ratio?: 'auto';
+
+    /**
+     * Images to guide the illustration. To trace a source image, use image_to_vector
+     * instead.
+     */
+    referenceImages?: Array<IdeogramVector.ReferenceImage>;
+
+    seed?: number;
+  }
+
+  export namespace IdeogramVector {
+    export interface ReferenceImage {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+    }
+  }
+
+  export interface GptImage2_6Sunburst {
+    model: 'gpt_image_2_6_sunburst';
+
+    /**
+     * A non-empty string describing the desired image.
+     */
+    promptText: string;
+
+    /**
+     * The resolution of the output image, expressed as `<width>:<height>`. Use `auto`
+     * to let the model choose.
+     */
+    ratio:
+      | '2048:880'
+      | '1920:1088'
+      | '1920:1280'
+      | '1920:1440'
+      | '1920:1536'
+      | '1920:1920'
+      | '1536:1920'
+      | '1440:1920'
+      | '1280:1920'
+      | '1088:1920'
+      | '2912:1248'
+      | '2560:1440'
+      | '2560:1712'
+      | '2560:1920'
+      | '2560:2048'
+      | '2560:2560'
+      | '2048:2560'
+      | '1920:2560'
+      | '1712:2560'
+      | '1440:2560'
+      | '3840:1648'
+      | '3840:2160'
+      | '3504:2336'
+      | '3264:2448'
+      | '3200:2560'
+      | '2880:2880'
+      | '2560:3200'
+      | '2448:3264'
+      | '2336:3504'
+      | '2160:3840'
+      | 'auto';
+
+    /**
+     * Background treatment. Defaults to `auto`, which lets the model pick. Use
+     * `transparent` for an alpha-channel background, which `jpeg` output does not
+     * support.
+     */
+    background?: 'transparent' | 'opaque' | 'auto';
+
+    /**
+     * Number of animation frames. Only supported for GIF output.
+     */
+    frameCount?: number;
+
+    /**
+     * Duration of each animation frame in milliseconds. Only supported for GIF output.
+     */
+    frameDurationMs?: number;
+
+    /**
+     * The number of images to generate (1-10). Increasing this number will affect the
+     * number of credits consumed by the generation.
+     */
+    outputCount?: number;
+
+    /**
+     * Output format. Defaults to PNG. JPEG and WebP produce smaller files; JPEG cannot
+     * have a transparent background. GIF and SVG cannot use reference images; GIF
+     * requires ratio auto.
+     */
+    outputFormat?: 'png' | 'jpeg' | 'webp' | 'gif' | 'svg';
+
+    /**
+     * Rendering quality. Higher qualities consume more credits. Defaults to `high`.
+     */
+    quality?: 'low' | 'medium' | 'high';
+
+    /**
+     * How much reasoning to use before rendering. Defaults to `high`.
+     */
+    reasoningEffort?: 'low' | 'medium' | 'high';
+
+    /**
+     * An array of up to 16 images to be used as references for the generated image
+     * output. No two images may share the same tag. Each reference image adds 1 credit
+     * per generated image.
+     */
+    referenceImages?: Array<GptImage2_6Sunburst.ReferenceImage>;
+  }
+
+  export namespace GptImage2_6Sunburst {
+    export interface ReferenceImage {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+
+      /**
+       * An optional label for the reference image. Tags are not sent to the model and
+       * cannot be used to reference images in prompt text. Instead, refer to images by
+       * their order in this array (for example, "the first image" or "the second
+       * image"). Must be 3-16 characters, start with a letter, and use only letters,
+       * digits, and underscores (no hyphens or other punctuation).
+       */
+      tag?: string;
+    }
+  }
+
+  export interface GptImage2_6Flare {
+    model: 'gpt_image_2_6_flare';
+
+    /**
+     * A non-empty string describing the desired image.
+     */
+    promptText: string;
+
+    /**
+     * The resolution of the output image, expressed as `<width>:<height>`. Use `auto`
+     * to let the model choose.
+     */
+    ratio:
+      | '2048:880'
+      | '1920:1088'
+      | '1920:1280'
+      | '1920:1440'
+      | '1920:1536'
+      | '1920:1920'
+      | '1536:1920'
+      | '1440:1920'
+      | '1280:1920'
+      | '1088:1920'
+      | '2912:1248'
+      | '2560:1440'
+      | '2560:1712'
+      | '2560:1920'
+      | '2560:2048'
+      | '2560:2560'
+      | '2048:2560'
+      | '1920:2560'
+      | '1712:2560'
+      | '1440:2560'
+      | '3840:1648'
+      | '3840:2160'
+      | '3504:2336'
+      | '3264:2448'
+      | '3200:2560'
+      | '2880:2880'
+      | '2560:3200'
+      | '2448:3264'
+      | '2336:3504'
+      | '2160:3840'
+      | 'auto';
+
+    /**
+     * Background treatment. Defaults to `auto`, which lets the model pick. Use
+     * `transparent` for an alpha-channel background, which `jpeg` output does not
+     * support.
+     */
+    background?: 'transparent' | 'opaque' | 'auto';
+
+    /**
+     * Number of animation frames. Only supported for GIF output.
+     */
+    frameCount?: number;
+
+    /**
+     * Duration of each animation frame in milliseconds. Only supported for GIF output.
+     */
+    frameDurationMs?: number;
+
+    /**
+     * The number of images to generate (1-10). Increasing this number will affect the
+     * number of credits consumed by the generation.
+     */
+    outputCount?: number;
+
+    /**
+     * Output format. Defaults to PNG. JPEG and WebP produce smaller files; JPEG cannot
+     * have a transparent background. GIF and SVG cannot use reference images; GIF
+     * requires ratio auto.
+     */
+    outputFormat?: 'png' | 'jpeg' | 'webp' | 'gif' | 'svg';
+
+    /**
+     * Rendering quality. Higher qualities consume more credits. Defaults to `high`.
+     */
+    quality?: 'low' | 'medium' | 'high';
+
+    /**
+     * How much reasoning to use before rendering. Defaults to `high`.
+     */
+    reasoningEffort?: 'low' | 'medium' | 'high';
+
+    /**
+     * An array of up to 16 images to be used as references for the generated image
+     * output. No two images may share the same tag. Each reference image adds 1 credit
+     * per generated image.
+     */
+    referenceImages?: Array<GptImage2_6Flare.ReferenceImage>;
+  }
+
+  export namespace GptImage2_6Flare {
+    export interface ReferenceImage {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+
+      /**
+       * An optional label for the reference image. Tags are not sent to the model and
+       * cannot be used to reference images in prompt text. Instead, refer to images by
+       * their order in this array (for example, "the first image" or "the second
+       * image"). Must be 3-16 characters, start with a letter, and use only letters,
+       * digits, and underscores (no hyphens or other punctuation).
+       */
+      tag?: string;
+    }
+  }
+
+  export interface Seedream5ProLayers {
+    model: 'seedream5_pro_layers';
+
+    /**
+     * The image to split into editable layers. Layer ordering and positioning are
+     * returned in the completed task’s layers field.
+     */
+    referenceImages: Array<Seedream5ProLayers.ReferenceImage>;
+
+    /**
+     * Prompt optimization: standard prioritizes quality; fast reduces generation time.
+     * Defaults to standard.
+     */
+    optimizePromptMode?: 'standard' | 'fast';
+
+    /**
+     * Base image format; defaults to png. Separated layers always use PNG with
+     * transparency.
+     */
+    outputFormat?: 'png' | 'jpeg';
+
+    /**
+     * Optional instructions describing which elements to separate. Omit to split the
+     * image automatically.
+     */
+    promptText?: string;
+
+    /**
+     * Output resolution tier. Defaults to auto, which adapts to the input image. The
+     * base image and layers preserve their respective aspect ratios.
+     */
+    resolution?: 'auto' | '1k' | '1.5k' | '2k';
+  }
+
+  export namespace Seedream5ProLayers {
+    export interface ReferenceImage {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+    }
   }
 
   export interface Gemini2_5Flash {
