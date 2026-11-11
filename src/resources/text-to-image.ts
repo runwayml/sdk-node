@@ -1789,7 +1789,7 @@ export declare namespace TextToImageCreateParams {
      * The image to split into editable layers. Layer ordering and positioning are
      * returned in the completed task’s layers field.
      */
-    referenceImages: Array<unknown>;
+    referenceImages: Array<Seedream5ProLayers.ReferenceImage>;
 
     /**
      * Prompt optimization: standard prioritizes quality; fast reduces generation time.
@@ -1814,6 +1814,17 @@ export declare namespace TextToImageCreateParams {
      * base image and layers preserve their respective aspect ratios.
      */
     resolution?: 'auto' | '1k' | '1.5k' | '2k';
+  }
+
+  export namespace Seedream5ProLayers {
+    export interface ReferenceImage {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+    }
   }
 
   export interface Gemini2_5Flash {

@@ -38,6 +38,11 @@ export {
 } from './documents';
 export { Generate } from './generate/generate';
 export {
+  ImageToVector,
+  type ImageToVectorCreateResponse,
+  type ImageToVectorCreateParams,
+} from './image-to-vector';
+export {
   ImageToVideo,
   type ImageToVideoCreateResponse,
   type ImageToVideoCreateParams,
@@ -99,6 +104,7 @@ export {
 } from './speech-to-speech';
 export { Tasks, type TaskRetrieveResponse } from './tasks';
 export { TextToImage, type TextToImageCreateResponse, type TextToImageCreateParams } from './text-to-image';
+export { TextToMusic, type TextToMusicCreateResponse, type TextToMusicCreateParams } from './text-to-music';
 export {
   TextToSpeech,
   type TextToSpeechCreateResponse,

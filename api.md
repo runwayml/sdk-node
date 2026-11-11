@@ -69,6 +69,26 @@ Methods:
 
 - <code title="post /v1/text_to_image">client.textToImage.<a href="./src/resources/text-to-image.ts">create</a>({ ...params }) -> TextToImageCreateResponse</code>
 
+# ImageToVector
+
+Types:
+
+- <code><a href="./src/resources/image-to-vector.ts">ImageToVectorCreateResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/image_to_vector">client.imageToVector.<a href="./src/resources/image-to-vector.ts">create</a>({ ...params }) -> ImageToVectorCreateResponse</code>
+
+# TextToMusic
+
+Types:
+
+- <code><a href="./src/resources/text-to-music.ts">TextToMusicCreateResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/text_to_music">client.textToMusic.<a href="./src/resources/text-to-music.ts">create</a>({ ...params }) -> TextToMusicCreateResponse</code>
+
 # CharacterPerformance
 
 Types:
