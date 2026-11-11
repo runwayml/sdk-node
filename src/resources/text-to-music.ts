@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
+import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/polling';
 
 /**
  * These endpoints all kick off tasks to create generations.
@@ -12,8 +12,13 @@ export class TextToMusic extends APIResource {
    * This endpoint will start a new task to generate a song or instrumental track
    * from a text description.
    */
-  create(body: TextToMusicCreateParams, options?: RequestOptions): APIPromise<TextToMusicCreateResponse> {
-    return this._client.post('/v1/text_to_music', { body, ...options });
+  create(
+    body: TextToMusicCreateParams,
+    options?: RequestOptions,
+  ): APIPromiseWithAwaitableTask<TextToMusicCreateResponse> {
+    return wrapAsWaitableResource<TextToMusicCreateResponse>(this._client)(
+      this._client.post('/v1/text_to_music', { body, ...options }),
+    );
   }
 }
 
