@@ -67,7 +67,9 @@ export type VideoToVideoCreateParams =
   | VideoToVideoCreateParams.GeminiOmniFlash
   | VideoToVideoCreateParams.GeminiOmniFlash1_1
   | VideoToVideoCreateParams.Seedance2_5
-  | VideoToVideoCreateParams.Kling4;
+  | VideoToVideoCreateParams.Kling4
+  | VideoToVideoCreateParams.GeminiOmniFlash1_2
+  | VideoToVideoCreateParams.Kling4Flash;
 
 export declare namespace VideoToVideoCreateParams {
   export interface Variant0 {
@@ -591,6 +593,12 @@ export declare namespace VideoToVideoCreateParams {
     audio?: boolean;
 
     /**
+     * Bitrate of the output video. `high` keeps more detail with fewer compression
+     * artifacts, at a larger file size. Defaults to `standard`.
+     */
+    bitrate?: 'standard' | 'high';
+
+    /**
      * Seconds of video to generate, or `auto` to let the model choose. `auto` is
      * billed at the variant maximum up front; unused credits are refunded after the
      * generation finishes.
@@ -598,7 +606,7 @@ export declare namespace VideoToVideoCreateParams {
     duration?: number | 'auto';
 
     /**
-     * An optional text prompt up to 3500 characters describing what should appear in
+     * An optional text prompt up to 10000 characters describing what should appear in
      * the output.
      */
     promptText?: string;
@@ -716,6 +724,12 @@ export declare namespace VideoToVideoCreateParams {
     audio?: boolean;
 
     /**
+     * Bitrate of the output video. `high` keeps more detail with fewer compression
+     * artifacts, at a larger file size. Defaults to `standard`.
+     */
+    bitrate?: 'standard' | 'high';
+
+    /**
      * Seconds of video to generate, or `auto` to let the model choose. `auto` is
      * billed at the variant maximum up front; unused credits are refunded after the
      * generation finishes.
@@ -723,7 +737,7 @@ export declare namespace VideoToVideoCreateParams {
     duration?: number | 'auto';
 
     /**
-     * An optional text prompt up to 3500 characters describing what should appear in
+     * An optional text prompt up to 10000 characters describing what should appear in
      * the output.
      */
     promptText?: string;
@@ -830,6 +844,12 @@ export declare namespace VideoToVideoCreateParams {
     audio?: boolean;
 
     /**
+     * Bitrate of the output video. `high` keeps more detail with fewer compression
+     * artifacts, at a larger file size. Defaults to `standard`.
+     */
+    bitrate?: 'standard' | 'high';
+
+    /**
      * Seconds of video to generate, or `auto` to let the model choose. `auto` is
      * billed at the variant maximum up front; unused credits are refunded after the
      * generation finishes.
@@ -837,7 +857,7 @@ export declare namespace VideoToVideoCreateParams {
     duration?: number | 'auto';
 
     /**
-     * An optional text prompt up to 3500 characters describing what should appear in
+     * An optional text prompt up to 10000 characters describing what should appear in
      * the output.
      */
     promptText?: string;
@@ -1193,6 +1213,121 @@ export declare namespace VideoToVideoCreateParams {
        * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
        * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
        * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+    }
+  }
+
+  export interface GeminiOmniFlash1_2 {
+    model: 'gemini_omni_flash_1.2';
+
+    /**
+     * A non-empty prompt describing the output or extension.
+     */
+    promptText: string;
+
+    /**
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+     * [our docs](/assets/inputs#videos) on video inputs for more information.
+     */
+    videoUri: string;
+
+    /**
+     * The duration in seconds. In reference mode, this is the output video length. In
+     * extend mode, this is the amount of footage added to the input video. Use "auto"
+     * to let the model choose a duration.
+     */
+    duration?: 'auto' | number;
+
+    /**
+     * How the input video is used. `reference` generates a new video guided by the
+     * input, `extend` continues it, and `edit` transforms it according to the prompt.
+     */
+    mode?: 'reference' | 'extend' | 'edit';
+
+    /**
+     * The resolution and aspect ratio of the output video.
+     */
+    ratio?:
+      | '640:360'
+      | '360:640'
+      | '1280:720'
+      | '720:1280'
+      | '1920:1080'
+      | '1080:1920'
+      | '3840:2160'
+      | '2160:3840';
+
+    /**
+     * An optional array of image references to guide the output.
+     */
+    references?: Array<GeminiOmniFlash1_2.Reference>;
+
+    /**
+     * The output resolution when editing or extending a video. In reference mode, use
+     * ratio instead.
+     */
+    resolution?: '360p' | '720p' | '1080p' | '4k';
+  }
+
+  export namespace GeminiOmniFlash1_2 {
+    export interface Reference {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+    }
+  }
+
+  export interface Kling4Flash {
+    model: 'kling_4_flash';
+
+    /**
+     * A text prompt describing what should happen in the video.
+     */
+    promptText: string;
+
+    /**
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+     * [our docs](/assets/inputs#videos) on video inputs for more information.
+     */
+    videoUri: string;
+
+    /**
+     * The duration of the output video in seconds.
+     */
+    duration?: number;
+
+    /**
+     * The output size, or auto_720p for adaptive framing. Legacy values 940:940 and
+     * 1460:624 are accepted as aliases for 960:960 and 1464:628, respectively.
+     */
+    ratio?: '1280:720' | '720:1280' | '960:960' | '1464:628' | 'auto_720p' | '940:940' | '1460:624';
+
+    references?: Array<Kling4Flash.Reference>;
+
+    referenceVideos?: Array<Kling4Flash.ReferenceVideo>;
+  }
+
+  export namespace Kling4Flash {
+    export interface Reference {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+    }
+
+    export interface ReferenceVideo {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+       * [our docs](/assets/inputs#videos) on video inputs for more information.
        */
       uri: string;
     }
