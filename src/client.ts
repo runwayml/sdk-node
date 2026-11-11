@@ -56,6 +56,11 @@ import {
   Documents,
 } from './resources/documents';
 import {
+  ImageToVector,
+  ImageToVectorCreateParams,
+  ImageToVectorCreateResponse,
+} from './resources/image-to-vector';
+import {
   ImageToVideo,
   ImageToVideoCreateParams,
   ImageToVideoCreateResponse,
@@ -111,6 +116,7 @@ import {
 } from './resources/speech-to-speech';
 import { TaskRetrieveResponse, Tasks } from './resources/tasks';
 import { TextToImage, TextToImageCreateParams, TextToImageCreateResponse } from './resources/text-to-image';
+import { TextToMusic, TextToMusicCreateParams, TextToMusicCreateResponse } from './resources/text-to-music';
 import {
   TextToSpeech,
   TextToSpeechCreateParams,
@@ -963,6 +969,14 @@ export class RunwayML {
   /**
    * These endpoints all kick off tasks to create generations.
    */
+  imageToVector: API.ImageToVector = new API.ImageToVector(this);
+  /**
+   * These endpoints all kick off tasks to create generations.
+   */
+  textToMusic: API.TextToMusic = new API.TextToMusic(this);
+  /**
+   * These endpoints all kick off tasks to create generations.
+   */
   characterPerformance: API.CharacterPerformance = new API.CharacterPerformance(this);
   /**
    * These endpoints all kick off tasks to create generations.
@@ -1014,6 +1028,8 @@ RunwayML.VideoToAudio = VideoToAudio;
 RunwayML.VideoToHdr = VideoToHdr;
 RunwayML.TextToVideo = TextToVideo;
 RunwayML.TextToImage = TextToImage;
+RunwayML.ImageToVector = ImageToVector;
+RunwayML.TextToMusic = TextToMusic;
 RunwayML.CharacterPerformance = CharacterPerformance;
 RunwayML.TextToSpeech = TextToSpeech;
 RunwayML.SoundEffect = SoundEffect;
@@ -1078,6 +1094,18 @@ export declare namespace RunwayML {
     TextToImage as TextToImage,
     type TextToImageCreateResponse as TextToImageCreateResponse,
     type TextToImageCreateParams as TextToImageCreateParams,
+  };
+
+  export {
+    ImageToVector as ImageToVector,
+    type ImageToVectorCreateResponse as ImageToVectorCreateResponse,
+    type ImageToVectorCreateParams as ImageToVectorCreateParams,
+  };
+
+  export {
+    TextToMusic as TextToMusic,
+    type TextToMusicCreateResponse as TextToMusicCreateResponse,
+    type TextToMusicCreateParams as TextToMusicCreateParams,
   };
 
   export {
