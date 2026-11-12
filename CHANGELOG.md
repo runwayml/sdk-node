@@ -5,7 +5,9 @@
 
 ### Features
 
-* add custom voices for text-to-speech and update model support ([b451aec](https://github.com/runwayml/sdk-node/commit/b451aec1eb8a10fa9b6fe2a5ee646d72ae854a58))
+* Accept custom voice IDs for text-to-speech with Eleven v4, v3, and Multilingual v2.
+* Add Hailuo 3 Highspeed (`hailuo3_highspeed`) and Lite (`hailuo3_lite`) model inputs.
+* Add Seedance 2.5 4K output ratios.
 
 ## [4.26.0](https://github.com/runwayml/sdk-node/compare/v4.25.0...v4.26.0) (2026-11-11)
 
