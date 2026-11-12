@@ -9,7 +9,9 @@ import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/poll
  */
 export class TextToSpeech extends APIResource {
   /**
-   * This endpoint will start a new task to generate speech from text.
+   * This endpoint will start a new task to generate speech from text. ElevenLabs
+   * models accept preset voices or custom voices created via the Voices API. Seed
+   * Audio accepts a reference audio clip.
    */
   create(
     body: TextToSpeechCreateParams,
@@ -123,9 +125,9 @@ export declare namespace TextToSpeechCreateParams {
     promptText: string;
 
     /**
-     * A voice preset from the RunwayML API.
+     * The voice to use for the generated speech.
      */
-    voice: ElevenV4.Voice;
+    voice: ElevenV4.RunwayPreset | ElevenV4.Custom;
 
     /**
      * Language code to enforce pronunciation, such as "en" or "pt". A regional code
@@ -183,7 +185,7 @@ export declare namespace TextToSpeechCreateParams {
     /**
      * A voice preset from the RunwayML API.
      */
-    export interface Voice {
+    export interface RunwayPreset {
       /**
        * The preset voice ID to use for the generated speech.
        */
@@ -239,6 +241,18 @@ export declare namespace TextToSpeechCreateParams {
         | 'Rachel';
 
       type: 'runway-preset';
+    }
+
+    /**
+     * A custom voice belonging to the authenticated organization.
+     */
+    export interface Custom {
+      /**
+       * The ID of a custom voice created via the Voices API.
+       */
+      id: string;
+
+      type: 'custom';
     }
   }
 
@@ -252,16 +266,16 @@ export declare namespace TextToSpeechCreateParams {
     promptText: string;
 
     /**
-     * A voice preset from the RunwayML API.
+     * The voice to use for the generated speech.
      */
-    voice: ElevenMultilingualV2.Voice;
+    voice: ElevenMultilingualV2.RunwayPreset | ElevenMultilingualV2.Custom;
   }
 
   export namespace ElevenMultilingualV2 {
     /**
      * A voice preset from the RunwayML API.
      */
-    export interface Voice {
+    export interface RunwayPreset {
       /**
        * The preset voice ID to use for the generated speech.
        */
@@ -318,6 +332,18 @@ export declare namespace TextToSpeechCreateParams {
 
       type: 'runway-preset';
     }
+
+    /**
+     * A custom voice belonging to the authenticated organization.
+     */
+    export interface Custom {
+      /**
+       * The ID of a custom voice created via the Voices API.
+       */
+      id: string;
+
+      type: 'custom';
+    }
   }
 
   export interface ElevenV3 {
@@ -330,9 +356,9 @@ export declare namespace TextToSpeechCreateParams {
     promptText: string;
 
     /**
-     * A voice preset from the RunwayML API.
+     * The voice to use for the generated speech.
      */
-    voice: ElevenV3.Voice;
+    voice: ElevenV3.RunwayPreset | ElevenV3.Custom;
 
     /**
      * Text normalization mode: 'auto', 'on', or 'off' (e.g. spelling out numbers).
@@ -382,7 +408,7 @@ export declare namespace TextToSpeechCreateParams {
     /**
      * A voice preset from the RunwayML API.
      */
-    export interface Voice {
+    export interface RunwayPreset {
       /**
        * The preset voice ID to use for the generated speech.
        */
@@ -438,6 +464,18 @@ export declare namespace TextToSpeechCreateParams {
         | 'Rachel';
 
       type: 'runway-preset';
+    }
+
+    /**
+     * A custom voice belonging to the authenticated organization.
+     */
+    export interface Custom {
+      /**
+       * The ID of a custom voice created via the Voices API.
+       */
+      id: string;
+
+      type: 'custom';
     }
   }
 }
