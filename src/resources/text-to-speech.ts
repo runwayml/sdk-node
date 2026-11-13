@@ -9,7 +9,9 @@ import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/poll
  */
 export class TextToSpeech extends APIResource {
   /**
-   * This endpoint will start a new task to generate speech from text.
+   * This endpoint will start a new task to generate speech from text. ElevenLabs
+   * models accept preset voices or custom voices created via the Voices API. Seed
+   * Audio accepts a reference audio clip.
    */
   create(
     body: TextToSpeechCreateParams,
@@ -50,6 +52,8 @@ export namespace TextToSpeechCreateResponse {
 export type TextToSpeechCreateParams =
   | TextToSpeechCreateParams.SeedAudio
   | TextToSpeechCreateParams.ElevenV4
+  | TextToSpeechCreateParams.Gemini3_8FlashTts
+  | TextToSpeechCreateParams.Gemini3_8FlashLiteTts
   | TextToSpeechCreateParams.ElevenMultilingualV2
   | TextToSpeechCreateParams.ElevenV3;
 
@@ -123,9 +127,9 @@ export declare namespace TextToSpeechCreateParams {
     promptText: string;
 
     /**
-     * A voice preset from the RunwayML API.
+     * The voice to use for the generated speech.
      */
-    voice: ElevenV4.Voice;
+    voice: ElevenV4.RunwayPreset | ElevenV4.Custom;
 
     /**
      * Language code to enforce pronunciation, such as "en" or "pt". A regional code
@@ -183,7 +187,7 @@ export declare namespace TextToSpeechCreateParams {
     /**
      * A voice preset from the RunwayML API.
      */
-    export interface Voice {
+    export interface RunwayPreset {
       /**
        * The preset voice ID to use for the generated speech.
        */
@@ -239,6 +243,102 @@ export declare namespace TextToSpeechCreateParams {
         | 'Rachel';
 
       type: 'runway-preset';
+    }
+
+    /**
+     * A custom voice belonging to the authenticated organization.
+     */
+    export interface Custom {
+      /**
+       * The ID of a custom voice created via the Voices API.
+       */
+      id: string;
+
+      type: 'custom';
+    }
+  }
+
+  export interface Gemini3_8FlashTts {
+    model: 'gemini_3.8_flash_tts';
+
+    /**
+     * The script, in the order it is spoken. Use one turn for a single speaker, or
+     * alternate speakers across turns for a dialogue.
+     */
+    turns: Array<Gemini3_8FlashTts.Turn>;
+
+    /**
+     * The Google voice for each speaker, such as "Kore" or "Puck". Pass one voice for
+     * a single speaker, or two for a dialogue.
+     */
+    voiceIds: Array<string>;
+
+    /**
+     * The language of the script, such as "en-US". When omitted, the model detects it.
+     */
+    languageCode?: string;
+  }
+
+  export namespace Gemini3_8FlashTts {
+    export interface Turn {
+      /**
+       * The words to speak in this turn.
+       */
+      text: string;
+
+      /**
+       * The position in `voiceIds` of the voice that speaks this turn. Defaults to the
+       * first voice.
+       */
+      speaker?: number;
+
+      /**
+       * How this turn should be delivered, such as "calm and reassuring". It guides the
+       * delivery and is not read aloud.
+       */
+      style?: string;
+    }
+  }
+
+  export interface Gemini3_8FlashLiteTts {
+    model: 'gemini_3.8_flash_lite_tts';
+
+    /**
+     * The script, in the order it is spoken. Use one turn for a single speaker, or
+     * alternate speakers across turns for a dialogue.
+     */
+    turns: Array<Gemini3_8FlashLiteTts.Turn>;
+
+    /**
+     * The Google voice for each speaker, such as "Kore" or "Puck". Pass one voice for
+     * a single speaker, or two for a dialogue.
+     */
+    voiceIds: Array<string>;
+
+    /**
+     * The language of the script, such as "en-US". When omitted, the model detects it.
+     */
+    languageCode?: string;
+  }
+
+  export namespace Gemini3_8FlashLiteTts {
+    export interface Turn {
+      /**
+       * The words to speak in this turn.
+       */
+      text: string;
+
+      /**
+       * The position in `voiceIds` of the voice that speaks this turn. Defaults to the
+       * first voice.
+       */
+      speaker?: number;
+
+      /**
+       * How this turn should be delivered, such as "calm and reassuring". It guides the
+       * delivery and is not read aloud.
+       */
+      style?: string;
     }
   }
 
@@ -252,16 +352,16 @@ export declare namespace TextToSpeechCreateParams {
     promptText: string;
 
     /**
-     * A voice preset from the RunwayML API.
+     * The voice to use for the generated speech.
      */
-    voice: ElevenMultilingualV2.Voice;
+    voice: ElevenMultilingualV2.RunwayPreset | ElevenMultilingualV2.Custom;
   }
 
   export namespace ElevenMultilingualV2 {
     /**
      * A voice preset from the RunwayML API.
      */
-    export interface Voice {
+    export interface RunwayPreset {
       /**
        * The preset voice ID to use for the generated speech.
        */
@@ -318,6 +418,18 @@ export declare namespace TextToSpeechCreateParams {
 
       type: 'runway-preset';
     }
+
+    /**
+     * A custom voice belonging to the authenticated organization.
+     */
+    export interface Custom {
+      /**
+       * The ID of a custom voice created via the Voices API.
+       */
+      id: string;
+
+      type: 'custom';
+    }
   }
 
   export interface ElevenV3 {
@@ -330,9 +442,9 @@ export declare namespace TextToSpeechCreateParams {
     promptText: string;
 
     /**
-     * A voice preset from the RunwayML API.
+     * The voice to use for the generated speech.
      */
-    voice: ElevenV3.Voice;
+    voice: ElevenV3.RunwayPreset | ElevenV3.Custom;
 
     /**
      * Text normalization mode: 'auto', 'on', or 'off' (e.g. spelling out numbers).
@@ -382,7 +494,7 @@ export declare namespace TextToSpeechCreateParams {
     /**
      * A voice preset from the RunwayML API.
      */
-    export interface Voice {
+    export interface RunwayPreset {
       /**
        * The preset voice ID to use for the generated speech.
        */
@@ -438,6 +550,18 @@ export declare namespace TextToSpeechCreateParams {
         | 'Rachel';
 
       type: 'runway-preset';
+    }
+
+    /**
+     * A custom voice belonging to the authenticated organization.
+     */
+    export interface Custom {
+      /**
+       * The ID of a custom voice created via the Voices API.
+       */
+      id: string;
+
+      type: 'custom';
     }
   }
 }

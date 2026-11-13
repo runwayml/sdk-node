@@ -1,5 +1,26 @@
 # Changelog
 
+## [4.27.0](https://github.com/runwayml/sdk-node/compare/v4.26.0...v4.27.0) (2026-11-12)
+
+
+### Features
+
+* Accept custom voice IDs for text-to-speech with Eleven v4, v3, and Multilingual v2.
+* Add Hailuo 3 Highspeed (`hailuo3_highspeed`) and Lite (`hailuo3_lite`) model inputs.
+* Add Seedance 2.5 4K output ratios.
+
+## [4.26.0](https://github.com/runwayml/sdk-node/compare/v4.25.0...v4.26.0) (2026-11-11)
+
+
+### Features
+
+* add image-to-vector and text-to-music methods ([0518489](https://github.com/runwayml/sdk-node/commit/051848991b63d5faaad18285aaac568b776b0df9))
+
+
+### Chores
+
+* preserve existing SDK dependency lockfile ([48e6312](https://github.com/runwayml/sdk-node/commit/48e6312192a6509d78e475e46f867f636f2ce4fc))
+
 ## [4.25.0](https://github.com/runwayml/sdk-node/compare/v4.24.0...v4.25.0) (2026-11-11)
 
 

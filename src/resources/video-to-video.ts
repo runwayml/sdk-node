@@ -69,7 +69,9 @@ export type VideoToVideoCreateParams =
   | VideoToVideoCreateParams.Seedance2_5
   | VideoToVideoCreateParams.Kling4
   | VideoToVideoCreateParams.GeminiOmniFlash1_2
-  | VideoToVideoCreateParams.Kling4Flash;
+  | VideoToVideoCreateParams.Kling4Flash
+  | VideoToVideoCreateParams.Hailuo3Highspeed
+  | VideoToVideoCreateParams.Hailuo3Lite;
 
 export declare namespace VideoToVideoCreateParams {
   export interface Variant0 {
@@ -1090,7 +1092,8 @@ export declare namespace VideoToVideoCreateParams {
     promptText?: string;
 
     /**
-     * The resolution of the output video. Seedance 2.5 supports 480p, 720p, and 1080p.
+     * The resolution of the output video. Seedance 2.5 supports 480p, 720p, 1080p, and
+     * 4K.
      */
     ratio?:
       | '992:432'
@@ -1110,7 +1113,13 @@ export declare namespace VideoToVideoCreateParams {
       | '1664:1248'
       | '1440:1440'
       | '1248:1664'
-      | '1080:1920';
+      | '1080:1920'
+      | '3840:1646'
+      | '3840:2160'
+      | '3840:2880'
+      | '3840:3840'
+      | '2880:3840'
+      | '2160:3840';
 
     /**
      * An optional array of audio references. The total combined duration must be less
@@ -1196,15 +1205,43 @@ export declare namespace VideoToVideoCreateParams {
     videoUri: string;
 
     /**
-     * Output quality tier. The video keeps the input media framing.
+     * The duration of the edited video in seconds.
      */
-    ratio?: 'auto_720p' | 'auto_1080p';
+    duration?: number;
+
+    /**
+     * Optional first, middle, and last frames guiding the edit. Middle or last frames
+     * can be provided without a first frame.
+     */
+    promptImage?: string | Array<unknown>;
+
+    /**
+     * The target output size. Use a pixel ratio such as `1280:720` or `auto_720p` /
+     * `auto_1080p` for adaptive framing.
+     */
+    ratio?:
+      | '1280:720'
+      | '720:1280'
+      | '940:940'
+      | '1460:624'
+      | '1920:1080'
+      | '1080:1920'
+      | '1440:1440'
+      | '2200:940'
+      | 'auto_720p'
+      | 'auto_1080p';
 
     /**
      * Images of characters, objects or styles to use in the video. Up to 10 images in
      * total, frames included.
      */
     references?: Array<Kling4.Reference>;
+
+    /**
+     * Up to 4 videos whose style, motion or camera work should guide the output,
+     * together at most 30 seconds long.
+     */
+    referenceVideos?: Array<unknown>;
   }
 
   export namespace Kling4 {
@@ -1324,6 +1361,134 @@ export declare namespace VideoToVideoCreateParams {
     }
 
     export interface ReferenceVideo {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+       * [our docs](/assets/inputs#videos) on video inputs for more information.
+       */
+      uri: string;
+    }
+  }
+
+  export interface Hailuo3Highspeed {
+    model: 'hailuo3_highspeed';
+
+    /**
+     * The text prompt describing the output video.
+     */
+    promptText: string;
+
+    /**
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+     * [our docs](/assets/inputs#videos) on video inputs for more information.
+     */
+    promptVideo: string;
+
+    duration?: number;
+
+    ratio?: 'adaptive' | '21:9' | '16:9' | '4:3' | '1:1' | '3:4' | '9:16';
+
+    referenceAudio?: Array<Hailuo3Highspeed.ReferenceAudio>;
+
+    references?: Array<Hailuo3Highspeed.Reference>;
+
+    referenceVideos?: Array<Hailuo3Highspeed.ReferenceVideo>;
+
+    /**
+     * The output video resolution.
+     */
+    resolution?: '480p' | '768p';
+  }
+
+  export namespace Hailuo3Highspeed {
+    export interface ReferenceAudio {
+      type: 'audio';
+
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:audio/mp3;base64,...`, up to 5MB) containing an encoded audio. See
+       * [our docs](/assets/inputs#audio) on audio inputs for more information.
+       */
+      uri: string;
+    }
+
+    export interface Reference {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+    }
+
+    export interface ReferenceVideo {
+      type: 'video';
+
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+       * [our docs](/assets/inputs#videos) on video inputs for more information.
+       */
+      uri: string;
+    }
+  }
+
+  export interface Hailuo3Lite {
+    model: 'hailuo3_lite';
+
+    /**
+     * The text prompt describing the output video.
+     */
+    promptText: string;
+
+    /**
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+     * [our docs](/assets/inputs#videos) on video inputs for more information.
+     */
+    promptVideo: string;
+
+    duration?: number;
+
+    ratio?: '21:9' | '16:9' | '4:3' | '1:1' | '3:4' | '9:16';
+
+    referenceAudio?: Array<Hailuo3Lite.ReferenceAudio>;
+
+    references?: Array<Hailuo3Lite.Reference>;
+
+    referenceVideos?: Array<Hailuo3Lite.ReferenceVideo>;
+
+    /**
+     * The output video resolution.
+     */
+    resolution?: '480p' | '768p';
+  }
+
+  export namespace Hailuo3Lite {
+    export interface ReferenceAudio {
+      type: 'audio';
+
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:audio/mp3;base64,...`, up to 5MB) containing an encoded audio. See
+       * [our docs](/assets/inputs#audio) on audio inputs for more information.
+       */
+      uri: string;
+    }
+
+    export interface Reference {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+    }
+
+    export interface ReferenceVideo {
+      type: 'video';
+
       /**
        * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
        * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
