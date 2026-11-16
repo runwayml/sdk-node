@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.28.0](https://github.com/runwayml/sdk-node/compare/v4.27.0...v4.28.0) (2026-11-16)
+
+### Features
+
+- Add Kling 4 video-edit controls for output duration, first/middle/last frame guidance (including middle-only and end-only edits), additional reference videos, and output framing.
+- Add Gemini 3.8 Flash and Flash Lite text-to-speech models, including voice selection and dialogue turns.
+- Expand typed organization usage responses with task status and output details, and add audit metadata fields.
+
 ## [4.27.0](https://github.com/runwayml/sdk-node/compare/v4.26.0...v4.27.0) (2026-11-12)
 
 
