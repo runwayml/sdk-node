@@ -52,6 +52,8 @@ export namespace TextToSpeechCreateResponse {
 export type TextToSpeechCreateParams =
   | TextToSpeechCreateParams.SeedAudio
   | TextToSpeechCreateParams.ElevenV4
+  | TextToSpeechCreateParams.Gemini3_8FlashTts
+  | TextToSpeechCreateParams.Gemini3_8FlashLiteTts
   | TextToSpeechCreateParams.ElevenMultilingualV2
   | TextToSpeechCreateParams.ElevenV3;
 
@@ -253,6 +255,90 @@ export declare namespace TextToSpeechCreateParams {
       id: string;
 
       type: 'custom';
+    }
+  }
+
+  export interface Gemini3_8FlashTts {
+    model: 'gemini_3.8_flash_tts';
+
+    /**
+     * The script, in the order it is spoken. Use one turn for a single speaker, or
+     * alternate speakers across turns for a dialogue.
+     */
+    turns: Array<Gemini3_8FlashTts.Turn>;
+
+    /**
+     * The Google voice for each speaker, such as "Kore" or "Puck". Pass one voice for
+     * a single speaker, or two for a dialogue.
+     */
+    voiceIds: Array<string>;
+
+    /**
+     * The language of the script, such as "en-US". When omitted, the model detects it.
+     */
+    languageCode?: string;
+  }
+
+  export namespace Gemini3_8FlashTts {
+    export interface Turn {
+      /**
+       * The words to speak in this turn.
+       */
+      text: string;
+
+      /**
+       * The position in `voiceIds` of the voice that speaks this turn. Defaults to the
+       * first voice.
+       */
+      speaker?: number;
+
+      /**
+       * How this turn should be delivered, such as "calm and reassuring". It guides the
+       * delivery and is not read aloud.
+       */
+      style?: string;
+    }
+  }
+
+  export interface Gemini3_8FlashLiteTts {
+    model: 'gemini_3.8_flash_lite_tts';
+
+    /**
+     * The script, in the order it is spoken. Use one turn for a single speaker, or
+     * alternate speakers across turns for a dialogue.
+     */
+    turns: Array<Gemini3_8FlashLiteTts.Turn>;
+
+    /**
+     * The Google voice for each speaker, such as "Kore" or "Puck". Pass one voice for
+     * a single speaker, or two for a dialogue.
+     */
+    voiceIds: Array<string>;
+
+    /**
+     * The language of the script, such as "en-US". When omitted, the model detects it.
+     */
+    languageCode?: string;
+  }
+
+  export namespace Gemini3_8FlashLiteTts {
+    export interface Turn {
+      /**
+       * The words to speak in this turn.
+       */
+      text: string;
+
+      /**
+       * The position in `voiceIds` of the voice that speaks this turn. Defaults to the
+       * first voice.
+       */
+      speaker?: number;
+
+      /**
+       * How this turn should be delivered, such as "calm and reassuring". It guides the
+       * delivery and is not read aloud.
+       */
+      style?: string;
     }
   }
 
