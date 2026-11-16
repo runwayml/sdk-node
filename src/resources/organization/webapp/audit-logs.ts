@@ -239,6 +239,8 @@ export namespace AuditLogRetrieveResponse {
    * Action-specific details.
    */
   export interface Metadata {
+    'Accepted by'?: string;
+
     'Ad account ID'?: string;
 
     'Ad creative ID'?: string;
@@ -257,6 +259,8 @@ export namespace AuditLogRetrieveResponse {
 
     'Ad sync start date'?: string;
 
+    'Added member'?: string;
+
     'Ads created as'?: string;
 
     'Ads onboarding answers'?: Array<string>;
@@ -270,6 +274,8 @@ export namespace AuditLogRetrieveResponse {
     Amount?: number;
 
     'Amount received'?: number;
+
+    Anonymous?: boolean;
 
     'API account'?: string;
 
@@ -287,9 +293,15 @@ export namespace AuditLogRetrieveResponse {
 
     'Asset name'?: string;
 
+    'Asset type'?: string;
+
+    Automatic?: boolean;
+
     'AWS license'?: string;
 
     'Brand kit ID'?: string;
+
+    'Cancels at period end'?: boolean;
 
     'Comment ID'?: string;
 
@@ -299,11 +311,15 @@ export namespace AuditLogRetrieveResponse {
 
     'Comment text'?: string;
 
+    Connector?: string;
+
     'Creatives cancelled'?: number;
 
     'Creatives queued'?: number;
 
     'Creatives retried'?: number;
+
+    'Credits used'?: number;
 
     'Default project discoverability'?: string;
 
@@ -313,9 +329,17 @@ export namespace AuditLogRetrieveResponse {
 
     Direction?: string;
 
+    'Downloaded by owner'?: boolean;
+
     'Email domain'?: string;
 
+    Enabled?: boolean;
+
     'Error code'?: string;
+
+    Filename?: string;
+
+    'From workspace ID'?: number;
 
     'Group name'?: string;
 
@@ -325,7 +349,11 @@ export namespace AuditLogRetrieveResponse {
 
     'Invited member'?: string;
 
+    'Join policy'?: string;
+
     'Language model or provider'?: string;
+
+    'Link type'?: string;
 
     'Login method'?: string;
 
@@ -335,7 +363,11 @@ export namespace AuditLogRetrieveResponse {
 
     Mentions?: number;
 
+    Method?: string;
+
     Model?: string;
+
+    'New email'?: string;
 
     'New role'?: string;
 
@@ -359,6 +391,8 @@ export namespace AuditLogRetrieveResponse {
 
     'Platform object ID'?: string;
 
+    'Previous email'?: string;
+
     'Previous project credit cap'?: number | null;
 
     'Previous role'?: string | null;
@@ -369,11 +403,21 @@ export namespace AuditLogRetrieveResponse {
 
     'Project credit cap'?: number | null;
 
+    'Project ID'?: string;
+
     Provider?: string;
 
     Reason?: string | null;
 
+    'Recharge amount (USD cents)'?: number;
+
+    'Recharge below (credits)'?: number;
+
     'Removed member'?: string;
+
+    'Requested via'?: Array<string>;
+
+    'Result metric ID'?: string | null;
 
     'Review decision'?: string;
 
@@ -387,13 +431,21 @@ export namespace AuditLogRetrieveResponse {
 
     Setting?: string;
 
+    'Shared in project'?: string | null;
+
     'Shared with projects'?: Array<string>;
 
     'Shared with workspace'?: boolean;
 
+    Source?: string;
+
+    'Source application'?: string;
+
     'Source category ID'?: string;
 
     'Spend cap'?: number;
+
+    'Spend cap (USD cents)'?: number;
 
     'Spend cap change'?: number;
 
@@ -409,7 +461,17 @@ export namespace AuditLogRetrieveResponse {
 
     'Target member'?: string | null;
 
+    'Task ID'?: string;
+
+    'To workspace ID'?: number;
+
+    Tool?: string;
+
+    'Updated fields'?: Array<string>;
+
     'Via public API'?: boolean;
+
+    Watermarked?: boolean;
 
     Workspace?: string | null;
 
@@ -594,6 +656,8 @@ export namespace AuditLogListResponse {
    * Action-specific details.
    */
   export interface Metadata {
+    'Accepted by'?: string;
+
     'Ad account ID'?: string;
 
     'Ad creative ID'?: string;
@@ -612,6 +676,8 @@ export namespace AuditLogListResponse {
 
     'Ad sync start date'?: string;
 
+    'Added member'?: string;
+
     'Ads created as'?: string;
 
     'Ads onboarding answers'?: Array<string>;
@@ -625,6 +691,8 @@ export namespace AuditLogListResponse {
     Amount?: number;
 
     'Amount received'?: number;
+
+    Anonymous?: boolean;
 
     'API account'?: string;
 
@@ -642,9 +710,15 @@ export namespace AuditLogListResponse {
 
     'Asset name'?: string;
 
+    'Asset type'?: string;
+
+    Automatic?: boolean;
+
     'AWS license'?: string;
 
     'Brand kit ID'?: string;
+
+    'Cancels at period end'?: boolean;
 
     'Comment ID'?: string;
 
@@ -654,11 +728,15 @@ export namespace AuditLogListResponse {
 
     'Comment text'?: string;
 
+    Connector?: string;
+
     'Creatives cancelled'?: number;
 
     'Creatives queued'?: number;
 
     'Creatives retried'?: number;
+
+    'Credits used'?: number;
 
     'Default project discoverability'?: string;
 
@@ -668,9 +746,17 @@ export namespace AuditLogListResponse {
 
     Direction?: string;
 
+    'Downloaded by owner'?: boolean;
+
     'Email domain'?: string;
 
+    Enabled?: boolean;
+
     'Error code'?: string;
+
+    Filename?: string;
+
+    'From workspace ID'?: number;
 
     'Group name'?: string;
 
@@ -680,7 +766,11 @@ export namespace AuditLogListResponse {
 
     'Invited member'?: string;
 
+    'Join policy'?: string;
+
     'Language model or provider'?: string;
+
+    'Link type'?: string;
 
     'Login method'?: string;
 
@@ -690,7 +780,11 @@ export namespace AuditLogListResponse {
 
     Mentions?: number;
 
+    Method?: string;
+
     Model?: string;
+
+    'New email'?: string;
 
     'New role'?: string;
 
@@ -714,6 +808,8 @@ export namespace AuditLogListResponse {
 
     'Platform object ID'?: string;
 
+    'Previous email'?: string;
+
     'Previous project credit cap'?: number | null;
 
     'Previous role'?: string | null;
@@ -724,11 +820,21 @@ export namespace AuditLogListResponse {
 
     'Project credit cap'?: number | null;
 
+    'Project ID'?: string;
+
     Provider?: string;
 
     Reason?: string | null;
 
+    'Recharge amount (USD cents)'?: number;
+
+    'Recharge below (credits)'?: number;
+
     'Removed member'?: string;
+
+    'Requested via'?: Array<string>;
+
+    'Result metric ID'?: string | null;
 
     'Review decision'?: string;
 
@@ -742,13 +848,21 @@ export namespace AuditLogListResponse {
 
     Setting?: string;
 
+    'Shared in project'?: string | null;
+
     'Shared with projects'?: Array<string>;
 
     'Shared with workspace'?: boolean;
 
+    Source?: string;
+
+    'Source application'?: string;
+
     'Source category ID'?: string;
 
     'Spend cap'?: number;
+
+    'Spend cap (USD cents)'?: number;
 
     'Spend cap change'?: number;
 
@@ -764,7 +878,17 @@ export namespace AuditLogListResponse {
 
     'Target member'?: string | null;
 
+    'Task ID'?: string;
+
+    'To workspace ID'?: number;
+
+    Tool?: string;
+
+    'Updated fields'?: Array<string>;
+
     'Via public API'?: boolean;
+
+    Watermarked?: boolean;
 
     Workspace?: string | null;
 

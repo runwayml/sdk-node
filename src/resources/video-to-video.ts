@@ -1205,15 +1205,43 @@ export declare namespace VideoToVideoCreateParams {
     videoUri: string;
 
     /**
-     * Output quality tier. The video keeps the input media framing.
+     * The duration of the edited video in seconds.
      */
-    ratio?: 'auto_720p' | 'auto_1080p';
+    duration?: number;
+
+    /**
+     * Optional first, middle, and last frames guiding the edit. Middle or last frames
+     * can be provided without a first frame.
+     */
+    promptImage?: string | Array<unknown>;
+
+    /**
+     * The target output size. Use a pixel ratio such as `1280:720` or `auto_720p` /
+     * `auto_1080p` for adaptive framing.
+     */
+    ratio?:
+      | '1280:720'
+      | '720:1280'
+      | '940:940'
+      | '1460:624'
+      | '1920:1080'
+      | '1080:1920'
+      | '1440:1440'
+      | '2200:940'
+      | 'auto_720p'
+      | 'auto_1080p';
 
     /**
      * Images of characters, objects or styles to use in the video. Up to 10 images in
      * total, frames included.
      */
     references?: Array<Kling4.Reference>;
+
+    /**
+     * Up to 4 videos whose style, motion or camera work should guide the output,
+     * together at most 30 seconds long.
+     */
+    referenceVideos?: Array<unknown>;
   }
 
   export namespace Kling4 {

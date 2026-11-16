@@ -275,8 +275,8 @@ export namespace TaskRetrieveResponse {
     status: 'SUCCEEDED';
 
     /**
-     * Layer details for successful Seedream 5 Pro Layers tasks. Each URI matches the
-     * output URL at the same index.
+     * Layer details for successful Seedream layer decomposition tasks. Each URI
+     * matches the output URL at the same index.
      */
     layers?: Array<Succeeded.Layer>;
   }
