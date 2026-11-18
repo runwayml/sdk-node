@@ -53,15 +53,15 @@
     "runwayml-sdk": "bin/cli"
   },
   "overrides": {
-    "minimatch": "^9.0.5"
+    "minimatch": "^11.0.0"
   },
   "pnpm": {
     "overrides": {
-      "minimatch": "^9.0.5"
+      "minimatch": "^11.0.0"
     }
   },
   "resolutions": {
-    "minimatch": "^9.0.5"
+    "minimatch": "^11.0.0"
   },
   "exports": {
     ".": {
