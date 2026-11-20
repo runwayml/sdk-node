@@ -46,7 +46,6 @@ describe('resource realtimeSessions', () => {
           ],
         },
       ],
-      'X-Runway-Tags': 'team:growth,env:prod,campaign-q4',
     });
   });
 

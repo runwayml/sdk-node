@@ -33,7 +33,6 @@ describe('resource characterPerformance', () => {
       expressionIntensity: 3,
       ratio: '1280:720',
       seed: 0,
-      'X-Runway-Tags': 'team:growth,env:prod,campaign-q4',
     });
   });
 });

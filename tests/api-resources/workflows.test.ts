@@ -46,10 +46,7 @@ describe('resource workflows', () => {
     await expect(
       client.workflows.run(
         '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-        {
-          nodeOutputs: { foo: { foo: { type: 'primitive', value: 'string' } } },
-          'X-Runway-Tags': 'team:growth,env:prod,campaign-q4',
-        },
+        { nodeOutputs: { foo: { foo: { type: 'primitive', value: 'string' } } } },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(RunwayML.NotFoundError);

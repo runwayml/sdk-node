@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/polling';
 
@@ -21,19 +20,11 @@ export class TextToImage extends APIResource {
    * ```
    */
   create(
-    params: TextToImageCreateParams,
+    body: TextToImageCreateParams,
     options?: RequestOptions,
   ): APIPromiseWithAwaitableTask<TextToImageCreateResponse> {
-    const { 'X-Runway-Tags': xRunwayTags, ...body } = params;
     return wrapAsWaitableResource<TextToImageCreateResponse>(this._client)(
-      this._client.post('/v1/text_to_image', {
-        body,
-        ...options,
-        headers: buildHeaders([
-          { ...(xRunwayTags != null ? { 'X-Runway-Tags': xRunwayTags } : undefined) },
-          options?.headers,
-        ]),
-      }),
+      this._client.post('/v1/text_to_image', { body, ...options }),
     );
   }
 }
@@ -96,19 +87,16 @@ export type TextToImageCreateParams =
 
 export declare namespace TextToImageCreateParams {
   export interface Gen4ImageTurbo {
-    /**
-     * Body param
-     */
     model: 'gen4_image_turbo';
 
     /**
-     * Body param: A non-empty string up to 1000 characters (measured in UTF-16 code
-     * units). This should describe in detail what should appear in the output.
+     * A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+     * should describe in detail what should appear in the output.
      */
     promptText: string;
 
     /**
-     * Body param: The resolution of the output image.
+     * The resolution of the output image.
      */
     ratio:
       | '1024:1024'
@@ -129,36 +117,22 @@ export declare namespace TextToImageCreateParams {
       | '1680:720';
 
     /**
-     * Body param: An array of one to three images to be used as references for the
-     * generated image output.
+     * An array of one to three images to be used as references for the generated image
+     * output.
      */
     referenceImages: Array<Gen4ImageTurbo.ReferenceImage>;
 
     /**
-     * Body param: Settings that affect the behavior of the content moderation system.
+     * Settings that affect the behavior of the content moderation system.
      */
     contentModeration?: Gen4ImageTurbo.ContentModeration;
 
     /**
-     * Body param: If unspecified, a random number is chosen. Varying the seed integer
-     * is a way to get different results for the same other request parameters. Using
-     * the same seed integer for an identical request will produce similar results.
+     * If unspecified, a random number is chosen. Varying the seed integer is a way to
+     * get different results for the same other request parameters. Using the same seed
+     * integer for an identical request will produce similar results.
      */
     seed?: number;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace Gen4ImageTurbo {
@@ -191,19 +165,16 @@ export declare namespace TextToImageCreateParams {
   }
 
   export interface Gen4Image {
-    /**
-     * Body param
-     */
     model: 'gen4_image';
 
     /**
-     * Body param: A non-empty string up to 1000 characters (measured in UTF-16 code
-     * units). This should describe in detail what should appear in the output.
+     * A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+     * should describe in detail what should appear in the output.
      */
     promptText: string;
 
     /**
-     * Body param: The resolution of the output image.
+     * The resolution of the output image.
      */
     ratio:
       | '1024:1024'
@@ -224,36 +195,22 @@ export declare namespace TextToImageCreateParams {
       | '1680:720';
 
     /**
-     * Body param: Settings that affect the behavior of the content moderation system.
+     * Settings that affect the behavior of the content moderation system.
      */
     contentModeration?: Gen4Image.ContentModeration;
 
     /**
-     * Body param: An array of up to three images to be used as references for the
-     * generated image output.
+     * An array of up to three images to be used as references for the generated image
+     * output.
      */
     referenceImages?: Array<Gen4Image.ReferenceImage>;
 
     /**
-     * Body param: If unspecified, a random number is chosen. Varying the seed integer
-     * is a way to get different results for the same other request parameters. Using
-     * the same seed integer for an identical request will produce similar results.
+     * If unspecified, a random number is chosen. Varying the seed integer is a way to
+     * get different results for the same other request parameters. Using the same seed
+     * integer for an identical request will produce similar results.
      */
     seed?: number;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace Gen4Image {
@@ -286,20 +243,16 @@ export declare namespace TextToImageCreateParams {
   }
 
   export interface GptImage2 {
-    /**
-     * Body param
-     */
     model: 'gpt_image_2';
 
     /**
-     * Body param: A non-empty string up to 32,000 characters describing the desired
-     * image.
+     * A non-empty string up to 32,000 characters describing the desired image.
      */
     promptText: string;
 
     /**
-     * Body param: The resolution of the output image, expressed as `<width>:<height>`.
-     * Use `auto` to let the model choose.
+     * The resolution of the output image, expressed as `<width>:<height>`. Use `auto`
+     * to let the model choose.
      */
     ratio:
       | '2048:880'
@@ -335,42 +288,27 @@ export declare namespace TextToImageCreateParams {
       | 'auto';
 
     /**
-     * Body param: Background treatment. Defaults to `auto`, which lets the model pick.
-     * Use `transparent` to generate a PNG with an alpha-channel background.
+     * Background treatment. Defaults to `auto`, which lets the model pick. Use
+     * `transparent` to generate a PNG with an alpha-channel background.
      */
     background?: 'transparent' | 'opaque' | 'auto';
 
     /**
-     * Body param: The number of images to generate (1-10). Increasing this number will
-     * affect the number of credits consumed by the generation.
+     * The number of images to generate (1-10). Increasing this number will affect the
+     * number of credits consumed by the generation.
      */
     outputCount?: number;
 
     /**
-     * Body param: Rendering quality. Higher qualities consume more credits. Defaults
-     * to `high`.
+     * Rendering quality. Higher qualities consume more credits. Defaults to `high`.
      */
     quality?: 'low' | 'medium' | 'high' | 'auto';
 
     /**
-     * Body param: An array of up to 16 images to be used as references for the
-     * generated image output. No two images may share the same tag.
+     * An array of up to 16 images to be used as references for the generated image
+     * output. No two images may share the same tag.
      */
     referenceImages?: Array<GptImage2.ReferenceImage>;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace GptImage2 {
@@ -394,18 +332,15 @@ export declare namespace TextToImageCreateParams {
   }
 
   export interface GeminiImage3_1Flash {
-    /**
-     * Body param
-     */
     model: 'gemini_image3.1_flash';
 
     /**
-     * Body param: This should describe in detail what should appear in the output.
+     * This should describe in detail what should appear in the output.
      */
     promptText: string;
 
     /**
-     * Body param: The resolution of the output image.
+     * The resolution of the output image.
      */
     ratio:
       | '512:512'
@@ -466,34 +401,20 @@ export declare namespace TextToImageCreateParams {
       | '11264:1408';
 
     /**
-     * Body param: The number of images to generate. Increasing this number will affect
-     * the number of credits consumed by the generation. Up to four images can be
-     * generated at once.
+     * The number of images to generate. Increasing this number will affect the number
+     * of credits consumed by the generation. Up to four images can be generated at
+     * once.
      */
     outputCount?: 1 | 4;
 
     /**
-     * Body param: An array of up to 14 images to be used as references for the
-     * generated image output. Up to five of those images can pass `subject: "human"`
-     * to maintain character consistency, and up to nine of those images can pass
+     * An array of up to 14 images to be used as references for the generated image
+     * output. Up to five of those images can pass `subject: "human"` to maintain
+     * character consistency, and up to nine of those images can pass
      * `subject: "object"` with high-fidelity images of objects to include in the
      * output.
      */
     referenceImages?: Array<GeminiImage3_1Flash.ReferenceImage>;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace GeminiImage3_1Flash {
@@ -521,20 +442,16 @@ export declare namespace TextToImageCreateParams {
   }
 
   export interface MuseImage {
-    /**
-     * Body param
-     */
     model: 'muse_image';
 
     /**
-     * Body param: A non-empty text prompt describing what should appear in the output
-     * image.
+     * A non-empty text prompt describing what should appear in the output image.
      */
     promptText: string;
 
     /**
-     * Body param: The resolution of the output image, expressed as `<width>:<height>`.
-     * Use `auto` to let the model choose the framing from the prompt.
+     * The resolution of the output image, expressed as `<width>:<height>`. Use `auto`
+     * to let the model choose the framing from the prompt.
      */
     ratio:
       | '2352:1008'
@@ -548,35 +465,21 @@ export declare namespace TextToImageCreateParams {
       | 'auto';
 
     /**
-     * Body param: The number of images to generate. Each image costs 1 credit.
+     * The number of images to generate. Each image costs 1 credit.
      */
     outputCount?: number;
 
     /**
-     * Body param: The file format of the output image. Defaults to png.
+     * The file format of the output image. Defaults to png.
      */
     outputFormat?: 'webp' | 'png' | 'jpeg';
 
     /**
-     * Body param: Up to 10 images to guide the generation. When provided, the model
-     * edits and combines them as your prompt describes instead of generating from the
-     * prompt alone.
+     * Up to 10 images to guide the generation. When provided, the model edits and
+     * combines them as your prompt describes instead of generating from the prompt
+     * alone.
      */
     referenceImages?: Array<MuseImage.ReferenceImage>;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace MuseImage {
@@ -591,21 +494,17 @@ export declare namespace TextToImageCreateParams {
   }
 
   export interface Seedream5Pro {
-    /**
-     * Body param
-     */
     model: 'seedream5_pro';
 
     /**
-     * Body param: A non-empty string up to 4,000 characters describing the desired
-     * image.
+     * A non-empty string up to 4,000 characters describing the desired image.
      */
     promptText: string;
 
     /**
-     * Body param: The resolution of the output image, expressed as `<width>:<height>`.
-     * Use `auto_1k` or `auto_2k` to let the model pick aspect ratio at a fixed
-     * resolution tier.
+     * The resolution of the output image, expressed as `<width>:<height>`. Use
+     * `auto_1k` or `auto_2k` to let the model pick aspect ratio at a fixed resolution
+     * tier.
      */
     ratio:
       | '1024:1024'
@@ -626,41 +525,27 @@ export declare namespace TextToImageCreateParams {
       | 'auto_2k';
 
     /**
-     * Body param: When true, enable live web search so the model can use current
-     * brand, trend, or event context. Default false for deterministic output.
+     * When true, enable live web search so the model can use current brand, trend, or
+     * event context. Default false for deterministic output.
      */
     grounding?: boolean;
 
     /**
-     * Body param: The number of images to generate. Increasing this number will affect
-     * the number of credits consumed by the generation.
+     * The number of images to generate. Increasing this number will affect the number
+     * of credits consumed by the generation.
      */
     outputCount?: number;
 
     /**
-     * Body param: The file format of the output image. Defaults to png.
+     * The file format of the output image. Defaults to png.
      */
     outputFormat?: 'png' | 'jpeg';
 
     /**
-     * Body param: An array of reference images for multi-image fusion and interactive
-     * editing. Reference by upload order in prompt text (Figure 1, Figure 2, etc.).
+     * An array of reference images for multi-image fusion and interactive editing.
+     * Reference by upload order in prompt text (Figure 1, Figure 2, etc.).
      */
     referenceImages?: Array<Seedream5Pro.ReferenceImage>;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace Seedream5Pro {
@@ -675,20 +560,16 @@ export declare namespace TextToImageCreateParams {
   }
 
   export interface Seedream5Lite {
-    /**
-     * Body param
-     */
     model: 'seedream5_lite';
 
     /**
-     * Body param: A non-empty string up to 4,000 characters describing the desired
-     * image.
+     * A non-empty string up to 4,000 characters describing the desired image.
      */
     promptText: string;
 
     /**
-     * Body param: The resolution of the output image, expressed as `<width>:<height>`.
-     * Also accepts freeform sizes whose width\*height is between 3686400 and 16777216
+     * The resolution of the output image, expressed as `<width>:<height>`. Also
+     * accepts freeform sizes whose width\*height is between 3686400 and 16777216
      * pixels.
      */
     ratio:
@@ -711,41 +592,27 @@ export declare namespace TextToImageCreateParams {
       | (string & {});
 
     /**
-     * Body param: When true, enable live web search so the model can use current
-     * brand, trend, or event context. Default false for deterministic output.
+     * When true, enable live web search so the model can use current brand, trend, or
+     * event context. Default false for deterministic output.
      */
     grounding?: boolean;
 
     /**
-     * Body param: The number of images to generate. Increasing this number will affect
-     * the number of credits consumed by the generation.
+     * The number of images to generate. Increasing this number will affect the number
+     * of credits consumed by the generation.
      */
     outputCount?: number;
 
     /**
-     * Body param: The file format of the output image. Defaults to png.
+     * The file format of the output image. Defaults to png.
      */
     outputFormat?: 'png' | 'jpeg';
 
     /**
-     * Body param: An array of reference images for multi-image fusion and interactive
-     * editing. Reference by upload order in prompt text (Figure 1, Figure 2, etc.).
+     * An array of reference images for multi-image fusion and interactive editing.
+     * Reference by upload order in prompt text (Figure 1, Figure 2, etc.).
      */
     referenceImages?: Array<Seedream5Lite.ReferenceImage>;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace Seedream5Lite {
@@ -760,21 +627,17 @@ export declare namespace TextToImageCreateParams {
   }
 
   export interface GrokImagineImage2 {
-    /**
-     * Body param
-     */
     model: 'grok_imagine_image_2';
 
     /**
-     * Body param: A non-empty text prompt describing what should appear in the output
-     * image.
+     * A non-empty text prompt describing what should appear in the output image.
      */
     promptText: string;
 
     /**
-     * Body param: The resolution of the output image, expressed as `<width>:<height>`.
-     * 2K ratios cost 2 additional credits per image. Use `auto_1k` or `auto_2k` to
-     * pick a resolution tier and let the model choose the framing from the prompt.
+     * The resolution of the output image, expressed as `<width>:<height>`. 2K ratios
+     * cost 2 additional credits per image. Use `auto_1k` or `auto_2k` to pick a
+     * resolution tier and let the model choose the framing from the prompt.
      */
     ratio:
       | '1024:1024'
@@ -807,45 +670,30 @@ export declare namespace TextToImageCreateParams {
       | 'auto_2k';
 
     /**
-     * Body param: When true with exactly one reference image, edit that image directly
-     * instead of using it as a loose visual reference. With several reference images
-     * the prompt describes how they should be edited or combined. Requires at least
-     * one reference image.
+     * When true with exactly one reference image, edit that image directly instead of
+     * using it as a loose visual reference. With several reference images the prompt
+     * describes how they should be edited or combined. Requires at least one reference
+     * image.
      */
     edit?: boolean;
 
     /**
-     * Body param: The number of images to generate. Increasing this number will affect
-     * the number of credits consumed by the generation.
+     * The number of images to generate. Increasing this number will affect the number
+     * of credits consumed by the generation.
      */
     outputCount?: number;
 
     /**
-     * Body param: How much rendering effort the model spends on the output. Defaults
-     * to `medium`; `low` is faster and costs 2 fewer credits per image.
+     * How much rendering effort the model spends on the output. Defaults to `medium`;
+     * `low` is faster and costs 2 fewer credits per image.
      */
     quality?: 'low' | 'medium';
 
     /**
-     * Body param: Up to 3 images to guide the generation. Reference them from
-     * `promptText` to describe how each should be used. Each adds 1 credit to the
-     * generation.
+     * Up to 3 images to guide the generation. Reference them from `promptText` to
+     * describe how each should be used. Each adds 1 credit to the generation.
      */
     referenceImages?: Array<GrokImagineImage2.ReferenceImage>;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace GrokImagineImage2 {
@@ -860,18 +708,15 @@ export declare namespace TextToImageCreateParams {
   }
 
   export interface GeminiImage3_1FlashLite {
-    /**
-     * Body param
-     */
     model: 'gemini_image3.1_flash_lite';
 
     /**
-     * Body param: This should describe in detail what should appear in the output.
+     * This should describe in detail what should appear in the output.
      */
     promptText: string;
 
     /**
-     * Body param: The resolution of the output image.
+     * The resolution of the output image.
      */
     ratio:
       | '1024:1024'
@@ -886,32 +731,18 @@ export declare namespace TextToImageCreateParams {
       | '1584:672';
 
     /**
-     * Body param: The number of images to generate. Increasing this number will affect
-     * the number of credits consumed by the generation. Up to four images can be
-     * generated at once.
+     * The number of images to generate. Increasing this number will affect the number
+     * of credits consumed by the generation. Up to four images can be generated at
+     * once.
      */
     outputCount?: 1 | 4;
 
     /**
-     * Body param: An array of up to 14 images to be used as references for the
-     * generated image output. Up to five can pass `subject: "human"` and up to nine
-     * can pass `subject: "object"`.
+     * An array of up to 14 images to be used as references for the generated image
+     * output. Up to five can pass `subject: "human"` and up to nine can pass
+     * `subject: "object"`.
      */
     referenceImages?: Array<GeminiImage3_1FlashLite.ReferenceImage>;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace GeminiImage3_1FlashLite {
@@ -930,18 +761,15 @@ export declare namespace TextToImageCreateParams {
   }
 
   export interface GeminiImage3Pro {
-    /**
-     * Body param
-     */
     model: 'gemini_image3_pro';
 
     /**
-     * Body param: This should describe in detail what should appear in the output.
+     * This should describe in detail what should appear in the output.
      */
     promptText: string;
 
     /**
-     * Body param: The resolution of the output image.
+     * The resolution of the output image.
      */
     ratio:
       | '1344:768'
@@ -976,34 +804,20 @@ export declare namespace TextToImageCreateParams {
       | '6336:2688';
 
     /**
-     * Body param: The number of images to generate. Increasing this number will affect
-     * the number of credits consumed by the generation. Up to four images can be
-     * generated at once.
+     * The number of images to generate. Increasing this number will affect the number
+     * of credits consumed by the generation. Up to four images can be generated at
+     * once.
      */
     outputCount?: 1 | 4;
 
     /**
-     * Body param: An array of up to 14 images to be used as references for the
-     * generated image output. Up to five of those images can pass `subject: "human"`
-     * to maintain character consistency, and up to nine of those images can pass
+     * An array of up to 14 images to be used as references for the generated image
+     * output. Up to five of those images can pass `subject: "human"` to maintain
+     * character consistency, and up to nine of those images can pass
      * `subject: "object"` with high-fidelity images of objects to include in the
      * output.
      */
     referenceImages?: Array<GeminiImage3Pro.ReferenceImage>;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace GeminiImage3Pro {
@@ -1031,19 +845,16 @@ export declare namespace TextToImageCreateParams {
   }
 
   export interface GptImage2_5Flare {
-    /**
-     * Body param
-     */
     model: 'gpt_image_2_5_flare';
 
     /**
-     * Body param: A non-empty string describing the desired image.
+     * A non-empty string describing the desired image.
      */
     promptText: string;
 
     /**
-     * Body param: The resolution of the output image, expressed as `<width>:<height>`.
-     * Use `auto` to let the model choose.
+     * The resolution of the output image, expressed as `<width>:<height>`. Use `auto`
+     * to let the model choose.
      */
     ratio:
       | '2048:880'
@@ -1079,42 +890,27 @@ export declare namespace TextToImageCreateParams {
       | 'auto';
 
     /**
-     * Body param: Background treatment. Defaults to `auto`, which lets the model pick.
+     * Background treatment. Defaults to `auto`, which lets the model pick.
      */
     background?: 'opaque' | 'auto';
 
     /**
-     * Body param: The number of images to generate (1-10). Increasing this number will
-     * affect the number of credits consumed by the generation.
+     * The number of images to generate (1-10). Increasing this number will affect the
+     * number of credits consumed by the generation.
      */
     outputCount?: number;
 
     /**
-     * Body param: Rendering quality. Higher qualities consume more credits. Defaults
-     * to `high`.
+     * Rendering quality. Higher qualities consume more credits. Defaults to `high`.
      */
     quality?: 'low' | 'medium' | 'high' | 'xhigh' | 'max';
 
     /**
-     * Body param: An array of up to 16 images to be used as references for the
-     * generated image output. No two images may share the same tag. Each reference
-     * image adds 1 credit per generated image.
+     * An array of up to 16 images to be used as references for the generated image
+     * output. No two images may share the same tag. Each reference image adds 1 credit
+     * per generated image.
      */
     referenceImages?: Array<GptImage2_5Flare.ReferenceImage>;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace GptImage2_5Flare {
@@ -1138,19 +934,16 @@ export declare namespace TextToImageCreateParams {
   }
 
   export interface GptImage2_5Sunburst {
-    /**
-     * Body param
-     */
     model: 'gpt_image_2_5_sunburst';
 
     /**
-     * Body param: A non-empty string describing the desired image.
+     * A non-empty string describing the desired image.
      */
     promptText: string;
 
     /**
-     * Body param: The resolution of the output image, expressed as `<width>:<height>`.
-     * Use `auto` to let the model choose.
+     * The resolution of the output image, expressed as `<width>:<height>`. Use `auto`
+     * to let the model choose.
      */
     ratio:
       | '2048:880'
@@ -1186,43 +979,28 @@ export declare namespace TextToImageCreateParams {
       | 'auto';
 
     /**
-     * Body param: Background treatment. Defaults to `auto`, which lets the model pick.
-     * Use `transparent` to generate a PNG with an alpha-channel background.
+     * Background treatment. Defaults to `auto`, which lets the model pick. Use
+     * `transparent` to generate a PNG with an alpha-channel background.
      */
     background?: 'transparent' | 'opaque' | 'auto';
 
     /**
-     * Body param: The number of images to generate (1-10). Increasing this number will
-     * affect the number of credits consumed by the generation.
+     * The number of images to generate (1-10). Increasing this number will affect the
+     * number of credits consumed by the generation.
      */
     outputCount?: number;
 
     /**
-     * Body param: Rendering quality. Higher qualities consume more credits. Defaults
-     * to `high`.
+     * Rendering quality. Higher qualities consume more credits. Defaults to `high`.
      */
     quality?: 'low' | 'medium' | 'high' | 'xhigh' | 'max';
 
     /**
-     * Body param: An array of up to 16 images to be used as references for the
-     * generated image output. No two images may share the same tag. Each reference
-     * image adds 1 credit per generated image.
+     * An array of up to 16 images to be used as references for the generated image
+     * output. No two images may share the same tag. Each reference image adds 1 credit
+     * per generated image.
      */
     referenceImages?: Array<GptImage2_5Sunburst.ReferenceImage>;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace GptImage2_5Sunburst {
@@ -1246,20 +1024,16 @@ export declare namespace TextToImageCreateParams {
   }
 
   export interface BriaFibo1_5 {
-    /**
-     * Body param
-     */
     model: 'bria_fibo_1_5';
 
     /**
-     * Body param: A non-empty text prompt describing what should appear in the output
-     * image.
+     * A non-empty text prompt describing what should appear in the output image.
      */
     promptText: string;
 
     /**
-     * Body param: The resolution of the output image, expressed as `<width>:<height>`.
-     * 1MP sizes cost 5 credits per image and 4MP sizes 10.
+     * The resolution of the output image, expressed as `<width>:<height>`. 1MP sizes
+     * cost 5 credits per image and 4MP sizes 10.
      */
     ratio:
       | '1024:1024'
@@ -1282,35 +1056,21 @@ export declare namespace TextToImageCreateParams {
       | '2048:1152';
 
     /**
-     * Body param: The file format of the output image. Defaults to png.
+     * The file format of the output image. Defaults to png.
      */
     outputFormat?: 'png' | 'jpeg';
 
     /**
-     * Body param: Up to 1 image to guide the generation. The prompt describes how the
-     * output should build on it.
+     * Up to 1 image to guide the generation. The prompt describes how the output
+     * should build on it.
      */
     referenceImages?: Array<BriaFibo1_5.ReferenceImage>;
 
     /**
-     * Body param: If unspecified, a random number is chosen. Using the same seed with
-     * an identical request reproduces the same image.
+     * If unspecified, a random number is chosen. Using the same seed with an identical
+     * request reproduces the same image.
      */
     seed?: number;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace BriaFibo1_5 {
@@ -1325,25 +1085,22 @@ export declare namespace TextToImageCreateParams {
   }
 
   export interface BriaFiboEdit1_5 {
-    /**
-     * Body param
-     */
     model: 'bria_fibo_edit_1_5';
 
     /**
-     * Body param: An instruction describing how to edit the reference images.
+     * An instruction describing how to edit the reference images.
      */
     promptText: string;
 
     /**
-     * Body param: The file format of the output image. Defaults to png.
+     * The file format of the output image. Defaults to png.
      */
     outputFormat?: 'png' | 'jpeg';
 
     /**
-     * Body param: The resolution of the output image, expressed as `<width>:<height>`.
-     * Omit it or use `auto` to keep the framing of the first reference image. Choosing
-     * a size requires at least 2 reference images; a single image always keeps its own
+     * The resolution of the output image, expressed as `<width>:<height>`. Omit it or
+     * use `auto` to keep the framing of the first reference image. Choosing a size
+     * requires at least 2 reference images; a single image always keeps its own
      * framing.
      */
     ratio?:
@@ -1359,30 +1116,16 @@ export declare namespace TextToImageCreateParams {
       | 'auto';
 
     /**
-     * Body param: 1 to 4 images to edit. With several, the instruction describes how
-     * to combine them.
+     * 1 to 4 images to edit. With several, the instruction describes how to combine
+     * them.
      */
     referenceImages?: Array<BriaFiboEdit1_5.ReferenceImage>;
 
     /**
-     * Body param: If unspecified, a random number is chosen. Using the same seed with
-     * an identical request reproduces the same image.
+     * If unspecified, a random number is chosen. Using the same seed with an identical
+     * request reproduces the same image.
      */
     seed?: number;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace BriaFiboEdit1_5 {
@@ -1397,30 +1140,27 @@ export declare namespace TextToImageCreateParams {
   }
 
   export interface Ideogram4_0 {
-    /**
-     * Body param
-     */
     model: 'ideogram_4_0';
 
     /**
-     * Body param: Describe the image to generate, or how to remix the reference image.
+     * Describe the image to generate, or how to remix the reference image.
      */
     promptText: string;
 
     /**
-     * Body param: The number of images to generate. Increasing this number will affect
-     * the number of credits consumed by the generation.
+     * The number of images to generate. Increasing this number will affect the number
+     * of credits consumed by the generation.
      */
     outputCount?: number;
 
     /**
-     * Body param: How much rendering effort the model spends on each image. `low`
-     * costs 4 credits per image, `medium` 7 and `high` 11.
+     * How much rendering effort the model spends on each image. `low` costs 4 credits
+     * per image, `medium` 7 and `high` 11.
      */
     quality?: 'low' | 'medium' | 'high';
 
     /**
-     * Body param: The resolution of the output image, expressed as `<width>:<height>`.
+     * The resolution of the output image, expressed as `<width>:<height>`.
      */
     ratio?:
       | '2048:2048'
@@ -1434,24 +1174,9 @@ export declare namespace TextToImageCreateParams {
       | '1280:3072';
 
     /**
-     * Body param: An image to remix. The prompt describes how the output should differ
-     * from it.
+     * An image to remix. The prompt describes how the output should differ from it.
      */
     referenceImages?: Array<Ideogram4_0.ReferenceImage>;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace Ideogram4_0 {
@@ -1466,61 +1191,57 @@ export declare namespace TextToImageCreateParams {
   }
 
   export interface Ideogram4_5 {
-    /**
-     * Body param
-     */
     model: 'ideogram_4_5';
 
     /**
-     * Body param: Describe the image to generate, or the changes to make to the
-     * reference images.
+     * Describe the image to generate, or the changes to make to the reference images.
      */
     promptText: string;
 
     /**
-     * Body param: Precise-edit region: none, auto (requires maskUri), or
-     * top,left,bottom,right in original-image pixels, with exclusive maximum edges. A
-     * manual region preserves full resolution and all pixels outside it. All masked
-     * edit pixels must lie inside a manual region. Auto-fit may fall back to
-     * downscaling if the mask is too large. Requires edit-window access.
+     * Precise-edit region: none, auto (requires maskUri), or top,left,bottom,right in
+     * original-image pixels, with exclusive maximum edges. A manual region preserves
+     * full resolution and all pixels outside it. All masked edit pixels must lie
+     * inside a manual region. Auto-fit may fall back to downscaling if the mask is too
+     * large. Requires edit-window access.
      */
     contextWindow?: string;
 
     /**
-     * Body param: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
      * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
      * [our docs](/assets/inputs#images) on image inputs for more information.
      */
     maskUri?: string;
 
     /**
-     * Body param: The number of images to generate. Increasing this number will affect
-     * the number of credits consumed by the generation.
+     * The number of images to generate. Increasing this number will affect the number
+     * of credits consumed by the generation.
      */
     outputCount?: number;
 
     /**
-     * Body param: When true, edit the first reference image. Requires at least one
-     * reference image. Whole-image edits above 4,194,304 pixels are scaled down. Set
+     * When true, edit the first reference image. Requires at least one reference
+     * image. Whole-image edits above 4,194,304 pixels are scaled down. Set
      * contextWindow to edit a region at full source resolution; auto-fit may still
      * scale down if the mask cannot fit.
      */
     preciseEdit?: boolean;
 
     /**
-     * Body param: How much rendering effort the model spends on each image. Defaults
-     * to `medium` (8 credits per image) when generating from reference images and
-     * `high` (25 credits) otherwise, including `preciseEdit`. `low` costs 4 credits
-     * and `very_low` 1; `very_low` requires reference images and is not available with
+     * How much rendering effort the model spends on each image. Defaults to `medium`
+     * (8 credits per image) when generating from reference images and `high` (25
+     * credits) otherwise, including `preciseEdit`. `low` costs 4 credits and
+     * `very_low` 1; `very_low` requires reference images and is not available with
      * `preciseEdit`.
      */
     quality?: 'very_low' | 'low' | 'medium' | 'high';
 
     /**
-     * Body param: The resolution of the output image, expressed as `<width>:<height>`.
-     * Omit it or use `auto` to let the model choose. With reference images, widescreen
-     * 1K sizes are `1024:576`, `576:1024`, `1408:704`, `704:1408` instead of
-     * `1280:720`, `720:1280`, `1440:720`, `720:1440`. Not available with `maskUri` or
+     * The resolution of the output image, expressed as `<width>:<height>`. Omit it or
+     * use `auto` to let the model choose. With reference images, widescreen 1K sizes
+     * are `1024:576`, `576:1024`, `1408:704`, `704:1408` instead of `1280:720`,
+     * `720:1280`, `1440:720`, `720:1440`. Not available with `maskUri` or
      * `preciseEdit`, where the source and edit window determine output dimensions.
      */
     ratio?:
@@ -1553,25 +1274,10 @@ export declare namespace TextToImageCreateParams {
       | 'auto';
 
     /**
-     * Body param: Up to 5 images to guide the generation. With `maskUri` or
-     * `preciseEdit`, the first image is the one being edited and the rest are
-     * references.
+     * Up to 5 images to guide the generation. With `maskUri` or `preciseEdit`, the
+     * first image is the one being edited and the rest are references.
      */
     referenceImages?: Array<Ideogram4_5.ReferenceImage>;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace Ideogram4_5 {
@@ -1586,19 +1292,16 @@ export declare namespace TextToImageCreateParams {
   }
 
   export interface Seedream5Flash {
-    /**
-     * Body param
-     */
     model: 'seedream5_flash';
 
     /**
-     * Body param: A description of the image you want to generate.
+     * A description of the image you want to generate.
      */
     promptText: string;
 
     /**
-     * Body param: The resolution of the output image, expressed as `<width>:<height>`.
-     * Use `auto_1k` or `auto_2k` to let the model pick the aspect ratio at a fixed
+     * The resolution of the output image, expressed as `<width>:<height>`. Use
+     * `auto_1k` or `auto_2k` to let the model pick the aspect ratio at a fixed
      * resolution tier.
      */
     ratio:
@@ -1622,35 +1325,21 @@ export declare namespace TextToImageCreateParams {
       | 'auto_2k';
 
     /**
-     * Body param: The number of images to generate. Increasing this number will affect
-     * the number of credits consumed by the generation.
+     * The number of images to generate. Increasing this number will affect the number
+     * of credits consumed by the generation.
      */
     outputCount?: number;
 
     /**
-     * Body param: The file format of the output image. Defaults to png.
+     * The file format of the output image. Defaults to png.
      */
     outputFormat?: 'png' | 'jpeg';
 
     /**
-     * Body param: Images to edit or combine. Refer to them in the prompt by upload
-     * order (Figure 1, Figure 2, and so on).
+     * Images to edit or combine. Refer to them in the prompt by upload order (Figure
+     * 1, Figure 2, and so on).
      */
     referenceImages?: Array<Seedream5Flash.ReferenceImage>;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace Seedream5Flash {
@@ -1665,18 +1354,15 @@ export declare namespace TextToImageCreateParams {
   }
 
   export interface NanoBanana2_1 {
-    /**
-     * Body param
-     */
     model: 'nano_banana_2.1';
 
     /**
-     * Body param: A description of the image you want to generate.
+     * A description of the image you want to generate.
      */
     promptText: string;
 
     /**
-     * Body param: The resolution of the output image.
+     * The resolution of the output image.
      */
     ratio:
       | '1024:1024'
@@ -1723,36 +1409,21 @@ export declare namespace TextToImageCreateParams {
       | '11712:1408';
 
     /**
-     * Body param: The number of images to generate. Increasing this number will affect
-     * the number of credits consumed by the generation.
+     * The number of images to generate. Increasing this number will affect the number
+     * of credits consumed by the generation.
      */
     outputCount?: number;
 
     /**
-     * Body param: Up to 14 images to edit, combine, or use as references for the
-     * output.
+     * Up to 14 images to edit, combine, or use as references for the output.
      */
     referenceImages?: Array<NanoBanana2_1.ReferenceImage>;
 
     /**
-     * Body param: How much the model reasons about the prompt before generating.
-     * Defaults to medium.
+     * How much the model reasons about the prompt before generating. Defaults to
+     * medium.
      */
     thinkingLevel?: 'minimal' | 'medium' | 'high';
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace NanoBanana2_1 {
@@ -1774,18 +1445,15 @@ export declare namespace TextToImageCreateParams {
   }
 
   export interface RecraftV4_1Flash {
-    /**
-     * Body param
-     */
     model: 'recraft_v4_1_flash';
 
     /**
-     * Body param: A description of the image you want to generate.
+     * A description of the image you want to generate.
      */
     promptText: string;
 
     /**
-     * Body param: The output dimensions, expressed as `<width>:<height>`.
+     * The output dimensions, expressed as `<width>:<height>`.
      */
     ratio:
       | '1024:1024'
@@ -1804,134 +1472,80 @@ export declare namespace TextToImageCreateParams {
       | '768:1344';
 
     /**
-     * Body param: A preferred background color as a six-digit hex string.
+     * A preferred background color as a six-digit hex string.
      */
     backgroundColor?: string;
 
     /**
-     * Body param: Preferred colors as six-digit hex strings.
+     * Preferred colors as six-digit hex strings.
      */
     colors?: Array<string>;
 
     /**
-     * Body param: The number of images to generate. Each image is billed separately.
+     * The number of images to generate. Each image is billed separately.
      */
     outputCount?: number;
 
     /**
-     * Body param: The output file format. Defaults to webp.
+     * The output file format. Defaults to webp.
      */
     outputFormat?: 'webp' | 'png';
 
-    /**
-     * Body param
-     */
     seed?: number;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export interface RecraftV4_1Vector {
-    /**
-     * Body param
-     */
     model: 'recraft_v4_1_vector';
 
     /**
-     * Body param: Describe the vector illustration you want to generate.
+     * Describe the vector illustration you want to generate.
      */
     promptText: string;
 
     /**
-     * Body param: The preferred background color as a six-digit hex value. This is a
-     * generation hint, not an exact color constraint; the generated background may use
-     * a different shade.
+     * The preferred background color as a six-digit hex value. This is a generation
+     * hint, not an exact color constraint; the generated background may use a
+     * different shade.
      */
     backgroundColor?: string;
 
     /**
-     * Body param: Preferred colors as six-digit hex values, such as #FF8800.
+     * Preferred colors as six-digit hex values, such as #FF8800.
      */
     colors?: Array<string>;
 
     /**
-     * Body param: The width and height declared by the output SVG. Vector artwork can
-     * be scaled after generation.
+     * The width and height declared by the output SVG. Vector artwork can be scaled
+     * after generation.
      */
     ratio?: '1024:1024' | '1216:896' | '896:1216' | '1344:768' | '768:1344';
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export interface IdeogramVector {
-    /**
-     * Body param
-     */
     model: 'ideogram_vector';
 
     /**
-     * Body param: Describe the vector illustration you want to generate.
+     * Describe the vector illustration you want to generate.
      */
     promptText: string;
 
     /**
-     * Body param: Rendering quality. Higher quality costs more credits.
+     * Rendering quality. Higher quality costs more credits.
      */
     quality?: 'low' | 'medium' | 'high';
 
     /**
-     * Body param: Let the model choose the framing of the SVG.
+     * Let the model choose the framing of the SVG.
      */
     ratio?: 'auto';
 
     /**
-     * Body param: Images to guide the illustration. To trace a source image, use
-     * image_to_vector instead.
+     * Images to guide the illustration. To trace a source image, use image_to_vector
+     * instead.
      */
     referenceImages?: Array<IdeogramVector.ReferenceImage>;
 
-    /**
-     * Body param
-     */
     seed?: number;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace IdeogramVector {
@@ -1946,19 +1560,16 @@ export declare namespace TextToImageCreateParams {
   }
 
   export interface GptImage2_6Sunburst {
-    /**
-     * Body param
-     */
     model: 'gpt_image_2_6_sunburst';
 
     /**
-     * Body param: A non-empty string describing the desired image.
+     * A non-empty string describing the desired image.
      */
     promptText: string;
 
     /**
-     * Body param: The resolution of the output image, expressed as `<width>:<height>`.
-     * Use `auto` to let the model choose.
+     * The resolution of the output image, expressed as `<width>:<height>`. Use `auto`
+     * to let the model choose.
      */
     ratio:
       | '2048:880'
@@ -1994,67 +1605,51 @@ export declare namespace TextToImageCreateParams {
       | 'auto';
 
     /**
-     * Body param: Background treatment. Defaults to `auto`, which lets the model pick.
-     * Use `transparent` for an alpha-channel background, which `jpeg` output does not
+     * Background treatment. Defaults to `auto`, which lets the model pick. Use
+     * `transparent` for an alpha-channel background, which `jpeg` output does not
      * support.
      */
     background?: 'transparent' | 'opaque' | 'auto';
 
     /**
-     * Body param: Number of animation frames. Only supported for GIF output.
+     * Number of animation frames. Only supported for GIF output.
      */
     frameCount?: number;
 
     /**
-     * Body param: Duration of each animation frame in milliseconds. Only supported for
-     * GIF output.
+     * Duration of each animation frame in milliseconds. Only supported for GIF output.
      */
     frameDurationMs?: number;
 
     /**
-     * Body param: The number of images to generate (1-10). Increasing this number will
-     * affect the number of credits consumed by the generation.
+     * The number of images to generate (1-10). Increasing this number will affect the
+     * number of credits consumed by the generation.
      */
     outputCount?: number;
 
     /**
-     * Body param: Output format. Defaults to PNG. JPEG and WebP produce smaller files;
-     * JPEG cannot have a transparent background. GIF and SVG cannot use reference
-     * images; GIF requires ratio auto.
+     * Output format. Defaults to PNG. JPEG and WebP produce smaller files; JPEG cannot
+     * have a transparent background. GIF and SVG cannot use reference images; GIF
+     * requires ratio auto.
      */
     outputFormat?: 'png' | 'jpeg' | 'webp' | 'gif' | 'svg';
 
     /**
-     * Body param: Rendering quality. Higher qualities consume more credits. Defaults
-     * to `high`.
+     * Rendering quality. Higher qualities consume more credits. Defaults to `high`.
      */
     quality?: 'low' | 'medium' | 'high';
 
     /**
-     * Body param: How much reasoning to use before rendering. Defaults to `high`.
+     * How much reasoning to use before rendering. Defaults to `high`.
      */
     reasoningEffort?: 'low' | 'medium' | 'high';
 
     /**
-     * Body param: An array of up to 16 images to be used as references for the
-     * generated image output. No two images may share the same tag. Each reference
-     * image adds 1 credit per generated image.
+     * An array of up to 16 images to be used as references for the generated image
+     * output. No two images may share the same tag. Each reference image adds 1 credit
+     * per generated image.
      */
     referenceImages?: Array<GptImage2_6Sunburst.ReferenceImage>;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace GptImage2_6Sunburst {
@@ -2078,19 +1673,16 @@ export declare namespace TextToImageCreateParams {
   }
 
   export interface GptImage2_6Flare {
-    /**
-     * Body param
-     */
     model: 'gpt_image_2_6_flare';
 
     /**
-     * Body param: A non-empty string describing the desired image.
+     * A non-empty string describing the desired image.
      */
     promptText: string;
 
     /**
-     * Body param: The resolution of the output image, expressed as `<width>:<height>`.
-     * Use `auto` to let the model choose.
+     * The resolution of the output image, expressed as `<width>:<height>`. Use `auto`
+     * to let the model choose.
      */
     ratio:
       | '2048:880'
@@ -2126,67 +1718,51 @@ export declare namespace TextToImageCreateParams {
       | 'auto';
 
     /**
-     * Body param: Background treatment. Defaults to `auto`, which lets the model pick.
-     * Use `transparent` for an alpha-channel background, which `jpeg` output does not
+     * Background treatment. Defaults to `auto`, which lets the model pick. Use
+     * `transparent` for an alpha-channel background, which `jpeg` output does not
      * support.
      */
     background?: 'transparent' | 'opaque' | 'auto';
 
     /**
-     * Body param: Number of animation frames. Only supported for GIF output.
+     * Number of animation frames. Only supported for GIF output.
      */
     frameCount?: number;
 
     /**
-     * Body param: Duration of each animation frame in milliseconds. Only supported for
-     * GIF output.
+     * Duration of each animation frame in milliseconds. Only supported for GIF output.
      */
     frameDurationMs?: number;
 
     /**
-     * Body param: The number of images to generate (1-10). Increasing this number will
-     * affect the number of credits consumed by the generation.
+     * The number of images to generate (1-10). Increasing this number will affect the
+     * number of credits consumed by the generation.
      */
     outputCount?: number;
 
     /**
-     * Body param: Output format. Defaults to PNG. JPEG and WebP produce smaller files;
-     * JPEG cannot have a transparent background. GIF and SVG cannot use reference
-     * images; GIF requires ratio auto.
+     * Output format. Defaults to PNG. JPEG and WebP produce smaller files; JPEG cannot
+     * have a transparent background. GIF and SVG cannot use reference images; GIF
+     * requires ratio auto.
      */
     outputFormat?: 'png' | 'jpeg' | 'webp' | 'gif' | 'svg';
 
     /**
-     * Body param: Rendering quality. Higher qualities consume more credits. Defaults
-     * to `high`.
+     * Rendering quality. Higher qualities consume more credits. Defaults to `high`.
      */
     quality?: 'low' | 'medium' | 'high';
 
     /**
-     * Body param: How much reasoning to use before rendering. Defaults to `high`.
+     * How much reasoning to use before rendering. Defaults to `high`.
      */
     reasoningEffort?: 'low' | 'medium' | 'high';
 
     /**
-     * Body param: An array of up to 16 images to be used as references for the
-     * generated image output. No two images may share the same tag. Each reference
-     * image adds 1 credit per generated image.
+     * An array of up to 16 images to be used as references for the generated image
+     * output. No two images may share the same tag. Each reference image adds 1 credit
+     * per generated image.
      */
     referenceImages?: Array<GptImage2_6Flare.ReferenceImage>;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace GptImage2_6Flare {
@@ -2210,54 +1786,37 @@ export declare namespace TextToImageCreateParams {
   }
 
   export interface Seedream5ProLayers {
-    /**
-     * Body param
-     */
     model: 'seedream5_pro_layers';
 
     /**
-     * Body param: The image to split into editable layers. Layer ordering and
-     * positioning are returned in the completed task’s layers field.
+     * The image to split into editable layers. Layer ordering and positioning are
+     * returned in the completed task’s layers field.
      */
     referenceImages: Array<Seedream5ProLayers.ReferenceImage>;
 
     /**
-     * Body param: Prompt optimization: standard prioritizes quality; fast reduces
-     * generation time. Defaults to standard.
+     * Prompt optimization: standard prioritizes quality; fast reduces generation time.
+     * Defaults to standard.
      */
     optimizePromptMode?: 'standard' | 'fast';
 
     /**
-     * Body param: Base image format; defaults to png. Separated layers always use PNG
-     * with transparency.
+     * Base image format; defaults to png. Separated layers always use PNG with
+     * transparency.
      */
     outputFormat?: 'png' | 'jpeg';
 
     /**
-     * Body param: Optional instructions describing which elements to separate. Omit to
-     * split the image automatically.
+     * Optional instructions describing which elements to separate. Omit to split the
+     * image automatically.
      */
     promptText?: string;
 
     /**
-     * Body param: Output resolution tier. Defaults to auto, which adapts to the input
-     * image. The base image and layers preserve their respective aspect ratios.
+     * Output resolution tier. Defaults to auto, which adapts to the input image. The
+     * base image and layers preserve their respective aspect ratios.
      */
     resolution?: 'auto' | '1k' | '1.5k' | '2k';
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace Seedream5ProLayers {
@@ -2272,20 +1831,17 @@ export declare namespace TextToImageCreateParams {
   }
 
   export interface Seedream5_5 {
-    /**
-     * Body param
-     */
     model: 'seedream5.5';
 
     /**
-     * Body param: A description of the image you want to generate.
+     * A description of the image you want to generate.
      */
     promptText: string;
 
     /**
-     * Body param: The resolution of the output image, expressed as `<width>:<height>`.
-     * Use `auto_1k`, `auto_1.5k` or `auto_2k` to let the model pick the aspect ratio
-     * at a fixed resolution tier.
+     * The resolution of the output image, expressed as `<width>:<height>`. Use
+     * `auto_1k`, `auto_1.5k` or `auto_2k` to let the model pick the aspect ratio at a
+     * fixed resolution tier.
      */
     ratio:
       | '1024:1024'
@@ -2317,42 +1873,28 @@ export declare namespace TextToImageCreateParams {
       | 'auto_2k';
 
     /**
-     * Body param: Whether the image has a transparent or an opaque background. A
-     * transparent background needs the png output format. Omit to let the model decide
-     * from the prompt.
+     * Whether the image has a transparent or an opaque background. A transparent
+     * background needs the png output format. Omit to let the model decide from the
+     * prompt.
      */
     background?: 'transparent' | 'opaque';
 
     /**
-     * Body param: The number of images to generate. Increasing this number will affect
-     * the number of credits consumed by the generation.
+     * The number of images to generate. Increasing this number will affect the number
+     * of credits consumed by the generation.
      */
     outputCount?: number;
 
     /**
-     * Body param: The file format of the output image. Defaults to png.
+     * The file format of the output image. Defaults to png.
      */
     outputFormat?: 'png' | 'jpeg';
 
     /**
-     * Body param: Images to edit or combine. Refer to them in the prompt by upload
-     * order (Figure 1, Figure 2, and so on).
+     * Images to edit or combine. Refer to them in the prompt by upload order (Figure
+     * 1, Figure 2, and so on).
      */
     referenceImages?: Array<Seedream5_5.ReferenceImage>;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace Seedream5_5 {
@@ -2367,54 +1909,37 @@ export declare namespace TextToImageCreateParams {
   }
 
   export interface Seedream5_5Layers {
-    /**
-     * Body param
-     */
     model: 'seedream5.5_layers';
 
     /**
-     * Body param: The image to split into editable layers. Layer ordering and
-     * positioning are returned in the completed task’s layers field.
+     * The image to split into editable layers. Layer ordering and positioning are
+     * returned in the completed task’s layers field.
      */
     referenceImages: Array<Seedream5_5Layers.ReferenceImage>;
 
     /**
-     * Body param: The most images the task may return, counting the base image. Each
-     * returned image is billed separately. Defaults to 30.
+     * The most images the task may return, counting the base image. Each returned
+     * image is billed separately. Defaults to 30.
      */
     maxImages?: number;
 
     /**
-     * Body param: Base image format; defaults to png. Separated layers always use PNG
-     * with transparency.
+     * Base image format; defaults to png. Separated layers always use PNG with
+     * transparency.
      */
     outputFormat?: 'png' | 'jpeg';
 
     /**
-     * Body param: Optional instructions describing which elements to separate. Omit to
-     * split the image automatically.
+     * Optional instructions describing which elements to separate. Omit to split the
+     * image automatically.
      */
     promptText?: string;
 
     /**
-     * Body param: Output resolution tier. Defaults to auto, which adapts to the input
-     * image. The base image and layers preserve their respective aspect ratios.
+     * Output resolution tier. Defaults to auto, which adapts to the input image. The
+     * base image and layers preserve their respective aspect ratios.
      */
     resolution?: 'auto' | '1k' | '1.5k' | '2k';
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace Seedream5_5Layers {
@@ -2429,21 +1954,17 @@ export declare namespace TextToImageCreateParams {
   }
 
   export interface MinimaxH3Image {
-    /**
-     * Body param
-     */
     model: 'minimax_h3_image';
 
     /**
-     * Body param: A non-empty text prompt describing what should appear in the output
-     * image.
+     * A non-empty text prompt describing what should appear in the output image.
      */
     promptText: string;
 
     /**
-     * Body param: The resolution of the output image, expressed as `<width>:<height>`.
-     * 4K ratios cost more credits per image than 1K and 2K. Use `auto_1k`, `auto_2k`
-     * or `auto_4k` to pick a resolution tier and let the model choose the framing from
+     * The resolution of the output image, expressed as `<width>:<height>`. 4K ratios
+     * cost more credits per image than 1K and 2K. Use `auto_1k`, `auto_2k` or
+     * `auto_4k` to pick a resolution tier and let the model choose the framing from
      * the prompt.
      */
     ratio:
@@ -2497,37 +2018,23 @@ export declare namespace TextToImageCreateParams {
       | 'auto_4k';
 
     /**
-     * Body param: When true, generate with the faster MiniMax H3 Image Highspeed
-     * model, which costs more credits per image. Defaults to false.
+     * When true, generate with the faster MiniMax H3 Image Highspeed model, which
+     * costs more credits per image. Defaults to false.
      */
     highspeed?: boolean;
 
     /**
-     * Body param: The number of images to generate. Increasing this number will affect
-     * the number of credits consumed by the generation.
+     * The number of images to generate. Increasing this number will affect the number
+     * of credits consumed by the generation.
      */
     outputCount?: number;
 
     /**
-     * Body param: Up to 16 images to edit or combine. Refer to them in the prompt by
-     * upload order (image 1, image 2, and so on). Each reference image adds to the
-     * credits per image.
+     * Up to 16 images to edit or combine. Refer to them in the prompt by upload order
+     * (image 1, image 2, and so on). Each reference image adds to the credits per
+     * image.
      */
     referenceImages?: Array<MinimaxH3Image.ReferenceImage>;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace MinimaxH3Image {
@@ -2542,18 +2049,15 @@ export declare namespace TextToImageCreateParams {
   }
 
   export interface Gemini2_5Flash {
-    /**
-     * Body param
-     */
     model: 'gemini_2.5_flash';
 
     /**
-     * Body param: This should describe in detail what should appear in the output.
+     * This should describe in detail what should appear in the output.
      */
     promptText: string;
 
     /**
-     * Body param: The resolution of the output image.
+     * The resolution of the output image.
      */
     ratio:
       | '1344:768'
@@ -2568,24 +2072,10 @@ export declare namespace TextToImageCreateParams {
       | '1152:896';
 
     /**
-     * Body param: An array of up to three images to be used as references for the
-     * generated image output.
+     * An array of up to three images to be used as references for the generated image
+     * output.
      */
     referenceImages?: Array<Gemini2_5Flash.ReferenceImage>;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace Gemini2_5Flash {

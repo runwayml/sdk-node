@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/polling';
 
@@ -32,19 +31,11 @@ export class VideoToHdr extends APIResource {
    * ```
    */
   create(
-    params: VideoToHdrCreateParams,
+    body: VideoToHdrCreateParams,
     options?: RequestOptions,
   ): APIPromiseWithAwaitableTask<VideoToHdrCreateResponse> {
-    const { 'X-Runway-Tags': xRunwayTags, ...body } = params;
     return wrapAsWaitableResource<VideoToHdrCreateResponse>(this._client)(
-      this._client.post('/v1/video_to_hdr', {
-        body,
-        ...options,
-        headers: buildHeaders([
-          { ...(xRunwayTags != null ? { 'X-Runway-Tags': xRunwayTags } : undefined) },
-          options?.headers,
-        ]),
-      }),
+      this._client.post('/v1/video_to_hdr', { body, ...options }),
     );
   }
 }
@@ -76,23 +67,20 @@ export namespace VideoToHdrCreateResponse {
 }
 
 export interface VideoToHdrCreateParams {
-  /**
-   * Body param
-   */
   model: 'ruby';
 
   /**
-   * Body param: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+   * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
    * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
    * [our docs](/assets/inputs#videos) on video inputs for more information.
    */
   videoUri: string;
 
   /**
-   * Body param: The HDR delivery profile of the output. `hdr10` (default) returns an
-   * HEVC Main 10, BT.2020 + PQ .mp4; `hlg` returns an HEVC Main 10, BT.2020 + HLG
-   * .mp4; `hdr_prores` returns a BT.2020 + PQ ProRes .mov editorial mezzanine, whose
-   * tier is selectable with `proresProfile`; `hdr_exr_sequence` returns a .zip of
+   * The HDR delivery profile of the output. `hdr10` (default) returns an HEVC Main
+   * 10, BT.2020 + PQ .mp4; `hlg` returns an HEVC Main 10, BT.2020 + HLG .mp4;
+   * `hdr_prores` returns a BT.2020 + PQ ProRes .mov editorial mezzanine, whose tier
+   * is selectable with `proresProfile`; `hdr_exr_sequence` returns a .zip of
    * half-float OpenEXR frames holding the HDR signal as linear BT.2020 display
    * light, 1.0 = 100 nits, ready to composite; `hdr_exr_acescg_sequence_1_3` returns
    * a scene-referred ACEScg sequence with VFX frame naming (frame.0001.exr): the
@@ -121,26 +109,12 @@ export interface VideoToHdrCreateParams {
     | 'hdr_exr_acescg_sequence_2_0';
 
   /**
-   * Body param: The ProRes tier of the `hdr_prores` mezzanine. Only valid when
-   * `outputFormat` is `hdr_prores`. Defaults to `422 HQ`. A source with an alpha
-   * channel is always delivered as `4444`, the only tier with an alpha plane,
-   * whatever tier is requested.
+   * The ProRes tier of the `hdr_prores` mezzanine. Only valid when `outputFormat` is
+   * `hdr_prores`. Defaults to `422 HQ`. A source with an alpha channel is always
+   * delivered as `4444`, the only tier with an alpha plane, whatever tier is
+   * requested.
    */
   proresProfile?: '422' | '4444' | '422 HQ';
-
-  /**
-   * Header param: Comma-separated tags to attribute this generation's credit usage
-   * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-   * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-   * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-   * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-   * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-   * every generation they start.
-   *
-   * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-   * in them.**
-   */
-  'X-Runway-Tags'?: string;
 }
 
 export declare namespace VideoToHdr {

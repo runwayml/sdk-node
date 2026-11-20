@@ -32,7 +32,6 @@ describe('resource textToImage', () => {
       referenceImages: [{ uri: 'https://example.com/image.jpg', tag: 'tag' }],
       contentModeration: { publicFigureThreshold: 'auto' },
       seed: 0,
-      'X-Runway-Tags': 'team:growth,env:prod,campaign-q4',
     });
   });
 });

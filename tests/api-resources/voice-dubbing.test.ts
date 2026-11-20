@@ -31,7 +31,6 @@ describe('resource voiceDubbing', () => {
       disableVoiceCloning: true,
       dropBackgroundAudio: true,
       numSpeakers: 1,
-      'X-Runway-Tags': 'team:growth,env:prod,campaign-q4',
     });
   });
 });

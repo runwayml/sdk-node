@@ -27,7 +27,6 @@ describe('resource voices', () => {
       from: { audio: 'https://example.com/audio.mp3', type: 'audio' },
       name: 'x',
       description: 'x',
-      'X-Runway-Tags': 'team:growth,env:prod,campaign-q4',
     });
   });
 

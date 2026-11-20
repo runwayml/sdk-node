@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/polling';
 
@@ -21,19 +20,11 @@ export class VideoToVideo extends APIResource {
    * ```
    */
   create(
-    params: VideoToVideoCreateParams,
+    body: VideoToVideoCreateParams,
     options?: RequestOptions,
   ): APIPromiseWithAwaitableTask<VideoToVideoCreateResponse> {
-    const { 'X-Runway-Tags': xRunwayTags, ...body } = params;
     return wrapAsWaitableResource<VideoToVideoCreateResponse>(this._client)(
-      this._client.post('/v1/video_to_video', {
-        body,
-        ...options,
-        headers: buildHeaders([
-          { ...(xRunwayTags != null ? { 'X-Runway-Tags': xRunwayTags } : undefined) },
-          options?.headers,
-        ]),
-      }),
+      this._client.post('/v1/video_to_video', { body, ...options }),
     );
   }
 }
@@ -85,85 +76,67 @@ export type VideoToVideoCreateParams =
 
 export declare namespace VideoToVideoCreateParams {
   export interface Variant0 {
-    /**
-     * Body param
-     */
     model: 'aleph2';
 
     /**
-     * Body param: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
      * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
      * [our docs](/assets/inputs#videos) on video inputs for more information.
      */
     videoUri: string;
 
     /**
-     * Body param: Settings that affect the behavior of the content moderation system.
+     * Settings that affect the behavior of the content moderation system.
      */
     contentModeration?: Variant0.ContentModeration;
 
     /**
-     * Body param: Timed guidance images placed at specific points in the input video.
-     * Up to 5 keyframes.
+     * Timed guidance images placed at specific points in the input video. Up to 5
+     * keyframes.
      */
     keyframes?: Array<Variant0.UnionMember0 | Variant0.UnionMember1>;
 
     /**
-     * Body param: The container/encoding of the output. `mp4` (default) returns an
-     * H.264 .mp4. `prores` returns a ProRes .mov. `png_sequence` returns a .zip of PNG
-     * frames. `sdr_rec709_10bit` returns a 10-bit Rec.709 HEVC .mp4 for SDR grading
-     * pipelines. Non-mp4 formats incur an additional surcharge: 5 credits per second
-     * for `prores` and `png_sequence`, and 20 credits per second for
-     * `sdr_rec709_10bit` — 40 credits per second when the output is larger than 4
-     * megapixels — includes anything larger than 1440p, up through 4K.
+     * The container/encoding of the output. `mp4` (default) returns an H.264 .mp4.
+     * `prores` returns a ProRes .mov. `png_sequence` returns a .zip of PNG frames.
+     * `sdr_rec709_10bit` returns a 10-bit Rec.709 HEVC .mp4 for SDR grading pipelines.
+     * Non-mp4 formats incur an additional surcharge: 5 credits per second for `prores`
+     * and `png_sequence`, and 20 credits per second for `sdr_rec709_10bit` — 40
+     * credits per second when the output is larger than 4 megapixels — includes
+     * anything larger than 1440p, up through 4K.
      */
     outputFormat?: 'mp4' | 'prores' | 'png_sequence' | 'sdr_rec709_10bit';
 
     /**
-     * Body param: A non-empty and optional string describing what should appear in the
-     * output.
+     * A non-empty and optional string describing what should appear in the output.
      */
     promptText?: string;
 
     /**
-     * Body param: The ProRes profile to use. Only valid when `outputFormat` is
-     * `prores`. Defaults to `4444`. Note: generated content contains no transparency —
-     * the alpha channel in `4444` / `4444 XQ` outputs is present but fully opaque;
-     * choose these tiers for 12-bit 4:4:4 color fidelity, not for mattes.
+     * The ProRes profile to use. Only valid when `outputFormat` is `prores`. Defaults
+     * to `4444`. Note: generated content contains no transparency — the alpha channel
+     * in `4444` / `4444 XQ` outputs is present but fully opaque; choose these tiers
+     * for 12-bit 4:4:4 color fidelity, not for mattes.
      */
     proresProfile?: '422' | '4444' | '422 Proxy' | '422 LT' | '422 HQ' | '4444 XQ';
 
     /**
-     * @deprecated Body param
+     * @deprecated
      */
     ratio?: string;
 
     /**
-     * Body param: If unspecified, a random number is chosen. Varying the seed integer
-     * is a way to get different results for the same other request parameters. Using
-     * the same seed integer for an identical request will produce similar results.
+     * If unspecified, a random number is chosen. Varying the seed integer is a way to
+     * get different results for the same other request parameters. Using the same seed
+     * integer for an identical request will produce similar results.
      */
     seed?: number;
 
     /**
-     * Body param: Target aspect ratio for expand/outpaint. Letterboxes the input video
-     * and keyframes before generation.
+     * Target aspect ratio for expand/outpaint. Letterboxes the input video and
+     * keyframes before generation.
      */
     targetAspectRatio?: '16:9' | '4:3' | '3:2' | '1:1' | '2:3' | '3:4' | '9:16' | '21:9';
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace Variant0 {
@@ -264,48 +237,30 @@ export declare namespace VideoToVideoCreateParams {
   }
 
   export interface KlingO3_4k {
-    /**
-     * Body param
-     */
     model: 'klingO3_4k';
 
     /**
-     * Body param: A text prompt describing what should appear in the output video.
+     * A text prompt describing what should appear in the output video.
      */
     promptText: string;
 
     /**
-     * Body param: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
      * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
      * [our docs](/assets/inputs#videos) on video inputs for more information.
      */
     promptVideo: string;
 
     /**
-     * Body param: Provider-specific settings for multishot video generation and video
-     * editing.
+     * Provider-specific settings for multishot video generation and video editing.
      */
     providerSettings?: KlingO3_4k.ProviderSettings;
 
     /**
-     * Body param: An optional array of reference images (up to 4). See
+     * An optional array of reference images (up to 4). See
      * [our docs](/assets/inputs#images) on image inputs for more information.
      */
     references?: string | Array<KlingO3_4k.PromptImage>;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace KlingO3_4k {
@@ -365,74 +320,57 @@ export declare namespace VideoToVideoCreateParams {
   }
 
   export interface Hailuo3 {
-    /**
-     * Body param
-     */
     model: 'hailuo3';
 
     /**
-     * Body param: A non-empty text prompt describing what should appear in the output.
+     * A non-empty text prompt describing what should appear in the output.
      */
     promptText: string;
 
     /**
-     * Body param: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
      * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
      * [our docs](/assets/inputs#videos) on video inputs for more information.
      */
     promptVideo: string;
 
     /**
-     * Body param: The number of seconds of duration for the output video.
+     * The number of seconds of duration for the output video.
      */
     duration?: number;
 
     /**
-     * Body param: The aspect ratio of the output video. Use adaptive only when image
-     * or video references are provided; text-only requests require a concrete ratio.
+     * The aspect ratio of the output video. Use adaptive only when image or video
+     * references are provided; text-only requests require a concrete ratio.
      */
     ratio?: 'adaptive' | '21:9' | '16:9' | '4:3' | '1:1' | '3:4' | '9:16';
 
     /**
-     * Body param: An optional array of audio references. Audio references require a
-     * text prompt, and the total combined duration must not exceed 15 seconds.
+     * An optional array of audio references. Audio references require a text prompt,
+     * and the total combined duration must not exceed 15 seconds.
      */
     referenceAudio?: Array<Hailuo3.ReferenceAudio>;
 
     /**
-     * Body param: An optional array of image references (up to 9). See
+     * An optional array of image references (up to 9). See
      * [our docs](/assets/inputs#images) on image inputs for more information.
      */
     references?: Array<Hailuo3.Reference>;
 
     /**
-     * Body param: An optional array of video references. The combined duration across
-     * all video references must not exceed 15 seconds. See
-     * [our docs](/assets/inputs#videos) on video inputs for more information.
+     * An optional array of video references. The combined duration across all video
+     * references must not exceed 15 seconds. See [our docs](/assets/inputs#videos) on
+     * video inputs for more information.
      */
     referenceVideos?: Array<Hailuo3.ReferenceVideo>;
 
     /**
-     * Body param: The output resolution. Hailuo 3.0 supports 768p and 2k.
+     * The output resolution. Hailuo 3.0 supports 768p and 2k.
      *
      * - `768P` - Deprecated: Use "768p" instead.
      * - `2K` - Deprecated: Use "2k" instead.
      */
     resolution?: '768p' | '2k' | '768P' | '2K';
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace Hailuo3 {
@@ -477,48 +415,30 @@ export declare namespace VideoToVideoCreateParams {
   }
 
   export interface KlingO3Pro {
-    /**
-     * Body param
-     */
     model: 'klingO3_pro';
 
     /**
-     * Body param: A text prompt describing what should appear in the output video.
+     * A text prompt describing what should appear in the output video.
      */
     promptText: string;
 
     /**
-     * Body param: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
      * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
      * [our docs](/assets/inputs#videos) on video inputs for more information.
      */
     promptVideo: string;
 
     /**
-     * Body param: Provider-specific settings for multishot video generation and video
-     * editing.
+     * Provider-specific settings for multishot video generation and video editing.
      */
     providerSettings?: KlingO3Pro.ProviderSettings;
 
     /**
-     * Body param: An optional array of reference images (up to 4). See
+     * An optional array of reference images (up to 4). See
      * [our docs](/assets/inputs#images) on image inputs for more information.
      */
     references?: string | Array<KlingO3Pro.PromptImage>;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace KlingO3Pro {
@@ -578,48 +498,30 @@ export declare namespace VideoToVideoCreateParams {
   }
 
   export interface KlingO3Standard {
-    /**
-     * Body param
-     */
     model: 'klingO3_standard';
 
     /**
-     * Body param: A text prompt describing what should appear in the output video.
+     * A text prompt describing what should appear in the output video.
      */
     promptText: string;
 
     /**
-     * Body param: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
      * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
      * [our docs](/assets/inputs#videos) on video inputs for more information.
      */
     promptVideo: string;
 
     /**
-     * Body param: Provider-specific settings for multishot video generation and video
-     * editing.
+     * Provider-specific settings for multishot video generation and video editing.
      */
     providerSettings?: KlingO3Standard.ProviderSettings;
 
     /**
-     * Body param: An optional array of reference images (up to 4). See
+     * An optional array of reference images (up to 4). See
      * [our docs](/assets/inputs#images) on image inputs for more information.
      */
     references?: string | Array<KlingO3Standard.PromptImage>;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace KlingO3Standard {
@@ -679,44 +581,41 @@ export declare namespace VideoToVideoCreateParams {
   }
 
   export interface Seedance2 {
-    /**
-     * Body param
-     */
     model: 'seedance2';
 
     /**
-     * Body param: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
      * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
      * [our docs](/assets/inputs#videos) on video inputs for more information.
      */
     promptVideo: string;
 
     /**
-     * Body param: Whether to generate audio for the video.
+     * Whether to generate audio for the video.
      */
     audio?: boolean;
 
     /**
-     * Body param: Bitrate of the output video. `high` keeps more detail with fewer
-     * compression artifacts, at a larger file size. Defaults to `standard`.
+     * Bitrate of the output video. `high` keeps more detail with fewer compression
+     * artifacts, at a larger file size. Defaults to `standard`.
      */
     bitrate?: 'standard' | 'high';
 
     /**
-     * Body param: Seconds of video to generate, or `auto` to let the model choose.
-     * `auto` is billed at the variant maximum up front; unused credits are refunded
-     * after the generation finishes.
+     * Seconds of video to generate, or `auto` to let the model choose. `auto` is
+     * billed at the variant maximum up front; unused credits are refunded after the
+     * generation finishes.
      */
     duration?: number | 'auto';
 
     /**
-     * Body param: An optional text prompt up to 10000 characters describing what
-     * should appear in the output.
+     * An optional text prompt up to 10000 characters describing what should appear in
+     * the output.
      */
     promptText?: string;
 
     /**
-     * Body param: The resolution of the output video.
+     * The resolution of the output video.
      */
     ratio?:
       | '992:432'
@@ -745,44 +644,30 @@ export declare namespace VideoToVideoCreateParams {
       | '2160:3840';
 
     /**
-     * Body param: An optional array of audio references. The total combined duration
-     * must not exceed 15 seconds.
+     * An optional array of audio references. The total combined duration must not
+     * exceed 15 seconds.
      */
     referenceAudio?: Array<Seedance2.ReferenceAudio>;
 
     /**
-     * Body param: An optional array of image references (up to 9). See
+     * An optional array of image references (up to 9). See
      * [our docs](/assets/inputs#images) on image inputs for more information.
      */
     references?: Array<Seedance2.Reference>;
 
     /**
-     * Body param: An optional array of video references. The combined duration across
-     * all video references must not exceed 15 seconds. See
-     * [our docs](/assets/inputs#videos) on video inputs for more information.
+     * An optional array of video references. The combined duration across all video
+     * references must not exceed 15 seconds. See [our docs](/assets/inputs#videos) on
+     * video inputs for more information.
      */
     referenceVideos?: Array<Seedance2.ReferenceVideo>;
 
     /**
-     * Body param: If unspecified, a random number is chosen. Varying the seed integer
-     * is a way to get different results for the same other request parameters. Using
-     * the same seed integer for an identical request will produce similar results.
+     * If unspecified, a random number is chosen. Varying the seed integer is a way to
+     * get different results for the same other request parameters. Using the same seed
+     * integer for an identical request will produce similar results.
      */
     seed?: number;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace Seedance2 {
@@ -827,45 +712,42 @@ export declare namespace VideoToVideoCreateParams {
   }
 
   export interface Seedance2Fast {
-    /**
-     * Body param
-     */
     model: 'seedance2_fast';
 
     /**
-     * Body param: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
      * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
      * [our docs](/assets/inputs#videos) on video inputs for more information.
      */
     promptVideo: string;
 
     /**
-     * Body param: Whether to generate audio for the video.
+     * Whether to generate audio for the video.
      */
     audio?: boolean;
 
     /**
-     * Body param: Bitrate of the output video. `high` keeps more detail with fewer
-     * compression artifacts, at a larger file size. Defaults to `standard`.
+     * Bitrate of the output video. `high` keeps more detail with fewer compression
+     * artifacts, at a larger file size. Defaults to `standard`.
      */
     bitrate?: 'standard' | 'high';
 
     /**
-     * Body param: Seconds of video to generate, or `auto` to let the model choose.
-     * `auto` is billed at the variant maximum up front; unused credits are refunded
-     * after the generation finishes.
+     * Seconds of video to generate, or `auto` to let the model choose. `auto` is
+     * billed at the variant maximum up front; unused credits are refunded after the
+     * generation finishes.
      */
     duration?: number | 'auto';
 
     /**
-     * Body param: An optional text prompt up to 10000 characters describing what
-     * should appear in the output.
+     * An optional text prompt up to 10000 characters describing what should appear in
+     * the output.
      */
     promptText?: string;
 
     /**
-     * Body param: The resolution of the output video. Seedance 2.0 Fast supports 480p
-     * and 720p only.
+     * The resolution of the output video. Seedance 2.0 Fast supports 480p and 720p
+     * only.
      */
     ratio?:
       | '992:432'
@@ -882,44 +764,30 @@ export declare namespace VideoToVideoCreateParams {
       | '720:1280';
 
     /**
-     * Body param: An optional array of audio references. The total combined duration
-     * must not exceed 15 seconds.
+     * An optional array of audio references. The total combined duration must not
+     * exceed 15 seconds.
      */
     referenceAudio?: Array<Seedance2Fast.ReferenceAudio>;
 
     /**
-     * Body param: An optional array of image references (up to 9). See
+     * An optional array of image references (up to 9). See
      * [our docs](/assets/inputs#images) on image inputs for more information.
      */
     references?: Array<Seedance2Fast.Reference>;
 
     /**
-     * Body param: An optional array of video references. The combined duration across
-     * all video references must not exceed 15 seconds. See
-     * [our docs](/assets/inputs#videos) on video inputs for more information.
+     * An optional array of video references. The combined duration across all video
+     * references must not exceed 15 seconds. See [our docs](/assets/inputs#videos) on
+     * video inputs for more information.
      */
     referenceVideos?: Array<Seedance2Fast.ReferenceVideo>;
 
     /**
-     * Body param: If unspecified, a random number is chosen. Varying the seed integer
-     * is a way to get different results for the same other request parameters. Using
-     * the same seed integer for an identical request will produce similar results.
+     * If unspecified, a random number is chosen. Varying the seed integer is a way to
+     * get different results for the same other request parameters. Using the same seed
+     * integer for an identical request will produce similar results.
      */
     seed?: number;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace Seedance2Fast {
@@ -964,45 +832,42 @@ export declare namespace VideoToVideoCreateParams {
   }
 
   export interface Seedance2Mini {
-    /**
-     * Body param
-     */
     model: 'seedance2_mini';
 
     /**
-     * Body param: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
      * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
      * [our docs](/assets/inputs#videos) on video inputs for more information.
      */
     promptVideo: string;
 
     /**
-     * Body param: Whether to generate audio for the video.
+     * Whether to generate audio for the video.
      */
     audio?: boolean;
 
     /**
-     * Body param: Bitrate of the output video. `high` keeps more detail with fewer
-     * compression artifacts, at a larger file size. Defaults to `standard`.
+     * Bitrate of the output video. `high` keeps more detail with fewer compression
+     * artifacts, at a larger file size. Defaults to `standard`.
      */
     bitrate?: 'standard' | 'high';
 
     /**
-     * Body param: Seconds of video to generate, or `auto` to let the model choose.
-     * `auto` is billed at the variant maximum up front; unused credits are refunded
-     * after the generation finishes.
+     * Seconds of video to generate, or `auto` to let the model choose. `auto` is
+     * billed at the variant maximum up front; unused credits are refunded after the
+     * generation finishes.
      */
     duration?: number | 'auto';
 
     /**
-     * Body param: An optional text prompt up to 10000 characters describing what
-     * should appear in the output.
+     * An optional text prompt up to 10000 characters describing what should appear in
+     * the output.
      */
     promptText?: string;
 
     /**
-     * Body param: The resolution of the output video. Seedance 2.0 Mini supports 480p
-     * and 720p only.
+     * The resolution of the output video. Seedance 2.0 Mini supports 480p and 720p
+     * only.
      */
     ratio?:
       | '992:432'
@@ -1019,44 +884,30 @@ export declare namespace VideoToVideoCreateParams {
       | '720:1280';
 
     /**
-     * Body param: An optional array of audio references. The total combined duration
-     * must not exceed 15 seconds.
+     * An optional array of audio references. The total combined duration must not
+     * exceed 15 seconds.
      */
     referenceAudio?: Array<Seedance2Mini.ReferenceAudio>;
 
     /**
-     * Body param: An optional array of image references (up to 9). See
+     * An optional array of image references (up to 9). See
      * [our docs](/assets/inputs#images) on image inputs for more information.
      */
     references?: Array<Seedance2Mini.Reference>;
 
     /**
-     * Body param: An optional array of video references. The combined duration across
-     * all video references must not exceed 15 seconds. See
-     * [our docs](/assets/inputs#videos) on video inputs for more information.
+     * An optional array of video references. The combined duration across all video
+     * references must not exceed 15 seconds. See [our docs](/assets/inputs#videos) on
+     * video inputs for more information.
      */
     referenceVideos?: Array<Seedance2Mini.ReferenceVideo>;
 
     /**
-     * Body param: If unspecified, a random number is chosen. Varying the seed integer
-     * is a way to get different results for the same other request parameters. Using
-     * the same seed integer for an identical request will produce similar results.
+     * If unspecified, a random number is chosen. Varying the seed integer is a way to
+     * get different results for the same other request parameters. Using the same seed
+     * integer for an identical request will produce similar results.
      */
     seed?: number;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace Seedance2Mini {
@@ -1101,41 +952,24 @@ export declare namespace VideoToVideoCreateParams {
   }
 
   export interface GeminiOmniFlash {
-    /**
-     * Body param
-     */
     model: 'gemini_omni_flash';
 
     /**
-     * Body param: A non-empty instruction describing the edit to apply.
+     * A non-empty instruction describing the edit to apply.
      */
     promptText: string;
 
     /**
-     * Body param: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
      * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
      * [our docs](/assets/inputs#videos) on video inputs for more information.
      */
     videoUri: string;
 
     /**
-     * Body param: An optional array of image references to guide the edit.
+     * An optional array of image references to guide the edit.
      */
     references?: Array<GeminiOmniFlash.Reference>;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace GeminiOmniFlash {
@@ -1150,39 +984,35 @@ export declare namespace VideoToVideoCreateParams {
   }
 
   export interface GeminiOmniFlash1_1 {
-    /**
-     * Body param
-     */
     model: 'gemini_omni_flash_1.1';
 
     /**
-     * Body param: A non-empty prompt describing the output or extension.
+     * A non-empty prompt describing the output or extension.
      */
     promptText: string;
 
     /**
-     * Body param: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
      * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
      * [our docs](/assets/inputs#videos) on video inputs for more information.
      */
     videoUri: string;
 
     /**
-     * Body param: The duration in seconds. In reference mode, this is the output video
-     * length. In extend mode, this is the amount of footage added to the input video.
-     * Use "auto" to let the model choose a duration.
+     * The duration in seconds. In reference mode, this is the output video length. In
+     * extend mode, this is the amount of footage added to the input video. Use "auto"
+     * to let the model choose a duration.
      */
     duration?: 'auto' | number;
 
     /**
-     * Body param: How the input video is used. `reference` generates a new video
-     * guided by the input, `extend` continues it, and `edit` transforms it according
-     * to the prompt.
+     * How the input video is used. `reference` generates a new video guided by the
+     * input, `extend` continues it, and `edit` transforms it according to the prompt.
      */
     mode?: 'reference' | 'extend' | 'edit';
 
     /**
-     * Body param: The resolution and aspect ratio of the output video.
+     * The resolution and aspect ratio of the output video.
      */
     ratio?:
       | '640:360'
@@ -1195,23 +1025,9 @@ export declare namespace VideoToVideoCreateParams {
       | '2160:3840';
 
     /**
-     * Body param: An optional array of image references to guide the output.
+     * An optional array of image references to guide the output.
      */
     references?: Array<GeminiOmniFlash1_1.Reference>;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace GeminiOmniFlash1_1 {
@@ -1226,63 +1042,59 @@ export declare namespace VideoToVideoCreateParams {
   }
 
   export interface Seedance2_5 {
-    /**
-     * Body param
-     */
     model: 'seedance2_5';
 
     /**
-     * Body param: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
      * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
      * [our docs](/assets/inputs#videos) on video inputs for more information.
      */
     promptVideo: string;
 
     /**
-     * Body param: Whether to generate audio for the video.
+     * Whether to generate audio for the video.
      */
     audio?: boolean;
 
     /**
-     * Body param: Generate a cheap 480p preview instead of a full-quality video. The
-     * returned task ID can later be enhanced to a 1080p video with the same content by
-     * passing it as `draftTaskId` to `text_to_video`. Drafts can be enhanced within 7
-     * days of creation. Defaults to false.
+     * Generate a cheap 480p preview instead of a full-quality video. The returned task
+     * ID can later be enhanced to a 1080p video with the same content by passing it as
+     * `draftTaskId` to `text_to_video`. Drafts can be enhanced within 7 days of
+     * creation. Defaults to false.
      */
     draft?: boolean;
 
     /**
-     * Body param: Seconds of video to generate, or `auto` to let the model choose.
-     * `auto` is billed at the variant maximum up front; unused credits are refunded
-     * after the generation finishes. Defaults to 5.
+     * Seconds of video to generate, or `auto` to let the model choose. `auto` is
+     * billed at the variant maximum up front; unused credits are refunded after the
+     * generation finishes. Defaults to 5.
      */
     duration?: number | 'auto';
 
     /**
-     * Body param: How the input video is used. `reference` (the default) generates a
-     * new video conditioned on the input video and accepts `duration` and `ratio`.
-     * `extend` continues the input video, requires `promptText`, and matches the input
-     * aspect ratio, so `ratio` may not be provided. `edit` modifies the input video in
-     * place, requires `promptText`, requires `duration: "auto"`, and does not accept
-     * `ratio`.
+     * How the input video is used. `reference` (the default) generates a new video
+     * conditioned on the input video and accepts `duration` and `ratio`. `extend`
+     * continues the input video, requires `promptText`, and matches the input aspect
+     * ratio, so `ratio` may not be provided. `edit` modifies the input video in place,
+     * requires `promptText`, requires `duration: "auto"`, and does not accept `ratio`.
      */
     mode?: 'reference' | 'extend' | 'edit';
 
     /**
-     * Body param: Container for the output video. `mov` keeps high colour precision
-     * for grading and compositing. Defaults to `mp4`. Draft mode only supports `mp4`.
+     * Container for the output video. `mov` keeps high colour precision for grading
+     * and compositing. Defaults to `mp4`. Draft mode only supports `mp4`.
      */
     outputFormat?: 'mp4' | 'mov';
 
     /**
-     * Body param: An optional text prompt up to 15000 characters describing what
-     * should appear in the output.
+     * An optional text prompt up to 15000 characters describing what should appear in
+     * the output.
      */
     promptText?: string;
 
     /**
-     * Body param: The resolution of the output video. Seedance 2.5 supports 480p,
-     * 720p, 1080p, and 4K.
+     * The resolution of the output video. Seedance 2.5 supports 480p, 720p, 1080p, and
+     * 4K.
      */
     ratio?:
       | '992:432'
@@ -1311,44 +1123,30 @@ export declare namespace VideoToVideoCreateParams {
       | '2160:3840';
 
     /**
-     * Body param: An optional array of audio references. The total combined duration
-     * must be less than 30 seconds.
+     * An optional array of audio references. The total combined duration must be less
+     * than 30 seconds.
      */
     referenceAudio?: Array<Seedance2_5.ReferenceAudio>;
 
     /**
-     * Body param: An optional array of image references (up to 30). See
+     * An optional array of image references (up to 30). See
      * [our docs](/assets/inputs#images) on image inputs for more information.
      */
     references?: Array<Seedance2_5.Reference>;
 
     /**
-     * Body param: An optional array of video references. The combined duration across
-     * all video references must not exceed 30 seconds. See
-     * [our docs](/assets/inputs#videos) on video inputs for more information.
+     * An optional array of video references. The combined duration across all video
+     * references must not exceed 30 seconds. See [our docs](/assets/inputs#videos) on
+     * video inputs for more information.
      */
     referenceVideos?: Array<Seedance2_5.ReferenceVideo>;
 
     /**
-     * Body param: If unspecified, a random number is chosen. Varying the seed integer
-     * is a way to get different results for the same other request parameters. Using
-     * the same seed integer for an identical request will produce similar results.
+     * If unspecified, a random number is chosen. Varying the seed integer is a way to
+     * get different results for the same other request parameters. Using the same seed
+     * integer for an identical request will produce similar results.
      */
     seed?: number;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace Seedance2_5 {
@@ -1393,37 +1191,34 @@ export declare namespace VideoToVideoCreateParams {
   }
 
   export interface Kling4 {
-    /**
-     * Body param
-     */
     model: 'kling_4';
 
     /**
-     * Body param: A text prompt describing how to edit the video.
+     * A text prompt describing how to edit the video.
      */
     promptText: string;
 
     /**
-     * Body param: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
      * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
      * [our docs](/assets/inputs#videos) on video inputs for more information.
      */
     videoUri: string;
 
     /**
-     * Body param: The duration of the edited video in seconds.
+     * The duration of the edited video in seconds.
      */
     duration?: number;
 
     /**
-     * Body param: Optional first, middle, and last frames guiding the edit. Middle or
-     * last frames can be provided without a first frame.
+     * Optional first, middle, and last frames guiding the edit. Middle or last frames
+     * can be provided without a first frame.
      */
     promptImage?: string | Array<unknown>;
 
     /**
-     * Body param: The target output size. Use a pixel ratio such as `1280:720` or
-     * `auto_720p` / `auto_1080p` for adaptive framing.
+     * The target output size. Use a pixel ratio such as `1280:720` or `auto_720p` /
+     * `auto_1080p` for adaptive framing.
      */
     ratio?:
       | '1280:720'
@@ -1438,30 +1233,16 @@ export declare namespace VideoToVideoCreateParams {
       | 'auto_1080p';
 
     /**
-     * Body param: Images of characters, objects or styles to use in the video. Up to
-     * 10 images in total, frames included.
+     * Images of characters, objects or styles to use in the video. Up to 10 images in
+     * total, frames included.
      */
     references?: Array<Kling4.Reference>;
 
     /**
-     * Body param: Up to 4 videos whose style, motion or camera work should guide the
-     * output, together at most 30 seconds long.
+     * Up to 4 videos whose style, motion or camera work should guide the output,
+     * together at most 30 seconds long.
      */
     referenceVideos?: Array<unknown>;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace Kling4 {
@@ -1476,39 +1257,35 @@ export declare namespace VideoToVideoCreateParams {
   }
 
   export interface GeminiOmniFlash1_2 {
-    /**
-     * Body param
-     */
     model: 'gemini_omni_flash_1.2';
 
     /**
-     * Body param: A non-empty prompt describing the output or extension.
+     * A non-empty prompt describing the output or extension.
      */
     promptText: string;
 
     /**
-     * Body param: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
      * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
      * [our docs](/assets/inputs#videos) on video inputs for more information.
      */
     videoUri: string;
 
     /**
-     * Body param: The duration in seconds. In reference mode, this is the output video
-     * length. In extend mode, this is the amount of footage added to the input video.
-     * Use "auto" to let the model choose a duration.
+     * The duration in seconds. In reference mode, this is the output video length. In
+     * extend mode, this is the amount of footage added to the input video. Use "auto"
+     * to let the model choose a duration.
      */
     duration?: 'auto' | number;
 
     /**
-     * Body param: How the input video is used. `reference` generates a new video
-     * guided by the input, `extend` continues it, and `edit` transforms it according
-     * to the prompt.
+     * How the input video is used. `reference` generates a new video guided by the
+     * input, `extend` continues it, and `edit` transforms it according to the prompt.
      */
     mode?: 'reference' | 'extend' | 'edit';
 
     /**
-     * Body param: The resolution and aspect ratio of the output video.
+     * The resolution and aspect ratio of the output video.
      */
     ratio?:
       | '640:360'
@@ -1521,29 +1298,15 @@ export declare namespace VideoToVideoCreateParams {
       | '2160:3840';
 
     /**
-     * Body param: An optional array of image references to guide the output.
+     * An optional array of image references to guide the output.
      */
     references?: Array<GeminiOmniFlash1_2.Reference>;
 
     /**
-     * Body param: The output resolution when editing or extending a video. In
-     * reference mode, use ratio instead.
+     * The output resolution when editing or extending a video. In reference mode, use
+     * ratio instead.
      */
     resolution?: '360p' | '720p' | '1080p' | '4k';
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace GeminiOmniFlash1_2 {
@@ -1558,58 +1321,34 @@ export declare namespace VideoToVideoCreateParams {
   }
 
   export interface Kling4Flash {
-    /**
-     * Body param
-     */
     model: 'kling_4_flash';
 
     /**
-     * Body param: A text prompt describing what should happen in the video.
+     * A text prompt describing what should happen in the video.
      */
     promptText: string;
 
     /**
-     * Body param: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
      * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
      * [our docs](/assets/inputs#videos) on video inputs for more information.
      */
     videoUri: string;
 
     /**
-     * Body param: The duration of the output video in seconds.
+     * The duration of the output video in seconds.
      */
     duration?: number;
 
     /**
-     * Body param: The output size, or auto_720p for adaptive framing. Legacy values
-     * 940:940 and 1460:624 are accepted as aliases for 960:960 and 1464:628,
-     * respectively.
+     * The output size, or auto_720p for adaptive framing. Legacy values 940:940 and
+     * 1460:624 are accepted as aliases for 960:960 and 1464:628, respectively.
      */
     ratio?: '1280:720' | '720:1280' | '960:960' | '1464:628' | 'auto_720p' | '940:940' | '1460:624';
 
-    /**
-     * Body param
-     */
     references?: Array<Kling4Flash.Reference>;
 
-    /**
-     * Body param
-     */
     referenceVideos?: Array<Kling4Flash.ReferenceVideo>;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace Kling4Flash {
@@ -1633,66 +1372,34 @@ export declare namespace VideoToVideoCreateParams {
   }
 
   export interface Hailuo3Highspeed {
-    /**
-     * Body param
-     */
     model: 'hailuo3_highspeed';
 
     /**
-     * Body param: The text prompt describing the output video.
+     * The text prompt describing the output video.
      */
     promptText: string;
 
     /**
-     * Body param: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
      * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
      * [our docs](/assets/inputs#videos) on video inputs for more information.
      */
     promptVideo: string;
 
-    /**
-     * Body param
-     */
     duration?: number;
 
-    /**
-     * Body param
-     */
     ratio?: 'adaptive' | '21:9' | '16:9' | '4:3' | '1:1' | '3:4' | '9:16';
 
-    /**
-     * Body param
-     */
     referenceAudio?: Array<Hailuo3Highspeed.ReferenceAudio>;
 
-    /**
-     * Body param
-     */
     references?: Array<Hailuo3Highspeed.Reference>;
 
-    /**
-     * Body param
-     */
     referenceVideos?: Array<Hailuo3Highspeed.ReferenceVideo>;
 
     /**
-     * Body param: The output video resolution.
+     * The output video resolution.
      */
     resolution?: '480p' | '768p';
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace Hailuo3Highspeed {
@@ -1729,66 +1436,34 @@ export declare namespace VideoToVideoCreateParams {
   }
 
   export interface Hailuo3Lite {
-    /**
-     * Body param
-     */
     model: 'hailuo3_lite';
 
     /**
-     * Body param: The text prompt describing the output video.
+     * The text prompt describing the output video.
      */
     promptText: string;
 
     /**
-     * Body param: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
      * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
      * [our docs](/assets/inputs#videos) on video inputs for more information.
      */
     promptVideo: string;
 
-    /**
-     * Body param
-     */
     duration?: number;
 
-    /**
-     * Body param
-     */
     ratio?: '21:9' | '16:9' | '4:3' | '1:1' | '3:4' | '9:16';
 
-    /**
-     * Body param
-     */
     referenceAudio?: Array<Hailuo3Lite.ReferenceAudio>;
 
-    /**
-     * Body param
-     */
     references?: Array<Hailuo3Lite.Reference>;
 
-    /**
-     * Body param
-     */
     referenceVideos?: Array<Hailuo3Lite.ReferenceVideo>;
 
     /**
-     * Body param: The output video resolution.
+     * The output video resolution.
      */
     resolution?: '480p' | '768p';
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace Hailuo3Lite {
@@ -1825,55 +1500,50 @@ export declare namespace VideoToVideoCreateParams {
   }
 
   export interface Seedance2_5Flash {
-    /**
-     * Body param
-     */
     model: 'seedance2_5_flash';
 
     /**
-     * Body param: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+     * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
      * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
      * [our docs](/assets/inputs#videos) on video inputs for more information.
      */
     promptVideo: string;
 
     /**
-     * Body param: Whether to generate audio for the video.
+     * Whether to generate audio for the video.
      */
     audio?: boolean;
 
     /**
-     * Body param: Seconds of video to generate, or `auto` to let the model choose.
-     * `auto` is billed at the variant maximum up front; unused credits are refunded
-     * after the generation finishes. Defaults to 5.
+     * Seconds of video to generate, or `auto` to let the model choose. `auto` is
+     * billed at the variant maximum up front; unused credits are refunded after the
+     * generation finishes. Defaults to 5.
      */
     duration?: number | 'auto';
 
     /**
-     * Body param: How the input video is used. `reference` (the default) generates a
-     * new video conditioned on the input video and accepts `duration` and `ratio`.
-     * `extend` continues the input video, requires `promptText`, and matches the input
-     * aspect ratio, so `ratio` may not be provided. `edit` modifies the input video in
-     * place, requires `promptText`, requires `duration: "auto"`, and does not accept
-     * `ratio`.
+     * How the input video is used. `reference` (the default) generates a new video
+     * conditioned on the input video and accepts `duration` and `ratio`. `extend`
+     * continues the input video, requires `promptText`, and matches the input aspect
+     * ratio, so `ratio` may not be provided. `edit` modifies the input video in place,
+     * requires `promptText`, requires `duration: "auto"`, and does not accept `ratio`.
      */
     mode?: 'reference' | 'extend' | 'edit';
 
     /**
-     * Body param: Container for the output video. `mov` keeps high colour precision
-     * for grading and compositing. Defaults to `mp4`.
+     * Container for the output video. `mov` keeps high colour precision for grading
+     * and compositing. Defaults to `mp4`.
      */
     outputFormat?: 'mp4' | 'mov';
 
     /**
-     * Body param: An optional text prompt up to 15000 characters describing what
-     * should appear in the output.
+     * An optional text prompt up to 15000 characters describing what should appear in
+     * the output.
      */
     promptText?: string;
 
     /**
-     * Body param: The resolution of the output video. Seedance 2.5 Flash supports 480p
-     * and 720p.
+     * The resolution of the output video. Seedance 2.5 Flash supports 480p and 720p.
      */
     ratio?:
       | '992:432'
@@ -1890,44 +1560,30 @@ export declare namespace VideoToVideoCreateParams {
       | '720:1280';
 
     /**
-     * Body param: An optional array of audio references. The total combined duration
-     * must be less than 30 seconds.
+     * An optional array of audio references. The total combined duration must be less
+     * than 30 seconds.
      */
     referenceAudio?: Array<Seedance2_5Flash.ReferenceAudio>;
 
     /**
-     * Body param: An optional array of image references (up to 10). See
+     * An optional array of image references (up to 10). See
      * [our docs](/assets/inputs#images) on image inputs for more information.
      */
     references?: Array<Seedance2_5Flash.Reference>;
 
     /**
-     * Body param: An optional array of video references. The combined duration across
-     * all video references must not exceed 30 seconds. See
-     * [our docs](/assets/inputs#videos) on video inputs for more information.
+     * An optional array of video references. The combined duration across all video
+     * references must not exceed 30 seconds. See [our docs](/assets/inputs#videos) on
+     * video inputs for more information.
      */
     referenceVideos?: Array<Seedance2_5Flash.ReferenceVideo>;
 
     /**
-     * Body param: If unspecified, a random number is chosen. Varying the seed integer
-     * is a way to get different results for the same other request parameters. Using
-     * the same seed integer for an identical request will produce similar results.
+     * If unspecified, a random number is chosen. Varying the seed integer is a way to
+     * get different results for the same other request parameters. Using the same seed
+     * integer for an identical request will produce similar results.
      */
     seed?: number;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace Seedance2_5Flash {

@@ -2,7 +2,6 @@
 
 import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
-import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
@@ -29,18 +28,10 @@ export class Workflows extends APIResource {
    */
   run(
     id: string,
-    params: WorkflowRunParams | null | undefined = {},
+    body: WorkflowRunParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<WorkflowRunResponse> {
-    const { 'X-Runway-Tags': xRunwayTags, ...body } = params ?? {};
-    return this._client.post(path`/v1/workflows/${id}`, {
-      body,
-      ...options,
-      headers: buildHeaders([
-        { ...(xRunwayTags != null ? { 'X-Runway-Tags': xRunwayTags } : undefined) },
-        options?.headers,
-      ]),
-    });
+    return this._client.post(path`/v1/workflows/${id}`, { body, ...options });
   }
 }
 
@@ -160,8 +151,8 @@ export interface WorkflowRunResponse {
 
 export interface WorkflowRunParams {
   /**
-   * Body param: Optional node outputs to override default values. Keys are node IDs
-   * from the workflow graph, values are objects mapping output keys to typed values.
+   * Optional node outputs to override default values. Keys are node IDs from the
+   * workflow graph, values are objects mapping output keys to typed values.
    */
   nodeOutputs?: {
     [key: string]: {
@@ -172,20 +163,6 @@ export interface WorkflowRunParams {
         | WorkflowRunParams.Audio;
     };
   };
-
-  /**
-   * Header param: Comma-separated tags to attribute this generation's credit usage
-   * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-   * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-   * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-   * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-   * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-   * every generation they start.
-   *
-   * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-   * in them.**
-   */
-  'X-Runway-Tags'?: string;
 }
 
 export namespace WorkflowRunParams {

@@ -12,16 +12,8 @@ export class Voices extends APIResource {
    * Create a custom voice from a text description, or clone a voice from an audio
    * sample.
    */
-  create(params: VoiceCreateParams, options?: RequestOptions): APIPromise<VoiceCreateResponse> {
-    const { 'X-Runway-Tags': xRunwayTags, ...body } = params;
-    return this._client.post('/v1/voices', {
-      body,
-      ...options,
-      headers: buildHeaders([
-        { ...(xRunwayTags != null ? { 'X-Runway-Tags': xRunwayTags } : undefined) },
-        options?.headers,
-      ]),
-    });
+  create(body: VoiceCreateParams, options?: RequestOptions): APIPromise<VoiceCreateResponse> {
+    return this._client.post('/v1/voices', { body, ...options });
   }
 
   /**
@@ -403,34 +395,17 @@ export interface VoicePreviewResponse {
 }
 
 export interface VoiceCreateParams {
-  /**
-   * Body param
-   */
   from: VoiceCreateParams.Audio | VoiceCreateParams.Text;
 
   /**
-   * Body param: A name for the voice.
+   * A name for the voice.
    */
   name: string;
 
   /**
-   * Body param: An optional description of the voice.
+   * An optional description of the voice.
    */
   description?: string | null;
-
-  /**
-   * Header param: Comma-separated tags to attribute this generation's credit usage
-   * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-   * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-   * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-   * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-   * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-   * every generation they start.
-   *
-   * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-   * in them.**
-   */
-  'X-Runway-Tags'?: string;
 }
 
 export namespace VoiceCreateParams {

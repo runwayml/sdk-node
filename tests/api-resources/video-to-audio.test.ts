@@ -34,7 +34,6 @@ describe('resource videoToAudio', () => {
       preserveSpeech: true,
       promptText: 'x',
       seed: 0,
-      'X-Runway-Tags': 'team:growth,env:prod,campaign-q4',
     });
   });
 });

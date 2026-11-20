@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/polling';
 
@@ -15,19 +14,11 @@ export class TextToSpeech extends APIResource {
    * Audio accepts a reference audio clip.
    */
   create(
-    params: TextToSpeechCreateParams,
+    body: TextToSpeechCreateParams,
     options?: RequestOptions,
   ): APIPromiseWithAwaitableTask<TextToSpeechCreateResponse> {
-    const { 'X-Runway-Tags': xRunwayTags, ...body } = params;
     return wrapAsWaitableResource<TextToSpeechCreateResponse>(this._client)(
-      this._client.post('/v1/text_to_speech', {
-        body,
-        ...options,
-        headers: buildHeaders([
-          { ...(xRunwayTags != null ? { 'X-Runway-Tags': xRunwayTags } : undefined) },
-          options?.headers,
-        ]),
-      }),
+      this._client.post('/v1/text_to_speech', { body, ...options }),
     );
   }
 }
@@ -68,65 +59,45 @@ export type TextToSpeechCreateParams =
 
 export declare namespace TextToSpeechCreateParams {
   export interface SeedAudio {
-    /**
-     * Body param
-     */
     model: 'seed_audio';
 
     /**
-     * Body param: A non-empty text prompt. For text-to-speech, the words to speak. For
+     * A non-empty text prompt. For text-to-speech, the words to speak. For
      * text-to-audio, a scene description that can include voice direction, dialogue,
      * music, and sound effects.
      */
     promptText: string;
 
     /**
-     * Body param: Relative output loudness. Negative is quieter, positive is louder; 0
-     * is normal.
+     * Relative output loudness. Negative is quieter, positive is louder; 0 is normal.
      */
     loudnessRate?: number;
 
     /**
-     * Body param: Output audio container/format.
+     * Output audio container/format.
      */
     outputFormat?: 'wav' | 'mp3' | 'ogg_opus';
 
     /**
-     * Body param: Pitch shift in semitones. Negative lowers, positive raises; 0 is
-     * unchanged.
+     * Pitch shift in semitones. Negative lowers, positive raises; 0 is unchanged.
      */
     pitchRate?: number;
 
     /**
-     * Body param: Output sample rate in Hz.
+     * Output sample rate in Hz.
      */
     sampleRate?: 8000 | 16000 | 24000 | 32000 | 44100 | 48000;
 
     /**
-     * Body param: Relative speech speed. Negative is slower, positive is faster; 0 is
-     * normal.
+     * Relative speech speed. Negative is slower, positive is faster; 0 is normal.
      */
     speechRate?: number;
 
     /**
-     * Body param: The voice to use for text-to-speech generation. If omitted, a
-     * default voice is used.
+     * The voice to use for text-to-speech generation. If omitted, a default voice is
+     * used.
      */
     voice?: SeedAudio.Voice;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace SeedAudio {
@@ -147,86 +118,69 @@ export declare namespace TextToSpeechCreateParams {
   }
 
   export interface ElevenV4 {
-    /**
-     * Body param
-     */
     model: 'eleven_v4';
 
     /**
-     * Body param: The text to convert to speech. You can include expressive audio tags
-     * like [laughs], [whispers], or [pause] in the script.
+     * The text to convert to speech. You can include expressive audio tags like
+     * [laughs], [whispers], or [pause] in the script.
      */
     promptText: string;
 
     /**
-     * Body param: The voice to use for the generated speech.
+     * The voice to use for the generated speech.
      */
     voice: ElevenV4.RunwayPreset | ElevenV4.Custom;
 
     /**
-     * Body param: Language code to enforce pronunciation, such as "en" or "pt". A
-     * regional code such as "pt-BR" is read as its language.
+     * Language code to enforce pronunciation, such as "en" or "pt". A regional code
+     * such as "pt-BR" is read as its language.
      */
     languageCode?: string;
 
     /**
-     * Body param: Text that comes after this request, so the speech can lead into a
-     * later generation.
+     * Text that comes after this request, so the speech can lead into a later
+     * generation.
      */
     nextText?: string;
 
     /**
-     * Body param: Text that comes before this request, so the speech can continue from
-     * an earlier generation.
+     * Text that comes before this request, so the speech can continue from an earlier
+     * generation.
      */
     previousText?: string;
 
     /**
-     * Body param: Optional seed for more consistent output. The same seed and settings
-     * tend to sound alike, but it is not guaranteed.
+     * Optional seed for more consistent output. The same seed and settings tend to
+     * sound alike, but it is not guaranteed.
      */
     seed?: number;
 
     /**
-     * Body param: How closely the output tracks the original speaker.
+     * How closely the output tracks the original speaker.
      */
     similarityBoost?: number;
 
     /**
-     * Body param: Speech speed multiplier. Values below 1 slow the speech down, and
-     * values above 1 speed it up.
+     * Speech speed multiplier. Values below 1 slow the speech down, and values above 1
+     * speed it up.
      */
     speed?: number;
 
     /**
-     * Body param: Voice stability. Lower values allow broader emotional range; higher
-     * values are steadier.
+     * Voice stability. Lower values allow broader emotional range; higher values are
+     * steadier.
      */
     stability?: number;
 
     /**
-     * Body param: Style exaggeration. Higher values amplify the speaker style.
+     * Style exaggeration. Higher values amplify the speaker style.
      */
     style?: number;
 
     /**
-     * Body param: Boost similarity to the original speaker at a small latency cost.
+     * Boost similarity to the original speaker at a small latency cost.
      */
     useSpeakerBoost?: boolean;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace ElevenV4 {
@@ -305,42 +259,24 @@ export declare namespace TextToSpeechCreateParams {
   }
 
   export interface Gemini3_8FlashTts {
-    /**
-     * Body param
-     */
     model: 'gemini_3.8_flash_tts';
 
     /**
-     * Body param: The script, in the order it is spoken. Use one turn for a single
-     * speaker, or alternate speakers across turns for a dialogue.
+     * The script, in the order it is spoken. Use one turn for a single speaker, or
+     * alternate speakers across turns for a dialogue.
      */
     turns: Array<Gemini3_8FlashTts.Turn>;
 
     /**
-     * Body param: The Google voice for each speaker, such as "Kore" or "Puck". Pass
-     * one voice for a single speaker, or two for a dialogue.
+     * The Google voice for each speaker, such as "Kore" or "Puck". Pass one voice for
+     * a single speaker, or two for a dialogue.
      */
     voiceIds: Array<string>;
 
     /**
-     * Body param: The language of the script, such as "en-US". When omitted, the model
-     * detects it.
+     * The language of the script, such as "en-US". When omitted, the model detects it.
      */
     languageCode?: string;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace Gemini3_8FlashTts {
@@ -365,42 +301,24 @@ export declare namespace TextToSpeechCreateParams {
   }
 
   export interface Gemini3_8FlashLiteTts {
-    /**
-     * Body param
-     */
     model: 'gemini_3.8_flash_lite_tts';
 
     /**
-     * Body param: The script, in the order it is spoken. Use one turn for a single
-     * speaker, or alternate speakers across turns for a dialogue.
+     * The script, in the order it is spoken. Use one turn for a single speaker, or
+     * alternate speakers across turns for a dialogue.
      */
     turns: Array<Gemini3_8FlashLiteTts.Turn>;
 
     /**
-     * Body param: The Google voice for each speaker, such as "Kore" or "Puck". Pass
-     * one voice for a single speaker, or two for a dialogue.
+     * The Google voice for each speaker, such as "Kore" or "Puck". Pass one voice for
+     * a single speaker, or two for a dialogue.
      */
     voiceIds: Array<string>;
 
     /**
-     * Body param: The language of the script, such as "en-US". When omitted, the model
-     * detects it.
+     * The language of the script, such as "en-US". When omitted, the model detects it.
      */
     languageCode?: string;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace Gemini3_8FlashLiteTts {
@@ -425,35 +343,18 @@ export declare namespace TextToSpeechCreateParams {
   }
 
   export interface ElevenMultilingualV2 {
-    /**
-     * Body param
-     */
     model: 'eleven_multilingual_v2';
 
     /**
-     * Body param: A non-empty string up to 1000 characters (measured in UTF-16 code
-     * units). This should describe in detail what should appear in the output.
+     * A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+     * should describe in detail what should appear in the output.
      */
     promptText: string;
 
     /**
-     * Body param: The voice to use for the generated speech.
+     * The voice to use for the generated speech.
      */
     voice: ElevenMultilingualV2.RunwayPreset | ElevenMultilingualV2.Custom;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace ElevenMultilingualV2 {
@@ -532,80 +433,61 @@ export declare namespace TextToSpeechCreateParams {
   }
 
   export interface ElevenV3 {
-    /**
-     * Body param
-     */
     model: 'eleven_v3';
 
     /**
-     * Body param: The text to convert to speech. You can include expressive audio tags
-     * like [laughs] or [whispers] in the script.
+     * The text to convert to speech. You can include expressive audio tags like
+     * [laughs] or [whispers] in the script.
      */
     promptText: string;
 
     /**
-     * Body param: The voice to use for the generated speech.
+     * The voice to use for the generated speech.
      */
     voice: ElevenV3.RunwayPreset | ElevenV3.Custom;
 
     /**
-     * Body param: Text normalization mode: 'auto', 'on', or 'off' (e.g. spelling out
-     * numbers).
+     * Text normalization mode: 'auto', 'on', or 'off' (e.g. spelling out numbers).
      */
     applyTextNormalization?: 'auto' | 'on' | 'off';
 
     /**
-     * Body param: ISO 639-1 language code to enforce pronunciation and normalization.
+     * ISO 639-1 language code to enforce pronunciation and normalization.
      */
     languageCode?: string;
 
     /**
-     * Body param: Optional seed for more deterministic output (0–4294967295). Not
-     * guaranteed.
+     * Optional seed for more deterministic output (0–4294967295). Not guaranteed.
      */
     seed?: number;
 
     /**
-     * Body param: How closely the output tracks the original speaker (0–1). Maps to
-     * ElevenLabs similarity_boost.
+     * How closely the output tracks the original speaker (0–1). Maps to ElevenLabs
+     * similarity_boost.
      */
     similarityBoost?: number;
 
     /**
-     * Body param: Speech speed multiplier (0.7–1.2). 1.0 is default; values below slow
-     * down and above speed up.
+     * Speech speed multiplier (0.7–1.2). 1.0 is default; values below slow down and
+     * above speed up.
      */
     speed?: number;
 
     /**
-     * Body param: Voice stability (0–1). Lower values allow broader emotional range;
-     * higher values are steadier.
+     * Voice stability (0–1). Lower values allow broader emotional range; higher values
+     * are steadier.
      */
     stability?: number;
 
     /**
-     * Body param: Style exaggeration (0–1). Higher values amplify the speaker style.
+     * Style exaggeration (0–1). Higher values amplify the speaker style.
      */
     style?: number;
 
     /**
-     * Body param: Boost similarity to the original speaker at a small latency cost.
+     * Boost similarity to the original speaker at a small latency cost.
      */
     useSpeakerBoost?: boolean;
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace ElevenV3 {

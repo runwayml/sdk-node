@@ -25,7 +25,6 @@ describe('resource textToMusic', () => {
       promptText: 'x',
       duration: 3,
       instrumental: true,
-      'X-Runway-Tags': 'team:growth,env:prod,campaign-q4',
     });
   });
 });

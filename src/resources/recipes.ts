@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/polling';
 
@@ -11,19 +10,11 @@ export class Recipes extends APIResource {
    * while adapting on-screen messaging.
    */
   adLocalization(
-    params: RecipeAdLocalizationParams,
+    body: RecipeAdLocalizationParams,
     options?: RequestOptions,
   ): APIPromiseWithAwaitableTask<RecipeAdLocalizationResponse> {
-    const { 'X-Runway-Tags': xRunwayTags, ...body } = params;
     return wrapAsWaitableResource<RecipeAdLocalizationResponse>(this._client)(
-      this._client.post('/v1/recipes/ad_localization', {
-        body,
-        ...options,
-        headers: buildHeaders([
-          { ...(xRunwayTags != null ? { 'X-Runway-Tags': xRunwayTags } : undefined) },
-          options?.headers,
-        ]),
-      }),
+      this._client.post('/v1/recipes/ad_localization', { body, ...options }),
     );
   }
 
@@ -32,19 +23,11 @@ export class Recipes extends APIResource {
    * logo image.
    */
   marketingStockImage(
-    params: RecipeMarketingStockImageParams,
+    body: RecipeMarketingStockImageParams,
     options?: RequestOptions,
   ): APIPromiseWithAwaitableTask<RecipeMarketingStockImageResponse> {
-    const { 'X-Runway-Tags': xRunwayTags, ...body } = params;
     return wrapAsWaitableResource<RecipeMarketingStockImageResponse>(this._client)(
-      this._client.post('/v1/recipes/marketing_stock_image', {
-        body,
-        ...options,
-        headers: buildHeaders([
-          { ...(xRunwayTags != null ? { 'X-Runway-Tags': xRunwayTags } : undefined) },
-          options?.headers,
-        ]),
-      }),
+      this._client.post('/v1/recipes/marketing_stock_image', { body, ...options }),
     );
   }
 
@@ -53,19 +36,11 @@ export class Recipes extends APIResource {
    * (custom mode).
    */
   multiShotVideo(
-    params: RecipeMultiShotVideoParams,
+    body: RecipeMultiShotVideoParams,
     options?: RequestOptions,
   ): APIPromiseWithAwaitableTask<RecipeMultiShotVideoResponse> {
-    const { 'X-Runway-Tags': xRunwayTags, ...body } = params;
     return wrapAsWaitableResource<RecipeMultiShotVideoResponse>(this._client)(
-      this._client.post('/v1/recipes/multi_shot_video', {
-        body,
-        ...options,
-        headers: buildHeaders([
-          { ...(xRunwayTags != null ? { 'X-Runway-Tags': xRunwayTags } : undefined) },
-          options?.headers,
-        ]),
-      }),
+      this._client.post('/v1/recipes/multi_shot_video', { body, ...options }),
     );
   }
 
@@ -74,19 +49,11 @@ export class Recipes extends APIResource {
    * product info, and creative direction.
    */
   productAd(
-    params: RecipeProductAdParams,
+    body: RecipeProductAdParams,
     options?: RequestOptions,
   ): APIPromiseWithAwaitableTask<RecipeProductAdResponse> {
-    const { 'X-Runway-Tags': xRunwayTags, ...body } = params;
     return wrapAsWaitableResource<RecipeProductAdResponse>(this._client)(
-      this._client.post('/v1/recipes/product_ad', {
-        body,
-        ...options,
-        headers: buildHeaders([
-          { ...(xRunwayTags != null ? { 'X-Runway-Tags': xRunwayTags } : undefined) },
-          options?.headers,
-        ]),
-      }),
+      this._client.post('/v1/recipes/product_ad', { body, ...options }),
     );
   }
 
@@ -94,19 +61,11 @@ export class Recipes extends APIResource {
    * Generate four fashion campaign images from a product image and style brief.
    */
   productCampaignImage(
-    params: RecipeProductCampaignImageParams,
+    body: RecipeProductCampaignImageParams,
     options?: RequestOptions,
   ): APIPromiseWithAwaitableTask<RecipeProductCampaignImageResponse> {
-    const { 'X-Runway-Tags': xRunwayTags, ...body } = params;
     return wrapAsWaitableResource<RecipeProductCampaignImageResponse>(this._client)(
-      this._client.post('/v1/recipes/product_campaign_image', {
-        body,
-        ...options,
-        headers: buildHeaders([
-          { ...(xRunwayTags != null ? { 'X-Runway-Tags': xRunwayTags } : undefined) },
-          options?.headers,
-        ]),
-      }),
+      this._client.post('/v1/recipes/product_campaign_image', { body, ...options }),
     );
   }
 
@@ -115,19 +74,11 @@ export class Recipes extends APIResource {
    * motion, lighting, and scene composition.
    */
   productSwap(
-    params: RecipeProductSwapParams,
+    body: RecipeProductSwapParams,
     options?: RequestOptions,
   ): APIPromiseWithAwaitableTask<RecipeProductSwapResponse> {
-    const { 'X-Runway-Tags': xRunwayTags, ...body } = params;
     return wrapAsWaitableResource<RecipeProductSwapResponse>(this._client)(
-      this._client.post('/v1/recipes/product_swap', {
-        body,
-        ...options,
-        headers: buildHeaders([
-          { ...(xRunwayTags != null ? { 'X-Runway-Tags': xRunwayTags } : undefined) },
-          options?.headers,
-        ]),
-      }),
+      this._client.post('/v1/recipes/product_swap', { body, ...options }),
     );
   }
 
@@ -136,19 +87,11 @@ export class Recipes extends APIResource {
    * image, product details, and optional creative direction.
    */
   productUgc(
-    params: RecipeProductUgcParams,
+    body: RecipeProductUgcParams,
     options?: RequestOptions,
   ): APIPromiseWithAwaitableTask<RecipeProductUgcResponse> {
-    const { 'X-Runway-Tags': xRunwayTags, ...body } = params;
     return wrapAsWaitableResource<RecipeProductUgcResponse>(this._client)(
-      this._client.post('/v1/recipes/product_ugc', {
-        body,
-        ...options,
-        headers: buildHeaders([
-          { ...(xRunwayTags != null ? { 'X-Runway-Tags': xRunwayTags } : undefined) },
-          options?.headers,
-        ]),
-      }),
+      this._client.post('/v1/recipes/product_ugc', { body, ...options }),
     );
   }
 }
@@ -337,14 +280,14 @@ export namespace RecipeProductUgcResponse {
 
 export interface RecipeAdLocalizationParams {
   /**
-   * Body param: Reference ad image to localize. See
-   * [our docs](/assets/inputs#images) on image inputs.
+   * Reference ad image to localize. See [our docs](/assets/inputs#images) on image
+   * inputs.
    */
   referenceImage: RecipeAdLocalizationParams.ReferenceImage;
 
   /**
-   * Body param: Target language for the localized ad. Use ISO-style codes (e.g. "ja"
-   * for Japanese, "es" for Spanish).
+   * Target language for the localized ad. Use ISO-style codes (e.g. "ja" for
+   * Japanese, "es" for Spanish).
    */
   targetLanguage:
     | 'ar'
@@ -371,25 +314,10 @@ export interface RecipeAdLocalizationParams {
     | 'el';
 
   /**
-   * Body param: Workflow version. Use a dated version (e.g. "2026-06") to pin
-   * behavior, or "unsafe-latest" to track the newest stable version (may break
-   * without notice).
+   * Workflow version. Use a dated version (e.g. "2026-06") to pin behavior, or
+   * "unsafe-latest" to track the newest stable version (may break without notice).
    */
   version: '2026-06' | 'unsafe-latest';
-
-  /**
-   * Header param: Comma-separated tags to attribute this generation's credit usage
-   * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-   * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-   * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-   * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-   * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-   * every generation they start.
-   *
-   * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-   * in them.**
-   */
-  'X-Runway-Tags'?: string;
 }
 
 export namespace RecipeAdLocalizationParams {
@@ -409,50 +337,34 @@ export namespace RecipeAdLocalizationParams {
 
 export interface RecipeMarketingStockImageParams {
   /**
-   * Body param: Marketing image brief. Describe the subject, audience, channel,
-   * desired mood, setting, and any constraints.
+   * Marketing image brief. Describe the subject, audience, channel, desired mood,
+   * setting, and any constraints.
    */
   prompt: string;
 
   /**
-   * Body param: Workflow version. Use a dated version (e.g. "2026-06") to pin
-   * behavior, or "unsafe-latest" to track the newest stable version (may break
-   * without notice).
+   * Workflow version. Use a dated version (e.g. "2026-06") to pin behavior, or
+   * "unsafe-latest" to track the newest stable version (may break without notice).
    */
   version: '2026-06' | 'unsafe-latest';
 
   /**
-   * Body param: The number of images to generate (1-4). Defaults to 4. Increasing
-   * this number affects credits consumed.
+   * The number of images to generate (1-4). Defaults to 4. Increasing this number
+   * affects credits consumed.
    */
   outputCount?: number;
 
   /**
-   * Body param: GPT Image 2 rendering quality (`low`, `medium`, or `high`). Lower
-   * settings are faster and use fewer credits; `high` (default) is slowest and
-   * highest fidelity.
+   * GPT Image 2 rendering quality (`low`, `medium`, or `high`). Lower settings are
+   * faster and use fewer credits; `high` (default) is slowest and highest fidelity.
    */
   quality?: 'low' | 'medium' | 'high';
 
   /**
-   * Body param: Optional brand logo image to guide the generated marketing stock
-   * image. See [our docs](/assets/inputs#images) on image inputs.
+   * Optional brand logo image to guide the generated marketing stock image. See
+   * [our docs](/assets/inputs#images) on image inputs.
    */
   referenceImage?: RecipeMarketingStockImageParams.ReferenceImage;
-
-  /**
-   * Header param: Comma-separated tags to attribute this generation's credit usage
-   * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-   * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-   * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-   * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-   * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-   * every generation they start.
-   *
-   * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-   * in them.**
-   */
-  'X-Runway-Tags'?: string;
 }
 
 export namespace RecipeMarketingStockImageParams {
@@ -477,60 +389,43 @@ export type RecipeMultiShotVideoParams =
 export declare namespace RecipeMultiShotVideoParams {
   export interface Variant0 {
     /**
-     * Body param: Workflow mode. `auto` decomposes a story prompt into exactly 5
-     * shots.
+     * Workflow mode. `auto` decomposes a story prompt into exactly 5 shots.
      */
     mode: 'auto';
 
     /**
-     * Body param: Story prompt for auto mode.
+     * Story prompt for auto mode.
      */
     prompt: string;
 
     /**
-     * Body param: Workflow version. Use a dated version (e.g. "2026-06") to pin
-     * behavior, or "unsafe-latest" to track the newest stable version (may break
-     * without notice).
+     * Workflow version. Use a dated version (e.g. "2026-06") to pin behavior, or
+     * "unsafe-latest" to track the newest stable version (may break without notice).
      */
     version: '2026-06' | 'unsafe-latest';
 
     /**
-     * Body param: Whether to generate audio for the video.
+     * Whether to generate audio for the video.
      */
     audio?: boolean;
 
     /**
-     * Body param: Total duration of the output video in seconds. Defaults to 10
-     * seconds.
+     * Total duration of the output video in seconds. Defaults to 10 seconds.
      */
     duration?: 5 | 10 | 15;
 
     /**
-     * Body param: Optional image used as the first frame of the output video. See
+     * Optional image used as the first frame of the output video. See
      * [our docs](/assets/inputs#images) on image inputs.
      */
     firstFrame?: Variant0.FirstFrame;
 
     /**
-     * Body param: Output dimensions as width:height. 720p ratios (`1280:720`,
-     * `720:1280`, `960:960`) use the standard tier; 1080p ratios (`1920:1080`,
-     * `1080:1920`, `1440:1440`) use the pro tier. Defaults to `1280:720`.
+     * Output dimensions as width:height. 720p ratios (`1280:720`, `720:1280`,
+     * `960:960`) use the standard tier; 1080p ratios (`1920:1080`, `1080:1920`,
+     * `1440:1440`) use the pro tier. Defaults to `1280:720`.
      */
     ratio?: '1280:720' | '720:1280' | '960:960' | '1920:1080' | '1080:1920' | '1440:1440';
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace Variant0 {
@@ -550,61 +445,44 @@ export declare namespace RecipeMultiShotVideoParams {
 
   export interface Variant1 {
     /**
-     * Body param: Workflow mode. `custom` polishes a user-provided shot list of 3-5
-     * shots.
+     * Workflow mode. `custom` polishes a user-provided shot list of 3-5 shots.
      */
     mode: 'custom';
 
     /**
-     * Body param: Shot list for custom mode (3-5 shots). Per-shot durations must sum
-     * to `duration`.
+     * Shot list for custom mode (3-5 shots). Per-shot durations must sum to
+     * `duration`.
      */
     shots: Array<Variant1.Shot>;
 
     /**
-     * Body param: Workflow version. Use a dated version (e.g. "2026-06") to pin
-     * behavior, or "unsafe-latest" to track the newest stable version (may break
-     * without notice).
+     * Workflow version. Use a dated version (e.g. "2026-06") to pin behavior, or
+     * "unsafe-latest" to track the newest stable version (may break without notice).
      */
     version: '2026-06' | 'unsafe-latest';
 
     /**
-     * Body param: Whether to generate audio for the video.
+     * Whether to generate audio for the video.
      */
     audio?: boolean;
 
     /**
-     * Body param: Total duration of the output video in seconds. Defaults to 10
-     * seconds.
+     * Total duration of the output video in seconds. Defaults to 10 seconds.
      */
     duration?: 5 | 10 | 15;
 
     /**
-     * Body param: Optional image used as the first frame of the output video. See
+     * Optional image used as the first frame of the output video. See
      * [our docs](/assets/inputs#images) on image inputs.
      */
     firstFrame?: Variant1.FirstFrame;
 
     /**
-     * Body param: Output dimensions as width:height. 720p ratios (`1280:720`,
-     * `720:1280`, `960:960`) use the standard tier; 1080p ratios (`1920:1080`,
-     * `1080:1920`, `1440:1440`) use the pro tier. Defaults to `1280:720`.
+     * Output dimensions as width:height. 720p ratios (`1280:720`, `720:1280`,
+     * `960:960`) use the standard tier; 1080p ratios (`1920:1080`, `1080:1920`,
+     * `1440:1440`) use the pro tier. Defaults to `1280:720`.
      */
     ratio?: '1280:720' | '720:1280' | '960:960' | '1920:1080' | '1080:1920' | '1440:1440';
-
-    /**
-     * Header param: Comma-separated tags to attribute this generation's credit usage
-     * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-     * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-     * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-     * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-     * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-     * every generation they start.
-     *
-     * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-     * in them.**
-     */
-    'X-Runway-Tags'?: string;
   }
 
   export namespace Variant1 {
@@ -637,39 +515,37 @@ export declare namespace RecipeMultiShotVideoParams {
 
 export interface RecipeProductAdParams {
   /**
-   * Body param: Product images (1-10). Multiple angles of the same product. All
-   * images inform product analysis and reference generation; only the first image is
-   * used as the primary product reference in the storyboard grid. See
+   * Product images (1-10). Multiple angles of the same product. All images inform
+   * product analysis and reference generation; only the first image is used as the
+   * primary product reference in the storyboard grid. See
    * [our docs](/assets/inputs#images) on image inputs.
    */
   productImages: Array<RecipeProductAdParams.ProductImage>;
 
   /**
-   * Body param: Workflow version. Use a dated version (e.g. "2026-07") to pin
-   * behavior, or "unsafe-latest" to track the newest stable version (may break
-   * without notice).
+   * Workflow version. Use a dated version (e.g. "2026-07") to pin behavior, or
+   * "unsafe-latest" to track the newest stable version (may break without notice).
    */
   version: '2026-06' | '2026-07' | 'unsafe-latest';
 
   /**
-   * Body param: Whether to generate audio for the video.
+   * Whether to generate audio for the video.
    */
   audio?: boolean;
 
   /**
-   * Body param: Duration of the output video in seconds (4-15). Defaults to 10
-   * seconds.
+   * Duration of the output video in seconds (4-15). Defaults to 10 seconds.
    */
   duration?: number;
 
   /**
-   * Body param: Optional product description and specifications to inform creative
-   * direction and which product elements to highlight.
+   * Optional product description and specifications to inform creative direction and
+   * which product elements to highlight.
    */
   productInfo?: string;
 
   /**
-   * Body param: The resolution of the output video.
+   * The resolution of the output video.
    */
   ratio?:
     | '1280:720'
@@ -682,30 +558,16 @@ export interface RecipeProductAdParams {
     | '1248:1664';
 
   /**
-   * Body param: Optional style reference images (0-4). Defines the visual treatment
-   * (lighting, palette, mood). Treated as a moodboard when multiple are provided.
+   * Optional style reference images (0-4). Defines the visual treatment (lighting,
+   * palette, mood). Treated as a moodboard when multiple are provided.
    */
   styleImages?: Array<RecipeProductAdParams.StyleImage>;
 
   /**
-   * Body param: Optional creative direction describing brand voice, product framing,
-   * scene specifics, lighting, camera motion, and narrative.
+   * Optional creative direction describing brand voice, product framing, scene
+   * specifics, lighting, camera motion, and narrative.
    */
   userConcept?: string;
-
-  /**
-   * Header param: Comma-separated tags to attribute this generation's credit usage
-   * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-   * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-   * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-   * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-   * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-   * every generation they start.
-   *
-   * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-   * in them.**
-   */
-  'X-Runway-Tags'?: string;
 }
 
 export namespace RecipeProductAdParams {
@@ -730,37 +592,22 @@ export namespace RecipeProductAdParams {
 
 export interface RecipeProductCampaignImageParams {
   /**
-   * Body param: Product image to preserve across the generated campaign. See
+   * Product image to preserve across the generated campaign. See
    * [our docs](/assets/inputs#images) on image inputs.
    */
   image: RecipeProductCampaignImageParams.Image;
 
   /**
-   * Body param: Style / creative brief for the fashion campaign, e.g. "High-key
-   * fashion editorial, gorpcore-meets-blokecore-meets-Y2K".
+   * Style / creative brief for the fashion campaign, e.g. "High-key fashion
+   * editorial, gorpcore-meets-blokecore-meets-Y2K".
    */
   prompt: string;
 
   /**
-   * Body param: Workflow version. Use a dated version (e.g. "2026-06") to pin
-   * behavior, or "unsafe-latest" to track the newest stable version (may break
-   * without notice).
+   * Workflow version. Use a dated version (e.g. "2026-06") to pin behavior, or
+   * "unsafe-latest" to track the newest stable version (may break without notice).
    */
   version: '2026-06' | 'unsafe-latest';
-
-  /**
-   * Header param: Comma-separated tags to attribute this generation's credit usage
-   * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-   * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-   * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-   * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-   * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-   * every generation they start.
-   *
-   * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-   * in them.**
-   */
-  'X-Runway-Tags'?: string;
 }
 
 export namespace RecipeProductCampaignImageParams {
@@ -780,63 +627,46 @@ export namespace RecipeProductCampaignImageParams {
 
 export interface RecipeProductSwapParams {
   /**
-   * Body param: Reference images of the new product (1-10). Supply multiple angles
-   * when the reference video shows the product from different views - optionally
-   * label each with `view` ("front", "side", or "back"). A single pre-composed
-   * reference sheet is also supported (omit `view`). See
-   * [our docs](/assets/inputs#images) on image inputs.
+   * Reference images of the new product (1-10). Supply multiple angles when the
+   * reference video shows the product from different views - optionally label each
+   * with `view` ("front", "side", or "back"). A single pre-composed reference sheet
+   * is also supported (omit `view`). See [our docs](/assets/inputs#images) on image
+   * inputs.
    */
   newProductImages: Array<RecipeProductSwapParams.NewProductImage>;
 
   /**
-   * Body param: Image of the original product being swapped out. See
+   * Image of the original product being swapped out. See
    * [our docs](/assets/inputs#images) on image inputs.
    */
   originalProductImage: RecipeProductSwapParams.OriginalProductImage;
 
   /**
-   * Body param: Reference video containing the product to swap. Duration must be
-   * between 1.8 and 15 seconds. See [our docs](/assets/inputs#videos) on video
-   * inputs.
+   * Reference video containing the product to swap. Duration must be between 1.8 and
+   * 15 seconds. See [our docs](/assets/inputs#videos) on video inputs.
    */
   referenceVideo: RecipeProductSwapParams.ReferenceVideo;
 
   /**
-   * Body param: Workflow version. Use a dated version (e.g. "2026-06") to pin
-   * behavior, or "unsafe-latest" to track the newest stable version (may break
-   * without notice).
+   * Workflow version. Use a dated version (e.g. "2026-06") to pin behavior, or
+   * "unsafe-latest" to track the newest stable version (may break without notice).
    */
   version: '2026-06' | 'unsafe-latest';
 
   /**
-   * Body param: Whether to generate audio for the video.
+   * Whether to generate audio for the video.
    */
   audio?: boolean;
 
   /**
-   * Body param: Duration of the output video in seconds (4-15). Defaults to 10
-   * seconds.
+   * Duration of the output video in seconds (4-15). Defaults to 10 seconds.
    */
   duration?: number;
 
   /**
-   * Body param: Output video resolution. Defaults to 720p.
+   * Output video resolution. Defaults to 720p.
    */
   resolution?: '720p' | '1080p';
-
-  /**
-   * Header param: Comma-separated tags to attribute this generation's credit usage
-   * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-   * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-   * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-   * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-   * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-   * every generation they start.
-   *
-   * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-   * in them.**
-   */
-  'X-Runway-Tags'?: string;
 }
 
 export namespace RecipeProductSwapParams {
@@ -884,67 +714,51 @@ export namespace RecipeProductSwapParams {
 
 export interface RecipeProductUgcParams {
   /**
-   * Body param: Image of the character who will appear on camera in the UGC video.
-   * Aspect ratio (width / height) must be between 0.4 and 4. See
+   * Image of the character who will appear on camera in the UGC video. Aspect ratio
+   * (width / height) must be between 0.4 and 4. See
    * [our docs](/assets/inputs#images) for image input requirements.
    */
   characterImage: RecipeProductUgcParams.CharacterImage;
 
   /**
-   * Body param: Image of the product being promoted. Aspect ratio (width / height)
-   * must be between 0.4 and 4. See [our docs](/assets/inputs#images) for image input
+   * Image of the product being promoted. Aspect ratio (width / height) must be
+   * between 0.4 and 4. See [our docs](/assets/inputs#images) for image input
    * requirements.
    */
   productImage: RecipeProductUgcParams.ProductImage;
 
   /**
-   * Body param: Workflow version. Use a dated version (e.g. "2026-06") to pin
-   * behavior, or "unsafe-latest" to track the newest stable version (may break
-   * without notice).
+   * Workflow version. Use a dated version (e.g. "2026-06") to pin behavior, or
+   * "unsafe-latest" to track the newest stable version (may break without notice).
    */
   version: '2026-06' | 'unsafe-latest';
 
   /**
-   * Body param: Whether to generate audio for the video.
+   * Whether to generate audio for the video.
    */
   audio?: boolean;
 
   /**
-   * Body param: Duration of the output video in seconds (4-15). Defaults to 15
-   * seconds.
+   * Duration of the output video in seconds (4-15). Defaults to 15 seconds.
    */
   duration?: number;
 
   /**
-   * Body param: Product details and creative brief - what the product is, key
-   * benefits, and any specifics the script should reference.
+   * Product details and creative brief - what the product is, key benefits, and any
+   * specifics the script should reference.
    */
   productInfo?: string;
 
   /**
-   * Body param: The resolution of the output video.
+   * The resolution of the output video.
    */
   ratio?: '720:1280' | '1080:1920';
 
   /**
-   * Body param: Optional creative direction for the UGC video - tone, voice
-   * register, specific message, or an entire dialog script.
+   * Optional creative direction for the UGC video - tone, voice register, specific
+   * message, or an entire dialog script.
    */
   userConcept?: string;
-
-  /**
-   * Header param: Comma-separated tags to attribute this generation's credit usage
-   * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-   * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-   * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-   * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-   * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-   * every generation they start.
-   *
-   * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-   * in them.**
-   */
-  'X-Runway-Tags'?: string;
 }
 
 export namespace RecipeProductUgcParams {

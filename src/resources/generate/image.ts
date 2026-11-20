@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
-import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../../lib/polling';
 
@@ -11,19 +10,11 @@ export class Image extends APIResource {
    * naming a model.
    */
   create(
-    params: ImageCreateParams,
+    body: ImageCreateParams,
     options?: RequestOptions,
   ): APIPromiseWithAwaitableTask<ImageCreateResponse> {
-    const { 'X-Runway-Tags': xRunwayTags, ...body } = params;
     return wrapAsWaitableResource<ImageCreateResponse>(this._client)(
-      this._client.post('/v1/generate/image', {
-        body,
-        ...options,
-        headers: buildHeaders([
-          { ...(xRunwayTags != null ? { 'X-Runway-Tags': xRunwayTags } : undefined) },
-          options?.headers,
-        ]),
-      }),
+      this._client.post('/v1/generate/image', { body, ...options }),
     );
   }
 }
@@ -157,29 +148,15 @@ export namespace ImageCreateResponse {
 
 export interface ImageCreateParams {
   /**
-   * Body param: The slug of a saved Model Router config to route this request with.
+   * The slug of a saved Model Router config to route this request with.
    */
   configId: string;
 
   /**
-   * Body param: Model-agnostic image generation input. The router selects a model
-   * and maps these options to it.
+   * Model-agnostic image generation input. The router selects a model and maps these
+   * options to it.
    */
   input: ImageCreateParams.Input;
-
-  /**
-   * Header param: Comma-separated tags to attribute this generation's credit usage
-   * to, so you can filter and break down usage with `POST /v1/organization/usage`.
-   * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
-   * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
-   * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
-   * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
-   * every generation they start.
-   *
-   * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
-   * in them.**
-   */
-  'X-Runway-Tags'?: string;
 }
 
 export namespace ImageCreateParams {

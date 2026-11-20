@@ -29,7 +29,6 @@ describe('resource textToSpeech', () => {
       sampleRate: 8000,
       speechRate: -50,
       voice: { audioUri: 'https://example.com/audio.mp3', type: 'reference-audio' },
-      'X-Runway-Tags': 'team:growth,env:prod,campaign-q4',
     });
   });
 });
