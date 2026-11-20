@@ -24,7 +24,7 @@ export class AvatarConversations extends APIResource {
    * results to a single avatar.
    */
   list(
-    query: AvatarConversationListParams,
+    query: AvatarConversationListParams | null | undefined = {},
     options?: RequestOptions,
   ): PagePromise<AvatarConversationListResponsesCursorPage, AvatarConversationListResponse> {
     return this._client.getAPIList('/v1/avatar_conversations', CursorPage<AvatarConversationListResponse>, {

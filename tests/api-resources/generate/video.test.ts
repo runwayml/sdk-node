@@ -45,6 +45,7 @@ describe('resource video', () => {
         resolution: '480p',
         seed: 0,
       },
+      'X-Runway-Tags': 'team:growth,env:prod,campaign-q4',
     });
   });
 });

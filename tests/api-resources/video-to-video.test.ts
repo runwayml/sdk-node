@@ -40,6 +40,7 @@ describe('resource videoToVideo', () => {
       ratio: 'ratio',
       seed: 0,
       targetAspectRatio: '16:9',
+      'X-Runway-Tags': 'team:growth,env:prod,campaign-q4',
     });
   });
 });

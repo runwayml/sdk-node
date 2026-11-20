@@ -31,6 +31,7 @@ describe('resource imageUpscale', () => {
       sharpen: 0,
       smartGrain: 0,
       ultraDetail: 0,
+      'X-Runway-Tags': 'team:growth,env:prod,campaign-q4',
     });
   });
 });

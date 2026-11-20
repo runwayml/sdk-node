@@ -28,6 +28,7 @@ describe('resource videoToHdr', () => {
       videoUri: 'https://example.com/video.mp4',
       outputFormat: 'hdr10',
       proresProfile: '422',
+      'X-Runway-Tags': 'team:growth,env:prod,campaign-q4',
     });
   });
 });

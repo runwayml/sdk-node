@@ -27,6 +27,7 @@ describe('resource imageToVector', () => {
       imageUri: 'https://example.com/image.jpg',
       model: 'ideogram_vector',
       vectorizationMode: 'simple',
+      'X-Runway-Tags': 'team:growth,env:prod,campaign-q4',
     });
   });
 });

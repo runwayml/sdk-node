@@ -75,6 +75,21 @@ export interface WebappListUsageResponse {
     | null;
 
   /**
+   * ID of the Runway web app project the generation was made in (not this API
+   * project). `null` when no project is recorded for it, which includes generations
+   * made outside a project, generations made before project tracking was rolled out
+   * (late May to mid-August 2026), and rows with a null `taskId`.
+   */
+  projectId: string | null;
+
+  /**
+   * Current name of that project, so it changes when the project is renamed (group
+   * by `projectId`). Still returned after the project is archived or deleted. `null`
+   * when `projectId` is null.
+   */
+  projectName: string | null;
+
+  /**
    * Current status of the generation when you request it, so it can change between
    * pulls (upsert on `transactionId`). A refund row doesn't mean the generation
    * failed. `null` when `taskId` is null or the generation no longer exists.
@@ -146,7 +161,9 @@ export interface WebappListUsageParams extends CursorPageParams {
 
   /**
    * Organization to report on. Optional when this API project is linked to a single
-   * organization; required when it is linked to more than one.
+   * organization; required when it is linked to more than one. If it is missing
+   * then, the 400 response lists the IDs and names of the linked organizations in
+   * `details.organizations`.
    */
   organizationId?: string;
 

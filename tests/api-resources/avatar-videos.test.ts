@@ -28,6 +28,7 @@ describe('resource avatarVideos', () => {
       avatar: { presetId: 'game-character', type: 'runway-preset' },
       model: 'gwm1_avatars',
       speech: { audio: 'https://example.com/audio.mp3', type: 'audio' },
+      'X-Runway-Tags': 'team:growth,env:prod,campaign-q4',
     });
   });
 });

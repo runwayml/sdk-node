@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 import { APIPromiseWithAwaitableTask, wrapAsWaitableResource } from '../lib/polling';
 import { APIResource } from '../core/resource';
+import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 
 /**
@@ -12,11 +13,19 @@ export class SpeechToSpeech extends APIResource {
    * in audio or video.
    */
   create(
-    body: SpeechToSpeechCreateParams,
+    params: SpeechToSpeechCreateParams,
     options?: RequestOptions,
   ): APIPromiseWithAwaitableTask<SpeechToSpeechCreateResponse> {
+    const { 'X-Runway-Tags': xRunwayTags, ...body } = params;
     return wrapAsWaitableResource<SpeechToSpeechCreateResponse>(this._client)(
-      this._client.post('/v1/speech_to_speech', { body, ...options }),
+      this._client.post('/v1/speech_to_speech', {
+        body,
+        ...options,
+        headers: buildHeaders([
+          { ...(xRunwayTags != null ? { 'X-Runway-Tags': xRunwayTags } : undefined) },
+          options?.headers,
+        ]),
+      }),
     );
   }
 }
@@ -49,21 +58,38 @@ export namespace SpeechToSpeechCreateResponse {
 
 export interface SpeechToSpeechCreateParams {
   /**
-   * An audio file containing dialogue to be processed.
+   * Body param: An audio file containing dialogue to be processed.
    */
   media: SpeechToSpeechCreateParams.Audio | SpeechToSpeechCreateParams.Video;
 
+  /**
+   * Body param
+   */
   model: 'eleven_multilingual_sts_v2';
 
   /**
-   * A voice preset from the RunwayML API.
+   * Body param: A voice preset from the RunwayML API.
    */
   voice: SpeechToSpeechCreateParams.Voice;
 
   /**
-   * Whether to remove background noise from the generated speech.
+   * Body param: Whether to remove background noise from the generated speech.
    */
   removeBackgroundNoise?: boolean;
+
+  /**
+   * Header param: Comma-separated tags to attribute this generation's credit usage
+   * to, so you can filter and break down usage with `POST /v1/organization/usage`.
+   * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
+   * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
+   * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
+   * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
+   * every generation they start.
+   *
+   * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
+   * in them.**
+   */
+  'X-Runway-Tags'?: string;
 }
 
 export namespace SpeechToSpeechCreateParams {

@@ -13,10 +13,18 @@ export class RealtimeSessions extends APIResource {
    * recordings from the avatar conversation endpoints.
    */
   create(
-    body: RealtimeSessionCreateParams,
+    params: RealtimeSessionCreateParams,
     options?: RequestOptions,
   ): APIPromise<RealtimeSessionCreateResponse> {
-    return this._client.post('/v1/realtime_sessions', { body, ...options });
+    const { 'X-Runway-Tags': xRunwayTags, ...body } = params;
+    return this._client.post('/v1/realtime_sessions', {
+      body,
+      ...options,
+      headers: buildHeaders([
+        { ...(xRunwayTags != null ? { 'X-Runway-Tags': xRunwayTags } : undefined) },
+        options?.headers,
+      ]),
+    });
   }
 
   /**
@@ -230,47 +238,61 @@ export namespace RealtimeSessionRetrieveResponse {
 
 export interface RealtimeSessionCreateParams {
   /**
-   * The avatar configuration for the session.
+   * Body param: The avatar configuration for the session.
    */
   avatar: RealtimeSessionCreateParams.RunwayPreset | RealtimeSessionCreateParams.Custom;
 
   /**
-   * The realtime session model type.
+   * Body param: The realtime session model type.
    */
   model: 'gwm1_avatars';
 
   /**
-   * External integration. Runway renders the avatar; the integration owns
-   * conversation or audio.
+   * Body param: External integration. Runway renders the avatar; the integration
+   * owns conversation or audio.
    */
   integration?: RealtimeSessionCreateParams.Elevenlabs | RealtimeSessionCreateParams.Livekit;
 
   /**
-   * @deprecated Use integration with type "livekit" instead.
+   * @deprecated Body param: Use integration with type "livekit" instead.
    */
   livekit?: DeprecatedLivekit;
 
   /**
-   * Maximum session duration in seconds.
+   * Body param: Maximum session duration in seconds.
    */
   maxDuration?: number;
 
   /**
-   * Override the avatar personality for this session. If not provided, uses the
-   * avatar default.
+   * Body param: Override the avatar personality for this session. If not provided,
+   * uses the avatar default.
    */
   personality?: string;
 
   /**
-   * Override the avatar start script for this session. If not provided, uses the
-   * avatar default.
+   * Body param: Override the avatar start script for this session. If not provided,
+   * uses the avatar default.
    */
   startScript?: string;
 
   /**
-   * Tools available to the avatar during the session.
+   * Body param: Tools available to the avatar during the session.
    */
   tools?: Array<RealtimeSessionCreateParams.ClientEvent | RealtimeSessionCreateParams.BackendRpc>;
+
+  /**
+   * Header param: Comma-separated tags to attribute this generation's credit usage
+   * to, so you can filter and break down usage with `POST /v1/organization/usage`.
+   * Each tag is a plain label (`campaign-q4`) or a `key:value` pair (`team:growth`),
+   * split at the first colon. Tags are case-insensitive and stored lowercase. Up to
+   * 10 tags, each up to 64 characters of letters, numbers, and `_ - . / :`. An
+   * invalid tag rejects the request with a 400. Workflow runs pass their tags on to
+   * every generation they start.
+   *
+   * **Tags appear in usage reports. Do not put end-user PII (like names or emails)
+   * in them.**
+   */
+  'X-Runway-Tags'?: string;
 }
 
 export namespace RealtimeSessionCreateParams {

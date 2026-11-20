@@ -28,6 +28,7 @@ describe('resource recipes', () => {
       referenceImage: { uri: 'https://example.com/image.jpg' },
       targetLanguage: 'ar',
       version: '2026-06',
+      'X-Runway-Tags': 'team:growth,env:prod,campaign-q4',
     });
   });
 
@@ -49,6 +50,7 @@ describe('resource recipes', () => {
       outputCount: 1,
       quality: 'low',
       referenceImage: { uri: 'https://example.com/image.jpg' },
+      'X-Runway-Tags': 'team:growth,env:prod,campaign-q4',
     });
   });
 
@@ -76,6 +78,7 @@ describe('resource recipes', () => {
       duration: 5,
       firstFrame: { uri: 'https://example.com/image.jpg' },
       ratio: '1280:720',
+      'X-Runway-Tags': 'team:growth,env:prod,campaign-q4',
     });
   });
 
@@ -103,6 +106,7 @@ describe('resource recipes', () => {
       ratio: '1280:720',
       styleImages: [{ uri: 'https://example.com/image.jpg' }],
       userConcept: 'userConcept',
+      'X-Runway-Tags': 'team:growth,env:prod,campaign-q4',
     });
   });
 
@@ -126,6 +130,7 @@ describe('resource recipes', () => {
       image: { uri: 'https://example.com/image.jpg' },
       prompt: 'x',
       version: '2026-06',
+      'X-Runway-Tags': 'team:growth,env:prod,campaign-q4',
     });
   });
 
@@ -154,6 +159,7 @@ describe('resource recipes', () => {
       audio: true,
       duration: 4,
       resolution: '720p',
+      'X-Runway-Tags': 'team:growth,env:prod,campaign-q4',
     });
   });
 
@@ -182,6 +188,7 @@ describe('resource recipes', () => {
       productInfo: 'productInfo',
       ratio: '720:1280',
       userConcept: 'userConcept',
+      'X-Runway-Tags': 'team:growth,env:prod,campaign-q4',
     });
   });
 });

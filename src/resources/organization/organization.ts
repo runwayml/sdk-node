@@ -25,7 +25,7 @@ export class Organization extends APIResource {
   /**
    * Fetch credit usage data broken down by model and day for the organization
    * associated with the API key used to make the request. Up to 90 days of data can
-   * be queried at a time.
+   * be queried at a time. Usage updates hourly; recent activity may not appear yet.
    */
   retrieveUsage(
     body: OrganizationRetrieveUsageParams | null | undefined = {},
@@ -138,6 +138,8 @@ export interface OrganizationRetrieveUsageResponse {
     | 'seedream5_pro_layers'
     | 'seedream5_pro'
     | 'seedream5_flash'
+    | 'seedream5.5'
+    | 'seedream5.5_layers'
     | 'seedream5_lite'
     | 'gemini_omni_flash'
     | 'gemini_omni_flash_1.2'
@@ -161,6 +163,7 @@ export interface OrganizationRetrieveUsageResponse {
     | 'voice_processing'
     | 'seedance2'
     | 'seedance2_5'
+    | 'seedance2_5_flash'
     | 'seedance2_fast'
     | 'seedance2_mini'
     | 'hailuo3'
@@ -173,6 +176,7 @@ export interface OrganizationRetrieveUsageResponse {
     | 'grok_imagine_1_5_lite'
     | 'grok_imagine_image_2'
     | 'muse_image'
+    | 'minimax_h3_image'
     | 'bria_fibo_1_5'
     | 'bria_fibo_edit_1_5'
     | 'ideogram_4_0'
@@ -212,6 +216,20 @@ export interface OrganizationRetrieveUsageResponse {
    * Reserved for future use.
    */
   resultsByApiKey?: Array<OrganizationRetrieveUsageResponse.ResultsByAPIKey>;
+
+  /**
+   * Credit usage broken down by tag, present when `groupBy` is set. With
+   * `groupBy: "tag"`, a generation with several tags counts toward each of them, so
+   * the buckets can add up to more than the total. With `groupBy: "tag:<key>"`, each
+   * generation counts once, under its `<key>:<value>` tag.
+   */
+  resultsByTag?: Array<OrganizationRetrieveUsageResponse.ResultsByTag>;
+
+  /**
+   * The tags on usage in the queried time range, sorted alphabetically, present when
+   * `tags` or `groupBy` is set. Lists at most the 1,000 tags with the most credits.
+   */
+  tags?: Array<string>;
 }
 
 export namespace OrganizationRetrieveUsageResponse {
@@ -266,6 +284,8 @@ export namespace OrganizationRetrieveUsageResponse {
         | 'seedream5_pro_layers'
         | 'seedream5_pro'
         | 'seedream5_flash'
+        | 'seedream5.5'
+        | 'seedream5.5_layers'
         | 'seedream5_lite'
         | 'gemini_omni_flash'
         | 'gemini_omni_flash_1.2'
@@ -289,6 +309,7 @@ export namespace OrganizationRetrieveUsageResponse {
         | 'voice_processing'
         | 'seedance2'
         | 'seedance2_5'
+        | 'seedance2_5_flash'
         | 'seedance2_fast'
         | 'seedance2_mini'
         | 'hailuo3'
@@ -301,6 +322,7 @@ export namespace OrganizationRetrieveUsageResponse {
         | 'grok_imagine_1_5_lite'
         | 'grok_imagine_image_2'
         | 'muse_image'
+        | 'minimax_h3_image'
         | 'bria_fibo_1_5'
         | 'bria_fibo_edit_1_5'
         | 'ideogram_4_0'
@@ -343,6 +365,34 @@ export namespace OrganizationRetrieveUsageResponse {
       apiKeyId: string;
     }
   }
+
+  export interface ResultsByTag {
+    /**
+     * The date of the usage data in ISO-8601 format (YYYY-MM-DD). All dates are in
+     * UTC.
+     */
+    date: string;
+
+    /**
+     * The credits used per tag for the date.
+     */
+    usedCredits: Array<ResultsByTag.UsedCredit>;
+  }
+
+  export namespace ResultsByTag {
+    export interface UsedCredit {
+      /**
+       * The net number of credits spent under the tag. May be negative if refunds
+       * exceeded charges on this day.
+       */
+      amount: number;
+
+      /**
+       * The tag that credits were spent under, or null for usage without a matching tag.
+       */
+      tag: string | null;
+    }
+  }
 }
 
 export interface OrganizationRetrieveUsageParams {
@@ -354,11 +404,26 @@ export interface OrganizationRetrieveUsageParams {
   beforeDate?: string;
 
   /**
+   * Also break usage down by tag in `resultsByTag`. `"tag"` gives one bucket per
+   * tag; a generation with several tags counts toward each of them. `"tag:<key>"`
+   * (for example `"tag:team"`) gives one bucket per value of that key, so each
+   * generation counts once. Generations without a matching tag fall under a `null`
+   * tag.
+   */
+  groupBy?: string;
+
+  /**
    * The start date of the usage data in ISO-8601 format (YYYY-MM-DD). If
    * unspecified, it will default to 30 days before the current date. All dates are
    * in UTC.
    */
   startDate?: string;
+
+  /**
+   * Only count generations that were created with every one of these tags in the
+   * `X-Runway-Tags` header. Tags are case-insensitive. Up to 10 tags.
+   */
+  tags?: Array<string>;
 }
 
 Organization.Webapp = Webapp;

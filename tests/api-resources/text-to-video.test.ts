@@ -34,6 +34,7 @@ describe('resource textToVideo', () => {
       outputFormat: 'mp4',
       proresProfile: '422',
       seed: 0,
+      'X-Runway-Tags': 'team:growth,env:prod,campaign-q4',
     });
   });
 });

@@ -68,11 +68,18 @@ client.example.list(undefined, { headers: { ... } });
 This affects the following methods:
 
 - `client.routers.update()`
+- `client.routers.list()`
+- `client.routers.listRequests()`
 - `client.organization.retrieveUsage()`
 - `client.organization.webapp.auditLogs.retrieve()`
+- `client.organization.webapp.auditLogs.list()`
 - `client.avatars.update()`
+- `client.avatars.list()`
+- `client.avatarConversations.list()`
 - `client.documents.update()`
+- `client.documents.list()`
 - `client.voices.update()`
+- `client.voices.list()`
 - `client.workflows.run()`
 
 ### Removed `httpAgent` in favor of `fetchOptions`
@@ -217,7 +224,7 @@ The `for await` syntax **is not affected**. This still works as-is:
 
 ```ts
 // Automatically fetches more pages as needed.
-for await (const routerListResponse of client.routers.list({ limit: 1 })) {
+for await (const routerListResponse of client.routers.list()) {
   console.log(routerListResponse);
 }
 ```

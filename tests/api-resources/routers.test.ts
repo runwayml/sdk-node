@@ -29,6 +29,7 @@ describe('resource routers', () => {
         maxCreditsPerGeneration: {
           audio: 1,
           image: 1,
+          mesh: 1,
           video: 1,
         },
         models: { ids: ['string'], mode: 'allow_new_except' },
@@ -73,6 +74,7 @@ describe('resource routers', () => {
             maxCreditsPerGeneration: {
               audio: 1,
               image: 1,
+              mesh: 1,
               video: 1,
             },
             models: { ids: ['string'], mode: 'allow_new_except' },
@@ -85,8 +87,8 @@ describe('resource routers', () => {
     ).rejects.toThrow(RunwayML.NotFoundError);
   });
 
-  test('list: only required params', async () => {
-    const responsePromise = client.routers.list({ limit: 1 });
+  test('list', async () => {
+    const responsePromise = client.routers.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -96,8 +98,11 @@ describe('resource routers', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('list: required and optional params', async () => {
-    const response = await client.routers.list({ limit: 1, cursor: 'x' });
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.routers.list({ cursor: 'x', limit: 1 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(RunwayML.NotFoundError);
   });
 
   test('delete', async () => {
@@ -111,8 +116,8 @@ describe('resource routers', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('listRequests: only required params', async () => {
-    const responsePromise = client.routers.listRequests('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { limit: 1 });
+  test('listRequests', async () => {
+    const responsePromise = client.routers.listRequests('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -122,10 +127,14 @@ describe('resource routers', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('listRequests: required and optional params', async () => {
-    const response = await client.routers.listRequests('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      limit: 1,
-      cursor: 'x',
-    });
+  test('listRequests: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.routers.listRequests(
+        '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        { cursor: 'x', limit: 1 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(RunwayML.NotFoundError);
   });
 });

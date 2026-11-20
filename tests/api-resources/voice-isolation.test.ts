@@ -26,6 +26,7 @@ describe('resource voiceIsolation', () => {
     const response = await client.voiceIsolation.create({
       audioUri: 'https://example.com/audio.mp3',
       model: 'eleven_voice_isolation',
+      'X-Runway-Tags': 'team:growth,env:prod,campaign-q4',
     });
   });
 });

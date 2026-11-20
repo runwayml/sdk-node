@@ -26,7 +26,7 @@ export class AuditLogs extends APIResource {
    * workspace.
    */
   list(
-    query: AuditLogListParams,
+    query: AuditLogListParams | null | undefined = {},
     options?: RequestOptions,
   ): PagePromise<AuditLogListResponsesCursorPage, AuditLogListResponse> {
     return this._client.getAPIList('/v1/organization/webapp/audit_logs', CursorPage<AuditLogListResponse>, {
@@ -43,6 +43,11 @@ export interface AuditLogRetrieveResponse {
    * The action performed.
    */
   action:
+    | 'AgentArtifactCommentCreated'
+    | 'AgentArtifactCreated'
+    | 'AgentArtifactVersionSaved'
+    | 'AgentArtifactSessionAttached'
+    | 'AgentArtifactSessionDetached'
     | 'UserLogin'
     | 'PasswordChanged'
     | 'EmailChangeRequested'
@@ -97,6 +102,7 @@ export interface AuditLogRetrieveResponse {
     | 'SeatsTransferred'
     | 'SessionShared'
     | 'SessionUnshared'
+    | 'SessionMadePrivateByAdmin'
     | 'VideoProjectShared'
     | 'VideoProjectUnshared'
     | 'BrandKitShared'
@@ -125,6 +131,12 @@ export interface AuditLogRetrieveResponse {
     | 'AppStudioAppSecretChanged'
     | 'AppStudioAppRunwayAccessGranted'
     | 'AppStudioAppRunwayAccessRevoked'
+    | 'AppStudioConnectorConnected'
+    | 'AppStudioConnectorDisconnected'
+    | 'AppStudioConnectorAppGranted'
+    | 'AppStudioConnectorAppRevoked'
+    | 'AppStudioConnectorPolicyChanged'
+    | 'AppStudioConnectorToolCalled'
     | 'AccountLinkCreated'
     | 'AccountLinkDeleted'
     | 'AdConnectionAuthorizationStarted'
@@ -143,6 +155,11 @@ export interface AuditLogRetrieveResponse {
     | 'AdPublishBatchCancelled'
     | 'AdPublishBatchRetried'
     | 'AdStatusChanged'
+    | 'AdCampaignSetupDrafted'
+    | 'AdCampaignSetupDiscarded'
+    | 'AdCampaignSetupConfirmed'
+    | 'AdCampaignSetupCancelled'
+    | 'AdCampaignSetupRetried'
     | 'OrganizationSettingsUpdated'
     | 'OrganizationDisabledModelsUpdated'
     | 'OrganizationAgentSandboxUpdated'
@@ -161,6 +178,7 @@ export interface AuditLogRetrieveResponse {
     | 'MeteredBillingRetryTriggered'
     | 'EnterpriseSpendCapEnforcementUpdated'
     | 'OnboardingBonusGranted'
+    | 'PromotionCreditsGranted'
     | 'AwsMarketplaceEnterpriseSubscriptionLinked';
 
   /**
@@ -291,6 +309,8 @@ export namespace AuditLogRetrieveResponse {
 
     Application?: string;
 
+    'Asset ID'?: string;
+
     'Asset name'?: string;
 
     'Asset type'?: string;
@@ -300,6 +320,12 @@ export namespace AuditLogRetrieveResponse {
     'AWS license'?: string;
 
     'Brand kit ID'?: string;
+
+    'Campaign setup ID'?: string;
+
+    'Campaign setup type'?: string;
+
+    'Campaign setup version'?: number;
 
     'Cancels at period end'?: boolean;
 
@@ -338,6 +364,8 @@ export namespace AuditLogRetrieveResponse {
     'Error code'?: string;
 
     Filename?: string;
+
+    'Files moved'?: number;
 
     'From workspace ID'?: number;
 
@@ -401,11 +429,17 @@ export namespace AuditLogRetrieveResponse {
 
     'Previous value'?: string | number | boolean | { [key: string]: boolean } | null;
 
+    'Previously shared in project'?: string | null;
+
     'Project credit cap'?: number | null;
 
     'Project ID'?: string;
 
+    Promotion?: string;
+
     Provider?: string;
+
+    'Read or write'?: string;
 
     Reason?: string | null;
 
@@ -416,6 +450,8 @@ export namespace AuditLogRetrieveResponse {
     'Removed member'?: string;
 
     'Requested via'?: Array<string>;
+
+    Result?: string;
 
     'Result metric ID'?: string | null;
 
@@ -442,6 +478,8 @@ export namespace AuditLogRetrieveResponse {
     'Source application'?: string;
 
     'Source category ID'?: string;
+
+    'Source version asset ID'?: string;
 
     'Spend cap'?: number;
 
@@ -490,6 +528,11 @@ export interface AuditLogListResponse {
    * The action performed.
    */
   action:
+    | 'AgentArtifactCommentCreated'
+    | 'AgentArtifactCreated'
+    | 'AgentArtifactVersionSaved'
+    | 'AgentArtifactSessionAttached'
+    | 'AgentArtifactSessionDetached'
     | 'UserLogin'
     | 'PasswordChanged'
     | 'EmailChangeRequested'
@@ -544,6 +587,7 @@ export interface AuditLogListResponse {
     | 'SeatsTransferred'
     | 'SessionShared'
     | 'SessionUnshared'
+    | 'SessionMadePrivateByAdmin'
     | 'VideoProjectShared'
     | 'VideoProjectUnshared'
     | 'BrandKitShared'
@@ -572,6 +616,12 @@ export interface AuditLogListResponse {
     | 'AppStudioAppSecretChanged'
     | 'AppStudioAppRunwayAccessGranted'
     | 'AppStudioAppRunwayAccessRevoked'
+    | 'AppStudioConnectorConnected'
+    | 'AppStudioConnectorDisconnected'
+    | 'AppStudioConnectorAppGranted'
+    | 'AppStudioConnectorAppRevoked'
+    | 'AppStudioConnectorPolicyChanged'
+    | 'AppStudioConnectorToolCalled'
     | 'AccountLinkCreated'
     | 'AccountLinkDeleted'
     | 'AdConnectionAuthorizationStarted'
@@ -590,6 +640,11 @@ export interface AuditLogListResponse {
     | 'AdPublishBatchCancelled'
     | 'AdPublishBatchRetried'
     | 'AdStatusChanged'
+    | 'AdCampaignSetupDrafted'
+    | 'AdCampaignSetupDiscarded'
+    | 'AdCampaignSetupConfirmed'
+    | 'AdCampaignSetupCancelled'
+    | 'AdCampaignSetupRetried'
     | 'OrganizationSettingsUpdated'
     | 'OrganizationDisabledModelsUpdated'
     | 'OrganizationAgentSandboxUpdated'
@@ -608,6 +663,7 @@ export interface AuditLogListResponse {
     | 'MeteredBillingRetryTriggered'
     | 'EnterpriseSpendCapEnforcementUpdated'
     | 'OnboardingBonusGranted'
+    | 'PromotionCreditsGranted'
     | 'AwsMarketplaceEnterpriseSubscriptionLinked';
 
   /**
@@ -708,6 +764,8 @@ export namespace AuditLogListResponse {
 
     Application?: string;
 
+    'Asset ID'?: string;
+
     'Asset name'?: string;
 
     'Asset type'?: string;
@@ -717,6 +775,12 @@ export namespace AuditLogListResponse {
     'AWS license'?: string;
 
     'Brand kit ID'?: string;
+
+    'Campaign setup ID'?: string;
+
+    'Campaign setup type'?: string;
+
+    'Campaign setup version'?: number;
 
     'Cancels at period end'?: boolean;
 
@@ -755,6 +819,8 @@ export namespace AuditLogListResponse {
     'Error code'?: string;
 
     Filename?: string;
+
+    'Files moved'?: number;
 
     'From workspace ID'?: number;
 
@@ -818,11 +884,17 @@ export namespace AuditLogListResponse {
 
     'Previous value'?: string | number | boolean | { [key: string]: boolean } | null;
 
+    'Previously shared in project'?: string | null;
+
     'Project credit cap'?: number | null;
 
     'Project ID'?: string;
 
+    Promotion?: string;
+
     Provider?: string;
+
+    'Read or write'?: string;
 
     Reason?: string | null;
 
@@ -833,6 +905,8 @@ export namespace AuditLogListResponse {
     'Removed member'?: string;
 
     'Requested via'?: Array<string>;
+
+    Result?: string;
 
     'Result metric ID'?: string | null;
 
@@ -859,6 +933,8 @@ export namespace AuditLogListResponse {
     'Source application'?: string;
 
     'Source category ID'?: string;
+
+    'Source version asset ID'?: string;
 
     'Spend cap'?: number;
 
@@ -905,7 +981,9 @@ export namespace AuditLogListResponse {
 export interface AuditLogRetrieveParams {
   /**
    * Organization to report on. Optional when this API project is linked to a single
-   * organization; required when it is linked to more than one.
+   * organization; required when it is linked to more than one. If it is missing
+   * then, the 400 response lists the IDs and names of the linked organizations in
+   * `details.organizations`.
    */
   organizationId?: string;
 }
@@ -913,9 +991,11 @@ export interface AuditLogRetrieveParams {
 export interface AuditLogListParams extends CursorPageParams {
   /**
    * Restrict results to these audit log actions, as a comma-separated list of up to
-   * 50 actions. Allowed values: `UserLogin`, `PasswordChanged`,
-   * `EmailChangeRequested`, `EmailChanged`, `UserRegistered`, `UserAccountDeleted`,
-   * `WorkspaceCreated`, `WorkspaceDeleted`, `MemberInvited`,
+   * 50 actions. Allowed values: `AgentArtifactCommentCreated`,
+   * `AgentArtifactCreated`, `AgentArtifactVersionSaved`,
+   * `AgentArtifactSessionAttached`, `AgentArtifactSessionDetached`, `UserLogin`,
+   * `PasswordChanged`, `EmailChangeRequested`, `EmailChanged`, `UserRegistered`,
+   * `UserAccountDeleted`, `WorkspaceCreated`, `WorkspaceDeleted`, `MemberInvited`,
    * `MemberInviteReminderSent`, `MemberRemoved`, `MemberRoleChanged`,
    * `InviteAccepted`, `MemberJoinedViaDomain`, `TeamSettingsUpdated`,
    * `InviteLinkToggled`, `UserGroupCreated`, `UserGroupUpdated`, `UserGroupDeleted`,
@@ -931,10 +1011,10 @@ export interface AuditLogListParams extends CursorPageParams {
    * `PermissionAccepted`, `SubscriptionCancelled`,
    * `SubscriptionReactivatedWithOffer`, `SubscriptionPlanSwitched`,
    * `CreditsTransferred`, `SeatsTransferred`, `SessionShared`, `SessionUnshared`,
-   * `VideoProjectShared`, `VideoProjectUnshared`, `BrandKitShared`,
-   * `BrandKitUnshared`, `AgentCustomSkillCreated`, `AgentCustomSkillDeleted`,
-   * `AgentCustomSkillShared`, `AgentCustomSkillUnshared`, `AgentSessionShared`,
-   * `AgentSessionUnshared`, `AgentConnectorLinkTokenCreated`,
+   * `SessionMadePrivateByAdmin`, `VideoProjectShared`, `VideoProjectUnshared`,
+   * `BrandKitShared`, `BrandKitUnshared`, `AgentCustomSkillCreated`,
+   * `AgentCustomSkillDeleted`, `AgentCustomSkillShared`, `AgentCustomSkillUnshared`,
+   * `AgentSessionShared`, `AgentSessionUnshared`, `AgentConnectorLinkTokenCreated`,
    * `AgentConnectorConnected`, `AgentConnectorDisconnected`,
    * `AgentConnectorAssetExported`, `AgentConnectorSessionEnabled`,
    * `AgentConnectorSessionDisabled`, `GenerationCreated`, `StudioSessionOpened`,
@@ -942,22 +1022,28 @@ export interface AuditLogListParams extends CursorPageParams {
    * `AppStudioAppVisibilityChanged`, `AppStudioAppRenamed`, `AppStudioAppDeleted`,
    * `AppStudioAppCoOwnerChanged`, `AppStudioAppSecretChanged`,
    * `AppStudioAppRunwayAccessGranted`, `AppStudioAppRunwayAccessRevoked`,
+   * `AppStudioConnectorConnected`, `AppStudioConnectorDisconnected`,
+   * `AppStudioConnectorAppGranted`, `AppStudioConnectorAppRevoked`,
+   * `AppStudioConnectorPolicyChanged`, `AppStudioConnectorToolCalled`,
    * `AccountLinkCreated`, `AccountLinkDeleted`, `AdConnectionAuthorizationStarted`,
    * `AdConnectionConnected`, `AdAccountSelectionUpdated`, `AdAccountSyncRequested`,
    * `AdConnectionDisconnected`, `AdWorkspaceOnboardingUpdated`,
    * `AdCreativeReviewSubmitted`, `AdCreativeReviewCancelled`,
    * `AdCreativeReviewDecided`, `AdCreativeApprovalRevoked`, `AdCreativeArchived`,
    * `AdCreativeUnarchived`, `AdPublishBatchQueued`, `AdPublishBatchCancelled`,
-   * `AdPublishBatchRetried`, `AdStatusChanged`, `OrganizationSettingsUpdated`,
-   * `OrganizationDisabledModelsUpdated`, `OrganizationAgentSandboxUpdated`,
-   * `OrganizationApiAccountReleased`, `OrganizationApiAccountMemberInvited`,
+   * `AdPublishBatchRetried`, `AdStatusChanged`, `AdCampaignSetupDrafted`,
+   * `AdCampaignSetupDiscarded`, `AdCampaignSetupConfirmed`,
+   * `AdCampaignSetupCancelled`, `AdCampaignSetupRetried`,
+   * `OrganizationSettingsUpdated`, `OrganizationDisabledModelsUpdated`,
+   * `OrganizationAgentSandboxUpdated`, `OrganizationApiAccountReleased`,
+   * `OrganizationApiAccountMemberInvited`,
    * `OrganizationApiAccountMemberRoleChanged`,
    * `OrganizationApiAccountMemberRemoved`, `WorkspaceCountryLockUpdated`,
    * `WorkspaceTagCreated`, `WorkspaceTagUpdated`, `WorkspaceTagDeleted`,
    * `WorkspaceTagAssigned`, `WorkspaceTagUnassigned`, `MeteredBillingConfigUpdated`,
    * `MeteredBillingRefillTriggered`, `MeteredBillingRetryTriggered`,
    * `EnterpriseSpendCapEnforcementUpdated`, `OnboardingBonusGranted`,
-   * `AwsMarketplaceEnterpriseSubscriptionLinked`.
+   * `PromotionCreditsGranted`, `AwsMarketplaceEnterpriseSubscriptionLinked`.
    */
   actions?: string;
 
@@ -974,7 +1060,9 @@ export interface AuditLogListParams extends CursorPageParams {
 
   /**
    * Organization to report on. Optional when this API project is linked to a single
-   * organization; required when it is linked to more than one.
+   * organization; required when it is linked to more than one. If it is missing
+   * then, the 400 response lists the IDs and names of the linked organizations in
+   * `details.organizations`.
    */
   organizationId?: string;
 

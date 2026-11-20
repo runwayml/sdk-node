@@ -32,6 +32,7 @@ describe('resource videoUpscale', () => {
       resolution: '720p',
       sharpen: 0,
       smartGrain: 0,
+      'X-Runway-Tags': 'team:growth,env:prod,campaign-q4',
     });
   });
 });
