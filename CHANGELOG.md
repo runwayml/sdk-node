@@ -2,15 +2,13 @@
 
 ## [4.29.0](https://github.com/runwayml/sdk-node/compare/v4.28.0...v4.29.0) (2026-11-20)
 
-
 ### Features
 
-* add MiniMax H3 Image, Seedance 2.5 Flash, and Seedream 5.5 models, plus request tags ([d71ebf4](https://github.com/runwayml/sdk-node/commit/d71ebf4193055769c8fe45a9cd7343946c2fe45b))
-
-
-### Bug Fixes
-
-* **client:** keep client-wide X-Runway-Tags headers on create calls ([1c582ad](https://github.com/runwayml/sdk-node/commit/1c582ad6d09f372329c36dfb0b7fd28d83c0477e))
+- Add the MiniMax H3 Image, Seedream 5.5, and Seedream 5.5 Layers text-to-image models.
+- Add Seedance 2.5 Flash to text-to-video, image-to-video, and video-to-video.
+- Filter and break down organization usage by request tags: `tags` and `groupBy` (`"tag"` or `"tag:<key>"`) on usage requests, with per-tag results in the response. Tag generation requests by setting the `X-Runway-Tags` header in the client's default headers or a request's headers.
+- Make `limit` optional on paginated list methods.
+- Add new audit log actions and metadata fields.
 
 ## [4.28.0](https://github.com/runwayml/sdk-node/compare/v4.27.0...v4.28.0) (2026-11-16)
 
