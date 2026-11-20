@@ -34,7 +34,12 @@ describe('resource organization', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.organization.retrieveUsage(
-        { beforeDate: '2019-12-27', startDate: '2019-12-27' },
+        {
+          beforeDate: '2019-12-27',
+          groupBy: 'TAG',
+          startDate: '2019-12-27',
+          tags: ['sQ__.w-lZ.//:B//u0-'],
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(RunwayML.NotFoundError);

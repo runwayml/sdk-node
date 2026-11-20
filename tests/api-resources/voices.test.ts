@@ -63,8 +63,8 @@ describe('resource voices', () => {
     ).rejects.toThrow(RunwayML.NotFoundError);
   });
 
-  test('list: only required params', async () => {
-    const responsePromise = client.voices.list({ limit: 1 });
+  test('list', async () => {
+    const responsePromise = client.voices.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -74,8 +74,11 @@ describe('resource voices', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('list: required and optional params', async () => {
-    const response = await client.voices.list({ limit: 1, cursor: 'x' });
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.voices.list({ cursor: 'x', limit: 1 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(RunwayML.NotFoundError);
   });
 
   test('delete', async () => {

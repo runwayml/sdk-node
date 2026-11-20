@@ -64,15 +64,13 @@ export class Avatars extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const avatarListResponse of client.avatars.list({
-   *   limit: 1,
-   * })) {
+   * for await (const avatarListResponse of client.avatars.list()) {
    *   // ...
    * }
    * ```
    */
   list(
-    query: AvatarListParams,
+    query: AvatarListParams | null | undefined = {},
     options?: RequestOptions,
   ): PagePromise<AvatarListResponsesCursorPage, AvatarListResponse> {
     return this._client.getAPIList('/v1/avatars', CursorPage<AvatarListResponse>, { query, ...options });

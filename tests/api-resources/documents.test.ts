@@ -62,12 +62,8 @@ describe('resource documents', () => {
     ).rejects.toThrow(RunwayML.NotFoundError);
   });
 
-  test('list: only required params', async () => {
-    const responsePromise = client.documents.list({
-      limit: 1,
-      order: 'asc',
-      sort: 'createdAt',
-    });
+  test('list', async () => {
+    const responsePromise = client.documents.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -77,13 +73,19 @@ describe('resource documents', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('list: required and optional params', async () => {
-    const response = await client.documents.list({
-      limit: 1,
-      order: 'asc',
-      sort: 'createdAt',
-      cursor: 'x',
-    });
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.documents.list(
+        {
+          cursor: 'x',
+          limit: 1,
+          order: 'asc',
+          sort: 'createdAt',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(RunwayML.NotFoundError);
   });
 
   test('delete', async () => {

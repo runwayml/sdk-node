@@ -83,7 +83,8 @@ export type TextToVideoCreateParams =
   | TextToVideoCreateParams.GeminiOmniFlash1_2
   | TextToVideoCreateParams.Kling4Flash
   | TextToVideoCreateParams.Hailuo3Highspeed
-  | TextToVideoCreateParams.Hailuo3Lite;
+  | TextToVideoCreateParams.Hailuo3Lite
+  | TextToVideoCreateParams.Seedance2_5Flash;
 
 export declare namespace TextToVideoCreateParams {
   export interface Gen4_5 {
@@ -1954,6 +1955,119 @@ export declare namespace TextToVideoCreateParams {
       uri: string;
     }
 
+    export interface ReferenceVideo {
+      type: 'video';
+
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+       * [our docs](/assets/inputs#videos) on video inputs for more information.
+       */
+      uri: string;
+    }
+  }
+
+  export interface Seedance2_5Flash {
+    model: 'seedance2_5_flash';
+
+    /**
+     * Whether to generate audio for the video. Defaults to `true`.
+     */
+    audio?: boolean;
+
+    /**
+     * Seconds of video to generate, or `auto` to let the model choose. `auto` is
+     * billed at the variant maximum up front; unused credits are refunded after the
+     * generation finishes. Defaults to 5.
+     */
+    duration?: number | 'auto';
+
+    /**
+     * Container for the output video. `mov` keeps high colour precision for grading
+     * and compositing. Defaults to `mp4`.
+     */
+    outputFormat?: 'mp4' | 'mov';
+
+    /**
+     * An optional text prompt up to 15000 characters describing what should appear in
+     * the output.
+     */
+    promptText?: string;
+
+    /**
+     * The resolution of the output video. Seedance 2.5 Flash supports 480p and 720p.
+     * Defaults to `1280:720`.
+     */
+    ratio?:
+      | '992:432'
+      | '854:480'
+      | '752:560'
+      | '640:640'
+      | '560:752'
+      | '480:854'
+      | '1470:630'
+      | '1280:720'
+      | '1112:834'
+      | '960:960'
+      | '834:1112'
+      | '720:1280';
+
+    /**
+     * An optional array of audio references. The total combined duration must be less
+     * than 30 seconds.
+     */
+    referenceAudio?: Array<Seedance2_5Flash.ReferenceAudio>;
+
+    /**
+     * An optional array of image references (up to 10). See
+     * [our docs](/assets/inputs#images) on image inputs for more information.
+     */
+    references?: Array<Seedance2_5Flash.Reference>;
+
+    /**
+     * An optional array of video references. The combined duration across all video
+     * references must not exceed 30 seconds. See [our docs](/assets/inputs#videos) on
+     * video inputs for more information.
+     */
+    referenceVideos?: Array<Seedance2_5Flash.ReferenceVideo>;
+
+    /**
+     * If unspecified, a random number is chosen. Varying the seed integer is a way to
+     * get different results for the same other request parameters. Using the same seed
+     * integer for an identical request will produce similar results.
+     */
+    seed?: number;
+  }
+
+  export namespace Seedance2_5Flash {
+    /**
+     * An audio reference allows the model to use the audio as additional context for
+     * the output.
+     */
+    export interface ReferenceAudio {
+      type: 'audio';
+
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:audio/mp3;base64,...`, up to 5MB) containing an encoded audio. See
+       * [our docs](/assets/inputs#audio) on audio inputs for more information.
+       */
+      uri: string;
+    }
+
+    export interface Reference {
+      /**
+       * A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+       * `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+       * [our docs](/assets/inputs#images) on image inputs for more information.
+       */
+      uri: string;
+    }
+
+    /**
+     * A video reference allows the model to use the video as additional context for
+     * the output.
+     */
     export interface ReferenceVideo {
       type: 'video';
 

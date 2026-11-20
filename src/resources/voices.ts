@@ -39,7 +39,7 @@ export class Voices extends APIResource {
    * pagination.
    */
   list(
-    query: VoiceListParams,
+    query: VoiceListParams | null | undefined = {},
     options?: RequestOptions,
   ): PagePromise<VoiceListResponsesCursorPage, VoiceListResponse> {
     return this._client.getAPIList('/v1/voices', CursorPage<VoiceListResponse>, { query, ...options });

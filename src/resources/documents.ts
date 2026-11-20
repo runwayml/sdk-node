@@ -69,19 +69,13 @@ export class Documents extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const documentListResponse of client.documents.list(
-   *   {
-   *     limit: 1,
-   *     order: 'asc',
-   *     sort: 'createdAt',
-   *   },
-   * )) {
+   * for await (const documentListResponse of client.documents.list()) {
    *   // ...
    * }
    * ```
    */
   list(
-    query: DocumentListParams,
+    query: DocumentListParams | null | undefined = {},
     options?: RequestOptions,
   ): PagePromise<DocumentListResponsesCursorPage, DocumentListResponse> {
     return this._client.getAPIList('/v1/documents', CursorPage<DocumentListResponse>, { query, ...options });
@@ -299,12 +293,12 @@ export interface DocumentListParams extends CursorPageParams {
   /**
    * Sort direction.
    */
-  order: 'asc' | 'desc';
+  order?: 'asc' | 'desc';
 
   /**
    * Field to sort results by.
    */
-  sort: 'createdAt' | 'updatedAt';
+  sort?: 'createdAt' | 'updatedAt';
 }
 
 export declare namespace Documents {

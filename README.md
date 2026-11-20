@@ -159,7 +159,7 @@ You can use the `for await … of` syntax to iterate through items across all pa
 async function fetchAllRouterListResponses(params) {
   const allRouterListResponses = [];
   // Automatically fetches more pages as needed.
-  for await (const routerListResponse of client.routers.list({ limit: 1 })) {
+  for await (const routerListResponse of client.routers.list()) {
     allRouterListResponses.push(routerListResponse);
   }
   return allRouterListResponses;
@@ -169,7 +169,7 @@ async function fetchAllRouterListResponses(params) {
 Alternatively, you can request a single page at a time:
 
 ```ts
-let page = await client.routers.list({ limit: 1 });
+let page = await client.routers.list();
 for (const routerListResponse of page.data) {
   console.log(routerListResponse);
 }

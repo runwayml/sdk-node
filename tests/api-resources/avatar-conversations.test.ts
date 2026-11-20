@@ -19,8 +19,8 @@ describe('resource avatarConversations', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('list: only required params', async () => {
-    const responsePromise = client.avatarConversations.list({ limit: 1 });
+  test('list', async () => {
+    const responsePromise = client.avatarConversations.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -30,14 +30,20 @@ describe('resource avatarConversations', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('list: required and optional params', async () => {
-    const response = await client.avatarConversations.list({
-      limit: 1,
-      avatar: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      cursor: 'x',
-      endDate: '2019-12-27T18:11:19.117Z',
-      startDate: '2019-12-27T18:11:19.117Z',
-    });
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.avatarConversations.list(
+        {
+          avatar: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          cursor: 'x',
+          endDate: '2019-12-27T18:11:19.117Z',
+          limit: 1,
+          startDate: '2019-12-27T18:11:19.117Z',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(RunwayML.NotFoundError);
   });
 
   test('delete', async () => {

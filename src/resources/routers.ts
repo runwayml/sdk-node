@@ -40,7 +40,7 @@ export class Routers extends APIResource {
    * cursor-based pagination.
    */
   list(
-    query: RouterListParams,
+    query: RouterListParams | null | undefined = {},
     options?: RequestOptions,
   ): PagePromise<RouterListResponsesCursorPage, RouterListResponse> {
     return this._client.getAPIList('/v1/routers', CursorPage<RouterListResponse>, { query, ...options });
@@ -63,7 +63,7 @@ export class Routers extends APIResource {
    */
   listRequests(
     id: string,
-    query: RouterListRequestsParams,
+    query: RouterListRequestsParams | null | undefined = {},
     options?: RequestOptions,
   ): PagePromise<RouterListRequestsResponsesCursorPage, RouterListRequestsResponse> {
     return this._client.getAPIList(path`/v1/routers/${id}/requests`, CursorPage<RouterListRequestsResponse>, {
@@ -142,8 +142,8 @@ export namespace RouterCreateResponse {
 
     /**
      * When mode is allow_new_except, ids are excluded; when allowlist_only, ids are
-     * the only allowed values. Each id must be a known public video or image model
-     * name (unknown ids are rejected on create/update).
+     * the only allowed values. Each id must be a known public video, image, audio, or
+     * mesh model name (unknown ids are rejected on create/update).
      */
     models?: Settings.Models;
 
@@ -177,13 +177,15 @@ export namespace RouterCreateResponse {
 
       image?: number;
 
+      mesh?: number;
+
       video?: number;
     }
 
     /**
      * When mode is allow_new_except, ids are excluded; when allowlist_only, ids are
-     * the only allowed values. Each id must be a known public video or image model
-     * name (unknown ids are rejected on create/update).
+     * the only allowed values. Each id must be a known public video, image, audio, or
+     * mesh model name (unknown ids are rejected on create/update).
      */
     export interface Models {
       ids: Array<string>;
@@ -258,8 +260,8 @@ export namespace RouterRetrieveResponse {
 
     /**
      * When mode is allow_new_except, ids are excluded; when allowlist_only, ids are
-     * the only allowed values. Each id must be a known public video or image model
-     * name (unknown ids are rejected on create/update).
+     * the only allowed values. Each id must be a known public video, image, audio, or
+     * mesh model name (unknown ids are rejected on create/update).
      */
     models?: Settings.Models;
 
@@ -293,13 +295,15 @@ export namespace RouterRetrieveResponse {
 
       image?: number;
 
+      mesh?: number;
+
       video?: number;
     }
 
     /**
      * When mode is allow_new_except, ids are excluded; when allowlist_only, ids are
-     * the only allowed values. Each id must be a known public video or image model
-     * name (unknown ids are rejected on create/update).
+     * the only allowed values. Each id must be a known public video, image, audio, or
+     * mesh model name (unknown ids are rejected on create/update).
      */
     export interface Models {
       ids: Array<string>;
@@ -374,8 +378,8 @@ export namespace RouterUpdateResponse {
 
     /**
      * When mode is allow_new_except, ids are excluded; when allowlist_only, ids are
-     * the only allowed values. Each id must be a known public video or image model
-     * name (unknown ids are rejected on create/update).
+     * the only allowed values. Each id must be a known public video, image, audio, or
+     * mesh model name (unknown ids are rejected on create/update).
      */
     models?: Settings.Models;
 
@@ -409,13 +413,15 @@ export namespace RouterUpdateResponse {
 
       image?: number;
 
+      mesh?: number;
+
       video?: number;
     }
 
     /**
      * When mode is allow_new_except, ids are excluded; when allowlist_only, ids are
-     * the only allowed values. Each id must be a known public video or image model
-     * name (unknown ids are rejected on create/update).
+     * the only allowed values. Each id must be a known public video, image, audio, or
+     * mesh model name (unknown ids are rejected on create/update).
      */
     export interface Models {
       ids: Array<string>;
@@ -493,8 +499,8 @@ export namespace RouterListResponse {
 
     /**
      * When mode is allow_new_except, ids are excluded; when allowlist_only, ids are
-     * the only allowed values. Each id must be a known public video or image model
-     * name (unknown ids are rejected on create/update).
+     * the only allowed values. Each id must be a known public video, image, audio, or
+     * mesh model name (unknown ids are rejected on create/update).
      */
     models?: Settings.Models;
 
@@ -528,13 +534,15 @@ export namespace RouterListResponse {
 
       image?: number;
 
+      mesh?: number;
+
       video?: number;
     }
 
     /**
      * When mode is allow_new_except, ids are excluded; when allowlist_only, ids are
-     * the only allowed values. Each id must be a known public video or image model
-     * name (unknown ids are rejected on create/update).
+     * the only allowed values. Each id must be a known public video, image, audio, or
+     * mesh model name (unknown ids are rejected on create/update).
      */
     export interface Models {
       ids: Array<string>;
@@ -697,8 +705,8 @@ export namespace RouterCreateParams {
 
     /**
      * When mode is allow_new_except, ids are excluded; when allowlist_only, ids are
-     * the only allowed values. Each id must be a known public video or image model
-     * name (unknown ids are rejected on create/update).
+     * the only allowed values. Each id must be a known public video, image, audio, or
+     * mesh model name (unknown ids are rejected on create/update).
      */
     models?: Settings.Models;
 
@@ -738,13 +746,15 @@ export namespace RouterCreateParams {
 
       image?: number;
 
+      mesh?: number;
+
       video?: number;
     }
 
     /**
      * When mode is allow_new_except, ids are excluded; when allowlist_only, ids are
-     * the only allowed values. Each id must be a known public video or image model
-     * name (unknown ids are rejected on create/update).
+     * the only allowed values. Each id must be a known public video, image, audio, or
+     * mesh model name (unknown ids are rejected on create/update).
      */
     export interface Models {
       ids: Array<string>;
@@ -795,8 +805,8 @@ export namespace RouterUpdateParams {
 
     /**
      * When mode is allow_new_except, ids are excluded; when allowlist_only, ids are
-     * the only allowed values. Each id must be a known public video or image model
-     * name (unknown ids are rejected on create/update).
+     * the only allowed values. Each id must be a known public video, image, audio, or
+     * mesh model name (unknown ids are rejected on create/update).
      */
     models?: Settings.Models;
 
@@ -836,13 +846,15 @@ export namespace RouterUpdateParams {
 
       image?: number | null;
 
+      mesh?: number | null;
+
       video?: number | null;
     }
 
     /**
      * When mode is allow_new_except, ids are excluded; when allowlist_only, ids are
-     * the only allowed values. Each id must be a known public video or image model
-     * name (unknown ids are rejected on create/update).
+     * the only allowed values. Each id must be a known public video, image, audio, or
+     * mesh model name (unknown ids are rejected on create/update).
      */
     export interface Models {
       ids: Array<string>;
