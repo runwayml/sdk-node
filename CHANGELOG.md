@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.29.0](https://github.com/runwayml/sdk-node/compare/v4.28.0...v4.29.0) (2026-11-20)
+
+
+### Features
+
+* add MiniMax H3 Image, Seedance 2.5 Flash, and Seedream 5.5 models, plus request tags ([d71ebf4](https://github.com/runwayml/sdk-node/commit/d71ebf4193055769c8fe45a9cd7343946c2fe45b))
+
+
+### Bug Fixes
+
+* **client:** keep client-wide X-Runway-Tags headers on create calls ([1c582ad](https://github.com/runwayml/sdk-node/commit/1c582ad6d09f372329c36dfb0b7fd28d83c0477e))
+
 ## [4.28.0](https://github.com/runwayml/sdk-node/compare/v4.27.0...v4.28.0) (2026-11-16)
 
 ### Features
